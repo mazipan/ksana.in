@@ -1,2 +1,3 @@
-# gootoo
-🔗 URL Shortener
+# gotu
+
+🧝‍♀️ Beautify your links made easy
