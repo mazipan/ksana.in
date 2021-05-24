@@ -6,12 +6,15 @@ import {
   Box,
   Stack,
   Input,
+  InputGroup,
+  InputLeftAddon,
   Button,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { v4 as uuidv4 } from "uuid";
 import { Auth } from "@supabase/ui";
 
+import { HOME } from "../constants/paths";
 import { supabase } from "../libs/supabase";
 import { useAlertContext } from "../context/Alert";
 
@@ -37,7 +40,7 @@ export const UrlForm = ({}) => {
 
   const checkIsEmpty = () => {
     if (url === "" || slug === "") {
-      setErrorText("URL and slug can not be empty");
+      setErrorText("URL dan slug tidak bisa dikosongkan");
       return true;
     }
 
@@ -61,7 +64,7 @@ export const UrlForm = ({}) => {
         setIsCheckPass(true);
         setErrorText("");
       } else {
-        setErrorText(`Slug ${slug} is already in used`);
+        setErrorText(`Slug ${slug} telah digunakan`);
       }
     }
     setLoading(false);
@@ -81,8 +84,9 @@ export const UrlForm = ({}) => {
 
       if (!errorInsert) {
         showAlert({
-          title: "Success insert new link",
-          message: "New link was already saved to our database",
+          title: "Sukses menyimpan tautan baru",
+          message:
+            "Tautan telah disimpan dalam basis data kami, silahkan mulai bagikan",
         });
 
         setUrl("");
@@ -91,8 +95,8 @@ export const UrlForm = ({}) => {
         setErrorText("");
       } else {
         showAlert({
-          title: "Error insert new link",
-          message: `Error: ${errorInsert.message}`,
+          title: "Terjadi galat pada saat menyimpan",
+          message: `Pesan: ${errorInsert.message}`,
         });
       }
     }
@@ -108,35 +112,34 @@ export const UrlForm = ({}) => {
             isInvalid={Boolean(errorText)}
             size="lg"
             name="url"
-            placeholder={"Type your ugly url here"}
+            placeholder={"Ketikkan tautan asli disini"}
             bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
             border={0}
-            _focus={{
-              bg: "whiteAlpha.300",
-            }}
             value={url}
             onChange={handleChangeUrl}
           />
         </FormControl>
 
         <FormControl id="slug" isRequired>
-          <Input
-            isRequired
-            isInvalid={Boolean(errorText)}
-            size="lg"
-            name="slug"
-            placeholder={"Type the new beauty slug here"}
-            bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
-            border={0}
-            _focus={{
-              bg: "whiteAlpha.300",
-            }}
-            value={slug}
-            onChange={handleChangeSlug}
-          />
+          <InputGroup size="lg">
+            <InputLeftAddon
+              children={HOME.replace("https://", "").replace("http://", "")}
+              fontSize="sm"
+            />
+            <Input
+              isRequired
+              isInvalid={Boolean(errorText)}
+              size="lg"
+              name="slug"
+              placeholder={"Tautan baru yang diinginkan"}
+              bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
+              border={0}
+              value={slug}
+              onChange={handleChangeSlug}
+            />
+          </InputGroup>
           <FormHelperText>
-            No need to add / as a prefix, only the slug. E.g: mazipan, twitter,
-            etc
+            Tautan akan otomatis ditambahkan pada {HOME}
           </FormHelperText>
         </FormControl>
 
@@ -171,12 +174,12 @@ export const UrlForm = ({}) => {
             size="lg"
             px={6}
             color={"white"}
-            bg={"blue.400"}
+            bg={"orange.400"}
             _hover={{
-              bg: "blue.500",
+              bg: "orange.500",
             }}
             _focus={{
-              bg: "blue.500",
+              bg: "orange.500",
             }}
             onClick={handleCheckAvailability}
           >

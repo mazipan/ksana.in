@@ -9,15 +9,8 @@ import {
   chakra,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa";
 
-const ListHeader = ({ children }) => {
-  return (
-    <Text fontWeight={"500"} fontSize={"lg"} mb={2}>
-      {children}
-    </Text>
-  );
-};
+import { FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa";
 
 const SocialButton = ({ children, label, href }) => {
   return (
@@ -60,15 +53,19 @@ export const Footer = () => {
       >
         <SimpleGrid columns={{ base: 1, md: 4 }} spacing={8} py={4}>
           <Stack align={"flex-start"}>
-            <ListHeader fontWeight="700">Navigations</ListHeader>
-            <Link href={"/about-us"}>About Us</Link>
-            <Link href={"/sign-in"}>Sign-In</Link>
+            <Text fontWeight="700" color="orange.400" fontSize={"lg"} mb={2}>
+              RESOURCES
+            </Text>
+            <Link href={"/tentang"}>Tentang kami</Link>
+            <Link href={"/sign-in"}>Masuk</Link>
             <Link href={"/beautifier"}>Beautifier</Link>
             <Link href={"/dashboard"}>Dashboard</Link>
           </Stack>
 
           <Stack align={"flex-start"}>
-            <ListHeader fontWeight="700">Legal</ListHeader>
+            <Text fontWeight="700" color="orange.400" fontSize={"lg"} mb={2}>
+              LEGAL
+            </Text>
             <Link href={"#"}>Cookies Policy</Link>
             <Link href={"#"}>Privacy Policy</Link>
             <Link href={"#"}>Terms of Service</Link>

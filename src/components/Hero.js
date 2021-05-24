@@ -7,6 +7,8 @@ import {
   Button,
 } from "@chakra-ui/react";
 
+import { BRAND_TAGLINE, BRAND_TAGLINE_LONG } from "../constants/texts";
+
 export const Hero = () => {
   return (
     <Container maxW={"5xl"} as="section" mt="20">
@@ -22,14 +24,7 @@ export const Hero = () => {
           fontSize={{ base: "3xl", sm: "4xl", md: "6xl" }}
           lineHeight={"110%"}
         >
-          Beautify your links{" "}
-          <Text
-            as={"span"}
-            bgGradient="linear(to-l, #7928CA, #FF0080)"
-            bgClip="text"
-          >
-            made easy
-          </Text>
+          {BRAND_TAGLINE}
         </Heading>
 
         <Text
@@ -37,8 +32,7 @@ export const Hero = () => {
           maxW={"3xl"}
           fontSize={{ base: "lg", sm: "xl", md: "2xl" }}
         >
-          Share the beautiful links to everyone without hassle, no need to pay
-          any cent
+          {BRAND_TAGLINE_LONG}
         </Text>
         <Stack spacing={2} direction={"row"}>
           <Button
@@ -46,14 +40,14 @@ export const Hero = () => {
             rounded="full"
             px={6}
             color={"white"}
-            bgGradient="linear(to-l, #7928CA, #FF0080)"
+            bg="orange.400"
             _hover={{
-              bgGradient: "linear(to-r, #7928CA, #FF0080)",
+              bg: "orange.500",
             }}
             as={"a"}
-            href={"/beautifier"}
+            href={"/sign-in"}
           >
-            See the magic
+            Coba sekarang
           </Button>
         </Stack>
         <Flex w={"full"}></Flex>

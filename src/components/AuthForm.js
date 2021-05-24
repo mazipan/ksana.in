@@ -61,7 +61,7 @@ export const AuthForm = ({ state = "login" }) => {
 
   const checkIsEmpty = () => {
     if (email === "" || password === "") {
-      setErrorForm("Email or password can not empty.");
+      setErrorForm("Email dan password tidak boleh dikosongkan.");
       return true;
     }
 
@@ -111,8 +111,8 @@ export const AuthForm = ({ state = "login" }) => {
         title: `${isLogin ? "Login" : "Register"} success`,
         message: `${
           isLogin
-            ? "Welcome back to your account!"
-            : "Thank you for signing up! We will send a confirmation email to activate your account."
+            ? "Selamat datang kembali!"
+            : "Terima kasih telah mendaftar. Silahkan melakukan verifikasi dengan mengklik tautan yang kami kirimkan melalui email."
         }`,
       });
     }
@@ -143,8 +143,8 @@ export const AuthForm = ({ state = "login" }) => {
 
     if (!error) {
       showAlert({
-        title: "Forgot password",
-        message: "Link to reset password has been sent to your email",
+        title: "Lupa password",
+        message: "Tautan untuk melakukan setel ulang kata sandi telah dikirim ke email kamu.",
       });
     }
   };
@@ -154,7 +154,7 @@ export const AuthForm = ({ state = "login" }) => {
       {loginUser ? (
         <Stack spacing={8} mx={"auto"} mt="20" maxW={"lg"} py={12} px={6}>
           <Stack align={"center"}>
-            <Heading fontSize={"4xl"}>Welcome, {loginUser.email}</Heading>
+            <Heading fontSize={"4xl"}>Selamat datang, {loginUser.email}</Heading>
           </Stack>
 
           <Stack spacing={2} direction={"row"}>
@@ -162,14 +162,14 @@ export const AuthForm = ({ state = "login" }) => {
               rounded="full"
               px={6}
               color={"white"}
-              bgGradient="linear(to-l, #7928CA, #FF0080)"
+              bg="orange.400"
               _hover={{
-                bgGradient: "linear(to-r, #7928CA, #FF0080)",
+                bg: "orange.500",
               }}
               as={"a"}
               href={"/dashboard"}
             >
-              Visit my dashboard
+              Kunjungi halaman dashboard
             </Button>
           </Stack>
         </Stack>
@@ -178,7 +178,7 @@ export const AuthForm = ({ state = "login" }) => {
           <Stack spacing={8} mx={"auto"} mt="20" maxW={"lg"} py={12} px={6}>
             <Stack align={"center"}>
               <Heading fontSize={"4xl"}>
-                {isLogin ? "Sign in to your account" : "Sign up new account"}
+                {isLogin ? "Masuk ke akunmu" : "Daftarkan akun baru"}
               </Heading>
             </Stack>
             <Box
@@ -189,7 +189,7 @@ export const AuthForm = ({ state = "login" }) => {
             >
               <Stack spacing={4}>
                 <FormControl id="email" isRequired>
-                  <FormLabel>Email address</FormLabel>
+                  <FormLabel>Email</FormLabel>
                   <Input
                     isInvalid={Boolean(errorForm)}
                     type="email"
@@ -214,7 +214,7 @@ export const AuthForm = ({ state = "login" }) => {
 
                 {errorForm && (
                   <Text color="red.300" fontSize="xs">
-                    Error: {errorForm}
+                    Galat: {errorForm}
                   </Text>
                 )}
 
@@ -228,51 +228,50 @@ export const AuthForm = ({ state = "login" }) => {
                       <Button
                         variant="link"
                         as={Link}
-                        color={"blue.400"}
+                        color={"orange.400"}
                         onClick={handleResetPassword}
                       >
-                        Forgot password?
+                        Lupa password?
                       </Button>
                     </Stack>
                   ) : null}
 
                   <Button
                     isLoading={loading}
-                    loadingText="Submitting"
+                    loadingText="Memproses"
                     w="full"
-                    bg={"blue.400"}
-                    color={"white"}
+                    bg="orange.400"
                     _hover={{
-                      bg: "blue.500",
+                      bg: "orange.500",
                     }}
                     onClick={handleSubmit}
                   >
-                    {isLogin ? "Sign in" : "Sign up"}
+                    {isLogin ? "Masuk" : "Daftar Sekarang"}
                   </Button>
                 </Stack>
 
                 {isLogin ? (
                   <Stack direction="row" align={"center"} justify={"center"}>
-                    <Text>New to Gotu? </Text>
+                    <Text>Belum punya akun? </Text>
                     <Button
                       variant="link"
                       as={Link}
-                      color={"blue.400"}
+                      color={"orange.400"}
                       onClick={toggleState}
                     >
-                      Sign up
+                      Daftar sekarang
                     </Button>
                   </Stack>
                 ) : (
                   <Stack direction="row" align={"center"} justify={"center"}>
-                    <Text>Already have account? </Text>
+                    <Text>Sudah punya akun? </Text>
                     <Button
                       variant="link"
                       as={Link}
-                      color={"blue.400"}
+                      color={"orange.400"}
                       onClick={toggleState}
                     >
-                      Sign in
+                      Masuk
                     </Button>
                   </Stack>
                 )}

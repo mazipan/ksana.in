@@ -22,7 +22,7 @@ const Beautifier = () => {
         justify={"center"}
       >
         <Stack align={"center"}>
-          <Heading fontSize={"4xl"}>Beautify your link now!</Heading>
+          <Heading fontSize={"4xl"}>Pemendek tautan</Heading>
         </Stack>
 
         <UrlForm />

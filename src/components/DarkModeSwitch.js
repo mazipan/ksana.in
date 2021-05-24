@@ -10,7 +10,8 @@ export const DarkModeSwitch = () => {
       aria-label="Theme switcher"
       onClick={toggleColorMode}
       fontSize="20px"
-      icon={isDark ? <HiMoon color="grey" /> : <HiSun color="grey" />}
+      bgColor="orange.300"
+      icon={isDark ? <HiMoon color="white" /> : <HiSun color="white" />}
     />
   );
 };

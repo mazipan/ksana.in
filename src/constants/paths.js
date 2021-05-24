@@ -4,7 +4,7 @@ export const register = "/sign-up";
 
 // internal slug used by the app
 export const blacklistSlugs = [
-  "about-us",
+  "tentang",
   "beautifier",
   "dashboard",
   "sign-in",

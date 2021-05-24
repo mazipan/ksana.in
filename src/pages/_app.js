@@ -5,7 +5,7 @@ import "@fontsource/poppins/400.css";
 import theme from "../theme";
 import { AlertProvider } from "../context/Alert";
 
-function GotoApp({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   return (
     <ChakraProvider resetCSS theme={theme}>
       <ColorModeProvider
@@ -21,4 +21,4 @@ function GotoApp({ Component, pageProps }) {
   );
 }
 
-export default GotoApp;
+export default App;

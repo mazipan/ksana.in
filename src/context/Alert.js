@@ -8,7 +8,7 @@ const defaultState = {
   isOpen: false,
   title: "",
   message: "",
-  cancelText: "Cancel",
+  cancelText: "Tutup",
   confirmText: "",
   onConfirm: noop,
   onClose: noop,

@@ -36,17 +36,11 @@ export async function getServerSideProps({ params }) {
   const slug = params.slug;
   const { data } = await supabase
     .from("urls")
-    .select("real_url,slug,hit")
+    .select("real_url,slug")
     .eq("slug", slug)
     .single();
 
   if (data && data.real_url) {
-    // update hit field for a simple stats
-    await supabase
-      .from("urls")
-      .eq("slug", slug)
-      .update({ hit: data.hit + 1 });
-
     return {
       redirect: {
         destination: data.real_url,

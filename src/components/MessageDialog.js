@@ -16,8 +16,9 @@ import { textColor } from "../constants/colors";
 export const MessageDialog = ({
   title = "",
   message = "",
-  cancelText = "Cancel",
+  cancelText = "Tutup",
   confirmText,
+  confirmSchema = "red",
   onConfirm,
   isOpen,
   onClose,
@@ -48,11 +49,11 @@ export const MessageDialog = ({
           </AlertDialogBody>
 
           <AlertDialogFooter>
-            <Button ref={cancelRef} onClick={onClose}>
+            <Button ref={cancelRef} onClick={onClose} color={textColor[colorMode]}>
               {cancelText}
             </Button>
             {confirmText && (
-              <Button colorScheme="blue" onClick={onConfirm} ml={3}>
+              <Button colorScheme={confirmSchema} onClick={onConfirm} ml={3}>
                 {confirmText}
               </Button>
             )}
