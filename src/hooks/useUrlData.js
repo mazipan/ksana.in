@@ -1,30 +1,31 @@
 import { useEffect, useState } from "react";
-import { Auth } from "@supabase/ui";
 
 import { supabase } from "../libs/supabase";
 
-export const useUrlData = async () => {
-  const [data, setData] = useState(null);
+export const useUrlData = (user = null) => {
+  const [data, setData] = useState([]);
   const [error, setError] = useState(null);
-
-  const response = Auth.useUser();
 
   const fetchData = async (u) => {
     if (u && u.id) {
       const { data, error } = await supabase
         .from("urls")
         .select("id,user_id,real_url,slug")
-        .eq("user_id", u?.id || 0);
+        .eq("user_id", u.id);
 
-      console.log("url data", data, error);
-      setData(data || null);
+      setData(data || []);
       setError(error || null);
     }
   };
 
   useEffect(() => {
-    fetchData(response?.user || null);
-  }, [response]);
+    if (user) {
+      fetchData(user);
+    }
+  }, [user]);
 
-  return { user: response.user || null, data, error };
+  return {
+    data,
+    error,
+  };
 };

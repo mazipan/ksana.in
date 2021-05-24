@@ -7,7 +7,7 @@ export const HiUser = ({}) => {
   return (
     <Box width={{ base: "100%", md: "4xl" }}>
       {user && (
-        <Stack spacing={2} direction={{ base: "column", md: "row" }}>
+        <Stack mb={4} spacing={2} direction={{ base: "column", md: "row" }}>
           <Text>Hi, {user.email}</Text>
         </Stack>
       )}

@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef } from "react";
 
 import {
   AlertDialog,
@@ -7,33 +7,45 @@ import {
   AlertDialogHeader,
   AlertDialogContent,
   AlertDialogOverlay,
-  Button
-} from '@chakra-ui/react'
+  Button,
+  useColorMode,
+} from "@chakra-ui/react";
+
+import { textColor } from "../constants/colors";
 
 export const MessageDialog = ({
-  title = '',
-  message = '',
-  cancelText = 'Cancel',
+  title = "",
+  message = "",
+  cancelText = "Cancel",
   confirmText,
   onConfirm,
   isOpen,
-  onClose
+  onClose,
 }) => {
-  const cancelRef = useRef()
+  const cancelRef = useRef();
+  const { colorMode } = useColorMode();
 
   return (
     <AlertDialog
+      motionPreset="slideInBottom"
       isOpen={isOpen}
       leastDestructiveRef={cancelRef}
       onClose={onClose}
+      isCentered
     >
       <AlertDialogOverlay>
-        <AlertDialogContent>
-          <AlertDialogHeader fontSize="lg" fontWeight="bold">
+        <AlertDialogContent width="90%">
+          <AlertDialogHeader
+            fontSize="lg"
+            fontWeight="bold"
+            color={textColor[colorMode]}
+          >
             {title}
           </AlertDialogHeader>
 
-          <AlertDialogBody>{message}</AlertDialogBody>
+          <AlertDialogBody color={textColor[colorMode]}>
+            {message}
+          </AlertDialogBody>
 
           <AlertDialogFooter>
             <Button ref={cancelRef} onClick={onClose}>
@@ -48,5 +60,5 @@ export const MessageDialog = ({
         </AlertDialogContent>
       </AlertDialogOverlay>
     </AlertDialog>
-  )
-}
+  );
+};

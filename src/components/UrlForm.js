@@ -38,18 +38,16 @@ export const UrlForm = ({}) => {
 
   const handleSaveNew = async () => {
     if (url && slug) {
-      console.log('user want to insert', user);
-      const { data, error } = await supabase
-        .from("urls")
-        .insert([
-          {
-            inserted_at: new Date().toISOString,
-            real_url: url,
-            slug: slug,
-            user_id: user?.id || uuidv4(),
-          },
-        ]);
-      console.log('insert response', data, error);
+      console.log("user want to insert", user);
+      const { data, error } = await supabase.from("urls").insert([
+        {
+          inserted_at: new Date().toISOString,
+          real_url: url,
+          slug: slug,
+          user_id: user?.id || uuidv4(),
+        },
+      ]);
+      console.log("insert response", data, error);
     }
   };
 
@@ -57,7 +55,8 @@ export const UrlForm = ({}) => {
     <Box width={{ base: "100%", md: "4xl" }}>
       <Stack spacing={2} direction={{ base: "column", md: "row" }}>
         <Input
-          placeholder={"Type your real ugly url here"}
+          size="lg"
+          placeholder={"Type your ugly url here"}
           bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
           border={0}
           _focus={{
@@ -68,7 +67,8 @@ export const UrlForm = ({}) => {
         />
 
         <Input
-          placeholder={"Type some beauty slug here"}
+          size="lg"
+          placeholder={"Type the new beauty slug here"}
           bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
           border={0}
           _focus={{
@@ -80,6 +80,7 @@ export const UrlForm = ({}) => {
 
         {isCheckPass ? (
           <Button
+            size="lg"
             px={6}
             color={"white"}
             bg={"blue.400"}
@@ -95,6 +96,7 @@ export const UrlForm = ({}) => {
           </Button>
         ) : (
           <Button
+            size="lg"
             px={6}
             color={"white"}
             bg={"blue.400"}
@@ -106,7 +108,7 @@ export const UrlForm = ({}) => {
             }}
             onClick={handleCheckAvailability}
           >
-            Check Availability
+            Check
           </Button>
         )}
       </Stack>
