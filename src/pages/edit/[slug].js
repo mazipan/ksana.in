@@ -2,7 +2,7 @@ import { Box, Stack, Button, Heading } from "@chakra-ui/react";
 
 import { Layout } from "../../components/Layout";
 
-import { supabase } from "../libs/supabase";
+import { supabase } from "../../libs/supabase";
 
 function SlugPage() {
   return (
