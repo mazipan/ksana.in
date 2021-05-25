@@ -11,7 +11,13 @@ import {
 } from "@chakra-ui/react";
 import { Auth } from "@supabase/ui";
 
-import { HiDuplicate, HiPencil, HiTrash, HiSave } from "react-icons/hi";
+import {
+  HiShare,
+  HiDuplicate,
+  HiPencil,
+  HiTrash,
+  HiSave,
+} from "react-icons/hi";
 
 import { supabase } from "../libs/supabase";
 import { useAlertContext } from "../context/Alert";
@@ -28,6 +34,26 @@ export const UrlList = () => {
   const handleCopy = async (text) => {
     if (navigator.clipboard) {
       await navigator.clipboard.writeText(text);
+    }
+  };
+
+  const handleShare = async (url) => {
+    if (navigator.share) {
+      const res = await fetch(
+        `https://oge.now.sh/api?url=${decodeURIComponent(url)}`
+      );
+      const d = await res.json();
+
+      const shareObj = {
+        title: d.title,
+        text: d.description,
+        url: url,
+      };
+
+      navigator
+        .share(shareObj)
+        .then(() => console.log("Successful share", shareObj))
+        .catch((error) => console.log("Error sharing", error, shareObj));
     }
   };
 
@@ -142,6 +168,15 @@ export const UrlList = () => {
                   fontSize="20px"
                   variant="ghost"
                   icon={<HiDuplicate color="#ED8936" />}
+                />
+                <IconButton
+                  onClick={() => {
+                    handleShare(`${HOME}${d.slug}`);
+                  }}
+                  aria-label="Copy"
+                  fontSize="20px"
+                  variant="ghost"
+                  icon={<HiShare color="#ED8936" />}
                 />
                 <IconButton
                   onClick={() => {
