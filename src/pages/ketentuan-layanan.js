@@ -3,7 +3,7 @@ import { VStack, Heading, Text } from "@chakra-ui/react";
 import { BRAND } from "../constants/texts";
 import { Layout } from "../components/Layout";
 
-const About = () => (
+const Terms = () => (
   <Layout height="100vh">
     <VStack spacing={2} textAlign="center" as="section" mt="32">
       <Heading
@@ -12,7 +12,7 @@ const About = () => (
         fontSize={{ base: "3xl", sm: "4xl", md: "6xl" }}
         lineHeight={"110%"}
       >
-        Tentang Kami
+        Ketentuan Layanan
       </Heading>
       <Heading
         as="h2"
@@ -26,4 +26,4 @@ const About = () => (
   </Layout>
 );
 
-export default About;
+export default Terms;

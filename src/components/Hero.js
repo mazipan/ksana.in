@@ -9,6 +9,7 @@ import {
 
 import { login } from '../constants/paths'
 import { BRAND_TAGLINE, BRAND_TAGLINE_LONG } from '../constants/texts'
+import { HiPlay } from 'react-icons/hi'
 
 export const Hero = () => {
   return (
@@ -47,6 +48,7 @@ export const Hero = () => {
             }}
             as={'a'}
             href={login}
+            leftIcon={<HiPlay />}
           >
             Coba sekarang
           </Button>

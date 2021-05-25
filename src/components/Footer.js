@@ -10,7 +10,7 @@ import {
   useColorModeValue
 } from '@chakra-ui/react'
 
-import { login, tentang, dashboard } from '../constants/paths'
+import { login, tentang, dashboard, ketentuanLayanan, kebijakanPrivasi } from '../constants/paths'
 import { BRAND } from '../constants/texts'
 import { FaTwitter, FaYoutube, FaInstagram } from 'react-icons/fa'
 
@@ -67,7 +67,8 @@ export const Footer = () => {
             <Text fontWeight="700" color="orange.400" fontSize={'lg'} mb={2}>
               LEGAL
             </Text>
-            <Link href={'#'}>Ketentuan Privasi</Link>
+            <Link href={kebijakanPrivasi}>Kebijakan Privasi</Link>
+            <Link href={ketentuanLayanan}>Ketentuan Layanan</Link>
           </Stack>
         </SimpleGrid>
       </Box>
