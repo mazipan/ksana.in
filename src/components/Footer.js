@@ -16,7 +16,8 @@ import {
   tentang,
   dashboard,
   ketentuanLayanan,
-  kebijakanPrivasi
+  kebijakanPrivasi,
+  splitbeeAnalytics,
 } from '../constants/paths'
 import { BRAND } from '../constants/texts'
 import { FaTwitter, FaYoutube, FaInstagram } from 'react-icons/fa'
@@ -105,6 +106,7 @@ export const Footer = () => {
               <Link href={tentang}>Tentang kami</Link>
               <Link href={login}>Masuk</Link>
               <Link href={dashboard}>Dashboard</Link>
+              <Link href={splitbeeAnalytics}>Statistik Publik</Link>
             </Stack>
 
             <Stack align={'flex-start'}>
