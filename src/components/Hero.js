@@ -4,57 +4,69 @@ import {
   Heading,
   Stack,
   Text,
-  Button
-} from '@chakra-ui/react'
+  Button,
+  Image,
+  SimpleGrid,
+  Box,
+  VStack,
+} from "@chakra-ui/react";
 
-import { login } from '../constants/paths'
-import { BRAND_TAGLINE, BRAND_TAGLINE_LONG } from '../constants/texts'
-import { HiPlay } from 'react-icons/hi'
+import { login } from "../constants/paths";
+import {
+  BRAND_TAGLINE_HERO_1,
+  BRAND_TAGLINE_HERO_2,
+  BRAND_TAGLINE_LONG,
+} from "../constants/texts";
+import { HiPlay } from "react-icons/hi";
 
 export const Hero = () => {
   return (
-    <Container maxW={'5xl'} as="section" mt="20">
-      <Stack
-        textAlign={'center'}
-        align={'center'}
-        spacing={{ base: 8, md: 10 }}
-        py={{ base: 20, md: 28 }}
-      >
-        <Heading
-          as="h2"
-          fontWeight={700}
-          fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
-          lineHeight={'110%'}
-        >
-          {BRAND_TAGLINE}
-        </Heading>
+    <Box w={"full"}>
+      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+        <Container maxW={"6xl"} as="section" mt="32">
+          <VStack spacing={{ base: 8, md: 10 }} px={{ base: 8, md: 10 }}>
+            <Heading
+              as="h2"
+              textAlign="center"
+              fontWeight={700}
+              fontSize={{ base: "4xl", sm: "5xl", md: "6xl" }}
+              lineHeight={"110%"}
+            >
+              Pemendek tautan yang <Text color="orange.400" as="span">mudah</Text> dan <Text color="orange.400" as="span">gratis</Text>
+            </Heading>
 
-        <Text
-          color={'gray.500'}
-          maxW={'3xl'}
-          fontSize={{ base: 'lg', sm: 'xl', md: '2xl' }}
-        >
-          {BRAND_TAGLINE_LONG}
-        </Text>
-        <Stack spacing={2} direction={'row'}>
-          <Button
-            size="lg"
-            rounded="full"
-            px={6}
-            color={'white'}
-            bg="orange.400"
-            _hover={{
-              bg: 'orange.500'
-            }}
-            as={'a'}
-            href={login}
-            leftIcon={<HiPlay />}
-          >
-            Coba sekarang
-          </Button>
-        </Stack>
-        <Flex w={'full'}></Flex>
-      </Stack>
-    </Container>
-  )
-}
+            <Text
+              as="span"
+              textAlign="center"
+              color={"gray.500"}
+              fontSize={{ base: "lg", sm: "xl", md: "2xl" }}
+              lineHeight={"110%"}
+            >
+              {BRAND_TAGLINE_LONG}
+            </Text>
+
+            <Button
+              size="lg"
+              rounded="full"
+              px={6}
+              color={"white"}
+              bg="orange.400"
+              _hover={{
+                bg: "orange.500",
+              }}
+              as={"a"}
+              href={login}
+              leftIcon={<HiPlay />}
+            >
+              Coba sekarang
+            </Button>
+          </VStack>
+        </Container>
+
+        <Container as="section" mt={{ base: 0, md: 10 }}>
+          <Image w="100%" src={"/ill_by_manypixels.svg"}></Image>
+        </Container>
+      </SimpleGrid>
+    </Box>
+  );
+};

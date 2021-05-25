@@ -13,7 +13,7 @@ export const Header = () => {
       alignItems="center"
       p="4"
       as="header"
-      zIndex="2"
+      zIndex="3"
       bg="orange.400"
     >
       <Link
