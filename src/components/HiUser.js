@@ -1,16 +1,16 @@
-import { Box, Stack, Text } from "@chakra-ui/react";
-import { Auth } from "@supabase/ui";
+import { Box, Stack, Text } from '@chakra-ui/react'
+import { Auth } from '@supabase/ui'
 
-export const HiUser = ({}) => {
-  const { user } = Auth.useUser();
+export const HiUser = () => {
+  const { user } = Auth.useUser()
 
   return (
-    <Box width={{ base: "100%", md: "4xl" }}>
+    <Box width={{ base: '100%', md: '4xl' }}>
       {user && (
-        <Stack mb={4} spacing={2} direction={{ base: "column", md: "row" }}>
+        <Stack mb={4} spacing={2} direction={{ base: 'column', md: 'row' }}>
           <Text>Hai, {user.email}</Text>
         </Stack>
       )}
     </Box>
-  );
-};
+  )
+}

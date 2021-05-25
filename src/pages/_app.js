@@ -1,16 +1,16 @@
-import { ChakraProvider, ColorModeProvider } from "@chakra-ui/react";
+import { ChakraProvider, ColorModeProvider } from '@chakra-ui/react'
 
-import "@fontsource/poppins/400.css";
+import '@fontsource/poppins/400.css'
 
-import theme from "../theme";
-import { AlertProvider } from "../context/Alert";
+import theme from '../theme'
+import { AlertProvider } from '../context/Alert'
 
-function App({ Component, pageProps }) {
+function App ({ Component, pageProps }) {
   return (
     <ChakraProvider resetCSS theme={theme}>
       <ColorModeProvider
         options={{
-          useSystemColorMode: true,
+          useSystemColorMode: true
         }}
       >
         <AlertProvider>
@@ -18,7 +18,7 @@ function App({ Component, pageProps }) {
         </AlertProvider>
       </ColorModeProvider>
     </ChakraProvider>
-  );
+  )
 }
 
-export default App;
+export default App

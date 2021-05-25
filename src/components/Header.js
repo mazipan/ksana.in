@@ -1,6 +1,6 @@
-import { Link, Flex } from "@chakra-ui/react";
+import { Link, Flex } from '@chakra-ui/react'
 
-import { DarkModeSwitch } from "./DarkModeSwitch";
+import { DarkModeSwitch } from './DarkModeSwitch'
 
 export const Header = () => {
   return (
@@ -17,9 +17,9 @@ export const Header = () => {
       bg="orange.400"
     >
       <Link
-        href={"/"}
+        href={'/'}
         _hover={{
-          textDecoration: "none",
+          textDecoration: 'none'
         }}
       >
         <svg
@@ -44,5 +44,5 @@ export const Header = () => {
         <DarkModeSwitch />
       </Flex>
     </Flex>
-  );
-};
+  )
+}

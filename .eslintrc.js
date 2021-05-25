@@ -20,6 +20,7 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 'off',
     'react/no-unescaped-entities': 'warn',
+    'react/no-children-prop': 'warn',
     'react/prop-types': 'off',
     'multiline-ternary': 'off'
   }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react'
 import {
   FormControl,
   Text,
@@ -9,111 +9,111 @@ import {
   InputGroup,
   InputLeftAddon,
   Button,
-  useColorModeValue,
-} from "@chakra-ui/react";
-import { v4 as uuidv4 } from "uuid";
-import { Auth } from "@supabase/ui";
+  useColorModeValue
+} from '@chakra-ui/react'
+import { v4 as uuidv4 } from 'uuid'
+import { Auth } from '@supabase/ui'
 
-import { HOME } from "../constants/paths";
-import { supabase } from "../libs/supabase";
-import { useAlertContext } from "../context/Alert";
+import { HOME } from '../constants/paths'
+import { supabase } from '../libs/supabase'
+import { useAlertContext } from '../context/Alert'
 
-export const UrlForm = ({}) => {
-  const { user } = Auth.useUser();
-  const { showAlert } = useAlertContext();
+export const UrlForm = () => {
+  const { user } = Auth.useUser()
+  const { showAlert } = useAlertContext()
 
-  const [url, setUrl] = useState("");
-  const [slug, setSlug] = useState("");
-  const [isCheckPass, setIsCheckPass] = useState(false);
-  const [errorText, setErrorText] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [url, setUrl] = useState('')
+  const [slug, setSlug] = useState('')
+  const [isCheckPass, setIsCheckPass] = useState(false)
+  const [errorText, setErrorText] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const handleChangeUrl = (e) => {
-    const value = e.target.value;
-    setUrl(value);
-  };
+    const value = e.target.value
+    setUrl(value)
+  }
 
   const handleChangeSlug = (e) => {
-    const value = e.target.value;
-    setSlug(value);
-  };
+    const value = e.target.value
+    setSlug(value)
+  }
 
   const checkIsEmpty = () => {
-    if (url === "" || slug === "") {
-      setErrorText("URL dan slug tidak bisa dikosongkan");
-      return true;
+    if (url === '' || slug === '') {
+      setErrorText('URL dan slug tidak bisa dikosongkan')
+      return true
     }
 
-    setErrorText("");
-    return false;
-  };
+    setErrorText('')
+    return false
+  }
 
   const handleCheckAvailability = async () => {
-    setLoading(true);
-    const isEmpty = checkIsEmpty();
+    setLoading(true)
+    const isEmpty = checkIsEmpty()
     if (!isEmpty) {
-      setErrorText("");
+      setErrorText('')
 
       const { error: errorRealSlug } = await supabase
-        .from("urls")
-        .select("real_url,slug")
-        .eq("slug", slug)
-        .single();
+        .from('urls')
+        .select('real_url,slug')
+        .eq('slug', slug)
+        .single()
 
       if (errorRealSlug) {
-        setIsCheckPass(true);
-        setErrorText("");
+        setIsCheckPass(true)
+        setErrorText('')
       } else {
-        setErrorText(`Slug ${slug} telah digunakan`);
+        setErrorText(`Slug ${slug} telah digunakan`)
       }
     }
-    setLoading(false);
-  };
+    setLoading(false)
+  }
 
   const handleSaveNew = async () => {
-    setLoading(true);
-    const isEmpty = checkIsEmpty();
+    setLoading(true)
+    const isEmpty = checkIsEmpty()
     if (!isEmpty) {
-      const { data, error: errorInsert } = await supabase.from("urls").insert([
+      const { error: errorInsert } = await supabase.from('urls').insert([
         {
           real_url: url,
           slug: slug,
-          user_id: user?.id || uuidv4(),
-        },
-      ]);
+          user_id: user?.id || uuidv4()
+        }
+      ])
 
       if (!errorInsert) {
         showAlert({
-          title: "Sukses menyimpan tautan baru",
+          title: 'Sukses menyimpan tautan baru',
           message:
-            "Tautan telah disimpan dalam basis data kami, silahkan mulai bagikan",
-        });
+            'Tautan telah disimpan dalam basis data kami, silahkan mulai bagikan'
+        })
 
-        setUrl("");
-        setSlug("");
-        setIsCheckPass(false);
-        setErrorText("");
+        setUrl('')
+        setSlug('')
+        setIsCheckPass(false)
+        setErrorText('')
       } else {
         showAlert({
-          title: "Terjadi galat pada saat menyimpan",
-          message: `Pesan: ${errorInsert.message}`,
-        });
+          title: 'Terjadi galat pada saat menyimpan',
+          message: `Pesan: ${errorInsert.message}`
+        })
       }
     }
-    setLoading(false);
-  };
+    setLoading(false)
+  }
 
   return (
-    <Box width={{ base: "100%" }}>
-      <Stack spacing={2} direction={{ base: "column" }}>
+    <Box width={{ base: '100%' }}>
+      <Stack spacing={2} direction={{ base: 'column' }}>
         <FormControl id="url" isRequired>
           <Input
             isRequired
             isInvalid={Boolean(errorText)}
             size="lg"
             name="url"
-            placeholder={"Ketikkan tautan asli disini"}
-            bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
+            placeholder={'Ketikkan tautan asli disini'}
+            bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
             border={0}
             value={url}
             onChange={handleChangeUrl}
@@ -123,7 +123,7 @@ export const UrlForm = ({}) => {
         <FormControl id="slug" isRequired>
           <InputGroup size="lg">
             <InputLeftAddon
-              children={HOME.replace("https://", "").replace("http://", "")}
+              children={HOME.replace('https://', '').replace('http://', '')}
               fontSize="sm"
             />
             <Input
@@ -131,8 +131,8 @@ export const UrlForm = ({}) => {
               isInvalid={Boolean(errorText)}
               size="lg"
               name="slug"
-              placeholder={"Tautan baru yang diinginkan"}
-              bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
+              placeholder={'Tautan baru yang diinginkan'}
+              bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
               border={0}
               value={slug}
               onChange={handleChangeSlug}
@@ -155,13 +155,13 @@ export const UrlForm = ({}) => {
             loadingText="Processing"
             size="lg"
             px={6}
-            color={"white"}
-            bg={"green.400"}
+            color={'white'}
+            bg={'green.400'}
             _hover={{
-              bg: "green.500",
+              bg: 'green.500'
             }}
             _focus={{
-              bg: "green.500",
+              bg: 'green.500'
             }}
             onClick={handleSaveNew}
           >
@@ -173,13 +173,13 @@ export const UrlForm = ({}) => {
             loadingText="Processing"
             size="lg"
             px={6}
-            color={"white"}
-            bg={"orange.400"}
+            color={'white'}
+            bg={'orange.400'}
             _hover={{
-              bg: "orange.500",
+              bg: 'orange.500'
             }}
             _focus={{
-              bg: "orange.500",
+              bg: 'orange.500'
             }}
             onClick={handleCheckAvailability}
           >
@@ -188,5 +188,5 @@ export const UrlForm = ({}) => {
         )}
       </Stack>
     </Box>
-  );
-};
+  )
+}

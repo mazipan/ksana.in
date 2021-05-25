@@ -13,9 +13,9 @@ const theme = extendTheme({
     black: '#16161D'
   },
   fonts: {
-    heading: "Open Sans",
-    body: "Poppins",
-    mono: '\'Consolas\', monospace',
+    heading: 'Open Sans',
+    body: 'Poppins',
+    mono: '\'Consolas\', monospace'
   },
   breakpoints,
   icons: {

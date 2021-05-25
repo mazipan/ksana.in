@@ -1,7 +1,7 @@
 import { useColorModeValue } from '@chakra-ui/react'
 
-import { LayoutAuth } from '../components/LayoutAuth'
-import { AuthForm } from '../components/AuthForm'
+import { LayoutAuth } from '../../components/LayoutAuth'
+import { AuthForm } from '../../components/AuthForm'
 
 const Register = () => {
   return (
