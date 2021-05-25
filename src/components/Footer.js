@@ -59,7 +59,7 @@ export const Footer = () => {
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 24 150 28"
         preserveAspectRatio="none"
-        shape-rendering="auto"
+        shapeRendering="auto"
       >
         <defs>
           <path
@@ -72,21 +72,21 @@ export const Footer = () => {
             xlinkHref="#gentle-wave"
             x="5"
             y="0"
-            fill="rgba(237, 137, 54, 0.7)"
+            fill="rgba(237, 137, 54, 0.18)"
           />
           <use
             xlinkHref="#gentle-wave"
             x="20"
             y="3"
-            fill="rgba(237, 137, 54, 0.5)"
+            fill="rgba(237, 137, 54, 0.3)"
           />
           <use
             xlinkHref="#gentle-wave"
             x="48"
             y="5"
-            fill="rgba(237, 137, 54, 0.3)"
+            fill="rgba(237, 137, 54, 0.4)"
           />
-          <use xlinkHref="#gentle-wave" x="90" y="30" fill="rgba(237, 137, 54, 0.1)" />
+          <use xlinkHref="#gentle-wave" x="90" y="30" fill="rgba(237, 137, 54, 0.7)" />
         </g>
       </svg>
 
@@ -120,6 +120,7 @@ export const Footer = () => {
 
       <Box
         as="section"
+        bg="orange.400"
         borderTopWidth={1}
         borderStyle={"solid"}
         borderColor={useColorModeValue("gray.200", "gray.700")}

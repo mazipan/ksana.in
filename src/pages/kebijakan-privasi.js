@@ -1,4 +1,4 @@
-import { VStack, Heading, Text, Container } from "@chakra-ui/react";
+import { VStack, Heading, Text, Container, useColorModeValue } from "@chakra-ui/react";
 
 import { BRAND } from "../constants/texts";
 import { Layout } from "../components/Layout";
@@ -26,7 +26,7 @@ const Privacy = () => (
       </VStack>
 
       <Container maxW={"4xl"} mx="auto" as="section">
-        <Text color={"gray.500"}>
+        <Text color={useColorModeValue("gray.500", "gray.300")}>
           Kami di {BRAND} menyadari bahwa Anda mengharapkan privasi dan keamanan
           dalam hal informasi yang mengidentifikasi Anda secara pribadi dan
           memungkinkan Anda untuk dihubungi secara individu ("Informasi
@@ -44,7 +44,7 @@ const Privacy = () => (
         >
           MENGAPA KAMI MEMINTA INFORMASI TENTANG ANDA
         </Heading>
-        <Text color={"gray.500"}>
+        <Text color={useColorModeValue("gray.500", "gray.300")}>
           {BRAND} mengumpulkan dan menyimpan Informasi Pribadi tentang Anda
           hanya ketika Anda telah berkomunikasi dengan kami melalui email (kami
           akan mengumpulkan alamat email Anda), ketika Anda mendaftar untuk
@@ -66,7 +66,7 @@ const Privacy = () => (
         >
           BAGAIMANA KAMI MELINDUNGI INFORMASI ANDA
         </Heading>
-        <Text color={"gray.500"}>
+        <Text color={useColorModeValue("gray.500", "gray.300")}>
           Informasi yang kami terima dari Anda dilindungi dari akses tidak sah
           setelah kami menerimanya. Kami membatasi akses ke informasi Anda hanya
           untuk karyawan yang memiliki alasan bisnis untuk mengaksesnya. Saat
@@ -86,7 +86,7 @@ const Privacy = () => (
         >
           PENYIMPANAN DATA
         </Heading>
-        <Text color={"gray.500"}>
+        <Text color={useColorModeValue("gray.500", "gray.300")}>
           Kami tidak menggunakan vendor pihak ketiga dan mitra hosting untuk
           menyediakan perangkat keras, perangkat lunak, jaringan, penyimpanan,
           dan teknologi terkait yang diperlukan untuk menjalankan {BRAND}. Kami
@@ -103,7 +103,7 @@ const Privacy = () => (
         >
           TENTANG COOKIES KAMI
         </Heading>
-        <Text color={"gray.500"}>
+        <Text color={useColorModeValue("gray.500", "gray.300")}>
           Kami menggunakan cookie. Cookies adalah bagian kecil dari informasi
           yang disimpan oleh browser Anda di hard drive komputer Anda. Kami
           menggunakan cookie sehingga situs web kami dapat mengingat Anda dan
@@ -124,7 +124,7 @@ const Privacy = () => (
         >
           TAUTAN KE SITUS WEB LAINNYA
         </Heading>
-        <Text color={"gray.500"}>
+        <Text color={useColorModeValue("gray.500", "gray.300")}>
           Situs web kami mungkin berisi tautan ke dan dari situs web lain.
           Beberapa tautan mungkin dalam bentuk iklan tampilan. Kami tidak dapat
           menjamin bahwa situs web selain situs web kami akan menghormati dan
@@ -144,7 +144,7 @@ const Privacy = () => (
         >
           PERSETUJUAN ANDA
         </Heading>
-        <Text color={"gray.500"}>
+        <Text color={useColorModeValue("gray.500", "gray.300")}>
           Ketika Anda memberikan Informasi Pribadi kepada kami, Anda menyetujui
           pengumpulan dan penggunaan informasi ini oleh {BRAND}.
         </Text>
@@ -158,7 +158,7 @@ const Privacy = () => (
         >
           PENYINGKAPAN
         </Heading>
-        <Text color={"gray.500"}>
+        <Text color={useColorModeValue("gray.500", "gray.300")}>
           Kami tidak akan menjual atau mendistribusikan Informasi Pribadi Anda
           kecuali untuk menyediakan produk atau layanan yang Anda minta, jika
           kami memiliki izin, atau diperlukan untuk berbagi informasi untuk
@@ -178,7 +178,7 @@ const Privacy = () => (
         >
           TRANSFER BISNIS
         </Heading>
-        <Text color={"gray.500"}>
+        <Text color={useColorModeValue("gray.500", "gray.300")}>
           Jika {BRAND}, atau secara substansial semua asetnya diakuisisi, atau
           dalam hal yang tidak mungkin terjadi ketika kami keluar dari bisnis
           atau dinyatakan pailit, Informasi Pribadi akan menjadi salah satu aset
@@ -199,7 +199,7 @@ const Privacy = () => (
         >
           AMANDEMEN
         </Heading>
-        <Text color={"gray.500"}>
+        <Text color={useColorModeValue("gray.500", "gray.300")}>
           Kami mungkin memperbarui kebijakan ini secara berkala. Kami akan
           memberi tahu Anda tentang perubahan signifikan dalam cara kami
           memperlakukan informasi pribadi dengan mengirimkan pemberitahuan ke
@@ -207,11 +207,11 @@ const Privacy = () => (
           Anda atau dengan menempatkan pemberitahuan yang mencolok di situs
           kami.
         </Text>
-        <Text color={"gray.500"} mt="8">
+        <Text color={useColorModeValue("gray.500", "gray.300")} mt="8">
           Pertanyaan tentang kebijakan privasi kami dapat ditujukan ke
           mazipanneh@gmail.com
         </Text>
-        <Text color={"gray.500"} mt="8">
+        <Text color={useColorModeValue("gray.500", "gray.300")} mt="8">
           Terakhir diperbarui pada 25 Mei 2021
         </Text>
       </Container>

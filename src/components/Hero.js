@@ -1,20 +1,17 @@
 import {
-  Flex,
   Container,
   Heading,
-  Stack,
   Text,
   Button,
   Image,
   SimpleGrid,
   Box,
   VStack,
+  useColorModeValue,
 } from "@chakra-ui/react";
 
 import { login } from "../constants/paths";
 import {
-  BRAND_TAGLINE_HERO_1,
-  BRAND_TAGLINE_HERO_2,
   BRAND_TAGLINE_LONG,
 } from "../constants/texts";
 import { HiPlay } from "react-icons/hi";
@@ -38,7 +35,7 @@ export const Hero = () => {
             <Text
               as="span"
               textAlign="center"
-              color={"gray.500"}
+              color={useColorModeValue("gray.500", "gray.300")}
               fontSize={{ base: "lg", sm: "xl", md: "2xl" }}
               lineHeight={"110%"}
             >
