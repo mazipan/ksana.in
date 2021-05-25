@@ -1,6 +1,7 @@
 export const HOME = process.env.NEXT_PUBLIC_HOME
 export const META_IMAGE = process.env.NEXT_PUBLIC_META_IMAGE
 
+export const splitbeeAnalytics = 'https://app.splitbee.io/public/ksana.in'
 export const tentang = '/tentang'
 export const dashboard = '/dashboard'
 export const pemendek = '/pemendek'
