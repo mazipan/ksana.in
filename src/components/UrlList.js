@@ -50,8 +50,8 @@ export const UrlList = () => {
     if (updateSlug) {
       await supabase
         .from('urls')
-        .eq('id', updateId)
         .update({ slug: updateSlug })
+        .match({ id: updateId })
 
       setUpdateId('')
       setUpdateSlug('')
