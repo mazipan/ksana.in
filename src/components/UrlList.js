@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from "react";
 import {
   Link,
   Text,
@@ -7,78 +7,79 @@ import {
   Input,
   IconButton,
   useColorModeValue,
-  HStack
-} from '@chakra-ui/react'
-import { Auth } from '@supabase/ui'
+  HStack,
+} from "@chakra-ui/react";
+import { Auth } from "@supabase/ui";
 
-import { HiDuplicate, HiPencil, HiTrash, HiSave } from 'react-icons/hi'
+import { HiDuplicate, HiPencil, HiTrash, HiSave } from "react-icons/hi";
 
-import { supabase } from '../libs/supabase'
-import { useAlertContext } from '../context/Alert'
-import { useUrlData } from '../hooks/useUrlData'
-import { HOME } from '../constants/paths'
+import { supabase } from "../libs/supabase";
+import { useAlertContext } from "../context/Alert";
+import { useUrlData } from "../hooks/useUrlData";
+import { HOME } from "../constants/paths";
 
 export const UrlList = () => {
-  const { user } = Auth.useUser()
-  const { data } = useUrlData(user?.id || '')
-  const { showAlert, hideAlert } = useAlertContext()
-  const [updateId, setUpdateId] = useState('')
-  const [updateSlug, setUpdateSlug] = useState('')
+  const { user } = Auth.useUser();
+  const { data } = useUrlData(user?.id || "");
+  const { showAlert, hideAlert } = useAlertContext();
+  const [updateId, setUpdateId] = useState("");
+  const [updateSlug, setUpdateSlug] = useState("");
 
   const handleCopy = async (text) => {
     if (navigator.clipboard) {
-      await navigator.clipboard.writeText(text)
+      await navigator.clipboard.writeText(text);
     }
-  }
+  };
 
   const handleClickEdit = async (id, slug) => {
     if (updateId === id) {
-      setUpdateId('')
-      setUpdateSlug('')
+      setUpdateId("");
+      setUpdateSlug("");
     } else {
-      setUpdateId(id)
-      setUpdateSlug(slug)
+      setUpdateId(id);
+      setUpdateSlug(slug);
     }
-  }
+  };
 
   const handleChangeUpdatedSlug = async (e) => {
-    const value = e.target.value
-    setUpdateSlug(value)
-  }
+    const value = e.target.value;
+    setUpdateSlug(value);
+  };
 
   const handleClickSave = async () => {
     if (updateSlug) {
       await supabase
-        .from('urls')
+        .from("urls")
         .update({ slug: updateSlug })
-        .match({ id: updateId })
+        .match({ id: updateId });
 
-      setUpdateId('')
-      setUpdateSlug('')
+      setUpdateId("");
+      setUpdateSlug("");
     }
-  }
+  };
 
   const onConfimDelete = async (id) => {
-    await supabase.from('urls').delete().eq('id', id)
-    hideAlert()
+    await supabase.from("urls").delete().match({ id: id });
+
+    hideAlert();
     // hard reload to refresh data
     setTimeout(() => {
-      window.location.reload()
-    }, 500)
-  }
+      window.location.reload();
+    }, 500);
+  };
 
   const handleDelete = async (id, slug) => {
     showAlert({
-      title: 'Konfirmasi hapus',
+      title: "Konfirmasi hapus",
       message: `Apakah kamu yakin untuk menghapus data ${HOME}${slug}? Aksi ini juga akan menghilangkan semua data statistik terkait.`,
-      cancelText: 'Batalkan',
-      confirmText: 'Ya, hapus',
+      cancelText: "Batalkan",
+      confirmText: "Ya, hapus",
       onConfirm: () => {
-        onConfimDelete(id)
+        onConfimDelete(id);
       },
-      onCancel: hideAlert
-    })
-  }
+      onCancel: hideAlert,
+    });
+  };
 
   return (
     <>
@@ -87,11 +88,11 @@ export const UrlList = () => {
           {data.map((d) => (
             <ListItem
               key={d.slug}
-              w={'full'}
-              bg={useColorModeValue('white', 'gray.800')}
-              boxShadow={'2xl'}
-              rounded={'md'}
-              overflow={'hidden'}
+              w={"full"}
+              bg={useColorModeValue("white", "gray.800")}
+              boxShadow={"2xl"}
+              rounded={"md"}
+              overflow={"hidden"}
               p={6}
             >
               <Link
@@ -109,8 +110,8 @@ export const UrlList = () => {
                   <Input
                     size="lg"
                     name="slug"
-                    placeholder={'Slug baru'}
-                    bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
+                    placeholder={"Slug baru"}
+                    bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
                     border={0}
                     value={updateSlug}
                     onChange={handleChangeUpdatedSlug}
@@ -135,7 +136,7 @@ export const UrlList = () => {
               <HStack spacing={2} mt={4}>
                 <IconButton
                   onClick={() => {
-                    handleCopy(`${HOME}${d.slug}`)
+                    handleCopy(`${HOME}${d.slug}`);
                   }}
                   aria-label="Copy"
                   fontSize="20px"
@@ -144,7 +145,7 @@ export const UrlList = () => {
                 />
                 <IconButton
                   onClick={() => {
-                    handleClickEdit(d.id, d.slug)
+                    handleClickEdit(d.id, d.slug);
                   }}
                   aria-label="Ubah"
                   fontSize="20px"
@@ -153,7 +154,7 @@ export const UrlList = () => {
                 />
                 <IconButton
                   onClick={() => {
-                    handleDelete(d.id, d.slug)
+                    handleDelete(d.id, d.slug);
                   }}
                   aria-label="Hapus"
                   fontSize="20px"
@@ -168,5 +169,5 @@ export const UrlList = () => {
         <Text>Data tidak tersedia</Text>
       )}
     </>
-  )
-}
+  );
+};
