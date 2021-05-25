@@ -9,6 +9,7 @@ export const ketentuanLayanan = '/ketentuan-layanan'
 export const login = '/auth/sign-in'
 export const register = '/auth/sign-up'
 export const forgetPasword = '/auth/forget-password'
+export const setNewPassword = '/auth/set-new-password'
 
 // internal slug used by the app
 export const blacklistSlugs = [

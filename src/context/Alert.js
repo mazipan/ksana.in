@@ -29,7 +29,7 @@ export const AlertProvider = ({ children }) => {
     const {
       title = '',
       message = '',
-      cancelText = 'Cancel',
+      cancelText = 'Tutup',
       confirmText = '',
       onConfirm = noop,
       onClose = noop

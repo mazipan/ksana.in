@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Auth } from '@supabase/ui'
 
 import {
   Box,
@@ -17,9 +16,10 @@ import {
 import { useAlertContext } from '../context/Alert'
 import { supabase } from '../libs/supabase'
 import { forgetPasword } from '../constants/paths'
+import { HiUser } from './HiUser'
 
 export const AuthForm = ({ state = 'login' }) => {
-  const { user: userInitial } = Auth.useUser()
+  const currentUser = supabase.auth.currentUser
   const { showAlert } = useAlertContext()
 
   // eslint-disable-next-line no-unused-vars
@@ -31,10 +31,10 @@ export const AuthForm = ({ state = 'login' }) => {
   const [errorForm, setErrorForm] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [loginUser, setLoginUser] = useState(userInitial)
+  const [loginUser, setLoginUser] = useState(currentUser)
 
   const toggleState = () => {
-    if (state === 'login') {
+    if (internalState === 'login') {
       setInternalState('register')
       setIsLogin(false)
     } else {
@@ -124,27 +124,7 @@ export const AuthForm = ({ state = 'login' }) => {
   return (
     <>
       {loginUser ? (
-        <Stack spacing={8} mx={'auto'} mt="20" maxW={'lg'} py={12} px={6}>
-          <Stack align={'center'}>
-            <Heading fontSize={'4xl'}>Selamat datang, {loginUser.email}</Heading>
-          </Stack>
-
-          <Stack spacing={2} direction={'row'}>
-            <Button
-              rounded="full"
-              px={6}
-              color={'white'}
-              bg="orange.400"
-              _hover={{
-                bg: 'orange.500'
-              }}
-              as={'a'}
-              href={'/dashboard'}
-            >
-              Kunjungi halaman dashboard
-            </Button>
-          </Stack>
-        </Stack>
+        <HiUser />
       ) : (
         <>
           <Stack spacing={8} mx={'auto'} mt="20" maxW={'lg'} py={12} px={6}>

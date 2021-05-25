@@ -12,14 +12,13 @@ import {
   useColorModeValue
 } from '@chakra-ui/react'
 import { v4 as uuidv4 } from 'uuid'
-import { Auth } from '@supabase/ui'
 
 import { HOME } from '../constants/paths'
 import { supabase } from '../libs/supabase'
 import { useAlertContext } from '../context/Alert'
 
 export const UrlForm = () => {
-  const { user } = Auth.useUser()
+  const currentUser = supabase.auth.currentUser
   const { showAlert } = useAlertContext()
 
   const [url, setUrl] = useState('')
@@ -78,7 +77,7 @@ export const UrlForm = () => {
         {
           real_url: url,
           slug: slug,
-          user_id: user?.id || uuidv4()
+          user_id: currentUser?.id || uuidv4()
         }
       ])
 

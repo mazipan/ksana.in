@@ -1,5 +1,5 @@
 import { ChakraProvider, ColorModeProvider } from '@chakra-ui/react'
-import splitbee from '@splitbee/web';
+import splitbee from '@splitbee/web'
 
 import '@fontsource/poppins/400.css'
 

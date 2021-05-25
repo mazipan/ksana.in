@@ -9,7 +9,6 @@ import {
   useColorModeValue,
   HStack
 } from '@chakra-ui/react'
-import { Auth } from '@supabase/ui'
 
 import {
   HiShare,
@@ -25,8 +24,8 @@ import { useUrlData } from '../hooks/useUrlData'
 import { HOME } from '../constants/paths'
 
 export const UrlList = () => {
-  const { user } = Auth.useUser()
-  const { data } = useUrlData(user?.id || '')
+  const currentUser = supabase.auth.currentUser
+  const { data } = useUrlData(currentUser?.id || '')
   const { showAlert, hideAlert } = useAlertContext()
   const [updateId, setUpdateId] = useState('')
   const [updateSlug, setUpdateSlug] = useState('')
