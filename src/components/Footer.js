@@ -10,6 +10,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
+import { BRAND } from "../constants/texts";
 import { FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa";
 
 const SocialButton = ({ children, label, href }) => {
@@ -58,7 +59,6 @@ export const Footer = () => {
             </Text>
             <Link href={"/tentang"}>Tentang kami</Link>
             <Link href={"/sign-in"}>Masuk</Link>
-            <Link href={"/beautifier"}>Beautifier</Link>
             <Link href={"/dashboard"}>Dashboard</Link>
           </Stack>
 
@@ -66,7 +66,6 @@ export const Footer = () => {
             <Text fontWeight="700" color="orange.400" fontSize={"lg"} mb={2}>
               LEGAL
             </Text>
-            <Link href={"#"}>Cookies Policy</Link>
             <Link href={"#"}>Privacy Policy</Link>
             <Link href={"#"}>Terms of Service</Link>
           </Stack>
@@ -89,7 +88,7 @@ export const Footer = () => {
           align={{ md: "center" }}
         >
           <Text>
-            © 2021 <Link href={"/"}>Gotu</Link> by{" "}
+            © 2021 <Link href={"/"}>{BRAND}</Link> oleh{" "}
             <Link
               href={"https://mazipan.space/"}
               target="_blank"
