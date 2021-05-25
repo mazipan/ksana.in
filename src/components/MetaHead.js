@@ -1,7 +1,7 @@
-import Head from "next/head";
+import Head from 'next/head'
 
-import { HOME, META_IMAGE } from "../constants/paths";
-import { BRAND, BRAND_TAGLINE, BRAND_TAGLINE_LONG } from "../constants/texts";
+import { HOME, META_IMAGE } from '../constants/paths'
+import { BRAND, BRAND_TAGLINE, BRAND_TAGLINE_LONG } from '../constants/texts'
 
 export const MetaHead = () => {
   return (
@@ -25,7 +25,7 @@ export const MetaHead = () => {
       />
       <meta property="og:image:width" content="511" />
       <meta property="og:image:height" content="339" />
-      <meta property="article:author" content={"mazipanneh"} />
+      <meta property="article:author" content={'mazipanneh'} />
       <meta property="og:type" content="article" />
       <meta
         key="og-title"
@@ -58,7 +58,7 @@ export const MetaHead = () => {
         content={BRAND_TAGLINE_LONG}
       />
       <meta key="tw-url" name="twitter:url" content={`${HOME}`} />
-      <meta name="twitter:creator" content={"@maz_ipan"} />
+      <meta name="twitter:creator" content={'@maz_ipan'} />
     </Head>
-  );
-};
+  )
+}

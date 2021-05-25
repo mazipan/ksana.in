@@ -1,7 +1,7 @@
-import { VStack, Heading, Text } from "@chakra-ui/react";
+import { VStack, Heading } from '@chakra-ui/react'
 
-import { BRAND } from "../constants/texts";
-import { Layout } from "../components/Layout";
+import { BRAND } from '../constants/texts'
+import { Layout } from '../components/Layout'
 
 const About = () => (
   <Layout height="100vh">
@@ -9,21 +9,21 @@ const About = () => (
       <Heading
         as="h1"
         fontWeight={700}
-        fontSize={{ base: "3xl", sm: "4xl", md: "6xl" }}
-        lineHeight={"110%"}
+        fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
+        lineHeight={'110%'}
       >
         Tentang Kami
       </Heading>
       <Heading
         as="h2"
         fontWeight={700}
-        fontSize={{ base: "xl", sm: "2xl", md: "3xl" }}
-        lineHeight={"110%"}
+        fontSize={{ base: 'xl', sm: '2xl', md: '3xl' }}
+        lineHeight={'110%'}
       >
         {BRAND}
       </Heading>
     </VStack>
   </Layout>
-);
+)
 
-export default About;
+export default About

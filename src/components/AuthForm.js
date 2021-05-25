@@ -16,6 +16,7 @@ import {
 
 import { useAlertContext } from '../context/Alert'
 import { supabase } from '../libs/supabase'
+import { forgetPasword } from '../constants/paths'
 
 export const AuthForm = ({ state = 'login' }) => {
   const { user: userInitial } = Auth.useUser()
@@ -35,8 +36,10 @@ export const AuthForm = ({ state = 'login' }) => {
   const toggleState = () => {
     if (state === 'login') {
       setInternalState('register')
+      setIsLogin(false)
     } else {
       setInternalState('login')
+      setIsLogin(true)
     }
   }
 
@@ -48,18 +51,6 @@ export const AuthForm = ({ state = 'login' }) => {
   const handleChangePassword = (e) => {
     const value = e.target.value
     setPassword(value)
-  }
-
-  // eslint-disable-next-line no-unused-vars
-  const handleLogout = async () => {
-    const { error } = await supabase.auth.signOut()
-    if (error) console.log('Error logging out:', error.message)
-    else {
-      setLoginUser(null)
-
-      // window.sessionStorage.removeItem("goto-session");
-      // window.sessionStorage.removeItem("goto-user");
-    }
   }
 
   const checkIsEmpty = () => {
@@ -101,15 +92,6 @@ export const AuthForm = ({ state = 'login' }) => {
         email: user.email
       })
 
-      // window.sessionStorage.setItem("goto-session", JSON.stringify(session));
-      // window.sessionStorage.setItem(
-      //   "goto-user",
-      //   JSON.stringify({
-      //     id: user.id,
-      //     email: user.email,
-      //   })
-      // );
-
       showAlert({
         title: `${isLogin ? 'Login' : 'Register'} success`,
         message: `${
@@ -137,19 +119,6 @@ export const AuthForm = ({ state = 'login' }) => {
     })
 
     processResponse({ user, session, error })
-  }
-
-  const handleResetPassword = async () => {
-    const { error } = await supabase.auth.resetPasswordForEmail(
-      email
-    )
-
-    if (!error) {
-      showAlert({
-        title: 'Lupa password',
-        message: 'Tautan untuk melakukan setel ulang kata sandi telah dikirim ke email kamu.'
-      })
-    }
   }
 
   return (
@@ -232,7 +201,7 @@ export const AuthForm = ({ state = 'login' }) => {
                         variant="link"
                         as={Link}
                         color={'orange.400'}
-                        onClick={handleResetPassword}
+                        href={forgetPasword}
                       >
                         Lupa password?
                       </Button>

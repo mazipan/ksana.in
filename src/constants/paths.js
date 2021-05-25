@@ -8,6 +8,7 @@ export const kebijakanPrivasi = '/kebijakan-privasi'
 export const ketentuanLayanan = '/ketentuan-layanan'
 export const login = '/auth/sign-in'
 export const register = '/auth/sign-up'
+export const forgetPasword = '/auth/forget-password'
 
 // internal slug used by the app
 export const blacklistSlugs = [
