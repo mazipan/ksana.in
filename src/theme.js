@@ -13,7 +13,7 @@ const theme = extendTheme({
     black: '#16161D'
   },
   fonts: {
-    heading: 'Open Sans',
+    heading: 'Poppins',
     body: 'Poppins',
     mono: '\'Consolas\', monospace'
   },
