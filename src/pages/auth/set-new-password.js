@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react'
 import {
   Box,
   FormControl,
@@ -7,106 +7,107 @@ import {
   Stack,
   Button,
   Heading,
-  useColorModeValue,
-} from "@chakra-ui/react";
+  Image,
+  useColorModeValue
+} from '@chakra-ui/react'
 
-import { forgetPasword, login } from "../../constants/paths";
-import { useAlertContext } from "../../context/Alert";
-import { supabase } from "../../libs/supabase";
-import { LayoutAuth } from "../../components/LayoutAuth";
-import { HiUser } from "../../components/HiUser";
+import { forgetPasword, login } from '../../constants/paths'
+import { useAlertContext } from '../../context/Alert'
+import { supabase } from '../../libs/supabase'
+import { LayoutAuth } from '../../components/LayoutAuth'
+import { HiUser } from '../../components/HiUser'
 
 const SetNewPasswordPage = () => {
-  const currentUser = supabase.auth.currentUser;
-  const { showAlert } = useAlertContext();
+  const currentUser = supabase.auth.currentUser
+  const { showAlert } = useAlertContext()
 
-  const [loading, setLoading] = useState(false);
-  const [accessToken, setAccessToken] = useState("");
-  const [errorForm, setErrorForm] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false)
+  const [accessToken, setAccessToken] = useState('')
+  const [errorForm, setErrorForm] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   useEffect(() => {
     if (window && window.localStorage) {
-      const at = window.localStorage.getItem("ksana.in.fp-at");
-      setAccessToken(at);
+      const at = window.localStorage.getItem('ksana.in.fp-at')
+      setAccessToken(at)
     }
-  }, []);
+  }, [])
 
   const handleChangeEmail = (e) => {
-    const value = e.target.value;
-    setEmail(value);
-  };
+    const value = e.target.value
+    setEmail(value)
+  }
 
   const handleChangePassword = (e) => {
-    const value = e.target.value;
-    setPassword(value);
-  };
+    const value = e.target.value
+    setPassword(value)
+  }
 
   const checkIsEmpty = () => {
-    if (email === "" || password === "") {
-      setErrorForm("Email dan password tidak boleh dikosongkan.");
-      return true;
+    if (email === '' || password === '') {
+      setErrorForm('Email dan password tidak boleh dikosongkan.')
+      return true
     }
 
-    setErrorForm("");
-    return false;
-  };
+    setErrorForm('')
+    return false
+  }
 
   const handleSetNewPassword = async () => {
     if (accessToken) {
       const { error } = await supabase.auth.api.updateUser(accessToken, {
-        password: password,
-      });
+        password: password
+      })
 
       if (!error) {
         showAlert({
-          title: "Setel ulang password",
-          message: "Password telah berhasil disetel ulang",
+          title: 'Setel ulang password',
+          message: 'Password telah berhasil disetel ulang',
           onCancel: () => {
-            window.localStorage.removeItem('ksana.in.fp-at');
-            window.location.assign(login);
-          },
-        });
+            window.localStorage.removeItem('ksana.in.fp-at')
+            window.location.assign(login)
+          }
+        })
       }
     } else {
       showAlert({
-        title: "Access Token tidak ditemukan",
+        title: 'Access Token tidak ditemukan',
         message:
-          "Maaf kami membutuhkan access token untuk bisa menyetel ulang kata sandi, silahkan lakukan reset password ulang.",
+          'Maaf kami membutuhkan access token untuk bisa menyetel ulang kata sandi, silahkan lakukan reset password ulang.',
         onCancel: () => {
-          window.location.assign(forgetPasword);
-        },
-      });
+          window.location.assign(forgetPasword)
+        }
+      })
     }
-  };
+  }
 
   const handleSubmit = async () => {
-    setLoading(true);
+    setLoading(true)
 
-    const isEmpty = checkIsEmpty();
+    const isEmpty = checkIsEmpty()
 
     if (!isEmpty) {
-      await handleSetNewPassword();
+      await handleSetNewPassword()
     }
 
-    setLoading(false);
-  };
+    setLoading(false)
+  }
 
   return (
-    <LayoutAuth minH={"100vh"} bg={useColorModeValue("gray.50", "gray.800")}>
+    <LayoutAuth minH={'100vh'} bg={useColorModeValue('gray.50', 'gray.800')}>
       {currentUser ? (
         <HiUser />
       ) : (
-        <Stack spacing={8} mx={"auto"} mt="20" maxW={"lg"} py={12} px={6}>
-          <Stack align={"center"}>
-            <Heading fontSize={"4xl"}>Setel ulang password</Heading>
+        <Stack spacing={8} mx={'auto'} mt="20" maxW={'lg'} py={12} px={6}>
+          <Stack align={'center'}>
+            <Heading fontSize={'4xl'}>Setel ulang password</Heading>
           </Stack>
           {accessToken ? (
             <Box
-              rounded={"lg"}
-              bg={useColorModeValue("white", "gray.700")}
-              boxShadow={"lg"}
+              rounded={'lg'}
+              bg={useColorModeValue('white', 'gray.700')}
+              boxShadow={'lg'}
               p={8}
             >
               <Stack spacing={4}>
@@ -130,7 +131,7 @@ const SetNewPasswordPage = () => {
                     name="password"
                     value={password}
                     onChange={handleChangePassword}
-                    autoComplete={"new-password"}
+                    autoComplete={'new-password'}
                   />
                 </FormControl>
 
@@ -140,7 +141,7 @@ const SetNewPasswordPage = () => {
                   w="full"
                   bg="orange.400"
                   _hover={{
-                    bg: "orange.500",
+                    bg: 'orange.500'
                   }}
                   onClick={handleSubmit}
                 >
@@ -152,35 +153,37 @@ const SetNewPasswordPage = () => {
             <Stack
               as="section"
               spacing={8}
-              mx={"auto"}
+              mx={'auto'}
               mt="20"
-              maxW={"lg"}
+              maxW={'lg'}
               py={12}
               px={6}
             >
-              <Stack align={"center"}>
-                <Heading fontSize={"4xl"}>
+              <Stack align={'center'}>
+                <Heading fontSize={'4xl'}>
                   Maaf, access token tidak ditemukan
                 </Heading>
+                <Image w="100%" src={'/ill_error_by_manypixels.svg'}></Image>
+                <Button
+                  px={6}
+                  size="lg"
+                  color={'white'}
+                  bg="orange.400"
+                  _hover={{
+                    bg: 'orange.500'
+                  }}
+                  as={'a'}
+                  href={forgetPasword}
+                >
+                  Minta ulang access token
+                </Button>
               </Stack>
-              <Button
-                px={6}
-                color={"white"}
-                bg="orange.400"
-                _hover={{
-                  bg: "orange.500",
-                }}
-                as={"a"}
-                href={forgetPasword}
-              >
-                Minta ulang access token
-              </Button>
             </Stack>
           )}
         </Stack>
       )}
     </LayoutAuth>
-  );
-};
+  )
+}
 
-export default SetNewPasswordPage;
+export default SetNewPasswordPage

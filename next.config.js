@@ -1,4 +1,8 @@
-module.exports = {
+const withOffline = require('next-offline')
+
+const workboxConfig = require('./wb.config')
+
+module.exports = withOffline({
   future: {
     webpack5: true
   },
@@ -8,5 +12,6 @@ module.exports = {
     domains: [],
     path: '/_next/image',
     loader: 'default'
-  }
-}
+  },
+  workboxOpts: workboxConfig
+})

@@ -1,7 +1,37 @@
-import { VStack, Heading } from '@chakra-ui/react'
+import {
+  VStack,
+  Heading,
+  Text,
+  Image,
+  Box,
+  Link,
+  Container,
+  useColorModeValue,
+  HStack
+} from '@chakra-ui/react'
 
 import { BRAND } from '../constants/texts'
+import { github } from '../constants/paths'
 import { Layout } from '../components/Layout'
+
+const tools = [
+  {
+    title: 'Next.js',
+    url: 'https://nextjs.org/'
+  },
+  {
+    title: 'Chakra-UI',
+    url: 'https://chakra-ui.com/docs/getting-started'
+  },
+  {
+    title: 'Supabase',
+    url: 'https://supabase.io/'
+  },
+  {
+    title: 'Oge',
+    url: 'https://oge.vercel.app/'
+  }
+]
 
 const About = () => (
   <Layout height="100vh">
@@ -14,15 +44,96 @@ const About = () => (
       >
         Tentang Kami
       </Heading>
-      <Heading
-        as="h2"
-        fontWeight={700}
-        fontSize={{ base: 'xl', sm: '2xl', md: '3xl' }}
-        lineHeight={'110%'}
-      >
-        {BRAND}
-      </Heading>
+      <Image w="200px" src={'/orange/ksana.svg'}></Image>
     </VStack>
+    <Container maxW={'4xl'} mx="auto" as="section" mt="8">
+      <VStack spacing={4}>
+        <Text color={useColorModeValue('gray.500', 'gray.300')}>
+          {BRAND} adalah proyek yang dibuat oleh Irfan Maulana dalam rangka
+          mempelajari layanan baru dari Supabase.io, membuat sesuatu untuk bisa
+          mengimplementasikan langsung apa yang ingin dipelajari.
+        </Text>
+        <Text color={useColorModeValue('gray.500', 'gray.300')}>
+          {BRAND} tidak bisa dibuat tanpa beberapa layanan dan alat bantu
+          berikut:
+        </Text>
+        <HStack spacing={3}>
+          {tools.map((t) => (
+            <Box
+              key={t.title}
+              bg={useColorModeValue('white', 'gray.800')}
+              boxShadow={'2xl'}
+              rounded={'md'}
+              overflow={'hidden'}
+              p={6}
+            >
+              <Link
+                href={t.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                color="orange.400"
+                fontSize="xl"
+                fontWeight="bold"
+              >
+                {t.title}
+              </Link>
+            </Box>
+          ))}
+        </HStack>
+        <Text color={useColorModeValue('gray.500', 'gray.300')}>
+          {BRAND} dibuat secara terbuka agar bisa dijadikan bahan pembelajaran
+          bersama, semua kode dan assets tersedia gratis untuk semua pembelajar
+        </Text>
+        <HStack
+          w="80%"
+          bg={useColorModeValue('white', 'gray.800')}
+          boxShadow={'2xl'}
+          rounded={'md'}
+          overflow={'hidden'}
+          p={6}
+          justifyContent="space-between"
+        >
+          <Link
+            href={github}
+            target="_blank"
+            rel="noopener noreferrer"
+            color="orange.400"
+            fontSize="2xl"
+            fontWeight="bold"
+          >
+            github.com/mazipan/ksana.in
+          </Link>
+          <Image
+            src={'https://img.shields.io/github/stars/mazipan/ksana.in?style=social'}
+          />
+        </HStack>
+        <Text color={useColorModeValue('gray.500', 'gray.300')}>
+          Untuk mendukung saya dan {BRAND} terus berkreasi membuat kode terbuka
+          lainnya, kalian bisa mengirimkan dana untuk membeli kopi melalui{' '}
+          <Link
+            target="_blank"
+            rel="noopener noreferrer"
+            color="orange.400"
+            fontWeight="bold"
+            href="https://trakteer.id/mazipan?utm_source=ksana.id"
+          >
+            Trakteer.id
+          </Link>
+        </Text>
+        <Text color={useColorModeValue('gray.500', 'gray.300')} mt="16">
+          Dari pembuat {BRAND}{' '}
+          <Link
+            target="_blank"
+            rel="noopener noreferrer"
+            color="orange.400"
+            fontWeight="bold"
+            href="https://mazipan.space"
+          >
+            Irfan Maulana
+          </Link>
+        </Text>
+      </VStack>
+    </Container>
   </Layout>
 )
 

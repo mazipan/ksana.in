@@ -15,7 +15,9 @@ export const MetaHead = () => {
         sizes="32x32"
         href="/square/ksana-32x32.png"
       />
+
       <meta name="theme-color" content="#ED8936" />
+      <link rel="manifest" href="/manifest.json"/>
 
       <meta property="og:site_name" content={`${BRAND} | ${BRAND_TAGLINE}`} />
       <meta

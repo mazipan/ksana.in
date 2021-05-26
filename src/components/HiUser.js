@@ -1,4 +1,4 @@
-import { Stack, Button, Heading } from '@chakra-ui/react'
+import { Stack, Button, Image, Heading } from '@chakra-ui/react'
 
 import { supabase } from '../libs/supabase'
 
@@ -17,14 +17,24 @@ export const HiUser = () => {
   }
 
   return (
-    <Stack as="section" spacing={8} mx={'auto'} mt="20" maxW={'lg'} py={12} px={6}>
-      <Stack align={'center'}>
+    <Stack
+      as="section"
+      spacing={8}
+      mx={'auto'}
+      mt="20"
+      maxW={'lg'}
+      py={12}
+      px={6}
+    >
+      <Stack align={'center'} spacing={2} >
         <Heading fontSize={'4xl'}>Selamat datang, {currentUser.email}</Heading>
+        <Image w="100%" src={'/ill_error_by_manypixels.svg'}></Image>
       </Stack>
 
       <Stack spacing={2} direction={'row'}>
         <Button
           px={6}
+          size="lg"
           color={'white'}
           bg="orange.400"
           _hover={{
@@ -37,6 +47,7 @@ export const HiUser = () => {
         </Button>
         <Button
           px={6}
+          size="lg"
           color={'white'}
           bg="red.400"
           _hover={{

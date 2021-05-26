@@ -8,11 +8,11 @@ const Homepage = () => {
   useEffect(() => {
     const hash = window.location.hash
     if (hash) {
-      const urlObj = new URL(`https://example.com?${hash.slice(1)}`);
+      const urlObj = new URL(`https://example.com?${hash.slice(1)}`)
       const type = urlObj.searchParams.get('type') || ''
       if (type === 'recovery') {
-        const accessToken = urlObj.searchParams.get('access_token');
-        window.localStorage.setItem('ksana.in.fp-at', accessToken);
+        const accessToken = urlObj.searchParams.get('access_token')
+        window.localStorage.setItem('ksana.in.fp-at', accessToken)
         window.location.assign(setNewPassword)
       }
     }

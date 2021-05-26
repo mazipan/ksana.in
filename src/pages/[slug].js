@@ -1,4 +1,4 @@
-import { Box, Stack, Button, Heading } from '@chakra-ui/react'
+import { Box, Stack, Button, Image, Heading } from '@chakra-ui/react'
 
 import { Layout } from '../components/Layout'
 
@@ -8,22 +8,30 @@ function SlugPage () {
   return (
     <Layout height="100vh">
       <Box width="100%">
-        <Stack spacing={8} mx={'auto'} mt="20" py={12} px={6}>
-          <Stack align={'center'} spacing={2} direction={'column'}>
-            <Heading fontSize={'4xl'}>The link is not available</Heading>
-
+        <Stack
+          as="section"
+          spacing={8}
+          mx={'auto'}
+          mt="20"
+          maxW={'lg'}
+          py={12}
+          px={6}
+        >
+          <Stack align={'center'} spacing={4}>
+            <Heading fontSize={'4xl'}>Tautan tidak tersedia</Heading>
+            <Image w="100%" src={'/ill_error_by_manypixels.svg'}></Image>
             <Button
-              rounded="full"
               px={6}
+              size="lg"
               color={'white'}
-              bgGradient="linear(to-l, #7928CA, #FF0080)"
+              bg="orange.400"
               _hover={{
-                bgGradient: 'linear(to-r, #7928CA, #FF0080)'
+                bg: 'orange.500'
               }}
               as={'a'}
               href={'/'}
             >
-              Go to homepage
+              Ke beranda
             </Button>
           </Stack>
         </Stack>
