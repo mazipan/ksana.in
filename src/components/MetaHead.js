@@ -23,8 +23,8 @@ export const MetaHead = () => {
         property="og:image"
         content={`${HOME}${META_IMAGE}`}
       />
-      <meta property="og:image:width" content="511" />
-      <meta property="og:image:height" content="339" />
+      <meta property="og:image:width" content="1280" />
+      <meta property="og:image:height" content="640" />
       <meta property="article:author" content={'mazipanneh'} />
       <meta property="og:type" content="article" />
       <meta
@@ -44,8 +44,8 @@ export const MetaHead = () => {
         name="twitter:image"
         content={`${HOME}${META_IMAGE}`}
       />
-      <meta name="twitter:image:width" content="511" />
-      <meta name="twitter:image:height" content="339" />
+      <meta name="twitter:image:width" content="1280" />
+      <meta name="twitter:image:height" content="640" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta
         key="tw-title"
