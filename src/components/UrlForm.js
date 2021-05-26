@@ -17,7 +17,7 @@ import { HOME } from '../constants/paths'
 import { supabase } from '../libs/supabase'
 import { useAlertContext } from '../context/Alert'
 
-export const UrlForm = () => {
+export const UrlForm = ({ onSuccess = () => {} }) => {
   const currentUser = supabase.auth.currentUser
   const { showAlert } = useAlertContext()
 
@@ -92,6 +92,7 @@ export const UrlForm = () => {
         setSlug('')
         setIsCheckPass(false)
         setErrorText('')
+        onSuccess()
       } else {
         showAlert({
           title: 'Terjadi galat pada saat menyimpan',

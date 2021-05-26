@@ -6,6 +6,7 @@ import {
   Box,
   Link,
   Container,
+  SimpleGrid,
   useColorModeValue,
   HStack
 } from '@chakra-ui/react'
@@ -57,7 +58,7 @@ const About = () => (
           {BRAND} tidak bisa dibuat tanpa beberapa layanan dan alat bantu
           berikut:
         </Text>
-        <HStack spacing={3}>
+        <SimpleGrid columns={{ base: 2, md: 4 }} spacing={2}>
           {tools.map((t) => (
             <Box
               key={t.title}
@@ -72,14 +73,14 @@ const About = () => (
                 target="_blank"
                 rel="noopener noreferrer"
                 color="orange.400"
-                fontSize="xl"
+                fontSize={{ base: 'lg', md: 'xl' }}
                 fontWeight="bold"
               >
                 {t.title}
               </Link>
             </Box>
           ))}
-        </HStack>
+        </SimpleGrid>
         <Text color={useColorModeValue('gray.500', 'gray.300')}>
           {BRAND} dibuat secara terbuka agar bisa dijadikan bahan pembelajaran
           bersama, semua kode dan assets tersedia gratis untuk semua pembelajar
@@ -91,17 +92,19 @@ const About = () => (
           rounded={'md'}
           overflow={'hidden'}
           p={6}
+          spacing={4}
           justifyContent="space-between"
+          wrap="wrap"
         >
           <Link
             href={github}
             target="_blank"
             rel="noopener noreferrer"
             color="orange.400"
-            fontSize="2xl"
+            fontSize={{ base: 'lg', md: 'xl' }}
             fontWeight="bold"
           >
-            github.com/mazipan/ksana.in
+            ksana.in/gh
           </Link>
           <Image
             src={'https://img.shields.io/github/stars/mazipan/ksana.in?style=social'}
@@ -121,7 +124,7 @@ const About = () => (
           </Link>
         </Text>
         <Text color={useColorModeValue('gray.500', 'gray.300')} mt="16">
-          Dari pembuat {BRAND}{' '}
+          Dari pembuat {BRAND}{', '}
           <Link
             target="_blank"
             rel="noopener noreferrer"

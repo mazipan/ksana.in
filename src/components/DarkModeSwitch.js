@@ -11,7 +11,7 @@ export const DarkModeSwitch = () => {
       onClick={toggleColorMode}
       fontSize="20px"
       bgColor="orange.300"
-      icon={isDark ? <HiMoon color="white" /> : <HiSun color="white" />}
+      icon={isDark ? <HiSun color="white" /> : <HiMoon color="white" />}
     />
   )
 }

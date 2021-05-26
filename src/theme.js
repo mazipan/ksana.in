@@ -9,13 +9,17 @@ const breakpoints = createBreakpoints({
 })
 
 const theme = extendTheme({
+  config: {
+    initialColorMode: 'dark',
+    useSystemColorMode: false
+  },
   colors: {
     black: '#16161D'
   },
   fonts: {
     heading: 'Poppins',
     body: 'Poppins',
-    mono: '\'Consolas\', monospace'
+    mono: "'Consolas', monospace"
   },
   breakpoints
 })

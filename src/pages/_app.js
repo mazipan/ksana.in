@@ -1,19 +1,31 @@
+import { useEffect } from 'react'
 import { ChakraProvider, ColorModeProvider } from '@chakra-ui/react'
-import splitbee from '@splitbee/web'
+import { register, unregister } from 'next-offline/runtime'
 
 import '@fontsource/poppins/400.css'
+
+import { initSplitbee } from '../libs/splitbee'
 
 import theme from '../theme'
 import { AlertProvider } from '../context/Alert'
 
-splitbee.init()
-
 function App ({ Component, pageProps }) {
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      register()
+      initSplitbee()
+    }
+
+    return () => {
+      unregister()
+    }
+  }, [])
+
   return (
     <ChakraProvider resetCSS theme={theme}>
       <ColorModeProvider
         options={{
-          useSystemColorMode: true
+          useSystemColorMode: false
         }}
       >
         <AlertProvider>

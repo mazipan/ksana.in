@@ -17,6 +17,8 @@ import { supabase } from '../../libs/supabase'
 import { LayoutAuth } from '../../components/LayoutAuth'
 import { HiUser } from '../../components/HiUser'
 
+import { LS_FP_TOKEN } from '../../constants/common'
+
 const SetNewPasswordPage = () => {
   const currentUser = supabase.auth.currentUser
   const { showAlert } = useAlertContext()
@@ -29,7 +31,7 @@ const SetNewPasswordPage = () => {
 
   useEffect(() => {
     if (window && window.localStorage) {
-      const at = window.localStorage.getItem('ksana.in.fp-at')
+      const at = window.localStorage.getItem(LS_FP_TOKEN)
       setAccessToken(at)
     }
   }, [])
@@ -65,7 +67,7 @@ const SetNewPasswordPage = () => {
           title: 'Setel ulang password',
           message: 'Password telah berhasil disetel ulang',
           onCancel: () => {
-            window.localStorage.removeItem('ksana.in.fp-at')
+            window.localStorage.removeItem(LS_FP_TOKEN)
             window.location.assign(login)
           }
         })

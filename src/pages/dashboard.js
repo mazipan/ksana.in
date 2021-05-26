@@ -14,6 +14,10 @@ const Dashboard = () => {
     setShowAdd(!showAdd)
   }
 
+  const handleCloseForm = () => {
+    setShowAdd(false)
+  }
+
   return (
     <LayoutAuth height="100vh">
       <Stack
@@ -47,7 +51,7 @@ const Dashboard = () => {
                 icon={showAdd ? <HiMinus color="white" /> : <HiPlus color="white" />}
               />
             </Flex>
-            {showAdd && <UrlForm />}
+            {showAdd && <UrlForm onSuccess={handleCloseForm} />}
             <UrlList />
           </Stack>
         </Box>

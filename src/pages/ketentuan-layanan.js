@@ -1,6 +1,5 @@
-import { VStack, Heading } from '@chakra-ui/react'
+import { VStack, Heading, Image } from '@chakra-ui/react'
 
-import { BRAND } from '../constants/texts'
 import { Layout } from '../components/Layout'
 
 const Terms = () => (
@@ -14,14 +13,7 @@ const Terms = () => (
       >
         Ketentuan Layanan
       </Heading>
-      <Heading
-        as="h2"
-        fontWeight={700}
-        fontSize={{ base: 'xl', sm: '2xl', md: '3xl' }}
-        lineHeight={'110%'}
-      >
-        {BRAND}
-      </Heading>
+      <Image w="200px" src={'/orange/ksana.svg'}></Image>
     </VStack>
   </Layout>
 )

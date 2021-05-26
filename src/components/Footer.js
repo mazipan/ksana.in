@@ -27,7 +27,6 @@ export const Footer = () => {
       color={useColorModeValue('gray.700', 'gray.200')}
       as="footer"
       width="100%"
-      p="4"
     >
       <svg
         className="waves"
@@ -70,9 +69,7 @@ export const Footer = () => {
         </g>
       </svg>
 
-      <Box
-        width="100%"
-      >
+      <Box width="100%">
         <Container maxW={'5xl'}>
           <SimpleGrid columns={{ base: 1, md: 4 }} spacing={8} py={4}>
             <Stack align={'flex-start'}>
@@ -88,12 +85,24 @@ export const Footer = () => {
               <Text fontWeight="700" color="orange.400" fontSize={'lg'} mb={2}>
                 Sumber daya
               </Text>
-              <Link href={github}
+
+              <Link href={github} target="_blank" rel="noopener noreferrer">
+                Github Repo
+              </Link>
+              <Link
+                href="https://github.com/mazipan/ksana.in/issues/new"
                 target="_blank"
-                rel="noopener noreferrer">Github Repo</Link>
-              <Link href={splitbeeAnalytics}
+                rel="noopener noreferrer"
+              >
+                Laporkan Isu
+              </Link>
+              <Link
+                href={splitbeeAnalytics}
                 target="_blank"
-                rel="noopener noreferrer">Laporan Splitbee</Link>
+                rel="noopener noreferrer"
+              >
+                Statistik Ksana.in
+              </Link>
             </Stack>
 
             <Stack align={'flex-start'}>
@@ -107,10 +116,7 @@ export const Footer = () => {
         </Container>
       </Box>
 
-      <Box
-        bg="orange.400"
-        width="100%"
-      >
+      <Box bg="orange.400" width="100%">
         <Container maxW={'5xl'}>
           <Flex
             as={Stack}
@@ -122,8 +128,13 @@ export const Footer = () => {
             align={{ md: 'center' }}
           >
             <Text>
-              © 2021 <Link href={'/'} textDecoration="underline">{BRAND}</Link> dibuat oleh{' '}
-              <Link textDecoration="underline"
+              © 2021{' '}
+              <Link href={'/'} textDecoration="underline">
+                {BRAND}
+              </Link>{' '}
+              dibuat oleh{' '}
+              <Link
+                textDecoration="underline"
                 href={'https://mazipan.space/'}
                 target="_blank"
                 rel="noopener noreferrer"

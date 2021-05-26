@@ -13,9 +13,13 @@ import {
   useColorModeValue
 } from '@chakra-ui/react'
 
+import { supabase, setServerSideAuth } from '../libs/supabase'
+
 import { useAlertContext } from '../context/Alert'
-import { supabase } from '../libs/supabase'
+
 import { forgetPasword } from '../constants/paths'
+import { EVENT_SIGN_IN } from '../constants/common'
+
 import { HiUser } from './HiUser'
 
 export const AuthForm = ({ state = 'login' }) => {
@@ -91,6 +95,8 @@ export const AuthForm = ({ state = 'login' }) => {
         id: user.id,
         email: user.email
       })
+
+      setServerSideAuth(EVENT_SIGN_IN, session)
 
       showAlert({
         title: `${isLogin ? 'Login' : 'Register'} success`,

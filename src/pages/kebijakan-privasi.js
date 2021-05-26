@@ -1,4 +1,12 @@
-import { VStack, Heading, Text, Container, useColorModeValue } from '@chakra-ui/react'
+import {
+  VStack,
+  Heading,
+  Text,
+  Link,
+  Container,
+  Image,
+  useColorModeValue
+} from '@chakra-ui/react'
 
 import { BRAND } from '../constants/texts'
 import { Layout } from '../components/Layout'
@@ -15,24 +23,21 @@ const Privacy = () => (
         >
           Kebijakan Privasi
         </Heading>
-        <Heading
-          as="h2"
-          fontWeight={700}
-          fontSize={{ base: 'xl', sm: '2xl', md: '3xl' }}
-          lineHeight={'110%'}
-        >
-          {BRAND}
-        </Heading>
+        <Image w="200px" src={'/orange/ksana.svg'}></Image>
       </VStack>
 
       <Container maxW={'4xl'} mx="auto" as="section">
         <Text color={useColorModeValue('gray.500', 'gray.300')}>
-          Kami di {BRAND} menyadari bahwa Anda mengharapkan privasi dan keamanan
-          dalam hal informasi yang mengidentifikasi Anda secara pribadi dan
-          memungkinkan Anda untuk dihubungi secara individu ("Informasi
-          Pribadi"). Kami mengadopsi kebijakan privasi online berikut karena
-          kami memahami kebutuhan untuk melindungi informasi yang mungkin Anda
-          berikan kepada kami di situs web kami.
+          Kami di{' '}
+          <Link href="/" color="orange.400">
+            {BRAND}
+          </Link>{' '}
+          menyadari bahwa Anda mengharapkan privasi dan keamanan dalam hal
+          informasi yang mengidentifikasi Anda secara pribadi dan memungkinkan
+          Anda untuk dihubungi secara individu ("Informasi Pribadi"). Kami
+          mengadopsi kebijakan privasi online berikut karena kami memahami
+          kebutuhan untuk melindungi informasi yang mungkin Anda berikan kepada
+          kami di situs web kami.
         </Text>
         <Heading
           as="h3"
@@ -45,16 +50,22 @@ const Privacy = () => (
           MENGAPA KAMI MEMINTA INFORMASI TENTANG ANDA
         </Heading>
         <Text color={useColorModeValue('gray.500', 'gray.300')}>
-          {BRAND} mengumpulkan dan menyimpan Informasi Pribadi tentang Anda
-          hanya ketika Anda telah berkomunikasi dengan kami melalui email (kami
-          akan mengumpulkan alamat email Anda), ketika Anda mendaftar untuk
-          menggunakan layanan {BRAND} (kami akan menanyakan nama dan alamat
-          email Anda) , dan saat Anda mendaftar untuk layanan berbayar (kami
-          akan meminta informasi umum seperti nama, alamat email, alamat
-          penagihan, dan informasi kartu kredit Anda). Kami menggunakan
-          informasi tersebut untuk bertransaksi bisnis dengan Anda dan
-          memberikan layanan yang diminta dari waktu ke waktu, serta peningkatan
-          layanan, kontak, dan penelitian.
+          <Link href="/" color="orange.400">
+            {BRAND}
+          </Link>{' '}
+          mengumpulkan dan menyimpan Informasi Pribadi tentang Anda hanya ketika
+          Anda telah berkomunikasi dengan kami melalui email (kami akan
+          mengumpulkan alamat email Anda), ketika Anda mendaftar untuk
+          menggunakan layanan{' '}
+          <Link href="/" color="orange.400">
+            {BRAND}
+          </Link>{' '}
+          (kami akan menanyakan nama dan alamat email Anda) , dan saat Anda
+          mendaftar untuk layanan berbayar (kami akan meminta informasi umum
+          seperti nama, alamat email, alamat penagihan, dan informasi kartu
+          kredit Anda). Kami menggunakan informasi tersebut untuk bertransaksi
+          bisnis dengan Anda dan memberikan layanan yang diminta dari waktu ke
+          waktu, serta peningkatan layanan, kontak, dan penelitian.
         </Text>
         <Heading
           as="h3"
@@ -89,9 +100,15 @@ const Privacy = () => (
         <Text color={useColorModeValue('gray.500', 'gray.300')}>
           Kami tidak menggunakan vendor pihak ketiga dan mitra hosting untuk
           menyediakan perangkat keras, perangkat lunak, jaringan, penyimpanan,
-          dan teknologi terkait yang diperlukan untuk menjalankan {BRAND}. Kami
-          memiliki kode, database, dan semua hak atas aplikasi {BRAND}, Anda
-          memegang semua hak atas data Anda.
+          dan teknologi terkait yang diperlukan untuk menjalankan{' '}
+          <Link href="/" color="orange.400">
+            {BRAND}
+          </Link>
+          . Kami memiliki kode, database, dan semua hak atas aplikasi{' '}
+          <Link href="/" color="orange.400">
+            {BRAND}
+          </Link>
+          , Anda memegang semua hak atas data Anda.
         </Text>
         <Heading
           as="h3"
@@ -146,7 +163,11 @@ const Privacy = () => (
         </Heading>
         <Text color={useColorModeValue('gray.500', 'gray.300')}>
           Ketika Anda memberikan Informasi Pribadi kepada kami, Anda menyetujui
-          pengumpulan dan penggunaan informasi ini oleh {BRAND}.
+          pengumpulan dan penggunaan informasi ini oleh{' '}
+          <Link href="/" color="orange.400">
+            {BRAND}
+          </Link>
+          .
         </Text>
         <Heading
           as="h3"
@@ -179,12 +200,19 @@ const Privacy = () => (
           TRANSFER BISNIS
         </Heading>
         <Text color={useColorModeValue('gray.500', 'gray.300')}>
-          Jika {BRAND}, atau secara substansial semua asetnya diakuisisi, atau
-          dalam hal yang tidak mungkin terjadi ketika kami keluar dari bisnis
-          atau dinyatakan pailit, Informasi Pribadi akan menjadi salah satu aset
-          yang dialihkan atau diakuisisi oleh pihak ketiga. Anda mengakui bahwa
+          Jika{' '}
+          <Link href="/" color="orange.400">
+            {BRAND}
+          </Link>
+          , atau secara substansial semua asetnya diakuisisi, atau dalam hal
+          yang tidak mungkin terjadi ketika kami keluar dari bisnis atau
+          dinyatakan pailit, Informasi Pribadi akan menjadi salah satu aset yang
+          dialihkan atau diakuisisi oleh pihak ketiga. Anda mengakui bahwa
           transfer tersebut dapat terjadi, dan bahwa setiap pihak yang
-          mengakuisisi {BRAND}
+          mengakuisisi{' '}
+          <Link href="/" color="orange.400">
+            {BRAND}
+          </Link>
           dapat terus menggunakan Informasi Pribadi sebagaimana diatur dalam
           kebijakan ini.
         </Text>
@@ -203,7 +231,10 @@ const Privacy = () => (
           Kami mungkin memperbarui kebijakan ini secara berkala. Kami akan
           memberi tahu Anda tentang perubahan signifikan dalam cara kami
           memperlakukan informasi pribadi dengan mengirimkan pemberitahuan ke
-          alamat email utama yang ditentukan di akun pemegang akun utama {BRAND}{' '}
+          alamat email utama yang ditentukan di akun pemegang akun utama{' '}
+          <Link href="/" color="orange.400">
+            {BRAND}
+          </Link>{' '}
           Anda atau dengan menempatkan pemberitahuan yang mencolok di situs
           kami.
         </Text>
@@ -212,7 +243,10 @@ const Privacy = () => (
           mazipanneh@gmail.com
         </Text>
         <Text color={useColorModeValue('gray.500', 'gray.300')} mt="8">
-          Terakhir diperbarui pada 25 Mei 2021
+          Terakhir diperbarui pada{' '}
+          <Text color="orange.400" as="span">
+            25 Mei 2021
+          </Text>
         </Text>
       </Container>
     </VStack>
