@@ -19,3 +19,7 @@ export const callbackHandler = () => {
     }
   }
 }
+
+export const sanitizeSlug = (slug) => {
+  return slug.replace(/[^0-9a-zA-Z.-]/g, '')
+}

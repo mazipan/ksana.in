@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import {
   Link,
@@ -10,20 +11,20 @@ import {
   HStack
 } from '@chakra-ui/react'
 
-import {
-  HiShare,
-  HiDuplicate,
-  HiPencil,
-  HiTrash,
-  HiSave
-} from 'react-icons/hi'
+import { HiShare, HiDuplicate, HiPencil, HiTrash, HiSave } from 'react-icons/hi'
 
 import { supabase } from '../libs/supabase'
+import { sanitizeSlug } from '../libs/helpers'
+
 import { useAlertContext } from '../context/Alert'
 import { useUrlData } from '../hooks/useUrlData'
 import { HOME } from '../constants/paths'
 
-export const UrlList = () => {
+import { ErrorDataNotFound } from './ErrorDataNotFound'
+
+const copy = dynamic(() => import('copy-to-clipboard'), { ssr: false })
+
+export const UrlList = ({ isFormVisible, onShowForm }) => {
   const currentUser = supabase.auth.currentUser
   const { data } = useUrlData(currentUser?.id || '')
   const { showAlert, hideAlert } = useAlertContext()
@@ -33,14 +34,14 @@ export const UrlList = () => {
   const handleCopy = async (text) => {
     if (navigator.clipboard) {
       await navigator.clipboard.writeText(text)
+    } else {
+      copy(text)
     }
   }
 
   const handleShare = async (url) => {
     if (navigator.share) {
-      const res = await fetch(
-        `https://oge.now.sh/api?url=${decodeURIComponent(url)}`
-      )
+      const res = await fetch(`https://oge.now.sh/api?url=${decodeURIComponent(url)}`)
       const d = await res.json()
 
       const shareObj = {
@@ -56,13 +57,13 @@ export const UrlList = () => {
     }
   }
 
-  const handleClickEdit = async (id, slug) => {
+  const handleClickEdit = async (id) => {
     if (updateId === id) {
       setUpdateId('')
       setUpdateSlug('')
     } else {
       setUpdateId(id)
-      setUpdateSlug(slug)
+      setUpdateSlug('')
     }
   }
 
@@ -75,7 +76,7 @@ export const UrlList = () => {
     if (updateSlug) {
       await supabase
         .from('urls')
-        .update({ slug: updateSlug })
+        .update({ slug: sanitizeSlug(updateSlug) })
         .match({ id: updateId })
 
       setUpdateId('')
@@ -135,7 +136,7 @@ export const UrlList = () => {
                   <Input
                     size="lg"
                     name="slug"
-                    placeholder={'Slug baru'}
+                    placeholder={'Tulis slug baru'}
                     bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
                     border={0}
                     value={updateSlug}
@@ -200,7 +201,7 @@ export const UrlList = () => {
           ))}
         </List>
       ) : (
-        <Text>Data tidak tersedia</Text>
+        <>{!isFormVisible ? <ErrorDataNotFound useCta ctaAction={onShowForm} /> : null}</>
       )}
     </>
   )

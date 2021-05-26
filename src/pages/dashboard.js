@@ -14,8 +14,9 @@ const Dashboard = () => {
     setShowAdd(!showAdd)
   }
 
-  const handleCloseForm = () => {
+  const handleSuccessAdd = () => {
     setShowAdd(false)
+    window.location.reload()
   }
 
   return (
@@ -51,8 +52,8 @@ const Dashboard = () => {
                 icon={showAdd ? <HiMinus color="white" /> : <HiPlus color="white" />}
               />
             </Flex>
-            {showAdd && <UrlForm onSuccess={handleCloseForm} />}
-            <UrlList />
+            {showAdd && <UrlForm onSuccess={handleSuccessAdd} />}
+            <UrlList isFormVisible={showAdd} onShowForm={handleShowAdd} />
           </Stack>
         </Box>
       </Stack>

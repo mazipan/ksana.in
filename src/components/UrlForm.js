@@ -13,8 +13,10 @@ import {
 } from '@chakra-ui/react'
 import { v4 as uuidv4 } from 'uuid'
 
-import { HOME } from '../constants/paths'
 import { supabase } from '../libs/supabase'
+import { sanitizeSlug } from '../libs/helpers'
+
+import { HOME } from '../constants/paths'
 import { useAlertContext } from '../context/Alert'
 
 export const UrlForm = ({ onSuccess = () => {} }) => {
@@ -56,7 +58,7 @@ export const UrlForm = ({ onSuccess = () => {} }) => {
       const { error: errorRealSlug } = await supabase
         .from('urls')
         .select('real_url,slug')
-        .eq('slug', slug)
+        .eq('slug', sanitizeSlug(slug))
         .single()
 
       if (errorRealSlug) {
@@ -76,7 +78,7 @@ export const UrlForm = ({ onSuccess = () => {} }) => {
       const { error: errorInsert } = await supabase.from('urls').insert([
         {
           real_url: url,
-          slug: slug,
+          slug: sanitizeSlug(slug),
           user_id: currentUser?.id || uuidv4()
         }
       ])
@@ -84,8 +86,7 @@ export const UrlForm = ({ onSuccess = () => {} }) => {
       if (!errorInsert) {
         showAlert({
           title: 'Sukses menyimpan tautan baru',
-          message:
-            'Tautan telah disimpan dalam basis data kami, silahkan mulai bagikan'
+          message: 'Tautan telah disimpan dalam basis data kami, silahkan mulai bagikan'
         })
 
         setUrl('')
@@ -123,24 +124,26 @@ export const UrlForm = ({ onSuccess = () => {} }) => {
         <FormControl id="slug" isRequired>
           <InputGroup size="lg">
             <InputLeftAddon
+              bg={'orange.400'}
+              color={'white'}
+              fontWeight="bold"
+              px={1}
               children={HOME.replace('https://', '').replace('http://', '')}
-              fontSize="sm"
+              fontSize="xs"
             />
             <Input
               isRequired
               isInvalid={Boolean(errorText)}
               size="lg"
               name="slug"
-              placeholder={'Tautan baru yang diinginkan'}
+              placeholder={'Tulis slug tautan dambaanmu'}
               bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
               border={0}
               value={slug}
               onChange={handleChangeSlug}
             />
           </InputGroup>
-          <FormHelperText>
-            Tautan akan otomatis ditambahkan pada {HOME}
-          </FormHelperText>
+          <FormHelperText>Tautan akan otomatis ditambahkan pada {HOME}</FormHelperText>
         </FormControl>
 
         {errorText && (
