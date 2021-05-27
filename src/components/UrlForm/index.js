@@ -13,14 +13,13 @@ import {
 } from '@chakra-ui/react'
 import { v4 as uuidv4 } from 'uuid'
 
-import { supabase } from '../libs/supabase'
-import { sanitizeSlug } from '../libs/helpers'
+import { supabase } from '../../libs/supabase'
+import { sanitizeSlug } from '../../libs/helpers'
 
-import { HOME } from '../constants/paths'
-import { useAlertContext } from '../context/Alert'
+import { HOME } from '../../constants/paths'
+import { useAlertContext } from '../../context/Alert'
 
-export const UrlForm = ({ onSuccess = () => {} }) => {
-  const currentUser = supabase.auth.currentUser
+export const UrlForm = ({ user, onSuccess = () => {} }) => {
   const { showAlert } = useAlertContext()
 
   const [url, setUrl] = useState('')
@@ -79,7 +78,7 @@ export const UrlForm = ({ onSuccess = () => {} }) => {
         {
           real_url: url,
           slug: sanitizeSlug(slug),
-          user_id: currentUser?.id || uuidv4()
+          user_id: user?.id || uuidv4()
         }
       ])
 

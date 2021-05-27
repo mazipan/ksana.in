@@ -1,19 +1,16 @@
 import { Stack, Button, Image, Heading } from '@chakra-ui/react'
 
-export const ErrorDefault = ({
-  title = 'Terjadi kesalahan',
-  ctaLink = '/',
-  ctaText = 'Ke beranda'
+export const ErrorNotLogin = ({
+  title = 'Sepertinya kamu belum login!',
+  ctaLink = '/auth/sign-in',
+  ctaText = 'Masuk ke akun'
 }) => {
   return (
     <Stack
       as="section"
       spacing={8}
       mx={'auto'}
-      mt="20"
       maxW={'lg'}
-      py={12}
-      px={6}
     >
       <Stack align={'center'} spacing={8}>
         <Heading
@@ -25,7 +22,7 @@ export const ErrorDefault = ({
         >
           {title}
         </Heading>
-        <Image w="100%" src={'/ill_error_by_manypixels.svg'}></Image>
+        <Image w="100%" src={'/ill_protection_by_manypixels.svg'}></Image>
         <Button
           px={6}
           size="lg"

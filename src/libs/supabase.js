@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
+import { apiSetSession, apiLogout } from '../constants/paths'
 
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -6,7 +7,7 @@ export const supabase = createClient(
 )
 
 export const setServerSideAuth = (event, session) => {
-  fetch('/api/auth/set-session', {
+  fetch(apiSetSession, {
     method: 'POST',
     headers: new Headers({ 'Content-Type': 'application/json' }),
     credentials: 'same-origin',
@@ -15,7 +16,7 @@ export const setServerSideAuth = (event, session) => {
 }
 
 export const logout = async () => {
-  const res = await fetch('/api/auth/logout', {
+  const res = await fetch(apiLogout, {
     method: 'POST',
     headers: new Headers({ 'Content-Type': 'application/json' }),
     credentials: 'same-origin'
@@ -29,15 +30,6 @@ export const login = async ({ email, password }) => {
     headers: new Headers({ 'Content-Type': 'application/json' }),
     credentials: 'same-origin',
     body: JSON.stringify({ email, password })
-  })
-  return await res.json()
-}
-
-export const isAuthenticated = async () => {
-  const res = await fetch('/api/auth/is-authenticated', {
-    method: 'GET',
-    headers: new Headers({ 'Content-Type': 'application/json' }),
-    credentials: 'same-origin'
   })
   return await res.json()
 }

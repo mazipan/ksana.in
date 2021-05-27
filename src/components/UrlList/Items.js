@@ -13,20 +13,23 @@ import {
 
 import { HiShare, HiDuplicate, HiPencil, HiTrash, HiSave } from 'react-icons/hi'
 
-import { supabase } from '../libs/supabase'
-import { sanitizeSlug } from '../libs/helpers'
+import { supabase } from '../../libs/supabase'
+import { sanitizeSlug } from '../../libs/helpers'
 
-import { useAlertContext } from '../context/Alert'
-import { useUrlData } from '../hooks/useUrlData'
-import { HOME } from '../constants/paths'
+import { useAlertContext } from '../../context/Alert'
 
-import { ErrorDataNotFound } from './ErrorDataNotFound'
+import useUrls from '../../hooks/useUrls'
+
+import { HOME } from '../../constants/paths'
+
+import { ErrorDataNotFound } from '../ErrorDataNotFound'
+import { LoadingSkeleton } from './LoadingSkeleton'
 
 const copy = dynamic(() => import('copy-to-clipboard'), { ssr: false })
 
-export const UrlList = ({ isFormVisible, onShowForm }) => {
-  const currentUser = supabase.auth.currentUser
-  const { data } = useUrlData(currentUser?.id || '')
+export const Items = ({ user, isFormVisible, onShowForm }) => {
+  const { data, isLoading } = useUrls(user.id)
+
   const { showAlert, hideAlert } = useAlertContext()
   const [updateId, setUpdateId] = useState('')
   const [updateSlug, setUpdateSlug] = useState('')
@@ -107,9 +110,13 @@ export const UrlList = ({ isFormVisible, onShowForm }) => {
     })
   }
 
+  if (isLoading) {
+    return <LoadingSkeleton/>
+  }
+
   return (
     <>
-      {data && data.length > 0 ? (
+      {!isLoading && data && data.length > 0 ? (
         <List spacing={3}>
           {data.map((d) => (
             <ListItem
@@ -127,6 +134,8 @@ export const UrlList = ({ isFormVisible, onShowForm }) => {
                 fontWeight="700"
                 color="orange.400"
                 href={`${HOME}${d.slug}`}
+                mb="4"
+                display="block"
               >
                 {`${HOME}${d.slug}`}
               </Link>

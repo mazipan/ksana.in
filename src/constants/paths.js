@@ -12,6 +12,16 @@ export const register = '/auth/sign-up'
 export const forgetPasword = '/auth/forget-password'
 export const setNewPassword = '/auth/set-new-password'
 
+export const apiIsAuth = '/api/auth/is-authenticated'
+export const apiSetSession = '/api/auth/set-session'
+export const apiLogin = '/api/auth/login'
+export const apiLogout = '/api/auth/logout'
+
+export const apiUrlsGet = id => `/api/urls/get/${id}`
+export const apiUrlsSave = id => `/api/urls/save/${id}`
+export const apiUrlsPatch = id => `/api/urls/patch/${id}`
+export const apiUrlsDelete = id => `/api/urls/delete/${id}`
+
 // internal slug used by the app
 export const blacklistSlugs = [
   'tentang',
