@@ -1,0 +1,39 @@
+{
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:import/typescript",
+    "standard"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "react-hooks", "@typescript-eslint"],
+  "rules": {
+    "no-alert": "warn",
+    "no-console": "error",
+    "no-unused-vars": "error",
+    "no-nested-ternary": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/no-unescaped-entities": "warn",
+    "react/no-children-prop": "warn",
+    "react/prop-types": "off",
+    "multiline-ternary": "off"
+  }
+}
