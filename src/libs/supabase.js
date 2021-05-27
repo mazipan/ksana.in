@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
-import { apiSetSession, apiLogout } from '../constants/paths'
+import { defaultFetchOption } from '../libs/fetcher'
+import { apiSetSession, apiLogout, apiUrlsSave, apiUrlsDelete, apiUrlsPatch } from '../constants/paths'
 
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -8,28 +9,42 @@ export const supabase = createClient(
 
 export const setServerSideAuth = (event, session) => {
   fetch(apiSetSession, {
+    ...defaultFetchOption,
     method: 'POST',
-    headers: new Headers({ 'Content-Type': 'application/json' }),
-    credentials: 'same-origin',
     body: JSON.stringify({ event, session })
   }).then((res) => res.json())
 }
 
 export const logout = async () => {
   const res = await fetch(apiLogout, {
+    ...defaultFetchOption,
     method: 'POST',
-    headers: new Headers({ 'Content-Type': 'application/json' }),
-    credentials: 'same-origin'
   })
   return await res.json()
 }
 
-export const login = async ({ email, password }) => {
-  const res = await fetch('/api/auth/login', {
-    method: 'POST',
-    headers: new Headers({ 'Content-Type': 'application/json' }),
-    credentials: 'same-origin',
-    body: JSON.stringify({ email, password })
+export const saveUrl = async ({ userId, url, slug }) => {
+  const res = await fetch(apiUrlsSave(userId), {
+    ...defaultFetchOption,
+    method: 'PUT',
+    body: JSON.stringify({ url, slug })
+  })
+  return await res.json()
+}
+
+export const deletUrl = async ({ id }) => {
+  const res = await fetch(apiUrlsDelete(userId), {
+    ...defaultFetchOption,
+    method: 'DELETE',
+  })
+  return await res.json()
+}
+
+export const updateSlug = async ({ id, slug }) => {
+  const res = await fetch(apiUrlsPatch(id), {
+    ...defaultFetchOption,
+    method: 'PATCH',
+    body: JSON.stringify({ slug })
   })
   return await res.json()
 }
