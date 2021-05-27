@@ -1,26 +1,27 @@
 import { supabase } from '../../../../libs/supabase'
+import { sanitizeSlug } from '../../../../libs/helpers'
 
 export default async (req, res) => {
   try {
-    const userId = req.query.user_id
+    const id = req.query.id
+    const { slug } = req.body
 
-    const { data: dataSelect, error: errorSelect } = await supabase
+    await supabase
       .from('urls')
-      .select('id,user_id,real_url,slug,hit')
-      .eq('user_id', userId)
+      .update({ slug: sanitizeSlug(slug) })
+      .match({ id: id })
 
-    // res.setHeader('Cache-Control', 'max-age=86400')
     res.statusCode = 200
     res.json({
       success: true,
-      data: dataSelect,
-      error: errorSelect
+      data: data,
+      error: error
     })
   } catch (error) {
     res.statusCode = 500
     res.json({
       success: false,
-      data: [],
+      data: null,
       error: error
     })
   }

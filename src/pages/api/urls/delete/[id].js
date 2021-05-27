@@ -1,16 +1,9 @@
 import { supabase } from '../../../../libs/supabase'
-import { sanitizeSlug } from '../../../../libs/helpers'
 
 export default async (req, res) => {
   try {
-    const { url, slug } = req.body
-    const { data, error } = await supabase.from('urls').insert([
-      {
-        real_url: url,
-        slug: sanitizeSlug(slug),
-        user_id: userId
-      }
-    ])
+    const id = req.query.id
+    const { data, error } = await supabase.from('urls').delete().match({ id: id })
 
     res.statusCode = 200
     res.json({
@@ -22,7 +15,7 @@ export default async (req, res) => {
     res.statusCode = 500
     res.json({
       success: false,
-      data: [],
+      data: null,
       error: error
     })
   }
