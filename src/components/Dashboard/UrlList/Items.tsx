@@ -130,7 +130,7 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
             >
               <Link
                 as="a"
-                fontSize="xl"
+                fontSize={{ base: 'lg', md: 'xl' }}
                 fontWeight="700"
                 color="orange.400"
                 href={`${HOME}${d.slug}`}
@@ -162,11 +162,11 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
                 </HStack>
               )}
 
-              <Text fontSize="small" color="gray.400">
+              <Text fontSize="small" color="gray.400" display="block" mb="2">
                 {d.real_url}
               </Text>
               <Text fontSize="small" color="gray.400">
-                {d.hit} kali dikunjuingi
+                {d.hit} kali dikunjungi
               </Text>
               <HStack spacing={2} mt={4}>
                 <IconButton
