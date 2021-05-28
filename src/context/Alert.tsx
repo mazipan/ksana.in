@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useContext } from 'react'
+import { createContext, useState, useCallback, useContext } from 'react'
 import { node } from 'prop-types'
 
 import { MessageDialog } from 'components/MessageDialog'
@@ -15,7 +15,7 @@ const defaultState: any = {
   onClose: noop
 }
 
-const AlertContext: any = React.createContext({
+const AlertContext: any = createContext({
   showAlert: noop,
   hideAlert: noop,
   _alertProps: defaultState

@@ -30,7 +30,7 @@ export function SignUp() {
     // return (<HiUser user={user} />)
   }
 
-  return <AuthForm state="register"  />
+  return <AuthForm state="register" />
 }
 
 export default SignUp

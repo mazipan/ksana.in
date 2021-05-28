@@ -3,8 +3,7 @@ import { HiLogout, HiCollection } from 'react-icons/hi'
 
 import { handleLogout } from 'libs/supabase'
 
-export function HiUser({ user  }: any) {
-
+export function HiUser({ user }: any) {
   return (
     <Stack as="section" spacing={8} mx={'auto'} mt="20" maxW={'lg'} py={12} px={6}>
       <Stack align={'center'} spacing={8}>
@@ -13,7 +12,7 @@ export function HiUser({ user  }: any) {
           lineHeight={'110%'}
           textAlign="center"
         >
-          Selamat datang, {' '}
+          Selamat datang,{' '}
           <Text color="orange.400" fontSize={{ base: 'lg', md: 'xl' }}>
             {user ? user.email.split('@')[0] : ''}
           </Text>

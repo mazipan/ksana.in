@@ -1,10 +1,4 @@
-import {
-  List,
-  ListItem,
-  useColorModeValue,
-  HStack,
-  Skeleton,
-} from '@chakra-ui/react'
+import { List, ListItem, useColorModeValue, HStack, Skeleton } from '@chakra-ui/react'
 
 export function LoadingSkeleton() {
   const data = [1, 2, 3]
@@ -23,7 +17,7 @@ export function LoadingSkeleton() {
         >
           <Skeleton height="30px" mb="4" />
 
-          <Skeleton height="10px" mb="1"/>
+          <Skeleton height="10px" mb="1" />
           <Skeleton height="10px" />
 
           <HStack spacing={2} mt={4}>

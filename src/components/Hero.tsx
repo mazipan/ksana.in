@@ -12,9 +12,7 @@ import {
 import { HiPlay } from 'react-icons/hi'
 
 import { login } from 'constants/paths'
-import {
-  BRAND_TAGLINE_LONG
-} from 'constants/texts'
+import { BRAND_TAGLINE_LONG } from 'constants/texts'
 
 export function Hero() {
   return (
@@ -29,7 +27,14 @@ export function Hero() {
               fontSize={{ base: '4xl', sm: '5xl', md: '6xl' }}
               lineHeight={'110%'}
             >
-              Pemendek tautan yang <Text color="orange.400" as="span">mudah</Text> dan <Text color="orange.400" as="span">gratis</Text>
+              Pemendek tautan yang{' '}
+              <Text color="orange.400" as="span">
+                mudah
+              </Text>{' '}
+              dan{' '}
+              <Text color="orange.400" as="span">
+                gratis
+              </Text>
             </Heading>
 
             <Text
