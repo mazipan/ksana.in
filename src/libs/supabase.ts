@@ -2,6 +2,7 @@ import { createClient } from '@supabase/supabase-js'
 
 import { defaultFetchOption } from './fetcher'
 import { apiSetSession, apiLogout, apiUrlsSave, apiUrlsDelete, apiUrlsPatch } from 'constants/paths'
+import { EVENT_SIGN_OUT, LS_AUTH_TOKEN } from 'constants/common'
 
 export const supabase: any= createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL || '',
@@ -22,6 +23,21 @@ export const logout: any = async () => {
     method: 'POST',
   })
   return await res.json()
+}
+
+export const handleLogout: any = async () => {
+  const currentSession = supabase.auth.currentSession
+
+  const { error } = await logout()
+  setServerSideAuth(EVENT_SIGN_OUT, currentSession)
+
+  if (!error) {
+    // hard reload to refresh data
+    setTimeout(() => {
+      window.localStorage.removeItem(LS_AUTH_TOKEN)
+      window.location.assign('/')
+    }, 500)
+  }
 }
 
 export const saveUrl: any = async ({ userId, url, slug }: any) => {

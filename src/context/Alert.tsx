@@ -26,6 +26,10 @@ export const useAlertContext: any = () => useContext(AlertContext)
 export const AlertProvider = ({ children }: any) => {
   const [state, setState] = useState({ ...defaultState })
 
+  const hideAlert: any = useCallback(() => {
+    setState((prevState: any) => ({ ...prevState, isOpen: false }))
+  }, [])
+
   const showAlert: any = useCallback((args: any) => {
     const {
       title = '',
@@ -33,7 +37,7 @@ export const AlertProvider = ({ children }: any) => {
       cancelText = 'Tutup',
       confirmText = '',
       onConfirm = noop,
-      onClose = noop
+      onClose = hideAlert
     } = args
 
     setState({
@@ -47,14 +51,10 @@ export const AlertProvider = ({ children }: any) => {
     })
   }, [])
 
-  const hideAlert: any = useCallback(() => {
-    setState((prevState: any) => ({ ...prevState, isOpen: false }))
-  }, [])
-
   return (
     <AlertContext.Provider value={{ showAlert, hideAlert, _alertProps: state }}>
       {children}
-      <MessageDialog {...state} onClose={hideAlert} />
+      <MessageDialog {...state} />
     </AlertContext.Provider>
   )
 }

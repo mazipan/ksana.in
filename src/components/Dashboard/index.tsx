@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Stack, Box, Flex, Heading, Text, IconButton } from '@chakra-ui/react'
-import { HiLink, HiPlus, HiMinus } from 'react-icons/hi'
+import { HiPlus, HiMinus } from 'react-icons/hi'
 
 import { useAuthContext } from 'context/Auth'
 
@@ -40,7 +40,7 @@ export function Dashboard() {
           <>
             <Flex justifyContent="space-between" alignItems="center">
               <Heading as="h3" size="2xl" color="orange.400" display="flex">
-                <HiLink /> <Text>Tautan Saya</Text>
+                <Text>Tautan Saya</Text>
               </Heading>
               <IconButton
                 onClick={handleShowAdd}

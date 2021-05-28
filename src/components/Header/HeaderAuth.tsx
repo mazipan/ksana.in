@@ -1,8 +1,15 @@
-import { Link, Flex } from '@chakra-ui/react'
+import { Button, Link, Flex } from '@chakra-ui/react'
 
-import { DarkModeSwitch } from './DarkModeSwitch'
+import { HiLogout } from 'react-icons/hi'
+
+import { useAuthContext } from 'context/Auth'
+import { DarkModeSwitch } from '../DarkModeSwitch'
+
+import { handleLogout } from 'libs/supabase'
 
 export function Header() {
+  const { isLoading, isLogin } = useAuthContext()
+
   return (
     <Flex
       position="fixed"
@@ -41,6 +48,21 @@ export function Header() {
       </Link>
 
       <Flex justifyContent="space-between" alignItems="center">
+        {!isLoading && isLogin && (
+          <Button
+            px={6}
+            color={'white'}
+            bg="red.400"
+            _hover={{
+              bg: 'red.500'
+            }}
+            mr="2"
+            onClick={handleLogout}
+            leftIcon={<HiLogout />}
+          >
+            Keluar
+          </Button>
+        )}
         <DarkModeSwitch />
       </Flex>
     </Flex>

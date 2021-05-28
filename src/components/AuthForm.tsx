@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 
 import {
   Box,
@@ -15,11 +16,12 @@ import {
 
 import { supabase, setServerSideAuth } from 'libs/supabase'
 import { useAlertContext } from 'context/Alert'
-import { forgetPasword } from 'constants/paths'
+import { forgetPasword, dashboard } from 'constants/paths'
 import { EVENT_SIGN_IN } from 'constants/common'
 
 export function AuthForm({ state = 'login' }: any) {
-  const { showAlert } = useAlertContext()
+  const router = useRouter()
+  const { showAlert, hideAlert } = useAlertContext()
 
   const [internalState, setInternalState] = useState<any>(state)
   const [isLogin, setIsLogin] = useState<any>(state === 'login')
@@ -93,7 +95,16 @@ export function AuthForm({ state = 'login' }: any) {
           stateType === 'login'
             ? 'Selamat datang kembali!'
             : 'Terima kasih telah mendaftar. Silahkan melakukan verifikasi dengan mengklik tautan yang kami kirimkan melalui email.'
-        }`
+        }`,
+        onClose: () => {
+          hideAlert()
+
+          if (stateType === 'login') {
+            router.push(dashboard)
+          } else {
+            router.push('/')
+          }
+        }
       })
     }
   }
@@ -119,7 +130,13 @@ export function AuthForm({ state = 'login' }: any) {
   return (
     <Stack spacing={8} mx={'auto'} mt="20" maxW={'lg'} py={12} px={6}>
       <Stack align={'center'}>
-        <Heading fontSize={'4xl'}>{isLogin ? 'Masuk ke akunmu' : 'Daftarkan akun baru'}</Heading>
+        <Heading
+          fontWeight={700}
+          fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
+          lineHeight={'110%'}
+        >
+          {isLogin ? 'Masuk ke akunmu' : 'Daftarkan akun baru'}
+        </Heading>
       </Stack>
       <Box rounded={'lg'} bg={useColorModeValue('white', 'gray.700')} boxShadow={'lg'} p={8}>
         <Stack spacing={4}>
