@@ -4,7 +4,7 @@ export default async (req: any, res: any) => {
   try {
     const { user, error } = await supabase.auth.api.getUserByCookie(req)
 
-    if(!error && user.id) {
+    if (!error && user.id) {
       res.statusCode = 200
       res.json({
         success: true,
@@ -12,7 +12,7 @@ export default async (req: any, res: any) => {
         created_at: user.created_at,
         email: user.email,
         id: user.id,
-        updated_at: user.updated_at,
+        updated_at: user.updated_at
       })
     } else {
       // expect unauthorized
@@ -20,7 +20,7 @@ export default async (req: any, res: any) => {
       res.json({
         success: true,
         isLogin: !!user,
-        error: error || null,
+        error: error || null
       })
     }
   } catch (error) {
@@ -28,7 +28,7 @@ export default async (req: any, res: any) => {
     res.json({
       success: false,
       error: error,
-      isLogin: false,
+      isLogin: false
     })
   }
 }

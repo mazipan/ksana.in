@@ -36,17 +36,11 @@ export function MessageDialog({
     >
       <AlertDialogOverlay>
         <AlertDialogContent width="90%">
-          <AlertDialogHeader
-            fontSize="lg"
-            fontWeight="bold"
-            color={textColor[colorMode]}
-          >
+          <AlertDialogHeader fontSize="lg" fontWeight="bold" color={textColor[colorMode]}>
             {title}
           </AlertDialogHeader>
 
-          <AlertDialogBody color={textColor[colorMode]}>
-            {message}
-          </AlertDialogBody>
+          <AlertDialogBody color={textColor[colorMode]}>{message}</AlertDialogBody>
 
           <AlertDialogFooter>
             <Button ref={cancelRef} onClick={onClose} color={textColor[colorMode]}>
