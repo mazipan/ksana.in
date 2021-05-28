@@ -17,10 +17,8 @@ import { supabase, setServerSideAuth } from 'libs/supabase'
 import { useAlertContext } from 'context/Alert'
 import { forgetPasword } from 'constants/paths'
 import { EVENT_SIGN_IN } from 'constants/common'
-import { HiUser } from './HiUser'
 
 export function AuthForm({ state = 'login' }: any) {
-  const currentUser: any = supabase.auth.currentUser
   const { showAlert } = useAlertContext()
 
   const [internalState, setInternalState] = useState<any>(state)
@@ -30,7 +28,6 @@ export function AuthForm({ state = 'login' }: any) {
   const [errorForm, setErrorForm] = useState<string>('')
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
-  const [loginUser, setLoginUser] = useState<any>(currentUser)
 
   const toggleState: any = () => {
     if (internalState === 'login') {
@@ -78,24 +75,22 @@ export function AuthForm({ state = 'login' }: any) {
     setLoading(false)
   }
 
-  const processResponse: any = ({ user, session, error }: any) => {
+  const processResponse: any = ({ session, error, stateType = 'login' }: any) => {
     if (error) {
       setErrorForm(error.message)
       return false
     }
 
     if (session && !error) {
-      setLoginUser({
-        id: user.id,
-        email: user.email
-      })
-
-      setServerSideAuth(EVENT_SIGN_IN, session)
+      if (stateType === 'login') {
+        // only set for the login flow
+        setServerSideAuth(EVENT_SIGN_IN, session)
+      }
 
       showAlert({
-        title: `${isLogin ? 'Login' : 'Register'} success`,
+        title: `${stateType === 'login' ? 'Login' : 'Register'} success`,
         message: `${
-          isLogin
+          stateType === 'login'
             ? 'Selamat datang kembali!'
             : 'Terima kasih telah mendaftar. Silahkan melakukan verifikasi dengan mengklik tautan yang kami kirimkan melalui email.'
         }`
@@ -104,134 +99,104 @@ export function AuthForm({ state = 'login' }: any) {
   }
 
   const handleLogin: any = async () => {
-    const { user, session, error } = await supabase.auth.signIn({
+    const { session, error } = await supabase.auth.signIn({
       email: email,
       password: password
     })
 
-    processResponse({ user, session, error })
+    processResponse({ session, error, stateType: 'login' })
   }
 
   const handleRegister: any = async () => {
-    const { user, session, error } = await supabase.auth.signUp({
+    const { session, error } = await supabase.auth.signUp({
       email: email,
       password: password
     })
 
-    processResponse({ user, session, error })
+    processResponse({ session, error, stateType: 'register' })
   }
 
   return (
-    <>
-      {loginUser ? (
-        <HiUser />
-      ) : (
-        <>
-          <Stack spacing={8} mx={'auto'} mt="20" maxW={'lg'} py={12} px={6}>
-            <Stack align={'center'}>
-              <Heading fontSize={'4xl'}>
-                {isLogin ? 'Masuk ke akunmu' : 'Daftarkan akun baru'}
-              </Heading>
-            </Stack>
-            <Box
-              rounded={'lg'}
-              bg={useColorModeValue('white', 'gray.700')}
-              boxShadow={'lg'}
-              p={8}
-            >
-              <Stack spacing={4}>
-                <FormControl id="email" isRequired>
-                  <FormLabel>Email</FormLabel>
-                  <Input
-                    isInvalid={Boolean(errorForm)}
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={handleChangeEmail}
-                    autoComplete="username"
-                  />
-                </FormControl>
+    <Stack spacing={8} mx={'auto'} mt="20" maxW={'lg'} py={12} px={6}>
+      <Stack align={'center'}>
+        <Heading fontSize={'4xl'}>{isLogin ? 'Masuk ke akunmu' : 'Daftarkan akun baru'}</Heading>
+      </Stack>
+      <Box rounded={'lg'} bg={useColorModeValue('white', 'gray.700')} boxShadow={'lg'} p={8}>
+        <Stack spacing={4}>
+          <FormControl id="email" isRequired>
+            <FormLabel>Email</FormLabel>
+            <Input
+              isInvalid={Boolean(errorForm)}
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleChangeEmail}
+              autoComplete="username"
+            />
+          </FormControl>
 
-                <FormControl id="password" isRequired>
-                  <FormLabel>Password</FormLabel>
-                  <Input
-                    isInvalid={Boolean(errorForm)}
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={handleChangePassword}
-                    autoComplete={isLogin ? 'current-password' : 'new-password'}
-                  />
-                </FormControl>
+          <FormControl id="password" isRequired>
+            <FormLabel>Password</FormLabel>
+            <Input
+              isInvalid={Boolean(errorForm)}
+              type="password"
+              name="password"
+              value={password}
+              onChange={handleChangePassword}
+              autoComplete={isLogin ? 'current-password' : 'new-password'}
+            />
+          </FormControl>
 
-                {errorForm && (
-                  <Text color="red.300" fontSize="xs">
-                    Galat: {errorForm}
-                  </Text>
-                )}
+          {errorForm && (
+            <Text color="red.300" fontSize="xs">
+              Galat: {errorForm}
+            </Text>
+          )}
 
-                <Stack spacing={10}>
-                  {isLogin ? (
-                    <Stack
-                      direction={{ base: 'column', sm: 'row' }}
-                      align={'start'}
-                      justify={'space-between'}
-                    >
-                      <Button
-                        variant="link"
-                        as={Link}
-                        color={'orange.400'}
-                        href={forgetPasword}
-                      >
-                        Lupa password?
-                      </Button>
-                    </Stack>
-                  ) : null}
-
-                  <Button
-                    isLoading={loading}
-                    loadingText="Memproses"
-                    w="full"
-                    bg="orange.400"
-                    _hover={{
-                      bg: 'orange.500'
-                    }}
-                    onClick={handleSubmit}
-                  >
-                    {isLogin ? 'Masuk' : 'Daftar Sekarang'}
-                  </Button>
-                </Stack>
-
-                {isLogin ? (
-                  <Stack direction="row" align={'center'} justify={'center'}>
-                    <Text>Belum punya akun? </Text>
-                    <Button
-                      variant="link"
-                      as={Link}
-                      color={'orange.400'}
-                      onClick={toggleState}
-                    >
-                      Daftar sekarang
-                    </Button>
-                  </Stack>
-                ) : (
-                  <Stack direction="row" align={'center'} justify={'center'}>
-                    <Text>Sudah punya akun? </Text>
-                    <Button
-                      variant="link"
-                      as={Link}
-                      color={'orange.400'}
-                      onClick={toggleState}
-                    >
-                      Masuk
-                    </Button>
-                  </Stack>
-                )}
+          <Stack spacing={10}>
+            {isLogin ? (
+              <Stack
+                direction={{ base: 'column', sm: 'row' }}
+                align={'start'}
+                justify={'space-between'}
+              >
+                <Button variant="link" as={Link} color={'orange.400'} href={forgetPasword}>
+                  Lupa password?
+                </Button>
               </Stack>
-            </Box>
+            ) : null}
+
+            <Button
+              isLoading={loading}
+              loadingText="Memproses"
+              w="full"
+              bg="orange.400"
+              _hover={{
+                bg: 'orange.500'
+              }}
+              onClick={handleSubmit}
+            >
+              {isLogin ? 'Masuk' : 'Daftar Sekarang'}
+            </Button>
           </Stack>
-        </>
-      )}
-    </>
+
+          {isLogin ? (
+            <Stack direction="row" align={'center'} justify={'center'}>
+              <Text>Belum punya akun? </Text>
+              <Button variant="link" as={Link} color={'orange.400'} onClick={toggleState}>
+                Daftar sekarang
+              </Button>
+            </Stack>
+          ) : (
+            <Stack direction="row" align={'center'} justify={'center'}>
+              <Text>Sudah punya akun? </Text>
+              <Button variant="link" as={Link} color={'orange.400'} onClick={toggleState}>
+                Masuk
+              </Button>
+            </Stack>
+          )}
+        </Stack>
+      </Box>
+    </Stack>
   )
 }

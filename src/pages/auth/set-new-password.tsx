@@ -18,7 +18,6 @@ import { supabase } from 'libs/supabase'
 import { LayoutAuth } from 'components/Layout/LayoutAuth'
 import { HiUser } from 'components/HiUser'
 
-
 const SetNewPasswordPage = () => {
   const currentUser: any = supabase.auth.currentUser
   const { showAlert } = useAlertContext()

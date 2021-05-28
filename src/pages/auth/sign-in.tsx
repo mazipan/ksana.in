@@ -1,12 +1,12 @@
 import { useColorModeValue } from '@chakra-ui/react'
 
 import { LayoutAuth } from 'components/Layout/LayoutAuth'
-import { AuthForm } from 'components/AuthForm'
+import { SignIn } from 'components/SignIn'
 
 function Login() {
   return (
     <LayoutAuth minH={'100vh'} bg={useColorModeValue('gray.50', 'gray.800')}>
-      <AuthForm state="login" />
+      <SignIn />
     </LayoutAuth>
   )
 }

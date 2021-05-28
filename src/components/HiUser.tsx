@@ -4,9 +4,7 @@ import { HiLogout, HiCollection } from 'react-icons/hi'
 import { supabase, setServerSideAuth, logout } from 'libs/supabase'
 import { EVENT_SIGN_OUT, LS_AUTH_TOKEN } from 'constants/common'
 
-export function HiUser() {
-  const currentUser: any = supabase.auth.currentUser
-
+export function HiUser({ user  }: any) {
   const handleLogout: any = async () => {
     const currentSession = supabase.auth.currentSession
 
@@ -30,9 +28,9 @@ export function HiUser() {
           lineHeight={'110%'}
           textAlign="center"
         >
-          Selamat datang,{' '}
+          Selamat datang, {' '}
           <Text color="orange.400" fontSize={{ base: 'lg', md: 'xl' }}>
-            {currentUser ? currentUser.email.split('@')[0] : ''}
+            {user ? user.email.split('@')[0] : ''}
           </Text>
         </Heading>
         <Image w="100%" src={'/ill_teamwork_by_manypixels.svg'}></Image>
