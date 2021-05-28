@@ -1,9 +1,9 @@
 import { Box } from '@chakra-ui/react'
 
-import { MetaHead } from './MetaHead'
-import { Container } from './Container'
-import { Header } from './Header'
-import { Footer } from './Footer'
+import { MetaHead } from '../MetaHead'
+import { Container } from '../Container'
+import { Header } from '../Header'
+import { Footer } from '../Footer'
 
 export function Layout({ children }: any) {
   return (

@@ -13,7 +13,7 @@ import {
 
 import { BRAND } from 'constants/texts'
 import { github } from 'constants/paths'
-import { Layout } from 'components/Layout'
+import { Layout } from 'components/Layout/Layout'
 
 const tools: any = [
   {

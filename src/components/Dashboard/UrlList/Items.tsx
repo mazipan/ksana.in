@@ -22,7 +22,7 @@ import useUrls from 'hooks/useUrls'
 
 import { HOME } from 'constants/paths'
 
-import { ErrorDataNotFound } from 'components/ErrorDataNotFound'
+import { ErrorDataNotFound } from 'components/Error/ErrorDataNotFound'
 import { LoadingSkeleton } from './LoadingSkeleton'
 
 const copy: any = dynamic((): any => import('copy-to-clipboard'), { ssr: false })

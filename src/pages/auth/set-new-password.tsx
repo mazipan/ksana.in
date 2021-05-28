@@ -15,7 +15,7 @@ import { LS_FP_TOKEN } from 'constants/common'
 import { forgetPasword, login } from 'constants/paths'
 import { useAlertContext } from 'context/Alert'
 import { supabase } from 'libs/supabase'
-import { LayoutAuth } from 'components/LayoutAuth'
+import { LayoutAuth } from 'components/Layout/LayoutAuth'
 import { HiUser } from 'components/HiUser'
 
 

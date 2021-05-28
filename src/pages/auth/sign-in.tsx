@@ -1,6 +1,6 @@
 import { useColorModeValue } from '@chakra-ui/react'
 
-import { LayoutAuth } from 'components/LayoutAuth'
+import { LayoutAuth } from 'components/Layout/LayoutAuth'
 import { AuthForm } from 'components/AuthForm'
 
 function Login() {

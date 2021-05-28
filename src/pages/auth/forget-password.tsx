@@ -12,7 +12,7 @@ import {
 
 import { useAlertContext } from 'context/Alert'
 import { supabase } from 'libs/supabase'
-import { LayoutAuth } from 'components/LayoutAuth'
+import { LayoutAuth } from 'components/Layout/LayoutAuth'
 import { HiUser } from 'components/HiUser'
 
 function ForgetPasswordPage() {

@@ -3,12 +3,15 @@ import { Stack, Box, Flex, Heading, Text, IconButton } from '@chakra-ui/react'
 import { HiLink, HiPlus, HiMinus } from 'react-icons/hi'
 
 import { useAuthContext } from 'context/Auth'
-import { UrlForm } from 'components/UrlForm'
-import { UrlList } from 'components/UrlList'
-import { ErrorNotLogin } from 'components/ErrorNotLogin'
+
+import { ErrorNotLogin } from 'components/Error/ErrorNotLogin'
+import { LoadingSpinner } from 'components/LoadingSpinner'
+
+import { UrlForm } from './UrlForm'
+import { UrlList } from './UrlList'
 
 export function Dashboard() {
-  const { user, isLogin } = useAuthContext()
+  const { user, isLoading, isLogin } = useAuthContext()
   const [showAdd, setShowAdd] = useState<boolean>(false)
 
   const handleShowAdd: any = () => {
@@ -18,6 +21,16 @@ export function Dashboard() {
   const handleSuccessAdd: any = () => {
     setShowAdd(false)
     window.location.reload()
+  }
+
+  if (isLoading) {
+    return (
+      <Box width={{ base: '100%' }}>
+        <Flex justifyContent="center" alignItems="center">
+          <LoadingSpinner />
+        </Flex>
+      </Box>
+    )
   }
 
   return (

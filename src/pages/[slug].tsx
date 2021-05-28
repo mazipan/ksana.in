@@ -1,8 +1,8 @@
 import { Box } from '@chakra-ui/react'
 
 import { supabase } from 'libs/supabase'
-import { Layout } from 'components/Layout'
-import { ErrorDefault } from 'components/ErrorDefault'
+import { Layout } from 'components/Layout/Layout'
+import { ErrorDefault } from 'components/Error/ErrorDefault'
 
 
 function SlugPage() {

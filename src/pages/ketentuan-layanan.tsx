@@ -1,6 +1,6 @@
 import { VStack, Heading, Image } from '@chakra-ui/react'
 
-import { Layout } from 'components/Layout'
+import { Layout } from 'components/Layout/Layout'
 
 function Terms() {
   return (
