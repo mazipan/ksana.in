@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
+import { createContext, useContext } from 'react'
 import { node } from 'prop-types'
 
 import useUser from 'hooks/useUser'
 
-const AuthContext: any = React.createContext({
+const AuthContext: any = createContext({
   isLogin: false,
   user: null
 })

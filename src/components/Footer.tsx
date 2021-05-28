@@ -42,30 +42,10 @@ export function Footer() {
           />
         </defs>
         <g className="parallax">
-          <use
-            xlinkHref="#gentle-wave"
-            x="5"
-            y="0"
-            fill="rgba(237, 137, 54, 0.18)"
-          />
-          <use
-            xlinkHref="#gentle-wave"
-            x="20"
-            y="3"
-            fill="rgba(237, 137, 54, 0.3)"
-          />
-          <use
-            xlinkHref="#gentle-wave"
-            x="48"
-            y="5"
-            fill="rgba(237, 137, 54, 0.4)"
-          />
-          <use
-            xlinkHref="#gentle-wave"
-            x="90"
-            y="30"
-            fill="rgba(237, 137, 54, 0.7)"
-          />
+          <use xlinkHref="#gentle-wave" x="5" y="0" fill="rgba(237, 137, 54, 0.18)" />
+          <use xlinkHref="#gentle-wave" x="20" y="3" fill="rgba(237, 137, 54, 0.3)" />
+          <use xlinkHref="#gentle-wave" x="48" y="5" fill="rgba(237, 137, 54, 0.4)" />
+          <use xlinkHref="#gentle-wave" x="90" y="30" fill="rgba(237, 137, 54, 0.7)" />
         </g>
       </svg>
 
@@ -96,11 +76,7 @@ export function Footer() {
               >
                 Laporkan Isu
               </Link>
-              <Link
-                href={splitbeeAnalytics}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <Link href={splitbeeAnalytics} target="_blank" rel="noopener noreferrer">
                 Statistik Ksana.in
               </Link>
             </Stack>

@@ -111,7 +111,7 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
   }
 
   if (isLoading) {
-    return <LoadingSkeleton/>
+    return <LoadingSkeleton />
   }
 
   return (

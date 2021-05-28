@@ -3,7 +3,7 @@ import useSWR from 'swr'
 import { fetcher } from 'libs/fetcher'
 import { apiIsAuth } from 'constants/paths'
 
-function useUser () {
+function useUser() {
   const { data, error } = useSWR(apiIsAuth, fetcher)
 
   return {

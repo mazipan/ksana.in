@@ -51,13 +51,12 @@ function About() {
       <Container maxW={'4xl'} mx="auto" as="section" mt="8">
         <VStack spacing={4}>
           <Text color={useColorModeValue('gray.500', 'gray.300')}>
-            {BRAND} adalah proyek yang dibuat oleh Irfan Maulana dalam rangka
-            mempelajari layanan baru dari Supabase.io, membuat sesuatu untuk bisa
-            mengimplementasikan langsung apa yang ingin dipelajari.
+            {BRAND} adalah proyek yang dibuat oleh Irfan Maulana dalam rangka mempelajari layanan
+            baru dari Supabase.io, membuat sesuatu untuk bisa mengimplementasikan langsung apa yang
+            ingin dipelajari.
           </Text>
           <Text color={useColorModeValue('gray.500', 'gray.300')}>
-            {BRAND} tidak bisa dibuat tanpa beberapa layanan dan alat bantu
-            berikut:
+            {BRAND} tidak bisa dibuat tanpa beberapa layanan dan alat bantu berikut:
           </Text>
           <SimpleGrid columns={{ base: 2, md: 4 }} spacing={2}>
             {tools.map((t: any) => (
@@ -83,8 +82,8 @@ function About() {
             ))}
           </SimpleGrid>
           <Text color={useColorModeValue('gray.500', 'gray.300')}>
-            {BRAND} dibuat secara terbuka agar bisa dijadikan bahan pembelajaran
-            bersama, semua kode dan assets tersedia gratis untuk semua pembelajar
+            {BRAND} dibuat secara terbuka agar bisa dijadikan bahan pembelajaran bersama, semua kode
+            dan assets tersedia gratis untuk semua pembelajar
           </Text>
           <HStack
             w="80%"
@@ -107,13 +106,11 @@ function About() {
             >
               ksana.in/gh
             </Link>
-            <Image
-              src={'https://img.shields.io/github/stars/mazipan/ksana.in?style=social'}
-            />
+            <Image src={'https://img.shields.io/github/stars/mazipan/ksana.in?style=social'} />
           </HStack>
           <Text color={useColorModeValue('gray.500', 'gray.300')}>
-            Untuk mendukung saya dan {BRAND} terus berkreasi membuat kode terbuka
-            lainnya, kalian bisa mengirimkan dana untuk membeli kopi melalui{' '}
+            Untuk mendukung saya dan {BRAND} terus berkreasi membuat kode terbuka lainnya, kalian
+            bisa mengirimkan dana untuk membeli kopi melalui{' '}
             <Link
               target="_blank"
               rel="noopener noreferrer"
@@ -125,7 +122,8 @@ function About() {
             </Link>
           </Text>
           <Text color={useColorModeValue('gray.500', 'gray.300')} mt="16">
-            Dari pembuat {BRAND}{', '}
+            Dari pembuat {BRAND}
+            {', '}
             <Link
               target="_blank"
               rel="noopener noreferrer"

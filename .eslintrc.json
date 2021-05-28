@@ -12,7 +12,8 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:import/typescript",
-    "standard"
+    "standard",
+    "prettier"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -22,10 +23,10 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "react-hooks", "@typescript-eslint"],
+  "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
   "rules": {
     "no-alert": "warn",
-    "no-console": "error",
+    "no-console": "warn",
     "no-unused-vars": "error",
     "no-nested-ternary": "off",
     "import/no-unresolved": "off",

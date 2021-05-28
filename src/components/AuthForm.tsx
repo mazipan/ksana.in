@@ -133,12 +133,7 @@ export function AuthForm({ state = 'login' }: any) {
                 {isLogin ? 'Masuk ke akunmu' : 'Daftarkan akun baru'}
               </Heading>
             </Stack>
-            <Box
-              rounded={'lg'}
-              bg={useColorModeValue('white', 'gray.700')}
-              boxShadow={'lg'}
-              p={8}
-            >
+            <Box rounded={'lg'} bg={useColorModeValue('white', 'gray.700')} boxShadow={'lg'} p={8}>
               <Stack spacing={4}>
                 <FormControl id="email" isRequired>
                   <FormLabel>Email</FormLabel>
@@ -177,12 +172,7 @@ export function AuthForm({ state = 'login' }: any) {
                       align={'start'}
                       justify={'space-between'}
                     >
-                      <Button
-                        variant="link"
-                        as={Link}
-                        color={'orange.400'}
-                        href={forgetPasword}
-                      >
+                      <Button variant="link" as={Link} color={'orange.400'} href={forgetPasword}>
                         Lupa password?
                       </Button>
                     </Stack>
@@ -205,24 +195,14 @@ export function AuthForm({ state = 'login' }: any) {
                 {isLogin ? (
                   <Stack direction="row" align={'center'} justify={'center'}>
                     <Text>Belum punya akun? </Text>
-                    <Button
-                      variant="link"
-                      as={Link}
-                      color={'orange.400'}
-                      onClick={toggleState}
-                    >
+                    <Button variant="link" as={Link} color={'orange.400'} onClick={toggleState}>
                       Daftar sekarang
                     </Button>
                   </Stack>
                 ) : (
                   <Stack direction="row" align={'center'} justify={'center'}>
                     <Text>Sudah punya akun? </Text>
-                    <Button
-                      variant="link"
-                      as={Link}
-                      color={'orange.400'}
-                      onClick={toggleState}
-                    >
+                    <Button variant="link" as={Link} color={'orange.400'} onClick={toggleState}>
                       Masuk
                     </Button>
                   </Stack>

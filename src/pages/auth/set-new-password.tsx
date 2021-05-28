@@ -18,7 +18,6 @@ import { supabase } from 'libs/supabase'
 import { LayoutAuth } from 'components/LayoutAuth'
 import { HiUser } from 'components/HiUser'
 
-
 const SetNewPasswordPage = () => {
   const currentUser: any = supabase.auth.currentUser
   const { showAlert } = useAlertContext()
@@ -106,12 +105,7 @@ const SetNewPasswordPage = () => {
             <Heading fontSize={'4xl'}>Setel ulang password</Heading>
           </Stack>
           {accessToken ? (
-            <Box
-              rounded={'lg'}
-              bg={useColorModeValue('white', 'gray.700')}
-              boxShadow={'lg'}
-              p={8}
-            >
+            <Box rounded={'lg'} bg={useColorModeValue('white', 'gray.700')} boxShadow={'lg'} p={8}>
               <Stack spacing={4}>
                 <FormControl id="email" isRequired>
                   <FormLabel>Email</FormLabel>
@@ -152,19 +146,9 @@ const SetNewPasswordPage = () => {
               </Stack>
             </Box>
           ) : (
-            <Stack
-              as="section"
-              spacing={8}
-              mx={'auto'}
-              mt="20"
-              maxW={'lg'}
-              py={12}
-              px={6}
-            >
+            <Stack as="section" spacing={8} mx={'auto'} mt="20" maxW={'lg'} py={12} px={6}>
               <Stack align={'center'}>
-                <Heading fontSize={'4xl'}>
-                  Maaf, access token tidak ditemukan
-                </Heading>
+                <Heading fontSize={'4xl'}>Maaf, access token tidak ditemukan</Heading>
                 <Image w="100%" src={'/ill_error_by_manypixels.svg'}></Image>
                 <Button
                   px={6}

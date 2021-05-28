@@ -9,14 +9,14 @@ export default async (req: any, res: any) => {
       success: true,
       isLogin: !!user,
       error,
-      ...user,
+      ...user
     })
   } catch (error) {
     res.statusCode = 500
     res.json({
       success: false,
       error: error,
-      isLogin: false,
+      isLogin: false
     })
   }
 }
