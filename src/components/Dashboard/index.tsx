@@ -4,7 +4,7 @@ import { HiLink, HiPlus, HiMinus } from 'react-icons/hi'
 
 import { useAuthContext } from 'context/Auth'
 
-import { ErrorNotLogin } from 'components/ErrorNotLogin'
+import { ErrorNotLogin } from 'components/Error/ErrorNotLogin'
 import { LoadingSpinner } from 'components/LoadingSpinner'
 
 import { UrlForm } from './UrlForm'
