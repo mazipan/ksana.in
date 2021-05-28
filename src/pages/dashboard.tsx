@@ -1,6 +1,6 @@
 import { Stack } from '@chakra-ui/react'
 
-import { LayoutAuth } from 'components/LayoutAuth'
+import { LayoutAuth } from 'components/Layout/LayoutAuth'
 import { Dashboard as DashboardContainer } from 'components/Dashboard'
 
 function Dashboard() {

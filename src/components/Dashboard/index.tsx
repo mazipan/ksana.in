@@ -3,10 +3,12 @@ import { Stack, Box, Flex, Heading, Text, IconButton } from '@chakra-ui/react'
 import { HiLink, HiPlus, HiMinus } from 'react-icons/hi'
 
 import { useAuthContext } from 'context/Auth'
-import { UrlForm } from 'components/UrlForm'
-import { UrlList } from 'components/UrlList'
+
 import { ErrorNotLogin } from 'components/ErrorNotLogin'
 import { LoadingSpinner } from 'components/LoadingSpinner'
+
+import { UrlForm } from './UrlForm'
+import { UrlList } from './UrlList'
 
 export function Dashboard() {
   const { user, isLoading, isLogin } = useAuthContext()

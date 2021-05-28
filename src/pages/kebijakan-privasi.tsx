@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react'
 
 import { BRAND } from 'constants/texts'
-import { Layout } from 'components/Layout'
+import { Layout } from 'components/Layout/Layout'
 
 function Privacy() {
   return (
