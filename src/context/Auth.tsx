@@ -12,10 +12,10 @@ const AuthContext: any = React.createContext({
 export const useAuthContext: any = () => useContext(AuthContext)
 
 export const AuthProvider = ({ children }: any) => {
-  const { user, isLoading } = useUser()
+  const { data, isLoading } = useUser()
 
   return (
-    <AuthContext.Provider value={{ user, isLoading, isLogin: Boolean(!isLoading && user) }}>
+    <AuthContext.Provider value={{ user: data, isLoading, isLogin: Boolean(!isLoading && data && data.isLogin) }}>
       {children}
     </AuthContext.Provider>
   )

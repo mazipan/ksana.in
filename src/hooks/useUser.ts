@@ -3,21 +3,17 @@ import useSWR from 'swr'
 import { fetcher } from 'libs/fetcher'
 import { apiIsAuth } from 'constants/paths'
 
-import { IUser } from '../interfaces/IUser'
-
-export interface IUseUser {
-  user: IUser | null;
-  isLoading: boolean;
-  isError: boolean;
-}
-
-function useUser (): IUseUser {
+function useUser () {
   const { data, error } = useSWR(apiIsAuth, fetcher)
 
+  const isLoading = !error && !data;
+  const isLogin = !isLoading && data && data.isLogin;
+  const isErrorData = !isLoading && data && data.error && data.error.message;
+
   return {
-    user: data,
-    isLoading: !error && !data,
-    isError: Boolean(error)
+    data: isLogin ? data : null,
+    isLoading,
+    isError: Boolean(error || isErrorData)
   }
 }
 
