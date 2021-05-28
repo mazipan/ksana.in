@@ -44,8 +44,7 @@ function ForgetPasswordPage() {
     if (!error) {
       showAlert({
         title: 'Lupa password',
-        message:
-          'Tautan untuk melakukan setel ulang kata sandi telah dikirim ke email kamu.'
+        message: 'Tautan untuk melakukan setel ulang kata sandi telah dikirim ke email kamu.'
       })
     }
   }
@@ -71,12 +70,7 @@ function ForgetPasswordPage() {
           <Stack align={'center'}>
             <Heading fontSize={'4xl'}>Lupa password</Heading>
           </Stack>
-          <Box
-            rounded={'lg'}
-            bg={useColorModeValue('white', 'gray.700')}
-            boxShadow={'lg'}
-            p={8}
-          >
+          <Box rounded={'lg'} bg={useColorModeValue('white', 'gray.700')} boxShadow={'lg'} p={8}>
             <Stack spacing={4}>
               <FormControl id="email" isRequired>
                 <FormLabel>Email</FormLabel>

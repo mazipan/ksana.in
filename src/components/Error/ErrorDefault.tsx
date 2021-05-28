@@ -6,15 +6,7 @@ export function ErrorDefault({
   ctaText = 'Ke beranda'
 }: any) {
   return (
-    <Stack
-      as="section"
-      spacing={8}
-      mx={'auto'}
-      mt="20"
-      maxW={'lg'}
-      py={12}
-      px={6}
-    >
+    <Stack as="section" spacing={8} mx={'auto'} mt="20" maxW={'lg'} py={12} px={6}>
       <Stack align={'center'} spacing={8}>
         <Heading
           fontWeight={700}

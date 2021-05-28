@@ -6,12 +6,7 @@ export function ErrorNotLogin({
   ctaText = 'Masuk ke akun'
 }: any) {
   return (
-    <Stack
-      as="section"
-      spacing={8}
-      mx={'auto'}
-      maxW={'lg'}
-    >
+    <Stack as="section" spacing={8} mx={'auto'} maxW={'lg'}>
       <Stack align={'center'} spacing={8}>
         <Heading
           fontWeight={700}

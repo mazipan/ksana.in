@@ -19,7 +19,7 @@ import { sanitizeSlug } from 'libs/helpers'
 import { HOME } from 'constants/paths'
 import { useAlertContext } from 'context/Alert'
 
-export function UrlForm({ user, onSuccess = () => {} }: any){
+export function UrlForm({ user, onSuccess = () => {} }: any) {
   const { showAlert } = useAlertContext()
 
   const [url, setUrl] = useState<string>('')

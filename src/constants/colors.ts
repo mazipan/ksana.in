@@ -1,6 +1,6 @@
 type ColorTheme = {
-  light: string;
-  dark: string;
+  light: string
+  dark: string
 }
 
 export const bgColor: ColorTheme = { light: 'gray.50', dark: 'gray.900' }

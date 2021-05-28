@@ -3,7 +3,7 @@ import { createClient } from '@supabase/supabase-js'
 import { defaultFetchOption } from './fetcher'
 import { apiSetSession, apiLogout, apiUrlsSave, apiUrlsDelete, apiUrlsPatch } from 'constants/paths'
 
-export const supabase: any= createClient(
+export const supabase: any = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL || '',
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 )
@@ -19,7 +19,7 @@ export const setServerSideAuth: any = (event: any, session: any) => {
 export const logout: any = async () => {
   const res = await fetch(apiLogout, {
     ...defaultFetchOption,
-    method: 'POST',
+    method: 'POST'
   })
   return await res.json()
 }
@@ -36,7 +36,7 @@ export const saveUrl: any = async ({ userId, url, slug }: any) => {
 export const deletUrl: any = async ({ id }: any) => {
   const res = await fetch(apiUrlsDelete(id), {
     ...defaultFetchOption,
-    method: 'DELETE',
+    method: 'DELETE'
   })
   return await res.json()
 }
