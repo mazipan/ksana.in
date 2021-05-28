@@ -5,7 +5,7 @@ export const defaultFetchOption: any = {
 
 export const defaultGetOption: any = {
   method: 'GET',
-  ...defaultFetchOption,
+  ...defaultFetchOption
 }
 
 export const fetcher = (url: string, opts: any) =>

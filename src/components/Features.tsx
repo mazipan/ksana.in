@@ -26,10 +26,7 @@ function Feature({ title, text, icon }: any) {
         {icon}
       </Flex>
       <Text fontWeight={600}>{title}</Text>
-      <Text
-        color={useColorModeValue('gray.500', 'gray.300')}
-        textAlign="center"
-      >
+      <Text color={useColorModeValue('gray.500', 'gray.300')} textAlign="center">
         {text}
       </Text>
     </Stack>
@@ -44,9 +41,7 @@ export function Features() {
           <Feature
             icon={<Icon as={FcLink} w={10} h={10} />}
             title={'Mempercantik Tautan'}
-            text={
-              'Tidak perlu lagi mengingat tautan yang panjang, pesan tautan dambaanmu sekarang'
-            }
+            text={'Tidak perlu lagi mengingat tautan yang panjang, pesan tautan dambaanmu sekarang'}
           />
           <Feature
             icon={<Icon as={FcTreeStructure} w={10} h={10} />}
@@ -58,9 +53,7 @@ export function Features() {
           <Feature
             icon={<Icon as={FcBullish} w={10} h={10} />}
             title={'Pantau Statistik'}
-            text={
-              'Pantau jumlah pengguna yang mengunjungi tautanmu dengan mudah'
-            }
+            text={'Pantau jumlah pengguna yang mengunjungi tautanmu dengan mudah'}
           />
         </SimpleGrid>
       </Box>

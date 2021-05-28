@@ -10,7 +10,9 @@ export function Layout({ children }: any) {
     <Container>
       <MetaHead />
       <Header />
-      <Box as="main" minH="90vh" width="100%">{children}</Box>
+      <Box as="main" minH="90vh" width="100%">
+        {children}
+      </Box>
       <Footer />
     </Container>
   )
