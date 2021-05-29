@@ -5,23 +5,27 @@ export function Counter({ count = 0 }) {
 
   return (
     <Stack spacing="2">
-      <Flex alignItems="center" justify="center">
+      <Stack spacing="2" direction="row" alignItems="center" justify="center" wrap="wrap">
         {arrString.map((c, index) => (
-          <Text
+          <Flex
             key={index}
+            as="div"
+            width={{ base: '40px', md: '60px' }}
+            height={{ base: '40px', md: '60px' }}
             fontWeight={700}
-            fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}
+            fontSize={{ base: '2xl', md: '4xl' }}
             lineHeight={'110%'}
             bg="orange.400"
             color="white"
-            py="2"
-            px="4"
             rounded={'md'}
+            display="flex"
+            alignItems="center"
+            justify="center"
           >
             {c}
-          </Text>
+          </Flex>
         ))}
-      </Flex>
+      </Stack>
       <Text textAlign="center" color={useColorModeValue('gray.500', 'gray.300')}>
         Tautan telah dipercantik oleh ksana.in dan akan terus bertambah
       </Text>
