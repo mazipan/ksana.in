@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { mutate } from 'swr'
 import {
   Link,
@@ -14,6 +14,7 @@ import {
 
 import { HiShare, HiDuplicate, HiPencil, HiTrash, HiSave } from 'react-icons/hi'
 
+import { attachEmail } from 'libs/splitbee'
 import { supabase } from 'libs/supabase'
 import { sanitizeSlug } from 'libs/helpers'
 
@@ -34,6 +35,14 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
   const { showAlert, hideAlert } = useAlertContext()
   const [updateId, setUpdateId] = useState<string | number>('')
   const [updateSlug, setUpdateSlug] = useState<string>('')
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (user && user.email) {
+        attachEmail(user.email)
+      }
+    }
+  }, [])
 
   const handleCopy = async (text: string) => {
     if (navigator.clipboard) {
