@@ -3,6 +3,8 @@ import { useEffect } from 'react'
 import { callbackHandler } from 'libs/helpers'
 import { Hero } from 'components/Hero'
 import { Features } from 'components/Features'
+import { CounterUrls } from 'components/CounterUrls'
+
 import { Layout } from 'components/Layout/Layout'
 
 function Homepage() {
@@ -19,6 +21,7 @@ function Homepage() {
     <Layout height="100vh">
       <Hero />
       <Features />
+      <CounterUrls />
     </Layout>
   )
 }
