@@ -2,6 +2,7 @@ import { Container, Heading, Stack } from '@chakra-ui/react'
 
 import useCounter from 'hooks/useCounter'
 import { Counter } from './Counter'
+import { LoadingSkeleton } from './LoadingSkeleton'
 
 export function CounterUrls() {
   const { isLoading, urls } = useCounter()
@@ -12,6 +13,8 @@ export function CounterUrls() {
         <Heading textAlign="center" as="h3">
           Telah Mempercantik
         </Heading>
+
+        {isLoading && <LoadingSkeleton />}
         {!isLoading && <Counter count={urls} />}
       </Stack>
     </Container>
