@@ -12,6 +12,8 @@ export const register: string = '/auth/sign-up'
 export const forgetPasword: string = '/auth/forget-password'
 export const setNewPassword: string = '/auth/set-new-password'
 
+export const apiCounter: string = '/api/counter'
+
 export const apiIsAuth: string = '/api/auth/is-authenticated'
 export const apiSetSession: string = '/api/auth/set-session'
 export const apiLogin: string = '/api/auth/login'
