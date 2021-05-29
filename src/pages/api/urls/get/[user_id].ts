@@ -6,8 +6,9 @@ export default async (req: any, res: any) => {
 
     const { data: dataSelect, error: errorSelect } = await supabase
       .from('urls')
-      .select('id,user_id,real_url,slug,hit')
+      .select('id,user_id,real_url,slug,hit,updated_at')
       .eq('user_id', userId)
+      .order('updated_at', { ascending: true })
 
     // res.setHeader('Cache-Control', 'max-age=86400')
     res.statusCode = 200

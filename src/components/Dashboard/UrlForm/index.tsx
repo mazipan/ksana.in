@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { mutate } from 'swr'
 import {
   FormControl,
   Text,
@@ -11,16 +12,15 @@ import {
   Button,
   useColorModeValue
 } from '@chakra-ui/react'
-import { v4 as uuidv4 } from 'uuid'
 
 import { supabase } from 'libs/supabase'
 import { sanitizeSlug } from 'libs/helpers'
 
-import { HOME } from 'constants/paths'
+import { HOME, apiUrlsGet } from 'constants/paths'
 import { useAlertContext } from 'context/Alert'
 
 export function UrlForm({ user, onSuccess = () => {} }: any) {
-  const { showAlert } = useAlertContext()
+  const { showAlert, hideAlert } = useAlertContext()
 
   const [url, setUrl] = useState<string>('')
   const [slug, setSlug] = useState<string>('')
@@ -78,25 +78,32 @@ export function UrlForm({ user, onSuccess = () => {} }: any) {
         {
           real_url: url,
           slug: sanitizeSlug(slug),
-          user_id: user?.id || uuidv4()
+          user_id: user?.id
         }
       ])
 
       if (!errorInsert) {
         showAlert({
           title: 'Sukses menyimpan tautan baru',
-          message: 'Tautan telah disimpan dalam basis data kami, silahkan mulai bagikan'
+          message: 'Tautan telah disimpan dalam basis data kami, silahkan mulai bagikan',
+          onClose: () => {
+            hideAlert()
+            mutate(apiUrlsGet(user?.id))
+            setUrl('')
+            setSlug('')
+            setIsCheckPass(false)
+            setErrorText('')
+            onSuccess()
+          }
         })
-
-        setUrl('')
-        setSlug('')
-        setIsCheckPass(false)
-        setErrorText('')
-        onSuccess()
       } else {
         showAlert({
           title: 'Terjadi galat pada saat menyimpan',
-          message: `Pesan: ${errorInsert.message}`
+          message: `Pesan: ${errorInsert.message}`,
+          onClose: () => {
+            hideAlert()
+            setErrorText(errorInsert.message)
+          }
         })
       }
     }

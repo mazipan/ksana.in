@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
+import { mutate } from 'swr'
 import {
   Link,
   Text,
@@ -20,7 +21,7 @@ import { useAlertContext } from 'context/Alert'
 
 import useUrls from 'hooks/useUrls'
 
-import { HOME } from 'constants/paths'
+import { HOME, apiUrlsGet } from 'constants/paths'
 
 import { ErrorDataNotFound } from 'components/Error/ErrorDataNotFound'
 import { LoadingSkeleton } from './LoadingSkeleton'
@@ -82,6 +83,7 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
         .update({ slug: sanitizeSlug(updateSlug) })
         .match({ id: updateId })
 
+      mutate(apiUrlsGet(user?.id))
       setUpdateId('')
       setUpdateSlug('')
     }
@@ -91,10 +93,7 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
     await supabase.from('urls').delete().match({ id: id })
 
     hideAlert()
-    // hard reload to refresh data
-    setTimeout(() => {
-      window.location.reload()
-    }, 500)
+    mutate(apiUrlsGet(user?.id))
   }
 
   const handleDelete: any = async (id: string | number, slug: string) => {
@@ -106,7 +105,7 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
       onConfirm: () => {
         onConfimDelete(id)
       },
-      onCancel: hideAlert
+      onClose: hideAlert
     })
   }
 
