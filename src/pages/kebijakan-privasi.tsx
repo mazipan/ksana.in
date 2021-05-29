@@ -39,7 +39,7 @@ function Privacy() {
             mt="8"
             mb="2"
           >
-            MENGAPA KAMI MEMINTA INFORMASI TENTANG ANDA
+            Mengapa {BRAND} meminta informasi tentang Anda
           </Heading>
           <Text color={useColorModeValue('gray.500', 'gray.300')}>
             <Link href="/" color="orange.400">
@@ -65,7 +65,7 @@ function Privacy() {
             mt="8"
             mb="2"
           >
-            BAGAIMANA KAMI MELINDUNGI INFORMASI ANDA
+            Bagaimana {BRAND} melindungi informasi Anda
           </Heading>
           <Text color={useColorModeValue('gray.500', 'gray.300')}>
             Informasi yang kami terima dari Anda dilindungi dari akses tidak sah setelah kami
@@ -84,7 +84,7 @@ function Privacy() {
             mt="8"
             mb="2"
           >
-            PENYIMPANAN DATA
+            Penyimpanan data
           </Heading>
           <Text color={useColorModeValue('gray.500', 'gray.300')}>
             Kami tidak menggunakan vendor pihak ketiga dan mitra hosting untuk menyediakan perangkat
@@ -107,7 +107,7 @@ function Privacy() {
             mt="8"
             mb="2"
           >
-            TENTANG COOKIES KAMI
+            Pengunaan Cookies
           </Heading>
           <Text color={useColorModeValue('gray.500', 'gray.300')}>
             Kami menggunakan cookie. Cookies adalah bagian kecil dari informasi yang disimpan oleh
@@ -126,7 +126,7 @@ function Privacy() {
             mt="8"
             mb="2"
           >
-            TAUTAN KE SITUS WEB LAINNYA
+            Tautan ke situs web lain
           </Heading>
           <Text color={useColorModeValue('gray.500', 'gray.300')}>
             Situs web kami mungkin berisi tautan ke dan dari situs web lain. Beberapa tautan mungkin
@@ -144,7 +144,7 @@ function Privacy() {
             mt="8"
             mb="2"
           >
-            PERSETUJUAN ANDA
+            Persetujuan Anda
           </Heading>
           <Text color={useColorModeValue('gray.500', 'gray.300')}>
             Ketika Anda memberikan Informasi Pribadi kepada kami, Anda menyetujui pengumpulan dan
@@ -162,7 +162,7 @@ function Privacy() {
             mt="8"
             mb="2"
           >
-            PENYINGKAPAN
+            Penyingkapan
           </Heading>
           <Text color={useColorModeValue('gray.500', 'gray.300')}>
             Kami tidak akan menjual atau mendistribusikan Informasi Pribadi Anda kecuali untuk
@@ -181,7 +181,7 @@ function Privacy() {
             mt="8"
             mb="2"
           >
-            TRANSFER BISNIS
+            Transfer Bisnis
           </Heading>
           <Text color={useColorModeValue('gray.500', 'gray.300')}>
             Jika{' '}
@@ -206,7 +206,7 @@ function Privacy() {
             mt="8"
             mb="2"
           >
-            AMANDEMEN
+            Perubahan
           </Heading>
           <Text color={useColorModeValue('gray.500', 'gray.300')}>
             Kami mungkin memperbarui kebijakan ini secara berkala. Kami akan memberi tahu Anda
@@ -224,7 +224,7 @@ function Privacy() {
           <Text color={useColorModeValue('gray.500', 'gray.300')} mt="8">
             Terakhir diperbarui pada{' '}
             <Text color="orange.400" as="span">
-              25 Mei 2021
+              29 Mei 2021
             </Text>
           </Text>
         </Container>
