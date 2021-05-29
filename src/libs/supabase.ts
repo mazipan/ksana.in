@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 
+import { sendEvent } from './splitbee'
 import { defaultFetchOption } from './fetcher'
 import { apiSetSession, apiLogout, apiUrlsSave, apiUrlsDelete, apiUrlsPatch } from 'constants/paths'
 import { EVENT_SIGN_OUT, LS_AUTH_TOKEN } from 'constants/common'
@@ -30,7 +31,7 @@ export const handleLogout: any = async () => {
 
   const { error } = await logout()
   setServerSideAuth(EVENT_SIGN_OUT, currentSession)
-
+  sendEvent('Logout')
   if (!error) {
     // hard reload to refresh data
     setTimeout(() => {
@@ -41,6 +42,7 @@ export const handleLogout: any = async () => {
 }
 
 export const saveUrl: any = async ({ userId, url, slug }: any) => {
+  sendEvent('Save url')
   const res = await fetch(apiUrlsSave(userId), {
     ...defaultFetchOption,
     method: 'PUT',
@@ -50,6 +52,7 @@ export const saveUrl: any = async ({ userId, url, slug }: any) => {
 }
 
 export const deletUrl: any = async ({ id }: any) => {
+  sendEvent('Remove url')
   const res = await fetch(apiUrlsDelete(id), {
     ...defaultFetchOption,
     method: 'DELETE'
@@ -58,6 +61,7 @@ export const deletUrl: any = async ({ id }: any) => {
 }
 
 export const updateSlug: any = async ({ id, slug }: any) => {
+  sendEvent('Update url')
   const res = await fetch(apiUrlsPatch(id), {
     ...defaultFetchOption,
     method: 'PATCH',

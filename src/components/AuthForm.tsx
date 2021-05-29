@@ -14,6 +14,7 @@ import {
   useColorModeValue
 } from '@chakra-ui/react'
 
+import { sendEvent } from 'libs/splitbee'
 import { supabase, setServerSideAuth } from 'libs/supabase'
 import { useAlertContext } from 'context/Alert'
 import { forgetPasword, dashboard } from 'constants/paths'
@@ -115,6 +116,7 @@ export function AuthForm({ state = 'login' }: any) {
       password: password
     })
 
+    sendEvent('Login')
     processResponse({ session, error, stateType: 'login' })
   }
 
@@ -124,6 +126,7 @@ export function AuthForm({ state = 'login' }: any) {
       password: password
     })
 
+    sendEvent('Register')
     processResponse({ session, error, stateType: 'register' })
   }
 
