@@ -3,6 +3,8 @@ import Head from 'next/head'
 import { HOME, META_IMAGE } from 'constants/paths'
 import { BRAND, BRAND_TAGLINE, BRAND_TAGLINE_LONG } from 'constants/texts'
 
+import { makeSchema } from './StructuredData/Website'
+
 export function MetaHead() {
   return (
     <Head>
@@ -37,6 +39,11 @@ export function MetaHead() {
       <meta key="tw-description" name="twitter:description" content={BRAND_TAGLINE_LONG} />
       <meta key="tw-url" name="twitter:url" content={`${HOME}`} />
       <meta name="twitter:creator" content={'@maz_ipan'} />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(makeSchema()) }}
+      ></script>
     </Head>
   )
 }

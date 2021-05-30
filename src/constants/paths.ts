@@ -1,5 +1,7 @@
 export const HOME: string = process.env.NEXT_PUBLIC_HOME || ''
 export const META_IMAGE: string = process.env.NEXT_PUBLIC_META_IMAGE || ''
+export const META_ICON: string = `${HOME}square/ksana-32x32.png`
+export const META_THUMBNAIL: string = `${HOME}square/ksana-192x192.png`
 
 export const github: string = 'https://ksana.in/gh'
 export const splitbeeAnalytics: string = 'https://app.splitbee.io/public/ksana.in'
