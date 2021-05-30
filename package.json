@@ -5,7 +5,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "NODE_ENV=production next build",
     "start": "next start",
     "lint": "eslint --ignore-path .gitignore \"**/*.+(js|ts|tsx)\" --quiet --fix",
     "format": "prettier --ignore-path .gitignore \"**/*.+(js|ts|tsx|css|scss|json|md|html)\" --write",

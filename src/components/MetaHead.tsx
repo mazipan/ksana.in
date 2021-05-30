@@ -6,6 +6,11 @@ import { BRAND, BRAND_TAGLINE, BRAND_TAGLINE_LONG } from 'constants/texts'
 export function MetaHead() {
   return (
     <Head>
+      <meta
+        name="viewport"
+        content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
+      />
+
       <title>{`${BRAND} | ${BRAND_TAGLINE}`}</title>
       <meta name="description" content={BRAND_TAGLINE_LONG} key="description" />
 

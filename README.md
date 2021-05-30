@@ -15,7 +15,10 @@ Pemendek tautan yang mudah dan gratis
 - [Next.js](https://nextjs.org/)
 - [Supabase](https://supabase.io/)
 - [Chakra-UI](https://chakra-ui.com/docs/getting-started)
+- [SWR](https://swr.vercel.app/)
+- [React-Icons](https://react-icons.github.io/react-icons/)
 - [Oge](https://oge.vercel.app/)
+- Illustrations by [manypixels.co](https://www.manypixels.co/gallery)
 
 ---
 
