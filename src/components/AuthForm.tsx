@@ -78,7 +78,7 @@ export function AuthForm({ state = 'login' }: any) {
     setLoading(false)
   }
 
-  const processResponse: any = ({ session, error, stateType = 'login' }: any) => {
+  const processResponse: any = async ({ session, error, stateType = 'login' }: any) => {
     if (error) {
       setErrorForm(error.message)
       return false
@@ -87,7 +87,7 @@ export function AuthForm({ state = 'login' }: any) {
     if (session && !error) {
       if (stateType === 'login') {
         // only set for the login flow
-        setServerSideAuth(EVENT_SIGN_IN, session)
+        await setServerSideAuth(EVENT_SIGN_IN, session)
       }
 
       showAlert({
@@ -101,7 +101,9 @@ export function AuthForm({ state = 'login' }: any) {
           hideAlert()
 
           if (stateType === 'login') {
-            router.push(dashboard)
+            setTimeout(() => {
+              router.push(dashboard)
+            }, 500)
           } else {
             router.push('/')
           }

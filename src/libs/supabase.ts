@@ -10,7 +10,7 @@ export const supabase: any = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 )
 
-export const setServerSideAuth: any = (event: any, session: any) => {
+export const setServerSideAuth: any = async (event: any, session: any) => {
   fetch(apiSetSession, {
     ...defaultFetchOption,
     method: 'POST',
@@ -30,7 +30,7 @@ export const handleLogout: any = async () => {
   const currentSession = supabase.auth.currentSession
 
   const { error } = await logout()
-  setServerSideAuth(EVENT_SIGN_OUT, currentSession)
+  await setServerSideAuth(EVENT_SIGN_OUT, currentSession)
   sendEvent('Logout')
   if (!error) {
     // hard reload to refresh data
