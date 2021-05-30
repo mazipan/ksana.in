@@ -119,7 +119,7 @@ export function UrlForm({ user, onSuccess = () => {} }: any) {
             isInvalid={Boolean(errorText)}
             size="lg"
             name="url"
-            placeholder={'Ketikkan tautan asli disini'}
+            placeholder={'Tautan yang akan dipercantik'}
             bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
             border={0}
             value={url}
@@ -142,14 +142,14 @@ export function UrlForm({ user, onSuccess = () => {} }: any) {
               isInvalid={Boolean(errorText)}
               size="lg"
               name="slug"
-              placeholder={'Tulis slug tautan dambaanmu'}
+              placeholder={'Slug cantik dambaanmu'}
               bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
               border={0}
               value={slug}
               onChange={handleChangeSlug}
             />
           </InputGroup>
-          <FormHelperText>Tautan akan otomatis ditambahkan pada {HOME}</FormHelperText>
+          <FormHelperText>Hanya diperbolehkan menggunakan huruf, angka, karakter titik dan strip saja.</FormHelperText>
         </FormControl>
 
         {errorText && (
@@ -164,6 +164,7 @@ export function UrlForm({ user, onSuccess = () => {} }: any) {
             loadingText="Processing"
             size="lg"
             px={6}
+            mt="4"
             color={'white'}
             bg={'green.400'}
             _hover={{
@@ -174,7 +175,7 @@ export function UrlForm({ user, onSuccess = () => {} }: any) {
             }}
             onClick={handleSaveNew}
           >
-            Save the url
+            Simpan sekarang
           </Button>
         ) : (
           <Button
@@ -182,6 +183,7 @@ export function UrlForm({ user, onSuccess = () => {} }: any) {
             loadingText="Processing"
             size="lg"
             px={6}
+            my="4"
             color={'white'}
             bg={'orange.400'}
             _hover={{
@@ -192,7 +194,7 @@ export function UrlForm({ user, onSuccess = () => {} }: any) {
             }}
             onClick={handleCheckAvailability}
           >
-            Check availability
+            Cek dulu ya
           </Button>
         )}
       </Stack>
