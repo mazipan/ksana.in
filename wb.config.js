@@ -1,19 +1,24 @@
 module.exports = {
-  swDest: 'static/service-worker.js',
+  dest: 'public',
+  register: true,
+  scope: '/',
+  sw: 'service-worker.js',
   runtimeCaching: [
     {
       urlPattern: /.(png|jpg|jpeg|webp|svg)$/,
-      handler: 'CacheFirst'
+      handler: 'CacheFirst',
+      options: {
+        cacheName: 'assets',
+        expiration: {
+          maxEntries: 200
+        }
+      }
     },
     {
       urlPattern: /.(js|css)$/,
-      handler: 'StaleWhileRevalidate'
-    },
-    {
-      urlPattern: /^https?.*/,
-      handler: 'NetworkFirst',
+      handler: 'StaleWhileRevalidate',
       options: {
-        cacheName: 'offlineCache',
+        cacheName: 'js-css',
         expiration: {
           maxEntries: 200
         }
