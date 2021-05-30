@@ -125,6 +125,7 @@ export function UrlForm({ user, onSuccess = () => {} }: any) {
             value={url}
             onChange={handleChangeUrl}
           />
+          <FormHelperText>Membutuhkan tautan dalam bentuk utuh, termasuk awalan http://</FormHelperText>
         </FormControl>
 
         <FormControl id="slug" isRequired>
@@ -149,7 +150,7 @@ export function UrlForm({ user, onSuccess = () => {} }: any) {
               onChange={handleChangeSlug}
             />
           </InputGroup>
-          <FormHelperText>Hanya diperbolehkan menggunakan huruf, angka, karakter titik dan strip saja.</FormHelperText>
+          <FormHelperText>Hanya diperbolehkan menggunakan huruf, angka, karakter titik dan strip saja</FormHelperText>
         </FormControl>
 
         {errorText && (
