@@ -3,7 +3,7 @@ import { sanitizeSlug } from 'libs/helpers'
 
 export default async (req: any, res: any) => {
   try {
-    const id: string | number = req.query.id
+    const id: string = req.query.id
     const { slug } = req.body
 
     const { data, error } = await supabase
@@ -11,12 +11,19 @@ export default async (req: any, res: any) => {
       .update({ slug: sanitizeSlug(slug) })
       .match({ id: id })
 
-    res.statusCode = 200
-    res.json({
-      success: true,
-      data: data,
-      error: error
-    })
+    if (error) {
+      res.statusCode = 400
+      res.json({
+        success: false,
+        error: error
+      })
+    } else {
+      res.statusCode = 200
+      res.json({
+        success: true,
+        data: data
+      })
+    }
   } catch (error) {
     res.statusCode = 500
     res.json({

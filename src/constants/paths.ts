@@ -19,6 +19,7 @@ export const apiSetSession: string = '/api/auth/set-session'
 export const apiLogin: string = '/api/auth/login'
 export const apiLogout: string = '/api/auth/logout'
 
+export const apiUrlsCheck = (slug: string): string => `/api/urls/check/${slug}`
 export const apiUrlsGet = (id: string): string => `/api/urls/get/${id}`
 export const apiUrlsSave = (id: string): string => `/api/urls/save/${id}`
 export const apiUrlsPatch = (id: string): string => `/api/urls/patch/${id}`

@@ -11,8 +11,8 @@ import {
 
 import {
   login,
+  register,
   tentang,
-  dashboard,
   ketentuanLayanan,
   kebijakanPrivasi,
   github,
@@ -53,7 +53,7 @@ export function Footer() {
               </Text>
               <Link href={tentang}>Tentang kami</Link>
               <Link href={login}>Masuk</Link>
-              <Link href={dashboard}>Dashboard</Link>
+              <Link href={register}>Mendaftar</Link>
             </Stack>
 
             <Stack align={'flex-start'}>

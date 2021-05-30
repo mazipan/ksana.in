@@ -15,7 +15,7 @@ import {
 import { HiShare, HiDuplicate, HiPencil, HiTrash, HiSave } from 'react-icons/hi'
 
 import { attachEmail } from 'libs/splitbee'
-import { supabase } from 'libs/supabase'
+import { deleteUrl, patchSlug } from 'libs/supabase'
 import { sanitizeSlug } from 'libs/helpers'
 
 import { useAlertContext } from 'context/Alert'
@@ -87,10 +87,7 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
 
   const handleClickSave: any = async () => {
     if (updateSlug) {
-      await supabase
-        .from('urls')
-        .update({ slug: sanitizeSlug(updateSlug) })
-        .match({ id: updateId })
+      await patchSlug({ id: updateId, slug: sanitizeSlug(updateSlug) })
 
       mutate(apiUrlsGet(user?.id))
       setUpdateId('')
@@ -99,7 +96,7 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
   }
 
   const onConfimDelete: any = async (id: string | number) => {
-    await supabase.from('urls').delete().match({ id: id })
+    await deleteUrl({ id: id })
 
     hideAlert()
     mutate(apiUrlsGet(user?.id))

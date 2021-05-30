@@ -1,34 +1,35 @@
 import { supabase } from 'libs/supabase'
+import { sanitizeSlug } from 'libs/helpers'
 
 export default async (req: any, res: any) => {
   try {
-    const userId: string = req.query.user_id
+    const slug: string = req.query.slug
 
-    const { data, error } = await supabase
+    const { error: errorRealSlug } = await supabase
       .from('urls')
-      .select('id,user_id,real_url,slug,hit,updated_at')
-      .eq('user_id', userId)
-      .order('updated_at', { ascending: true })
+      .select('real_url,slug')
+      .eq('slug', sanitizeSlug(slug))
+      .single()
 
-    if (error) {
-      res.statusCode = 400
+    if (errorRealSlug) {
+      res.statusCode = 404
       res.json({
         success: false,
-        data: [],
-        error: error
+        isExist: false,
+        error: errorRealSlug
       })
     } else {
       res.statusCode = 200
       res.json({
         success: true,
-        data: data
+        isExist: true
       })
     }
   } catch (error) {
     res.statusCode = 500
     res.json({
       success: false,
-      data: [],
+      isExist: false,
       error: error
     })
   }

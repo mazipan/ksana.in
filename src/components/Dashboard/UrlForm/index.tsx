@@ -13,7 +13,7 @@ import {
   useColorModeValue
 } from '@chakra-ui/react'
 
-import { supabase } from 'libs/supabase'
+import { checkSlug, saveUrl } from 'libs/supabase'
 import { sanitizeSlug } from 'libs/helpers'
 
 import { HOME, apiUrlsGet } from 'constants/paths'
@@ -54,13 +54,8 @@ export function UrlForm({ user, onSuccess = () => {} }: any) {
     if (!isEmpty) {
       setErrorText('')
 
-      const { error: errorRealSlug } = await supabase
-        .from('urls')
-        .select('real_url,slug')
-        .eq('slug', sanitizeSlug(slug))
-        .single()
-
-      if (errorRealSlug) {
+      const response = await checkSlug({ slug: sanitizeSlug(slug) })
+      if (response.error) {
         setIsCheckPass(true)
         setErrorText('')
       } else {
@@ -74,13 +69,11 @@ export function UrlForm({ user, onSuccess = () => {} }: any) {
     setLoading(true)
     const isEmpty = checkIsEmpty()
     if (!isEmpty) {
-      const { error: errorInsert } = await supabase.from('urls').insert([
-        {
-          real_url: url,
-          slug: sanitizeSlug(slug),
-          user_id: user?.id
-        }
-      ])
+      const { error: errorInsert } = await saveUrl({
+        url: url,
+        slug: sanitizeSlug(slug),
+        userId: user?.id
+      })
 
       if (!errorInsert) {
         showAlert({
@@ -125,7 +118,9 @@ export function UrlForm({ user, onSuccess = () => {} }: any) {
             value={url}
             onChange={handleChangeUrl}
           />
-          <FormHelperText>Membutuhkan tautan dalam bentuk utuh, termasuk awalan http://</FormHelperText>
+          <FormHelperText>
+            Membutuhkan tautan dalam bentuk utuh, termasuk awalan https://
+          </FormHelperText>
         </FormControl>
 
         <FormControl id="slug" isRequired>
@@ -150,7 +145,9 @@ export function UrlForm({ user, onSuccess = () => {} }: any) {
               onChange={handleChangeSlug}
             />
           </InputGroup>
-          <FormHelperText>Hanya diperbolehkan menggunakan huruf, angka, karakter titik dan strip saja</FormHelperText>
+          <FormHelperText>
+            Hanya diperbolehkan menggunakan huruf, angka, karakter titik dan strip saja
+          </FormHelperText>
         </FormControl>
 
         {errorText && (

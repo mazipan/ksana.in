@@ -2,7 +2,14 @@ import { createClient } from '@supabase/supabase-js'
 
 import { sendEvent } from './splitbee'
 import { defaultFetchOption } from './fetcher'
-import { apiSetSession, apiLogout, apiUrlsSave, apiUrlsDelete, apiUrlsPatch } from 'constants/paths'
+import {
+  apiSetSession,
+  apiLogout,
+  apiUrlsCheck,
+  apiUrlsSave,
+  apiUrlsDelete,
+  apiUrlsPatch
+} from 'constants/paths'
 import { EVENT_SIGN_OUT, LS_AUTH_TOKEN } from 'constants/common'
 
 export const supabase: any = createClient(
@@ -41,6 +48,15 @@ export const handleLogout: any = async () => {
   }
 }
 
+export const checkSlug: any = async ({ slug }: any) => {
+  sendEvent('Check slug')
+  const res = await fetch(apiUrlsCheck(slug), {
+    ...defaultFetchOption,
+    method: 'GET'
+  })
+  return await res.json()
+}
+
 export const saveUrl: any = async ({ userId, url, slug }: any) => {
   sendEvent('Save url')
   const res = await fetch(apiUrlsSave(userId), {
@@ -51,7 +67,7 @@ export const saveUrl: any = async ({ userId, url, slug }: any) => {
   return await res.json()
 }
 
-export const deletUrl: any = async ({ id }: any) => {
+export const deleteUrl: any = async ({ id }: any) => {
   sendEvent('Remove url')
   const res = await fetch(apiUrlsDelete(id), {
     ...defaultFetchOption,
@@ -60,7 +76,7 @@ export const deletUrl: any = async ({ id }: any) => {
   return await res.json()
 }
 
-export const updateSlug: any = async ({ id, slug }: any) => {
+export const patchSlug: any = async ({ id, slug }: any) => {
   sendEvent('Update url')
   const res = await fetch(apiUrlsPatch(id), {
     ...defaultFetchOption,
