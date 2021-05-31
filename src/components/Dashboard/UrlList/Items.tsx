@@ -30,11 +30,14 @@ import { LoadingSkeleton } from './LoadingSkeleton'
 const copy: any = dynamic((): any => import('copy-to-clipboard'), { ssr: false })
 
 export function Items({ user, isFormVisible, onShowForm }: any) {
-  const { data, isLoading } = useUrls(user.id)
-
   const { showAlert, hideAlert } = useAlertContext()
   const [updateId, setUpdateId] = useState<string | number>('')
   const [updateSlug, setUpdateSlug] = useState<string>('')
+
+  const bgBox = useColorModeValue('white', 'gray.800')
+  const bgInput = useColorModeValue('blackAlpha.100', 'whiteAlpha.100')
+
+  const { data, isLoading } = useUrls(user?.id || null)
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -42,7 +45,7 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
         attachEmail(user.email)
       }
     }
-  }, [])
+  }, [user])
 
   const handleCopy = async (text: string) => {
     if (navigator.clipboard) {
@@ -127,7 +130,7 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
             <ListItem
               key={d.slug}
               w={'full'}
-              bg={useColorModeValue('white', 'gray.800')}
+              bg={bgBox}
               boxShadow={'2xl'}
               rounded={'md'}
               overflow={'hidden'}
@@ -151,7 +154,7 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
                     size="lg"
                     name="slug"
                     placeholder={'Tulis slug baru'}
-                    bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
+                    bg={bgInput}
                     border={0}
                     value={updateSlug}
                     onChange={handleChangeUpdatedSlug}
@@ -171,7 +174,11 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
                 {d.real_url}
               </Text>
               <Text fontSize="small" color="gray.400">
-                {d.hit} kali dikunjungi
+                Telah{` `}
+                <Text as="span" fontWeight="bold">
+                  {new Intl.NumberFormat('id-ID').format(d.hit)}
+                </Text>
+                {` `}kali dikunjungi
               </Text>
               <HStack spacing={2} mt={4}>
                 <IconButton

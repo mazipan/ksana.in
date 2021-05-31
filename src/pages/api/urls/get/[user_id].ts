@@ -8,7 +8,7 @@ export default async (req: any, res: any) => {
       .from('urls')
       .select('id,user_id,real_url,slug,hit,updated_at')
       .eq('user_id', userId)
-      .order('updated_at', { ascending: true })
+      .order('id', { ascending: false })
 
     if (error) {
       res.statusCode = 400

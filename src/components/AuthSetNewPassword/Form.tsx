@@ -28,6 +28,7 @@ export function Form() {
   const [errorForm, setErrorForm] = useState<string>('')
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const bgBox = useColorModeValue('white', 'gray.700')
 
   useEffect(() => {
     if (window && window.localStorage) {
@@ -106,7 +107,7 @@ export function Form() {
       </Stack>
 
       {accessToken ? (
-        <Box rounded={'lg'} bg={useColorModeValue('white', 'gray.700')} boxShadow={'lg'} p={8}>
+        <Box rounded={'lg'} bg={bgBox} boxShadow={'lg'} p={8}>
           <Stack spacing={4}>
             <FormControl id="email" isRequired>
               <FormLabel>Email</FormLabel>

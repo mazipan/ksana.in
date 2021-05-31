@@ -50,7 +50,7 @@ function Terms() {
               . Dengan menggunakan salah satu layanan{' '}
               <Link href="/" color="orange.400">
                 {BRAND}
-              </Link>{' '}
+              </Link>
               , atau mengakses salah satu situs web kami, Anda setuju untuk terikat oleh persyaratan
               layanan berikut.
             </Text>
