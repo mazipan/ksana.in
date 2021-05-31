@@ -1,9 +1,9 @@
 import {
-  Box,
   Container,
   SimpleGrid,
   Icon,
   Text,
+  Heading,
   Stack,
   Flex,
   useColorModeValue
@@ -35,8 +35,11 @@ function Feature({ title, text, icon }: any) {
 
 export function Features() {
   return (
-    <Container maxW={'5xl'} mx="auto" as="section">
-      <Box p={4}>
+    <Container maxW={'5xl'} mx="auto" as="section" mt="16">
+      <Stack p={4} spacing="16">
+        <Heading textAlign="center" as="h3">
+          Fitur Kunci Ksana.in
+        </Heading>
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
           <Feature
             icon={<Icon as={FcLink} w={10} h={10} />}
@@ -56,7 +59,7 @@ export function Features() {
             text={'Pantau jumlah pengguna yang mengunjungi tautanmu dengan mudah'}
           />
         </SimpleGrid>
-      </Box>
+      </Stack>
     </Container>
   )
 }

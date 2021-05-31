@@ -5,7 +5,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "NODE_ENV=production next build",
     "start": "next start",
     "lint": "eslint --ignore-path .gitignore \"**/*.+(js|ts|tsx)\" --quiet --fix",
     "format": "prettier --ignore-path .gitignore \"**/*.+(js|ts|tsx|css|scss|json|md|html)\" --write",
@@ -26,7 +26,7 @@
     "copy-to-clipboard": "^3.3.1",
     "framer-motion": "^4.1.17",
     "next": "latest",
-    "next-offline": "^5.0.5",
+    "next-pwa": "^5.2.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",

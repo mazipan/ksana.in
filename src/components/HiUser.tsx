@@ -1,25 +1,9 @@
 import { Stack, Button, Image, Heading, Text } from '@chakra-ui/react'
 import { HiLogout, HiCollection } from 'react-icons/hi'
 
-import { supabase, setServerSideAuth, logout } from 'libs/supabase'
-import { EVENT_SIGN_OUT, LS_AUTH_TOKEN } from 'constants/common'
+import { handleLogout } from 'libs/supabase'
 
 export function HiUser({ user }: any) {
-  const handleLogout: any = async () => {
-    const currentSession = supabase.auth.currentSession
-
-    const { error } = await logout()
-    setServerSideAuth(EVENT_SIGN_OUT, currentSession)
-
-    if (!error) {
-      // hard reload to refresh data
-      setTimeout(() => {
-        window.localStorage.removeItem(LS_AUTH_TOKEN)
-        window.location.assign('/')
-      }, 500)
-    }
-  }
-
   return (
     <Stack as="section" spacing={8} mx={'auto'} mt="20" maxW={'lg'} py={12} px={6}>
       <Stack align={'center'} spacing={8}>

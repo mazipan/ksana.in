@@ -4,7 +4,7 @@ import { AuthProvider } from 'context/Auth'
 
 import { MetaHead } from '../MetaHead'
 import { Container } from '../Container'
-import { Header } from '../Header'
+import { Header } from '../Header/HeaderAuth'
 import { Footer } from '../Footer'
 
 export function LayoutAuth({ children }: any) {

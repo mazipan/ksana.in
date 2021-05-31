@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { AppProps } from 'next/app'
 import { ChakraProvider, ColorModeProvider } from '@chakra-ui/react'
-import { register, unregister } from 'next-offline/runtime'
 
 import '@fontsource/poppins/400.css'
 
@@ -13,12 +12,7 @@ import { AlertProvider } from 'context/Alert'
 function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      register()
       initSplitbee()
-    }
-
-    return () => {
-      unregister()
     }
   }, [])
 

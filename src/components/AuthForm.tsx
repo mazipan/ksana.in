@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 
 import {
   Box,
@@ -13,13 +14,15 @@ import {
   useColorModeValue
 } from '@chakra-ui/react'
 
+import { sendEvent } from 'libs/splitbee'
 import { supabase, setServerSideAuth } from 'libs/supabase'
 import { useAlertContext } from 'context/Alert'
-import { forgetPasword } from 'constants/paths'
+import { forgetPasword, dashboard } from 'constants/paths'
 import { EVENT_SIGN_IN } from 'constants/common'
 
 export function AuthForm({ state = 'login' }: any) {
-  const { showAlert } = useAlertContext()
+  const router = useRouter()
+  const { showAlert, hideAlert } = useAlertContext()
 
   const [internalState, setInternalState] = useState<any>(state)
   const [isLogin, setIsLogin] = useState<any>(state === 'login')
@@ -75,7 +78,7 @@ export function AuthForm({ state = 'login' }: any) {
     setLoading(false)
   }
 
-  const processResponse: any = ({ session, error, stateType = 'login' }: any) => {
+  const processResponse: any = async ({ session, error, stateType = 'login' }: any) => {
     if (error) {
       setErrorForm(error.message)
       return false
@@ -84,7 +87,7 @@ export function AuthForm({ state = 'login' }: any) {
     if (session && !error) {
       if (stateType === 'login') {
         // only set for the login flow
-        setServerSideAuth(EVENT_SIGN_IN, session)
+        await setServerSideAuth(EVENT_SIGN_IN, session)
       }
 
       showAlert({
@@ -93,7 +96,18 @@ export function AuthForm({ state = 'login' }: any) {
           stateType === 'login'
             ? 'Selamat datang kembali!'
             : 'Terima kasih telah mendaftar. Silahkan melakukan verifikasi dengan mengklik tautan yang kami kirimkan melalui email.'
-        }`
+        }`,
+        onClose: () => {
+          hideAlert()
+
+          if (stateType === 'login') {
+            setTimeout(() => {
+              router.push(dashboard)
+            }, 500)
+          } else {
+            router.push('/')
+          }
+        }
       })
     }
   }
@@ -104,6 +118,7 @@ export function AuthForm({ state = 'login' }: any) {
       password: password
     })
 
+    sendEvent('Login')
     processResponse({ session, error, stateType: 'login' })
   }
 
@@ -113,13 +128,20 @@ export function AuthForm({ state = 'login' }: any) {
       password: password
     })
 
+    sendEvent('Register')
     processResponse({ session, error, stateType: 'register' })
   }
 
   return (
     <Stack spacing={8} mx={'auto'} mt="20" maxW={'lg'} py={12} px={6}>
       <Stack align={'center'}>
-        <Heading fontSize={'4xl'}>{isLogin ? 'Masuk ke akunmu' : 'Daftarkan akun baru'}</Heading>
+        <Heading
+          fontWeight={700}
+          fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
+          lineHeight={'110%'}
+        >
+          {isLogin ? 'Masuk ke akunmu' : 'Daftarkan akun baru'}
+        </Heading>
       </Stack>
       <Box rounded={'lg'} bg={useColorModeValue('white', 'gray.700')} boxShadow={'lg'} p={8}>
         <Stack spacing={4}>

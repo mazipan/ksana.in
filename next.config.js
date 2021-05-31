@@ -1,8 +1,8 @@
-const withOffline = require('next-offline')
+const withPWA = require('next-pwa')
 
 const workboxConfig = require('./wb.config')
 
-module.exports = withOffline({
+module.exports = withPWA({
   future: {
     webpack5: true
   },
@@ -13,5 +13,5 @@ module.exports = withOffline({
     path: '/_next/image',
     loader: 'default'
   },
-  workboxOpts: workboxConfig
+  pwa: workboxConfig
 })

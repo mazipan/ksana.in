@@ -29,8 +29,20 @@ const tools: any = [
     url: 'https://supabase.io/'
   },
   {
+    title: 'SWR',
+    url: 'https://swr.vercel.app/'
+  },
+  {
+    title: 'React-Icons',
+    url: 'https://react-icons.github.io/react-icons/'
+  },
+  {
     title: 'Oge',
     url: 'https://oge.vercel.app/'
+  },
+  {
+    title: 'ManyPixels.co',
+    url: 'https://www.manypixels.co/gallery'
   }
 ]
 

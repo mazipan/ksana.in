@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { mutate } from 'swr'
 import {
   Link,
   Text,
@@ -13,14 +14,15 @@ import {
 
 import { HiShare, HiDuplicate, HiPencil, HiTrash, HiSave } from 'react-icons/hi'
 
-import { supabase } from 'libs/supabase'
+import { attachEmail } from 'libs/splitbee'
+import { deleteUrl, patchSlug } from 'libs/supabase'
 import { sanitizeSlug } from 'libs/helpers'
 
 import { useAlertContext } from 'context/Alert'
 
 import useUrls from 'hooks/useUrls'
 
-import { HOME } from 'constants/paths'
+import { HOME, apiUrlsGet } from 'constants/paths'
 
 import { ErrorDataNotFound } from 'components/Error/ErrorDataNotFound'
 import { LoadingSkeleton } from './LoadingSkeleton'
@@ -33,6 +35,14 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
   const { showAlert, hideAlert } = useAlertContext()
   const [updateId, setUpdateId] = useState<string | number>('')
   const [updateSlug, setUpdateSlug] = useState<string>('')
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (user && user.email) {
+        attachEmail(user.email)
+      }
+    }
+  }, [])
 
   const handleCopy = async (text: string) => {
     if (navigator.clipboard) {
@@ -77,24 +87,19 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
 
   const handleClickSave: any = async () => {
     if (updateSlug) {
-      await supabase
-        .from('urls')
-        .update({ slug: sanitizeSlug(updateSlug) })
-        .match({ id: updateId })
+      await patchSlug({ id: updateId, slug: sanitizeSlug(updateSlug) })
 
+      mutate(apiUrlsGet(user?.id))
       setUpdateId('')
       setUpdateSlug('')
     }
   }
 
   const onConfimDelete: any = async (id: string | number) => {
-    await supabase.from('urls').delete().match({ id: id })
+    await deleteUrl({ id: id })
 
     hideAlert()
-    // hard reload to refresh data
-    setTimeout(() => {
-      window.location.reload()
-    }, 500)
+    mutate(apiUrlsGet(user?.id))
   }
 
   const handleDelete: any = async (id: string | number, slug: string) => {
@@ -106,7 +111,7 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
       onConfirm: () => {
         onConfimDelete(id)
       },
-      onCancel: hideAlert
+      onClose: hideAlert
     })
   }
 
@@ -130,7 +135,7 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
             >
               <Link
                 as="a"
-                fontSize="xl"
+                fontSize={{ base: 'lg', md: 'xl' }}
                 fontWeight="700"
                 color="orange.400"
                 href={`${HOME}${d.slug}`}
@@ -162,11 +167,11 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
                 </HStack>
               )}
 
-              <Text fontSize="small" color="gray.400">
+              <Text fontSize="small" color="gray.400" display="block" mb="2">
                 {d.real_url}
               </Text>
               <Text fontSize="small" color="gray.400">
-                {d.hit} kali dikunjuingi
+                {d.hit} kali dikunjungi
               </Text>
               <HStack spacing={2} mt={4}>
                 <IconButton

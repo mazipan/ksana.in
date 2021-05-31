@@ -1,14 +1,23 @@
 import { createClient } from '@supabase/supabase-js'
 
+import { sendEvent } from './splitbee'
 import { defaultFetchOption } from './fetcher'
-import { apiSetSession, apiLogout, apiUrlsSave, apiUrlsDelete, apiUrlsPatch } from 'constants/paths'
+import {
+  apiSetSession,
+  apiLogout,
+  apiUrlsCheck,
+  apiUrlsSave,
+  apiUrlsDelete,
+  apiUrlsPatch
+} from 'constants/paths'
+import { EVENT_SIGN_OUT, LS_AUTH_TOKEN } from 'constants/common'
 
 export const supabase: any = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL || '',
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 )
 
-export const setServerSideAuth: any = (event: any, session: any) => {
+export const setServerSideAuth: any = async (event: any, session: any) => {
   fetch(apiSetSession, {
     ...defaultFetchOption,
     method: 'POST',
@@ -24,7 +33,32 @@ export const logout: any = async () => {
   return await res.json()
 }
 
+export const handleLogout: any = async () => {
+  const currentSession = supabase.auth.currentSession
+
+  const { error } = await logout()
+  await setServerSideAuth(EVENT_SIGN_OUT, currentSession)
+  sendEvent('Logout')
+  if (!error) {
+    // hard reload to refresh data
+    setTimeout(() => {
+      window.localStorage.removeItem(LS_AUTH_TOKEN)
+      window.location.assign('/')
+    }, 500)
+  }
+}
+
+export const checkSlug: any = async ({ slug }: any) => {
+  sendEvent('Check slug')
+  const res = await fetch(apiUrlsCheck(slug), {
+    ...defaultFetchOption,
+    method: 'GET'
+  })
+  return await res.json()
+}
+
 export const saveUrl: any = async ({ userId, url, slug }: any) => {
+  sendEvent('Save url')
   const res = await fetch(apiUrlsSave(userId), {
     ...defaultFetchOption,
     method: 'PUT',
@@ -33,7 +67,8 @@ export const saveUrl: any = async ({ userId, url, slug }: any) => {
   return await res.json()
 }
 
-export const deletUrl: any = async ({ id }: any) => {
+export const deleteUrl: any = async ({ id }: any) => {
+  sendEvent('Remove url')
   const res = await fetch(apiUrlsDelete(id), {
     ...defaultFetchOption,
     method: 'DELETE'
@@ -41,7 +76,8 @@ export const deletUrl: any = async ({ id }: any) => {
   return await res.json()
 }
 
-export const updateSlug: any = async ({ id, slug }: any) => {
+export const patchSlug: any = async ({ id, slug }: any) => {
+  sendEvent('Update url')
   const res = await fetch(apiUrlsPatch(id), {
     ...defaultFetchOption,
     method: 'PATCH',
