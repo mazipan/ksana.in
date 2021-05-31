@@ -2,6 +2,7 @@ import { List, ListItem, useColorModeValue, HStack, Skeleton } from '@chakra-ui/
 
 export function LoadingSkeleton() {
   const data = [1, 2, 3]
+  const bgBox = useColorModeValue('white', 'gray.800')
 
   return (
     <List spacing={3}>
@@ -9,7 +10,7 @@ export function LoadingSkeleton() {
         <ListItem
           key={d}
           w={'full'}
-          bg={useColorModeValue('white', 'gray.800')}
+          bg={bgBox}
           boxShadow={'2xl'}
           rounded={'md'}
           overflow={'hidden'}

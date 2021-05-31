@@ -102,7 +102,9 @@ export function AuthForm({ state = 'login' }: any) {
 
           if (stateType === 'login') {
             setTimeout(() => {
-              router.push(dashboard)
+              // trigger hard redirect to dashboard page
+              // TODO: mutate SWR to reload the user data
+              window.location.assign(dashboard)
             }, 500)
           } else {
             router.push('/')

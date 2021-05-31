@@ -47,6 +47,9 @@ const tools: any = [
 ]
 
 function About() {
+  const colorText = useColorModeValue('gray.500', 'gray.300')
+  const bgBox = useColorModeValue('white', 'gray.800')
+
   return (
     <Layout height="100vh">
       <VStack spacing={2} textAlign="center" as="section" mt="32">
@@ -62,19 +65,19 @@ function About() {
       </VStack>
       <Container maxW={'4xl'} mx="auto" as="section" mt="8">
         <VStack spacing={4}>
-          <Text color={useColorModeValue('gray.500', 'gray.300')}>
+          <Text color={colorText}>
             {BRAND} adalah proyek yang dibuat oleh Irfan Maulana dalam rangka mempelajari layanan
             baru dari Supabase.io, membuat sesuatu untuk bisa mengimplementasikan langsung apa yang
             ingin dipelajari.
           </Text>
-          <Text color={useColorModeValue('gray.500', 'gray.300')}>
+          <Text color={colorText}>
             {BRAND} tidak bisa dibuat tanpa beberapa layanan dan alat bantu berikut:
           </Text>
           <SimpleGrid columns={{ base: 2, md: 4 }} spacing={2}>
             {tools.map((t: any) => (
               <Box
                 key={t.title}
-                bg={useColorModeValue('white', 'gray.800')}
+                bg={bgBox}
                 boxShadow={'2xl'}
                 rounded={'md'}
                 overflow={'hidden'}
@@ -93,13 +96,13 @@ function About() {
               </Box>
             ))}
           </SimpleGrid>
-          <Text color={useColorModeValue('gray.500', 'gray.300')}>
+          <Text color={colorText}>
             {BRAND} dibuat secara terbuka agar bisa dijadikan bahan pembelajaran bersama, semua kode
             dan assets tersedia gratis untuk semua pembelajar
           </Text>
           <HStack
             w="80%"
-            bg={useColorModeValue('white', 'gray.800')}
+            bg={bgBox}
             boxShadow={'2xl'}
             rounded={'md'}
             overflow={'hidden'}
@@ -120,7 +123,7 @@ function About() {
             </Link>
             <Image src={'https://img.shields.io/github/stars/mazipan/ksana.in?style=social'} />
           </HStack>
-          <Text color={useColorModeValue('gray.500', 'gray.300')}>
+          <Text color={colorText}>
             Untuk mendukung saya dan {BRAND} terus berkreasi membuat kode terbuka lainnya, kalian
             bisa mengirimkan dana untuk membeli kopi melalui{' '}
             <Link
@@ -133,7 +136,7 @@ function About() {
               Trakteer.id
             </Link>
           </Text>
-          <Text color={useColorModeValue('gray.500', 'gray.300')} mt="16">
+          <Text color={colorText} mt="16">
             Dari pembuat {BRAND}
             {', '}
             <Link

@@ -196,7 +196,7 @@ function Privacy() {
               mengakuisisi{' '}
               <Link href="/" color="orange.400">
                 {BRAND}
-              </Link>
+              </Link>{' '}
               dapat terus menggunakan Informasi Pribadi sebagaimana diatur dalam kebijakan ini.
             </Text>
 
