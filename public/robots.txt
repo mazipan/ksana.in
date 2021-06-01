@@ -1,0 +1,17 @@
+# Group 1
+User-agent: Googlebot
+Disallow: /dashboard
+Disallow: /auth/set-new-password
+Allow: /tentang
+Allow: /ketentuan-layanan
+Allow: /kebijakan-privasi
+Allow: /auth/sign-in
+Allow: /auth/sign-up
+Allow: /auth/forget-password
+Allow: /
+
+# Group 2
+User-agent: *
+Allow: /
+
+Sitemap: http://ksana.in/sitemap.xml

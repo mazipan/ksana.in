@@ -4,7 +4,9 @@ import { Box } from '@chakra-ui/react'
 import { callbackHandler } from 'libs/helpers'
 
 import { Layout } from 'components/Layout/Layout'
+
 import { ErrorDefault } from 'components/Error/ErrorDefault'
+import { MetaHead, NO_INDEXED } from 'components/MetaHead/MetaHead'
 
 function Callback() {
   useEffect(() => {
@@ -18,6 +20,7 @@ function Callback() {
 
   return (
     <Layout height="100vh">
+      <MetaHead robots={NO_INDEXED} />
       <Box width="100%">
         <ErrorDefault title="Callback url tidak tersedia" />
       </Box>
