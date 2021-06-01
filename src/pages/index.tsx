@@ -4,6 +4,7 @@ import { callbackHandler } from 'libs/helpers'
 import { Hero } from 'components/Hero'
 import { Features } from 'components/Features'
 import { CounterUrls } from 'components/CounterUrls'
+import { MetaHead } from 'components/MetaHead/MetaHead'
 
 import { Layout } from 'components/Layout/Layout'
 
@@ -19,6 +20,7 @@ function Homepage() {
 
   return (
     <Layout height="100vh">
+      <MetaHead />
       <Hero />
       <Features />
       <CounterUrls />

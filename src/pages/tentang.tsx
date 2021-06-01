@@ -13,6 +13,8 @@ import {
 
 import { BRAND } from 'constants/texts'
 import { github } from 'constants/paths'
+
+import { MetaHead } from 'components/MetaHead/MetaHead'
 import { Layout } from 'components/Layout/Layout'
 
 const tools: any = [
@@ -52,6 +54,7 @@ function About() {
 
   return (
     <Layout height="100vh">
+      <MetaHead title="Tentang Ksana.in" />
       <VStack spacing={2} textAlign="center" as="section" mt="32">
         <Heading
           as="h1"
