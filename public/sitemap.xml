@@ -1,21 +1,30 @@
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+  xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://ksana.in/</loc>
+    <changefreq>daily</changefreq>
     <lastmod>2021-06-01T00:00:00.000Z</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ksana.in/tentang</loc>
+    <changefreq>daily</changefreq>
     <lastmod>2021-06-01T00:00:00.000Z</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ksana.in/ketentuan-layanan</loc>
+    <changefreq>daily</changefreq>
     <lastmod>2021-06-01T00:00:00.000Z</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ksana.in/kebijakan-privacy</loc>
+    <changefreq>daily</changefreq>
     <lastmod>2021-06-01T00:00:00.000Z</lastmod>
     <priority>0.7</priority>
   </url>
@@ -26,11 +35,13 @@
   </url>
   <url>
     <loc>https://ksana.in/auth/sign-up</loc>
+    <changefreq>daily</changefreq>
     <lastmod>2021-06-01T00:00:00.000Z</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ksana.in/auth/forget-password</loc>
+    <changefreq>daily</changefreq>
     <lastmod>2021-06-01T00:00:00.000Z</lastmod>
     <priority>0.7</priority>
   </url>
