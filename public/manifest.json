@@ -3,14 +3,16 @@
   "name": "ksana.in: Pemendek tautan yang mudah dan gratis",
   "icons": [
     {
-      "src": "/images/square/ksana-192x192.png",
+      "src": "/images/maskable/ksana-192x192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "maskable any"
     },
     {
-      "src": "/images/square/ksana-512x152.png",
+      "src": "/images/maskable/ksana-512x152.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "maskable any"
     }
   ],
   "start_url": "/?source=pwa",
