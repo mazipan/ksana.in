@@ -3,12 +3,12 @@
   "name": "ksana.in: Pemendek tautan yang mudah dan gratis",
   "icons": [
     {
-      "src": "/square/ksana-192x192.png",
+      "src": "/images/square/ksana-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/square/ksana-512x152.png",
+      "src": "/images/square/ksana-512x152.png",
       "type": "image/png",
       "sizes": "512x512"
     }
@@ -21,12 +21,12 @@
   "description": "Pemendek tautan yang mudah dan gratis",
   "screenshots": [
     {
-      "src": "/screen/home.png",
+      "src": "/images/screen/home.png",
       "type": "image/png",
       "sizes": "407x763"
     },
     {
-      "src": "/screen/dashboard.png",
+      "src": "/images/screen/dashboard.png",
       "type": "image/jpg",
       "sizes": "409x762"
     }
