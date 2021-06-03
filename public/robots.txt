@@ -2,13 +2,14 @@
 User-agent: Googlebot
 Disallow: /dashboard
 Disallow: /auth/set-new-password
+Disallow: /*
 Allow: /tentang
 Allow: /ketentuan-layanan
 Allow: /kebijakan-privasi
 Allow: /auth/sign-in
 Allow: /auth/sign-up
 Allow: /auth/forget-password
-Allow: /
+Allow: /$
 
 # Group 2
 User-agent: *
