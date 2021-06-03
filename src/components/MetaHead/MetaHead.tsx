@@ -25,7 +25,19 @@ export function MetaHead({
       <title>{title}</title>
       <meta name="description" content={description} key="description" />
 
-      <link rel="icon" type="image/png" sizes="32x32" href="/square/ksana-32x32.png" />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href={`${HOME}images/square/ksana-32x32.png`}
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="64x64"
+        href={`${HOME}images/square/ksana-64x64.png`}
+      />
+      <link rel="shortcut icon" href={`${HOME}images/square/ksana-64x64.png`} />
 
       <meta name="theme-color" content="#ED8936" />
       <link rel="manifest" href="/manifest.json" />
