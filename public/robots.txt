@@ -9,6 +9,7 @@ Allow: /kebijakan-privasi
 Allow: /auth/sign-in
 Allow: /auth/sign-up
 Allow: /auth/forget-password
+Allow: /_next/*
 Allow: /$
 
 # Group 2
