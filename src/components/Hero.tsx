@@ -66,7 +66,7 @@ export function Hero() {
         </Container>
 
         <Container as="section" mt={{ base: 0, md: 10 }}>
-          <Image w="100%" src={'/ill_by_manypixels.svg'}></Image>
+          <Image w="100%" src={'/images/illustrations/ill_by_manypixels.svg'}></Image>
         </Container>
       </SimpleGrid>
     </Box>

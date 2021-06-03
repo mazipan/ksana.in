@@ -2,10 +2,12 @@ import { Stack } from '@chakra-ui/react'
 
 import { LayoutAuth } from 'components/Layout/LayoutAuth'
 import { Dashboard as DashboardContainer } from 'components/Dashboard'
+import { MetaHead, NO_INDEXED } from 'components/MetaHead/MetaHead'
 
 function Dashboard() {
   return (
     <LayoutAuth height="100vh">
+      <MetaHead title="Dashboard | Ksana.in" robots={NO_INDEXED} />
       <Stack
         spacing={8}
         mx={'auto'}

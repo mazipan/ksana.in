@@ -2,11 +2,14 @@ import { Box } from '@chakra-ui/react'
 
 import { supabase } from 'libs/supabase'
 import { Layout } from 'components/Layout/Layout'
+
 import { ErrorDefault } from 'components/Error/ErrorDefault'
+import { MetaHead, NO_INDEXED } from 'components/MetaHead/MetaHead'
 
 function SlugPage() {
   return (
     <Layout height="100vh">
+      <MetaHead robots={NO_INDEXED} />
       <Box width="100%">
         <ErrorDefault title="Tautan tidak tersedia" />
       </Box>

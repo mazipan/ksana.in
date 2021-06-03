@@ -13,6 +13,8 @@ import {
 
 import { BRAND } from 'constants/texts'
 import { github } from 'constants/paths'
+
+import { MetaHead } from 'components/MetaHead/MetaHead'
 import { Layout } from 'components/Layout/Layout'
 
 const tools: any = [
@@ -52,6 +54,7 @@ function About() {
 
   return (
     <Layout height="100vh">
+      <MetaHead title="Tentang Ksana.in" />
       <VStack spacing={2} textAlign="center" as="section" mt="32">
         <Heading
           as="h1"
@@ -61,7 +64,7 @@ function About() {
         >
           Tentang Kami
         </Heading>
-        <Image w="200px" src={'/orange/ksana.svg'}></Image>
+        <Image w="200px" src={'/images/orange/ksana.svg'}></Image>
       </VStack>
       <Container maxW={'4xl'} mx="auto" as="section" mt="8">
         <VStack spacing={4}>
