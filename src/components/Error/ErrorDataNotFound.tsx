@@ -19,7 +19,7 @@ export function ErrorDataNotFound({
           >
             {title}
           </Heading>
-          <Image w="100%" src={'/ill_data_by_manypixels.svg'}></Image>
+          <Image w="100%" src={'/images/illustrations/ill_data_by_manypixels.svg'}></Image>
           {useCta && (
             <Button
               px={6}

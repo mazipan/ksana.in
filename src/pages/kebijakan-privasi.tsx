@@ -19,7 +19,7 @@ function Privacy() {
           >
             Kebijakan Privasi
           </Heading>
-          <Image w="200px" src={'/orange/ksana.svg'}></Image>
+          <Image w="200px" src={'/images/orange/ksana.svg'}></Image>
         </VStack>
 
         <Container maxW={'4xl'} mx="auto" as="section">

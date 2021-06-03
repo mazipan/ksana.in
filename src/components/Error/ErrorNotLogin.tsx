@@ -17,7 +17,7 @@ export function ErrorNotLogin({
         >
           {title}
         </Heading>
-        <Image w="100%" src={'/ill_protection_by_manypixels.svg'}></Image>
+        <Image w="100%" src={'/images/illustrations/ill_protection_by_manypixels.svg'}></Image>
         <Button
           px={6}
           size="lg"

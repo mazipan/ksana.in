@@ -17,7 +17,7 @@ export function HiUser({ user }: any) {
             {user ? user.email.split('@')[0] : ''}
           </Text>
         </Heading>
-        <Image w="100%" src={'/ill_teamwork_by_manypixels.svg'}></Image>
+        <Image w="100%" src={'/images/illustrations/ill_teamwork_by_manypixels.svg'}></Image>
       </Stack>
 
       <Stack spacing={2} direction={'row'}>
