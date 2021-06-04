@@ -1,6 +1,8 @@
 export const EVENT_SIGN_IN: string = 'SIGNED_IN'
 export const EVENT_SIGN_OUT: string = 'SIGNED_OUT'
 
+export const COOKIE_AUTH_TOKEN: string = 'sb:token'
+
 export const LS_AUTH_TOKEN: string = 'supabase.auth.token'
 export const LS_FP_TOKEN: string = 'ksana.in.fp-at'
 

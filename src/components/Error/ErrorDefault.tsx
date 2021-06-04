@@ -1,7 +1,7 @@
 import { Stack, Button, Image, Heading } from '@chakra-ui/react'
 
 export function ErrorDefault({
-  title = 'Terjadi kesalahan',
+  title = 'Terjadi kesalahan pada sistem',
   ctaLink = '/',
   ctaText = 'Ke beranda'
 }: any) {

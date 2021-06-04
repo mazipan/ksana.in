@@ -29,6 +29,8 @@ export const apiUrlsSave = (id: string): string => `/api/urls/save/${id}`
 export const apiUrlsPatch = (id: string): string => `/api/urls/patch/${id}`
 export const apiUrlsDelete = (id: string): string => `/api/urls/delete/${id}`
 
+export const REDIRECT_CB: string = `${HOME}callback`
+
 // internal slug used by the app
 export const blacklistSlugs: string[] = [
   'tentang',

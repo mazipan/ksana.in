@@ -11,7 +11,8 @@ import {
   apiUrlsDelete,
   apiUrlsPatch,
   apiForgetPassword,
-  apiSetNewPassword
+  apiSetNewPassword,
+  REDIRECT_CB
 } from 'constants/paths'
 import { EVENT_SIGN_OUT, LS_AUTH_TOKEN } from 'constants/common'
 
@@ -42,6 +43,18 @@ export const login = async ({ email, password }: LoginArg): Promise<any> => {
   })
 
   return await res.json()
+}
+
+export const loginWithGoogle = async (): Promise<any> => {
+  sendEvent('Login with Google')
+  // Generate manual url
+  // https://<your-ref>.supabase.co/auth/v1/authorize?provider=google&redirect_to=http://localhost:3000/welcome
+  await supabase.auth.signIn(
+    {
+      provider: 'google'
+    },
+    { redirectTo: REDIRECT_CB }
+  )
 }
 
 export const logout = async (): Promise<void> => {

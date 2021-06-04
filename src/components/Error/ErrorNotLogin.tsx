@@ -1,7 +1,7 @@
 import { Stack, Button, Image, Heading } from '@chakra-ui/react'
 
 export function ErrorNotLogin({
-  title = 'Sepertinya kamu belum login!',
+  title = 'Kamu mengakses halaman yang butuh login',
   ctaLink = '/auth/sign-in',
   ctaText = 'Masuk ke akun'
 }: any) {

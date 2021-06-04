@@ -1,7 +1,7 @@
 import { Box, Stack, Button, Image, Heading } from '@chakra-ui/react'
 
 export function ErrorDataNotFound({
-  title = 'Data tidak ditemukan',
+  title = 'Belum ada data nih, yuk buat baru!',
   useCta,
   ctaAction = () => {},
   ctaText = 'Tambah data baru'
