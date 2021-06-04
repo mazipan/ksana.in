@@ -11,8 +11,7 @@ import {
   useColorModeValue
 } from '@chakra-ui/react'
 
-import { sendEvent } from 'libs/splitbee'
-import { supabase } from 'libs/supabase'
+import { setNewPassword } from 'libs/supabase'
 import { LS_FP_TOKEN } from 'constants/common'
 import { forgetPasword, login } from 'constants/paths'
 import { useAlertContext } from 'context/Alert'
@@ -59,10 +58,7 @@ export function Form() {
 
   const handleSetNewPassword: any = async () => {
     if (accessToken) {
-      sendEvent('Set new password')
-      const { error } = await supabase.auth.api.updateUser(accessToken, {
-        password: password
-      })
+      const { error } = await setNewPassword({ accessToken, password })
 
       if (!error) {
         showAlert({

@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react'
 
 import { sendEvent } from 'libs/splitbee'
-import { supabase, setServerSideAuth } from 'libs/supabase'
+import { supabase, setSessionToServer } from 'libs/supabase'
 import { useAlertContext } from 'context/Alert'
 import { forgetPasword, dashboard } from 'constants/paths'
 import { EVENT_SIGN_IN } from 'constants/common'
@@ -87,7 +87,7 @@ export function AuthForm({ state = 'login' }: any) {
     if (session && !error) {
       if (stateType === 'login') {
         // only set for the login flow
-        await setServerSideAuth(EVENT_SIGN_IN, session)
+        await setSessionToServer(EVENT_SIGN_IN, session)
       }
 
       showAlert({

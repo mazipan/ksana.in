@@ -20,6 +20,8 @@ export const apiIsAuth: string = '/api/auth/is-authenticated'
 export const apiSetSession: string = '/api/auth/set-session'
 export const apiLogin: string = '/api/auth/login'
 export const apiLogout: string = '/api/auth/logout'
+export const apiForgetPassword: string = '/api/auth/forget-password'
+export const apiSetNewPassword: string = '/api/auth/set-new-password'
 
 export const apiUrlsCheck = (slug: string): string => `/api/urls/check/${slug}`
 export const apiUrlsGet = (id: string): string => `/api/urls/get/${id}`
