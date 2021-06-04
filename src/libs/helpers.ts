@@ -1,14 +1,9 @@
-import { LS_FP_TOKEN, COOKIE_AUTH_TOKEN, CB_RECOVERY, CB_SIGNUP } from 'constants/common'
+import { EVENT_SIGN_IN, LS_FP_TOKEN, CB_RECOVERY, CB_SIGNUP } from 'constants/common'
 import { setNewPassword, login, dashboard } from 'constants/paths'
 
-export const setCookie = (name: string, value: string, days: number) => {
-  const d = new Date()
+import { setSessionToServer } from './supabase'
 
-  d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000)
-  document.cookie = name + '=' + value + ';path=/;expires=' + d.toUTCString()
-}
-
-export const callbackHandler = () => {
+export const callbackHandler = async () => {
   if (typeof window !== 'undefined') {
     const hash = window.location.hash
     if (hash) {
@@ -22,8 +17,10 @@ export const callbackHandler = () => {
       } else if (type === CB_SIGNUP) {
         window.location.assign(login)
       } else if (accessToken) {
-        setCookie(COOKIE_AUTH_TOKEN, accessToken, 7)
-        window.location.assign(dashboard)
+        await setSessionToServer(EVENT_SIGN_IN, { access_token: accessToken })
+        setTimeout(() => {
+          window.location.assign(dashboard)
+        }, 500)
       }
     }
   }

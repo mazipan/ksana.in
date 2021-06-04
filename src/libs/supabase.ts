@@ -21,7 +21,7 @@ export const supabase: any = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 )
 
-export const setSessionToServer = async (event: string, session: string): Promise<void> => {
+export const setSessionToServer = async (event: string, session: any): Promise<void> => {
   fetch(apiSetSession, {
     ...defaultFetchOption,
     method: 'POST',
