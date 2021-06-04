@@ -31,7 +31,7 @@ const copy: any = dynamic((): any => import('copy-to-clipboard'), { ssr: false }
 
 export function Items({ user, isFormVisible, onShowForm }: any) {
   const { showAlert, hideAlert } = useAlertContext()
-  const [updateId, setUpdateId] = useState<string | number>('')
+  const [updateId, setUpdateId] = useState<string>('')
   const [updateSlug, setUpdateSlug] = useState<string>('')
 
   const bgBox = useColorModeValue('white', 'gray.800')
@@ -73,7 +73,7 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
     }
   }
 
-  const handleClickEdit: any = async (id: string | number) => {
+  const handleClickEdit: any = async (id: string) => {
     if (updateId === id) {
       setUpdateId('')
       setUpdateSlug('')
@@ -98,14 +98,14 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
     }
   }
 
-  const onConfimDelete: any = async (id: string | number) => {
+  const onConfimDelete: any = async (id: string) => {
     await deleteUrl({ id: id })
 
     hideAlert()
     mutate(apiUrlsGet(user?.id))
   }
 
-  const handleDelete: any = async (id: string | number, slug: string) => {
+  const handleDelete: any = async (id: string, slug: string) => {
     showAlert({
       title: 'Konfirmasi hapus',
       message: `Apakah kamu yakin untuk menghapus data ${HOME}${slug}? Aksi ini juga akan menghilangkan semua data statistik terkait.`,
