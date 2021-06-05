@@ -7,7 +7,7 @@ import { MetaHead } from 'components/MetaHead/MetaHead'
 function Register() {
   return (
     <LayoutAuth minH={'100vh'} bg={useColorModeValue('gray.50', 'gray.800')}>
-      <MetaHead title="Daftar di Ksana.in" />
+      <MetaHead title="Daftar Akun | Ksana.in" />
       <AuthSignUp />
     </LayoutAuth>
   )
