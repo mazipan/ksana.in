@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { mutate } from 'swr'
 import {
   Link,
@@ -14,7 +14,6 @@ import {
 
 import { HiShare, HiDuplicate, HiPencil, HiTrash, HiSave } from 'react-icons/hi'
 
-import { attachEmail } from 'libs/splitbee'
 import { deleteUrl, patchSlug } from 'libs/supabase'
 import { sanitizeSlug } from 'libs/helpers'
 
@@ -38,14 +37,6 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
   const bgInput = useColorModeValue('blackAlpha.100', 'whiteAlpha.100')
 
   const { data, isLoading } = useUrls(user?.id || null)
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      if (user && user.email) {
-        attachEmail(user.email)
-      }
-    }
-  }, [user])
 
   const handleCopy = async (text: string) => {
     if (navigator.clipboard) {
