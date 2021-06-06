@@ -7,7 +7,7 @@ import { MetaHead } from 'components/MetaHead/MetaHead'
 function Login() {
   return (
     <LayoutAuth minH={'100vh'} bg={useColorModeValue('gray.50', 'gray.800')}>
-      <MetaHead title="Masuk ke akun Ksana.in" />
+      <MetaHead title="Masuk/Login | Ksana.in" />
       <AuthSignIn />
     </LayoutAuth>
   )

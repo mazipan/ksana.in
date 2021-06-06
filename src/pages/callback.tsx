@@ -20,9 +20,9 @@ function Callback() {
 
   return (
     <Layout height="100vh">
-      <MetaHead robots={NO_INDEXED} />
+      <MetaHead title="Selamat datang | Ksana.in" robots={NO_INDEXED} />
       <Box width="100%">
-        <ErrorDefault title="Callback url tidak tersedia" />
+        <ErrorDefault title="Selamat datang di Ksana.in" />
       </Box>
     </Layout>
   )

@@ -1,4 +1,4 @@
-# Group 1
+# or GoogleBot Only
 User-agent: Googlebot
 Disallow: /dashboard
 Disallow: /auth/set-new-password
@@ -10,12 +10,14 @@ Allow: /auth/sign-in
 Allow: /auth/sign-up
 Allow: /auth/forget-password
 Allow: /manifest.json
+Allow: /service-worker.js
+Allow: /google254ec9b78a3c3c38.html
 Allow: /_next/*
 Allow: /images/*
-Allow: /google254ec9b78a3c3c38.html
+Allow: /workbox-*
 Allow: /$
 
-# Group 2
+# All UA
 User-agent: *
 Allow: /
 

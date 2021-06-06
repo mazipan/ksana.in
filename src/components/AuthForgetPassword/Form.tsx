@@ -12,8 +12,7 @@ import {
 } from '@chakra-ui/react'
 
 import { useAlertContext } from 'context/Alert'
-import { supabase } from 'libs/supabase'
-import { sendEvent } from 'libs/splitbee'
+import { forgetPassword } from 'libs/supabase'
 
 export function Form() {
   const router = useRouter()
@@ -39,8 +38,7 @@ export function Form() {
   }
 
   const handleResetPassword = async () => {
-    sendEvent('Reset password')
-    const { error } = await supabase.auth.api.resetPasswordForEmail(email)
+    const { error } = await forgetPassword({ email })
 
     if (!error) {
       showAlert({

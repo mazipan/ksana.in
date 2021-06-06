@@ -14,8 +14,10 @@ import {
   useColorModeValue
 } from '@chakra-ui/react'
 
+import { FcGoogle } from 'react-icons/fc'
+
 import { sendEvent } from 'libs/splitbee'
-import { supabase, setServerSideAuth } from 'libs/supabase'
+import { supabase, setSessionToServer, loginWithGoogle } from 'libs/supabase'
 import { useAlertContext } from 'context/Alert'
 import { forgetPasword, dashboard } from 'constants/paths'
 import { EVENT_SIGN_IN } from 'constants/common'
@@ -78,6 +80,12 @@ export function AuthForm({ state = 'login' }: any) {
     setLoading(false)
   }
 
+  const handleLoginGoogle: any = async () => {
+    setLoading(true)
+    await loginWithGoogle()
+    setLoading(false)
+  }
+
   const processResponse: any = async ({ session, error, stateType = 'login' }: any) => {
     if (error) {
       setErrorForm(error.message)
@@ -87,7 +95,7 @@ export function AuthForm({ state = 'login' }: any) {
     if (session && !error) {
       if (stateType === 'login') {
         // only set for the login flow
-        await setServerSideAuth(EVENT_SIGN_IN, session)
+        await setSessionToServer(EVENT_SIGN_IN, session)
       }
 
       showAlert({
@@ -198,6 +206,7 @@ export function AuthForm({ state = 'login' }: any) {
               _hover={{
                 bg: 'orange.500'
               }}
+              color="white"
               onClick={handleSubmit}
             >
               {isLogin ? 'Masuk' : 'Daftar Sekarang'}
@@ -219,6 +228,26 @@ export function AuthForm({ state = 'login' }: any) {
               </Button>
             </Stack>
           )}
+
+          <Stack
+            direction="row"
+            align={'center'}
+            justify={'center'}
+            borderTop="1px"
+            borderColor="gray.200"
+            py="4"
+          >
+            <Button
+              isLoading={loading}
+              loadingText="Memproses"
+              variant={'outline'}
+              w="full"
+              onClick={handleLoginGoogle}
+              leftIcon={<FcGoogle />}
+            >
+              {isLogin ? 'Masuk dengan Google' : 'Daftar dengan Google'}
+            </Button>
+          </Stack>
         </Stack>
       </Box>
     </Stack>
