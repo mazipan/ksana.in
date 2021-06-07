@@ -4,6 +4,13 @@
 
 Pemendek tautan yang mudah dan gratis
 
+## Features
+
+- Login/Register with Google
+- Simple hit count to see the number of visits
+- Share link using Native Share (for mobile web)
+- Copy link using Clipboard API
+
 ## Screenshots
 
 |               Desktop               |              Mobile               |
