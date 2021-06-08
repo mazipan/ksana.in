@@ -63,6 +63,6 @@
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
     "resolveJsonModule": true
   },
-  "include": ["next-env.d.ts", "global.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["src/**/*", "node_modules/@types"],
   "exclude": ["node_modules", ".next"]
 }
