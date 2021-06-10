@@ -1,9 +1,11 @@
+import { NextApiRequest, NextApiResponse } from 'next'
+
 import { supabase } from 'libs/supabase'
 
-export default async (req: any, res: any) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { email, password } = req.body
-    const response: any = await supabase.auth.signIn({
+    const response = await supabase.auth.signIn({
       email: email,
       password: password
     })

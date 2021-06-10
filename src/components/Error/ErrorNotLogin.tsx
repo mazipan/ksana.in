@@ -1,10 +1,12 @@
 import { Stack, Button, Image, Heading } from '@chakra-ui/react'
 
-export function ErrorNotLogin({
-  title = 'Kamu mengakses halaman yang butuh login',
-  ctaLink = '/auth/sign-in',
-  ctaText = 'Masuk ke akun'
-}: any) {
+export interface IErrorNotLoginProps {
+  title: string
+  ctaLink: string
+  ctaText: string
+}
+
+export function ErrorNotLogin({ title, ctaLink, ctaText }: IErrorNotLoginProps) {
   return (
     <Stack as="section" spacing={8} mx={'auto'} maxW={'lg'}>
       <Stack align={'center'} spacing={8}>
@@ -34,4 +36,10 @@ export function ErrorNotLogin({
       </Stack>
     </Stack>
   )
+}
+
+ErrorNotLogin.defaultProps = {
+  title: 'Kamu mengakses halaman yang butuh login',
+  ctaLink: '/auth/sign-in',
+  ctaText: 'Masuk ke akun'
 }

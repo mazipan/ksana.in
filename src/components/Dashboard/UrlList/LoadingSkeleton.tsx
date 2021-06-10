@@ -6,7 +6,7 @@ export function LoadingSkeleton() {
 
   return (
     <List spacing={3}>
-      {data.map((d: any) => (
+      {data.map((d: number) => (
         <ListItem
           key={d}
           w={'full'}

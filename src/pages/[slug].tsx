@@ -5,6 +5,7 @@ import { Layout } from 'components/Layout/Layout'
 
 import { ErrorDefault } from 'components/Error/ErrorDefault'
 import { MetaHead, NO_INDEXED } from 'components/MetaHead/MetaHead'
+import { IUrl } from 'interfaces/IUrl'
 
 function SlugPage() {
   return (
@@ -17,7 +18,11 @@ function SlugPage() {
   )
 }
 
-export async function getServerSideProps({ params }: any) {
+export interface IGetServerSideProps {
+  params: IUrl
+}
+
+export async function getServerSideProps({ params }: IGetServerSideProps) {
   const slug = params.slug
   const { data } = await supabase.from('urls').select('real_url,slug,hit').eq('slug', slug).single()
 

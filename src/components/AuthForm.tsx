@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { useRouter } from 'next/router'
-
+import { Session } from '@supabase/gotrue-js'
 import {
   Box,
   FormControl,
@@ -13,7 +13,6 @@ import {
   Text,
   useColorModeValue
 } from '@chakra-ui/react'
-
 import { FcGoogle } from 'react-icons/fc'
 
 import { sendEvent } from 'libs/splitbee'
@@ -22,7 +21,17 @@ import { useAlertContext } from 'context/Alert'
 import { forgetPasword, dashboard } from 'constants/paths'
 import { EVENT_SIGN_IN } from 'constants/common'
 
-export function AuthForm({ state = 'login' }: any) {
+export interface IAuthFormProps {
+  state: string
+}
+
+export interface IProcessResponse {
+  session: Session | null
+  error: Error | null
+  stateType: string
+}
+
+export function AuthForm({ state }: IAuthFormProps) {
   const router = useRouter()
   const { showAlert, hideAlert } = useAlertContext()
 
@@ -34,7 +43,7 @@ export function AuthForm({ state = 'login' }: any) {
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
-  const toggleState: any = () => {
+  const toggleState = () => {
     if (internalState === 'login') {
       setInternalState('register')
       setIsLogin(false)
@@ -44,17 +53,17 @@ export function AuthForm({ state = 'login' }: any) {
     }
   }
 
-  const handleChangeEmail: any = (e: any) => {
+  const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     setEmail(value)
   }
 
-  const handleChangePassword: any = (e: any) => {
+  const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     setPassword(value)
   }
 
-  const checkIsEmpty: any = () => {
+  const checkIsEmpty = () => {
     if (email === '' || password === '') {
       setErrorForm('Email dan password tidak boleh dikosongkan.')
       return true
@@ -64,7 +73,7 @@ export function AuthForm({ state = 'login' }: any) {
     return false
   }
 
-  const handleSubmit: any = async () => {
+  const handleSubmit = async () => {
     setLoading(true)
 
     const isEmpty = checkIsEmpty()
@@ -80,13 +89,13 @@ export function AuthForm({ state = 'login' }: any) {
     setLoading(false)
   }
 
-  const handleLoginGoogle: any = async () => {
+  const handleLoginGoogle = async () => {
     setLoading(true)
     await loginWithGoogle()
     setLoading(false)
   }
 
-  const processResponse: any = async ({ session, error, stateType = 'login' }: any) => {
+  const processResponse = async ({ session, error, stateType = 'login' }: IProcessResponse) => {
     if (error) {
       setErrorForm(error.message)
       return false
@@ -122,7 +131,7 @@ export function AuthForm({ state = 'login' }: any) {
     }
   }
 
-  const handleLogin: any = async () => {
+  const handleLogin = async () => {
     const { session, error } = await supabase.auth.signIn({
       email: email,
       password: password
@@ -132,7 +141,7 @@ export function AuthForm({ state = 'login' }: any) {
     processResponse({ session, error, stateType: 'login' })
   }
 
-  const handleRegister: any = async () => {
+  const handleRegister = async () => {
     const { session, error } = await supabase.auth.signUp({
       email: email,
       password: password
@@ -252,4 +261,8 @@ export function AuthForm({ state = 'login' }: any) {
       </Box>
     </Stack>
   )
+}
+
+AuthForm.defaultProps = {
+  state: 'login'
 }

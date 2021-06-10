@@ -1,17 +1,27 @@
-import { createContext, useContext } from 'react'
+import { createContext, ReactNode, useContext } from 'react'
 import { node } from 'prop-types'
 
 import useUser from 'hooks/useUser'
+import { IUser } from 'interfaces/IUser'
+export interface IAuthContext {
+  isLoading: boolean
+  isLogin: boolean
+  user: IUser | null
+}
 
-const AuthContext: any = createContext({
+const AuthContext = createContext<IAuthContext>({
   isLoading: true,
   isLogin: false,
   user: null
 })
 
-export const useAuthContext: any = () => useContext(AuthContext)
+export interface IAuthProviderProps {
+  children: ReactNode
+}
 
-export const AuthProvider = ({ children }: any) => {
+export const useAuthContext = () => useContext(AuthContext)
+
+export const AuthProvider = ({ children }: IAuthProviderProps) => {
   const { data, isLoading } = useUser()
 
   return (

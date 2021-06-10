@@ -27,16 +27,16 @@
   "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
   "rules": {
     "camelcase": "off",
-    "no-alert": "warn",
-    "no-console": "warn",
-    "no-unused-vars": "error",
-    "no-nested-ternary": "off",
     "import/no-unresolved": "off",
     "import/extensions": "off",
-    "react/react-in-jsx-scope": "off",
-    "react/no-unescaped-entities": "warn",
-    "react/no-children-prop": "warn",
+    "no-alert": "warn",
+    "no-console": "warn",
+    "no-nested-ternary": "off",
+    "no-unused-vars": "error",
+    "multiline-ternary": "off",
     "react/prop-types": "off",
-    "multiline-ternary": "off"
+    "react/no-children-prop": "off",
+    "react/no-unescaped-entities": "warn",
+    "react/react-in-jsx-scope": "off"
   }
 }

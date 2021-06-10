@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { mutate } from 'swr'
 import {
   FormControl,
@@ -18,8 +18,14 @@ import { sanitizeSlug } from 'libs/helpers'
 
 import { HOME, apiUrlsGet } from 'constants/paths'
 import { useAlertContext } from 'context/Alert'
+import { IUser } from 'interfaces/IUser'
 
-export function UrlForm({ user, onSuccess = () => {} }: any) {
+export interface IUrlFormProps {
+  user: IUser
+  onSuccess: () => void
+}
+
+export function UrlForm({ user, onSuccess }: IUrlFormProps) {
   const { showAlert, hideAlert } = useAlertContext()
 
   const [url, setUrl] = useState<string>('')
@@ -28,17 +34,17 @@ export function UrlForm({ user, onSuccess = () => {} }: any) {
   const [errorText, setErrorText] = useState<boolean | string>(false)
   const [loading, setLoading] = useState<boolean>(false)
 
-  const handleChangeUrl: any = (e: any) => {
+  const handleChangeUrl = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     setUrl(value)
   }
 
-  const handleChangeSlug: any = (e: any) => {
+  const handleChangeSlug = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     setSlug(value)
   }
 
-  const checkIsEmpty: any = () => {
+  const checkIsEmpty = () => {
     if (url === '' || slug === '') {
       setErrorText('URL dan slug tidak bisa dikosongkan')
       return true
@@ -48,7 +54,7 @@ export function UrlForm({ user, onSuccess = () => {} }: any) {
     return false
   }
 
-  const handleCheckAvailability: any = async () => {
+  const handleCheckAvailability = async () => {
     setLoading(true)
     const isEmpty = checkIsEmpty()
     if (!isEmpty) {
@@ -65,7 +71,7 @@ export function UrlForm({ user, onSuccess = () => {} }: any) {
     setLoading(false)
   }
 
-  const handleSaveNew: any = async () => {
+  const handleSaveNew = async () => {
     setLoading(true)
     const isEmpty = checkIsEmpty()
     if (!isEmpty) {

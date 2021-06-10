@@ -1,10 +1,11 @@
 import { Stack, Button, Image, Heading } from '@chakra-ui/react'
 
-export function ErrorDefault({
-  title = 'Terjadi kesalahan pada sistem',
-  ctaLink = '/',
-  ctaText = 'Ke beranda'
-}: any) {
+export interface IErrorDefaultProps {
+  title: string
+  ctaLink: string
+  ctaText: string
+}
+export function ErrorDefault({ title, ctaLink, ctaText }: IErrorDefaultProps) {
   return (
     <Stack as="section" spacing={8} mx={'auto'} mt="20" maxW={'lg'} py={12} px={6}>
       <Stack align={'center'} spacing={8}>
@@ -34,4 +35,10 @@ export function ErrorDefault({
       </Stack>
     </Stack>
   )
+}
+
+ErrorDefault.defaultProps = {
+  title: 'Terjadi kesalahan pada sistem',
+  ctaLink: '/',
+  ctaText: 'Ke beranda'
 }

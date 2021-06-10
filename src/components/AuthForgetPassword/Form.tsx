@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, ChangeEvent } from 'react'
 import { useRouter } from 'next/router'
 import {
   Box,
@@ -22,7 +22,7 @@ export function Form() {
   const [errorForm, setErrorForm] = useState<string>('')
   const [email, setEmail] = useState<string>('')
 
-  const handleChangeEmail = (e: any) => {
+  const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     setEmail(value)
   }
