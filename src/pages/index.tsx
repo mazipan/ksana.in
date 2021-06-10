@@ -19,7 +19,7 @@ function Homepage() {
   // }, [])
 
   return (
-    <Layout height="100vh">
+    <Layout>
       <MetaHead />
       <Hero />
       <Features />

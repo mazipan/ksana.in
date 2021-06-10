@@ -9,7 +9,7 @@ import { IUrl } from 'interfaces/IUrl'
 
 function SlugPage() {
   return (
-    <Layout height="100vh">
+    <Layout>
       <MetaHead robots={NO_INDEXED} />
       <Box width="100%">
         <ErrorDefault title="Tautan tidak tersedia" />

@@ -19,7 +19,7 @@ function Callback() {
   }, [])
 
   return (
-    <Layout height="100vh">
+    <Layout>
       <MetaHead title="Selamat datang | Ksana.in" robots={NO_INDEXED} />
       <Box width="100%">
         <ErrorDefault title="Selamat datang di Ksana.in" />

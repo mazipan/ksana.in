@@ -58,7 +58,7 @@ function About() {
   const bgBox = useColorModeValue('white', 'gray.800')
 
   return (
-    <Layout height="100vh">
+    <Layout>
       <MetaHead title="Tentang Kami | Ksana.in" />
       <VStack spacing={2} textAlign="center" as="section" mt="32">
         <Heading
