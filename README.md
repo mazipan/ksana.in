@@ -27,6 +27,13 @@ Pemendek tautan yang mudah dan gratis
 - [Oge](https://oge.vercel.app/)
 - Illustrations by [manypixels.co](https://www.manypixels.co/gallery)
 
+## Support me
+
+- 👉 🇮🇩 [Trakteer](https://trakteer.id/mazipan/tip?utm_source=github)
+- 👉 🌍 [BuyMeACoffe](https://www.buymeacoffee.com/mazipan?utm_source=github)
+- 👉 🌍 [Paypal](https://www.paypal.me/mazipan?utm_source=github)
+- 👉 🌍 [Ko-Fi](https://ko-fi.com/mazipan)
+
 ---
 
 Copyright ©️ 2021 by Irfan Maulana
