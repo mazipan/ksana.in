@@ -139,7 +139,7 @@ function About() {
               rel="noopener noreferrer"
               color="orange.400"
               fontWeight="bold"
-              href="https://trakteer.id/mazipan?utm_source=ksana.id"
+              href="https://trakteer.id/mazipan/tip?utm_source=ksana"
             >
               Trakteer.id
             </Link>
