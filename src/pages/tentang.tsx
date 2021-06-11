@@ -17,7 +17,12 @@ import { github } from 'constants/paths'
 import { MetaHead } from 'components/MetaHead/MetaHead'
 import { Layout } from 'components/Layout/Layout'
 
-const tools: any = [
+export interface ITools {
+  title: string
+  url: string
+}
+
+const tools = [
   {
     title: 'Next.js',
     url: 'https://nextjs.org/'
@@ -53,7 +58,7 @@ function About() {
   const bgBox = useColorModeValue('white', 'gray.800')
 
   return (
-    <Layout height="100vh">
+    <Layout>
       <MetaHead title="Tentang Kami | Ksana.in" />
       <VStack spacing={2} textAlign="center" as="section" mt="32">
         <Heading
@@ -77,7 +82,7 @@ function About() {
             {BRAND} tidak bisa dibuat tanpa beberapa layanan dan alat bantu berikut:
           </Text>
           <SimpleGrid columns={{ base: 2, md: 4 }} spacing={2}>
-            {tools.map((t: any) => (
+            {tools.map((t: ITools) => (
               <Box
                 key={t.title}
                 bg={bgBox}

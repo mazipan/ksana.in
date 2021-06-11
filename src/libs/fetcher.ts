@@ -1,9 +1,9 @@
-export const defaultFetchOption: any = {
+export const defaultFetchOption = {
   headers: new Headers({ 'Content-Type': 'application/json' }),
   credentials: 'same-origin'
 }
 
-export const defaultGetOption: any = {
+export const defaultGetOption = {
   method: 'GET',
   ...defaultFetchOption
 }

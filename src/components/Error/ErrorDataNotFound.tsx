@@ -1,11 +1,14 @@
+import { MouseEvent } from 'react'
 import { Box, Stack, Button, Image, Heading } from '@chakra-ui/react'
 
-export function ErrorDataNotFound({
-  title = 'Belum ada data nih, yuk buat baru!',
-  useCta,
-  ctaAction = () => {},
-  ctaText = 'Tambah data baru'
-}: any) {
+export interface IErrorDataNotFoundProps {
+  title: string
+  useCta: boolean
+  ctaAction: (event: MouseEvent<HTMLButtonElement>) => void
+  ctaText: string
+}
+
+export function ErrorDataNotFound({ title, useCta, ctaAction, ctaText }: IErrorDataNotFoundProps) {
   return (
     <Box width="100%">
       <Stack as="section" mx={'auto'} maxW={'lg'} align={'center'}>
@@ -38,4 +41,11 @@ export function ErrorDataNotFound({
       </Stack>
     </Box>
   )
+}
+
+ErrorDataNotFound.defaultProps = {
+  title: 'Belum ada data nih, yuk buat baru!',
+  useCta: true,
+  ctaAction: () => {},
+  ctaText: 'Tambah data baru'
 }

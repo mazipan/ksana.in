@@ -1,6 +1,8 @@
+import { NextApiRequest, NextApiResponse } from 'next'
+
 import { supabase } from 'libs/supabase'
 
-export default async (_: any, res: any) => {
+export default async (_: NextApiRequest, res: NextApiResponse) => {
   try {
     const { count } = await supabase.from('urls').select('id', { count: 'estimated' })
 

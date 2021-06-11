@@ -1,3 +1,4 @@
+import { ReactElement } from 'react'
 import {
   Container,
   SimpleGrid,
@@ -10,7 +11,13 @@ import {
 } from '@chakra-ui/react'
 import { FcLink, FcBullish, FcTreeStructure } from 'react-icons/fc'
 
-function Feature({ title, text, icon }: any) {
+export interface IFeatureProps {
+  title: string
+  text: string
+  icon: ReactElement
+}
+
+function Feature({ title, text, icon }: IFeatureProps) {
   return (
     <Stack spacing="2" align="center">
       <Flex

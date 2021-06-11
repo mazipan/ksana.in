@@ -2,8 +2,13 @@ import { Stack, Button, Image, Heading, Text } from '@chakra-ui/react'
 import { HiLogout, HiCollection } from 'react-icons/hi'
 
 import { handleLogout } from 'libs/supabase'
+import { IUser } from 'interfaces/IUser'
 
-export function HiUser({ user }: any) {
+export interface IHiUserProps {
+  user: IUser
+}
+
+export function HiUser({ user }: IHiUserProps) {
   return (
     <Stack as="section" spacing={8} mx={'auto'} mt="20" maxW={'lg'} py={12} px={6}>
       <Stack align={'center'} spacing={8}>
