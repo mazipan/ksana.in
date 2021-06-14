@@ -12,7 +12,6 @@ import {
 import { HiPlay } from 'react-icons/hi'
 
 import { login } from 'constants/paths'
-import { BRAND_TAGLINE_LONG } from 'constants/texts'
 
 export function Hero() {
   return (
@@ -44,7 +43,8 @@ export function Hero() {
               fontSize={{ base: 'lg', sm: 'xl', md: '2xl' }}
               lineHeight={'110%'}
             >
-              {BRAND_TAGLINE_LONG}
+              Perncatik tautanmu, jadikan agar mudah diingat, bagikan ke orang lain dengan percaya
+              diri
             </Text>
 
             <Button

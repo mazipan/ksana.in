@@ -8,7 +8,10 @@ import { Layout } from 'components/Layout/Layout'
 function Privacy() {
   return (
     <Layout height="100vh">
-      <MetaHead title="Kebijakan Keamanan Privasi | Ksana.in" />
+      <MetaHead
+        title="Kebijakan Keamanan Privasi | Ksana.in"
+        description="Kebijakan keamanan privasi mengenai informasi pribadi Anda yang disimpan dan dibagikan di Ksana.in"
+      />
       <VStack spacing={4} textAlign="center" as="section" mt="32">
         <VStack spacing={4} textAlign="center">
           <Heading

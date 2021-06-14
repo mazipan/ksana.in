@@ -54,7 +54,10 @@ function About() {
 
   return (
     <Layout height="100vh">
-      <MetaHead title="Tentang Kami | Ksana.in" />
+      <MetaHead
+        title="Tentang Kami | Ksana.in"
+        description="Ksana.in adalah layanan pemendek tautan / URL yang gratis dan mudah untuk digunakan, buatan asli anak Indonesia"
+      />
       <VStack spacing={2} textAlign="center" as="section" mt="32">
         <Heading
           as="h1"
@@ -69,9 +72,10 @@ function About() {
       <Container maxW={'4xl'} mx="auto" as="section" mt="8">
         <VStack spacing={4}>
           <Text color={colorText}>
-            {BRAND} adalah proyek yang dibuat oleh Irfan Maulana dalam rangka mempelajari layanan
-            baru dari Supabase.io, membuat sesuatu untuk bisa mengimplementasikan langsung apa yang
-            ingin dipelajari.
+            {BRAND} adalah layanan pemendek tautan / URL yang gratis dan mudah untuk digunakan.
+            Layanan ini dibuat seorang diri oleh Irfan Maulana dalam rangka mempelajari layanan baru
+            dari Supabase.io, membuat sesuatu untuk bisa mengimplementasikan langsung apa yang ingin
+            dipelajari.
           </Text>
           <Text color={colorText}>
             {BRAND} tidak bisa dibuat tanpa beberapa layanan dan alat bantu berikut:
