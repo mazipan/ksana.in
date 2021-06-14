@@ -17,7 +17,12 @@ import { github } from 'constants/paths'
 import { MetaHead } from 'components/MetaHead/MetaHead'
 import { Layout } from 'components/Layout/Layout'
 
-const tools: any = [
+export interface ITools {
+  title: string
+  url: string
+}
+
+const tools = [
   {
     title: 'Next.js',
     url: 'https://nextjs.org/'
@@ -81,7 +86,7 @@ function About() {
             {BRAND} tidak bisa dibuat tanpa beberapa layanan dan alat bantu berikut:
           </Text>
           <SimpleGrid columns={{ base: 2, md: 4 }} spacing={2}>
-            {tools.map((t: any) => (
+            {tools.map((t: ITools) => (
               <Box
                 key={t.title}
                 bg={bgBox}
@@ -138,7 +143,7 @@ function About() {
               rel="noopener noreferrer"
               color="orange.400"
               fontWeight="bold"
-              href="https://trakteer.id/mazipan?utm_source=ksana.id"
+              href="https://trakteer.id/mazipan/tip?utm_source=ksana"
             >
               Trakteer.id
             </Link>

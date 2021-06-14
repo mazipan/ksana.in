@@ -1,8 +1,10 @@
+import { NextApiRequest, NextApiResponse } from 'next'
+
 import { supabase } from 'libs/supabase'
 
-export default async (req: any, res: any) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const id: string = req.query.id
+    const id = req.query.id
     const { data, error } = await supabase.from('urls').delete().match({ id: id })
 
     if (error) {

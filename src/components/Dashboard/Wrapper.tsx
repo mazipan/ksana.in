@@ -4,15 +4,20 @@ import { HiPlus, HiMinus } from 'react-icons/hi'
 
 import { UrlForm } from './UrlForm'
 import { UrlList } from './UrlList'
+import { IUser } from 'interfaces/IUser'
 
-export function DashboardWrapper({ user }: any) {
+export interface IDashboardWrapperProps {
+  user: IUser
+}
+
+export function DashboardWrapper({ user }: IDashboardWrapperProps) {
   const [showAdd, setShowAdd] = useState<boolean>(false)
 
-  const handleShowAdd: any = () => {
+  const handleShowAdd = () => {
     setShowAdd(!showAdd)
   }
 
-  const handleSuccessAdd: any = () => {
+  const handleSuccessAdd = () => {
     setShowAdd(false)
     window.location.reload()
   }

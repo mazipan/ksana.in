@@ -1,0 +1,1 @@
+// for global declare

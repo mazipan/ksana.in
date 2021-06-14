@@ -13,16 +13,27 @@ import {
 
 import { textColor } from 'constants/colors'
 
+export interface IMessageDialogProps {
+  title?: string
+  message?: string
+  cancelText?: string
+  confirmText?: string
+  confirmSchema?: string
+  isOpen: boolean
+  onConfirm(): void
+  onClose(): void
+}
+
 export function MessageDialog({
-  title = '',
-  message = '',
-  cancelText = 'Tutup',
+  title,
+  message,
+  cancelText,
   confirmText,
-  confirmSchema = 'red',
-  onConfirm,
+  confirmSchema,
   isOpen,
+  onConfirm,
   onClose
-}: any) {
+}: IMessageDialogProps) {
   const cancelRef = useRef<any>()
   const { colorMode } = useColorMode()
 
@@ -56,4 +67,15 @@ export function MessageDialog({
       </AlertDialogOverlay>
     </AlertDialog>
   )
+}
+
+MessageDialog.defaultProps = {
+  title: '',
+  message: '',
+  cancelText: 'Tutup',
+  confirmText: '',
+  confirmSchema: 'red',
+  isOpen: false,
+  onConfirm: () => {},
+  onClose: () => {}
 }

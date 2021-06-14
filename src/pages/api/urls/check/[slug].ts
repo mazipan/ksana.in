@@ -1,9 +1,11 @@
+import { NextApiRequest, NextApiResponse } from 'next'
+
 import { supabase } from 'libs/supabase'
 import { sanitizeSlug } from 'libs/helpers'
 
-export default async (req: any, res: any) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const slug: string = req.query.slug
+    const slug = String(req.query.slug)
 
     const { error: errorRealSlug } = await supabase
       .from('urls')

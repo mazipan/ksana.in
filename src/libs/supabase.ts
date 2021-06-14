@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient, Session } from '@supabase/supabase-js'
 
 import { sendEvent } from './splitbee'
 import { defaultFetchOption } from './fetcher'
@@ -21,10 +21,11 @@ export const supabase: any = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 )
 
-export const setSessionToServer = async (event: string, session: any): Promise<void> => {
+export const setSessionToServer = async (event: string, session: Session): Promise<void> => {
   fetch(apiSetSession, {
     ...defaultFetchOption,
     method: 'POST',
+    credentials: 'same-origin',
     body: JSON.stringify({ event, session })
   }).then((res) => res.json())
 }
@@ -39,6 +40,7 @@ export const login = async ({ email, password }: LoginArg): Promise<any> => {
   const res = await fetch(apiLogin, {
     ...defaultFetchOption,
     method: 'POST',
+    credentials: 'same-origin',
     body: JSON.stringify({ email, password })
   })
 
@@ -60,7 +62,8 @@ export const loginWithGoogle = async (): Promise<any> => {
 export const logout = async (): Promise<void> => {
   await fetch(apiLogout, {
     ...defaultFetchOption,
-    method: 'POST'
+    method: 'POST',
+    credentials: 'same-origin'
   }).then((res) => res.json())
 }
 
@@ -86,6 +89,7 @@ export const forgetPassword = async ({ email }: ForgetPasswordArg): Promise<any>
   const res = await fetch(apiForgetPassword, {
     ...defaultFetchOption,
     method: 'POST',
+    credentials: 'same-origin',
     body: JSON.stringify({ email })
   })
 
@@ -105,6 +109,7 @@ export const setNewPassword = async ({
   const res = await fetch(apiSetNewPassword, {
     ...defaultFetchOption,
     method: 'POST',
+    credentials: 'same-origin',
     body: JSON.stringify({ password, accessToken })
   })
 
@@ -119,6 +124,7 @@ export const checkSlug = async ({ slug }: CheckSlugArg): Promise<any> => {
   sendEvent('Check slug')
   const res = await fetch(apiUrlsCheck(slug), {
     ...defaultFetchOption,
+    credentials: 'same-origin',
     method: 'GET'
   })
   return await res.json()
@@ -135,6 +141,7 @@ export const saveUrl = async ({ userId, url, slug }: SaveUrlArg): Promise<any> =
   const res = await fetch(apiUrlsSave(userId), {
     ...defaultFetchOption,
     method: 'PUT',
+    credentials: 'same-origin',
     body: JSON.stringify({ url, slug })
   })
   return await res.json()
@@ -148,7 +155,8 @@ export const deleteUrl = async ({ id }: DeleteUrlArg): Promise<any> => {
   sendEvent('Remove url')
   const res = await fetch(apiUrlsDelete(id), {
     ...defaultFetchOption,
-    method: 'DELETE'
+    method: 'DELETE',
+    credentials: 'same-origin'
   })
   return await res.json()
 }
@@ -163,6 +171,7 @@ export const patchSlug = async ({ id, slug }: PatchSlugArg): Promise<any> => {
   const res = await fetch(apiUrlsPatch(id), {
     ...defaultFetchOption,
     method: 'PATCH',
+    credentials: 'same-origin',
     body: JSON.stringify({ slug })
   })
   return await res.json()

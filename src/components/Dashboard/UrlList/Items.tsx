@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { mutate } from 'swr'
 import {
   Link,
@@ -11,7 +11,6 @@ import {
   useColorModeValue,
   HStack
 } from '@chakra-ui/react'
-
 import { HiShare, HiDuplicate, HiPencil, HiTrash, HiSave } from 'react-icons/hi'
 
 import { deleteUrl, patchSlug } from 'libs/supabase'
@@ -22,13 +21,14 @@ import { useAlertContext } from 'context/Alert'
 import useUrls from 'hooks/useUrls'
 
 import { HOME, apiUrlsGet } from 'constants/paths'
-
+import { IUrlListProps } from 'components/Dashboard/UrlList'
 import { ErrorDataNotFound } from 'components/Error/ErrorDataNotFound'
 import { LoadingSkeleton } from './LoadingSkeleton'
+import { IUrl } from 'interfaces/IUrl'
 
 const copy: any = dynamic((): any => import('copy-to-clipboard'), { ssr: false })
 
-export function Items({ user, isFormVisible, onShowForm }: any) {
+export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
   const { showAlert, hideAlert } = useAlertContext()
   const [updateId, setUpdateId] = useState<string>('')
   const [updateSlug, setUpdateSlug] = useState<string>('')
@@ -36,7 +36,7 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
   const bgBox = useColorModeValue('white', 'gray.800')
   const bgInput = useColorModeValue('blackAlpha.100', 'whiteAlpha.100')
 
-  const { data, isLoading } = useUrls(user?.id || null)
+  const { data, isLoading } = useUrls(user?.id || '')
 
   const handleCopy = async (text: string) => {
     if (navigator.clipboard) {
@@ -64,7 +64,7 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
     }
   }
 
-  const handleClickEdit: any = async (id: string) => {
+  const handleClickEdit = async (id: string) => {
     if (updateId === id) {
       setUpdateId('')
       setUpdateSlug('')
@@ -74,12 +74,12 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
     }
   }
 
-  const handleChangeUpdatedSlug: any = async (e: any) => {
+  const handleChangeUpdatedSlug = async (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     setUpdateSlug(value)
   }
 
-  const handleClickSave: any = async () => {
+  const handleClickSave = async () => {
     if (updateSlug) {
       await patchSlug({ id: updateId, slug: sanitizeSlug(updateSlug) })
 
@@ -89,14 +89,14 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
     }
   }
 
-  const onConfimDelete: any = async (id: string) => {
+  const onConfimDelete = async (id: string) => {
     await deleteUrl({ id: id })
 
     hideAlert()
     mutate(apiUrlsGet(user?.id))
   }
 
-  const handleDelete: any = async (id: string, slug: string) => {
+  const handleDelete = async (id: string, slug: string) => {
     showAlert({
       title: 'Konfirmasi hapus',
       message: `Apakah kamu yakin untuk menghapus data ${HOME}${slug}? Aksi ini juga akan menghilangkan semua data statistik terkait.`,
@@ -117,7 +117,7 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
     <>
       {!isLoading && data && data.length > 0 ? (
         <List spacing={3}>
-          {data.map((d: any) => (
+          {data.map((d: IUrl) => (
             <ListItem
               key={d.slug}
               w={'full'}
@@ -192,7 +192,7 @@ export function Items({ user, isFormVisible, onShowForm }: any) {
                 />
                 <IconButton
                   onClick={() => {
-                    handleClickEdit(d.id, d.slug)
+                    handleClickEdit(d.id)
                   }}
                   aria-label="Ubah"
                   fontSize="20px"

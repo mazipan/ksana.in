@@ -1,4 +1,6 @@
-export default async (_: any, res: any) => {
+import { NextApiRequest, NextApiResponse } from 'next'
+
+export default async (_: NextApiRequest, res: NextApiResponse) => {
   res.statusCode = 200
   res.json({
     success: true,

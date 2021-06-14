@@ -1,6 +1,6 @@
-import { Stack } from '@chakra-ui/react'
+import { Stack, StackProps } from '@chakra-ui/react'
 
-export function Main(props: any) {
+export function Main(props: StackProps) {
   return (
     <Stack
       spacing="1.5rem"

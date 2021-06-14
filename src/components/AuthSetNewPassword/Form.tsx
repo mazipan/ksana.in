@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, ChangeEvent } from 'react'
 import { useRouter } from 'next/router'
 import {
   Box,
@@ -31,22 +31,22 @@ export function Form() {
 
   useEffect(() => {
     if (window && window.localStorage) {
-      const at: any = window.localStorage.getItem(LS_FP_TOKEN)
-      setAccessToken(at)
+      const at = window.localStorage.getItem(LS_FP_TOKEN)
+      setAccessToken(at || '')
     }
   }, [])
 
-  const handleChangeEmail = (e: any) => {
+  const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     setEmail(value)
   }
 
-  const handleChangePassword = (e: any) => {
+  const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     setPassword(value)
   }
 
-  const checkIsEmpty: any = () => {
+  const checkIsEmpty = () => {
     if (email === '' || password === '') {
       setErrorForm('Email dan password tidak boleh dikosongkan.')
       return true
@@ -56,7 +56,7 @@ export function Form() {
     return false
   }
 
-  const handleSetNewPassword: any = async () => {
+  const handleSetNewPassword = async () => {
     if (accessToken) {
       const { error } = await setNewPassword({ accessToken, password })
 
@@ -84,7 +84,7 @@ export function Form() {
     }
   }
 
-  const handleSubmit: any = async () => {
+  const handleSubmit = async () => {
     setLoading(true)
 
     const isEmpty = checkIsEmpty()
