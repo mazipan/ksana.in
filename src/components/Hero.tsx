@@ -46,7 +46,7 @@ export function Hero() {
               fontSize={{ base: 'lg', sm: 'xl', md: '2xl' }}
               lineHeight={'110%'}
             >
-              Perncatik tautanmu, jadikan agar mudah diingat, bagikan ke orang lain dengan percaya
+              Percantik tautanmu, jadikan agar mudah diingat, bagikan ke orang lain dengan percaya
               diri
             </Text>
 
