@@ -1,4 +1,5 @@
-import { Stack, Button, Image, Heading } from '@chakra-ui/react'
+import Image from 'next/image'
+import { Stack, Button, Heading } from '@chakra-ui/react'
 
 export interface IErrorNotLoginProps {
   title: string
@@ -19,7 +20,14 @@ export function ErrorNotLogin({ title, ctaLink, ctaText }: IErrorNotLoginProps) 
         >
           {title}
         </Heading>
-        <Image w="100%" src={'/images/illustrations/ill_protection_by_manypixels.svg'}></Image>
+
+        <Image
+          width={400}
+          height={400}
+          src={'/images/illustrations/ill_protection_by_manypixels.svg'}
+          alt="Security Shield"
+        />
+
         <Button
           px={6}
           size="lg"

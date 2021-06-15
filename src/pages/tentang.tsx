@@ -1,10 +1,11 @@
+import Image from 'next/image'
 import {
   VStack,
   Heading,
   Text,
-  Image,
   Box,
   Link,
+  Image as ImageChakra,
   Container,
   SimpleGrid,
   useColorModeValue,
@@ -72,7 +73,7 @@ function About() {
         >
           Tentang Kami
         </Heading>
-        <Image w="200px" src={'/images/orange/ksana.svg'}></Image>
+        <Image width={200} height={122} src={'/images/orange/ksana.svg'} alt="Ksana.in" />
       </VStack>
       <Container maxW={'4xl'} mx="auto" as="section" mt="8">
         <VStack spacing={4}>
@@ -133,7 +134,9 @@ function About() {
             >
               ksana.in/gh
             </Link>
-            <Image src={'https://img.shields.io/github/stars/mazipan/ksana.in?style=social'} />
+            <ImageChakra
+              src={'https://img.shields.io/github/stars/mazipan/ksana.in?style=social'}
+            />
           </HStack>
           <Text color={colorText}>
             Untuk mendukung saya dan {BRAND} terus berkreasi membuat kode terbuka lainnya, kalian

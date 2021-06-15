@@ -27,6 +27,7 @@ export interface IUrlFormProps {
 
 export function UrlForm({ user, onSuccess }: IUrlFormProps) {
   const { showAlert, hideAlert } = useAlertContext()
+  const bgInput = useColorModeValue('blackAlpha.100', 'whiteAlpha.100')
 
   const [url, setUrl] = useState<string>('')
   const [slug, setSlug] = useState<string>('')
@@ -119,7 +120,7 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
             size="lg"
             name="url"
             placeholder={'Tautan yang akan dipercantik'}
-            bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
+            bg={bgInput}
             border={0}
             value={url}
             onChange={handleChangeUrl}
@@ -145,7 +146,7 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
               size="lg"
               name="slug"
               placeholder={'Slug cantik dambaanmu'}
-              bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
+              bg={bgInput}
               border={0}
               value={slug}
               onChange={handleChangeSlug}

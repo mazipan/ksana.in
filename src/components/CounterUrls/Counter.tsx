@@ -1,6 +1,7 @@
 import { Flex, Text, Stack, useColorModeValue } from '@chakra-ui/react'
 
 export function Counter({ count = 0 }) {
+  const textColor = useColorModeValue('gray.500', 'gray.300')
   const arrString: string[] = count.toString().split('')
 
   return (
@@ -26,7 +27,7 @@ export function Counter({ count = 0 }) {
           </Flex>
         ))}
       </Stack>
-      <Text textAlign="center" color={useColorModeValue('gray.500', 'gray.300')}>
+      <Text textAlign="center" color={textColor}>
         Tautan telah dipercantik oleh ksana.in dan akan terus bertambah
       </Text>
     </Stack>

@@ -1,10 +1,10 @@
+import Image from 'next/image'
 import {
   VStack,
   Heading,
   Text,
   Link,
   Container,
-  Image,
   List,
   ListItem,
   ListIcon,
@@ -18,6 +18,8 @@ import { MetaHead } from 'components/MetaHead/MetaHead'
 import { Layout } from 'components/Layout/Layout'
 
 function Terms() {
+  const textColor = useColorModeValue('gray.500', 'gray.300')
+
   return (
     <Layout height="100vh">
       <MetaHead
@@ -34,12 +36,12 @@ function Terms() {
           >
             Ketentuan Layanan
           </Heading>
-          <Image w="200px" src={'/images/orange/ksana.svg'}></Image>
+          <Image width={200} height={122} src={'/images/orange/ksana.svg'} alt="Ksana.in" />
         </VStack>
 
         <Container maxW={'4xl'} mx="auto" as="section">
           <VStack spacing={8} textAlign="left">
-            <Text color={useColorModeValue('gray.500', 'gray.300')}>
+            <Text color={textColor}>
               Terima kasih telah menggunakan{' '}
               <Link href="/" color="orange.400">
                 {BRAND}
@@ -61,7 +63,7 @@ function Terms() {
               layanan berikut.
             </Text>
 
-            <Text color={useColorModeValue('gray.500', 'gray.300')}>
+            <Text color={textColor}>
               Jika Anda memasuki perjanjian ini atas nama perusahaan atau badan hukum lainnya, Anda
               menyatakan bahwa Anda memiliki kewenangan untuk mengikat entitas tersebut,
               afiliasinya, semua pengguna yang mengakses layanan kami melalui akun Anda. Dalam kasus
@@ -70,14 +72,14 @@ function Terms() {
               setuju dengan syarat dan ketentuan ini atas nama perusahaan atau badan hukum lainnya.
             </Text>
 
-            <Text color={useColorModeValue('gray.500', 'gray.300')}>
+            <Text color={textColor}>
               Jika Anda tidak setuju dengan persyaratan layanan ini,{' '}
               <Text as="span" fontWeight="bold">
                 jangan terima persyaratannya, dan jangan gunakan layanannya.
               </Text>
             </Text>
 
-            <Text color={useColorModeValue('gray.500', 'gray.300')}>
+            <Text color={textColor}>
               Kami berhak memperbarui dan mengubah persyaratan layanan dari waktu ke waktu tanpa
               pemberitahuan sebelumnya. Setiap fitur baru yang menambah atau meningkatkan layanan
               saat ini, termasuk rilis alat dan sumber daya baru, harus tunduk pada persyaratan
@@ -86,7 +88,7 @@ function Terms() {
               persyaratan layanan kapan saja di sini.
             </Text>
 
-            <Text color={useColorModeValue('gray.500', 'gray.300')}>
+            <Text color={textColor}>
               Pelanggaran salah satu persyaratan di bawah ini akan mengakibatkan penghentian akun
               Anda. Meskipun kami melarang perilaku dan konten tertentu di layanan, Anda memahami
               dan setuju bahwa kami tidak dapat bertanggung jawab atas konten yang diposting di
@@ -104,7 +106,7 @@ function Terms() {
             >
               Ketentuan Privasi
             </Heading>
-            <Text color={useColorModeValue('gray.500', 'gray.300')}>
+            <Text color={textColor}>
               Kami menghormati privasi Anda. Pernyataan lengkap tentang kebijakan privasi kami dapat
               ditemukan di{' '}
               <Link href="/kebijakan-privasi" color="orange.400">
@@ -125,23 +127,21 @@ function Terms() {
               Persyaratan Akun
             </Heading>
 
-            <Text color={useColorModeValue('gray.500', 'gray.300')}>
-              Untuk menggunakan layanan ini, Anda harus:
-            </Text>
+            <Text color={textColor}>Untuk menggunakan layanan ini, Anda harus:</Text>
 
             <List spacing={3}>
-              <ListItem color={useColorModeValue('gray.500', 'gray.300')}>
+              <ListItem color={textColor}>
                 <ListIcon as={HiCheck} color="green.500" />
                 Berusia 11 tahun atau lebih dan jadilah manusia. Akun yang didaftarkan oleh "bot"
                 atau metode otomatis lainnya tidak diizinkan. berikan nama lengkap resmi Anda,
                 alamat email yang valid, dan informasi lainnya yang diminta untuk menyelesaikan
                 proses pendaftaran.
               </ListItem>
-              <ListItem color={useColorModeValue('gray.500', 'gray.300')}>
+              <ListItem color={textColor}>
                 <ListIcon as={HiCheck} color="green.500" />
                 Anda bertanggung jawab untuk menjaga keamanan akun dan kata sandi Anda.
               </ListItem>
-              <ListItem color={useColorModeValue('gray.500', 'gray.300')}>
+              <ListItem color={textColor}>
                 <ListIcon as={HiCheck} color="green.500" />
                 Kami tidak dapat dan tidak akan bertanggung jawab atas kehilangan atau kerusakan
                 akibat kegagalan Anda untuk mematuhi kewajiban keamanan ini. Login Anda hanya dapat
@@ -149,13 +149,13 @@ function Terms() {
                 tidak diizinkan. Anda dapat membuat login terpisah untuk sebanyak mungkin orang
                 sesuai rencana Anda.
               </ListItem>
-              <ListItem color={useColorModeValue('gray.500', 'gray.300')}>
+              <ListItem color={textColor}>
                 <ListIcon as={HiCheck} color="green.500" />
                 Anda bertanggung jawab atas semua konten yang diposting dan aktivitas yang terjadi
                 di bawah akun Anda (bahkan ketika konten diposting oleh orang lain yang memiliki
                 akun di bawah akun Anda).
               </ListItem>
-              <ListItem color={useColorModeValue('gray.500', 'gray.300')}>
+              <ListItem color={textColor}>
                 <ListIcon as={HiCheck} color="green.500" />
                 Anda tidak boleh menggunakan layanan untuk tujuan ilegal atau tidak sah. Anda tidak
                 boleh, dalam penggunaan layanan, melanggar hukum apa pun di yurisdiksi Anda
@@ -175,14 +175,14 @@ function Terms() {
             </Heading>
 
             <List spacing={3}>
-              <ListItem color={useColorModeValue('gray.500', 'gray.300')}>
+              <ListItem color={textColor}>
                 <ListIcon as={HiCheck} color="green.500" />
                 Kami tidak mengklaim hak kekayaan intelektual atas materi yang Anda berikan ke
                 layanan. Profil dan materi yang Anda unggah tetap menjadi milik Anda. Namun, jika
                 Anda mengatur konten Anda untuk dilihat secara publik, Anda setuju untuk mengizinkan
                 orang lain untuk melihat konten Anda.
               </ListItem>
-              <ListItem color={useColorModeValue('gray.500', 'gray.300')}>
+              <ListItem color={textColor}>
                 <ListIcon as={HiCheck} color="green.500" />
                 Kami tidak menyaring konten, tetapi kami memiliki hak (tetapi bukan kewajiban) atas
                 kebijakan kami sendiri untuk menolak atau menghapus konten apa pun yang tersedia
@@ -190,10 +190,10 @@ function Terms() {
               </ListItem>
             </List>
 
-            <Text color={useColorModeValue('gray.500', 'gray.300')} mt="8">
+            <Text color={textColor} mt="8">
               Pertanyaan tentang ketentuan layanan kami dapat ditujukan ke mazipanneh@gmail.com
             </Text>
-            <Text color={useColorModeValue('gray.500', 'gray.300')} mt="8">
+            <Text color={textColor} mt="8">
               Terakhir diperbarui pada{' '}
               <Text color="orange.400" as="span">
                 29 Mei 2021

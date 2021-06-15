@@ -1,4 +1,5 @@
-import { Stack, Button, Image, Heading } from '@chakra-ui/react'
+import Image from 'next/image'
+import { Stack, Button, Heading } from '@chakra-ui/react'
 
 export interface IErrorDefaultProps {
   title: string
@@ -18,7 +19,12 @@ export function ErrorDefault({ title, ctaLink, ctaText }: IErrorDefaultProps) {
         >
           {title}
         </Heading>
-        <Image w="100%" src={'/images/illustrations/ill_error_by_manypixels.svg'}></Image>
+        <Image
+          width={400}
+          height={400}
+          src={'/images/illustrations/ill_error_by_manypixels.svg'}
+          alt="Error happened"
+        />
         <Button
           px={6}
           size="lg"

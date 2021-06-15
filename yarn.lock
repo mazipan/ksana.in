@@ -1972,14 +1972,6 @@
     "@supabase/realtime-js" "^1.0.9"
     "@supabase/storage-js" "^1.2.1"
 
-"@supabase/ui@^0.27.3":
-  version "0.27.3"
-  resolved "https://registry.yarnpkg.com/@supabase/ui/-/ui-0.27.3.tgz#4d64e22c72793211cb92cc771e16f4cb87b4b48f"
-  integrity sha512-SO7TO/TIK6qziHUTmd2YpTmUtpBfYrN4Gx9tL7pYDHhfmmVApmYXmxEVexHAvHkSsxaK8yPER9KbMpwXx3ZwPQ==
-  dependencies:
-    lodash "^4.17.20"
-    prop-types "^15.7.2"
-
 "@surma/rollup-plugin-off-main-thread@^1.4.1":
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/@surma/rollup-plugin-off-main-thread/-/rollup-plugin-off-main-thread-1.4.2.tgz#e6786b6af5799f82f7ab3a82e53f6182d2b91a58"

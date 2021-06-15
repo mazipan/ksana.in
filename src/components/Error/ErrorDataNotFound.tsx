@@ -1,5 +1,6 @@
+import Image from 'next/image'
 import { MouseEvent } from 'react'
-import { Box, Stack, Button, Image, Heading } from '@chakra-ui/react'
+import { Box, Stack, Button, Heading } from '@chakra-ui/react'
 
 export interface IErrorDataNotFoundProps {
   title: string
@@ -22,7 +23,13 @@ export function ErrorDataNotFound({ title, useCta, ctaAction, ctaText }: IErrorD
           >
             {title}
           </Heading>
-          <Image w="100%" src={'/images/illustrations/ill_data_by_manypixels.svg'}></Image>
+          <Image
+            width={400}
+            height={400}
+            src={'/images/illustrations/ill_data_by_manypixels.svg'}
+            alt="man with Data"
+          />
+
           {useCta && (
             <Button
               px={6}

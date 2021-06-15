@@ -1,4 +1,5 @@
-import { VStack, Heading, Text, Link, Container, Image, useColorModeValue } from '@chakra-ui/react'
+import Image from 'next/image'
+import { VStack, Heading, Text, Link, Container, useColorModeValue } from '@chakra-ui/react'
 
 import { BRAND } from 'constants/texts'
 
@@ -6,6 +7,8 @@ import { MetaHead } from 'components/MetaHead/MetaHead'
 import { Layout } from 'components/Layout/Layout'
 
 function Privacy() {
+  const textColor = useColorModeValue('gray.500', 'gray.300')
+
   return (
     <Layout height="100vh">
       <MetaHead
@@ -22,12 +25,12 @@ function Privacy() {
           >
             Kebijakan Privasi
           </Heading>
-          <Image w="200px" src={'/images/orange/ksana.svg'}></Image>
+          <Image width={200} height={122} src={'/images/orange/ksana.svg'} alt="Ksana.in" />
         </VStack>
 
         <Container maxW={'4xl'} mx="auto" as="section">
           <VStack spacing={8} textAlign="left">
-            <Text color={useColorModeValue('gray.500', 'gray.300')}>
+            <Text color={textColor}>
               Kami di{' '}
               <Link href="/" color="orange.400">
                 {BRAND}
@@ -48,7 +51,7 @@ function Privacy() {
             >
               Mengapa {BRAND} meminta informasi tentang Anda
             </Heading>
-            <Text color={useColorModeValue('gray.500', 'gray.300')}>
+            <Text color={textColor}>
               <Link href="/" color="orange.400">
                 {BRAND}
               </Link>{' '}
@@ -74,7 +77,7 @@ function Privacy() {
             >
               Bagaimana {BRAND} melindungi informasi Anda
             </Heading>
-            <Text color={useColorModeValue('gray.500', 'gray.300')}>
+            <Text color={textColor}>
               Informasi yang kami terima dari Anda dilindungi dari akses tidak sah setelah kami
               menerimanya. Kami membatasi akses ke informasi Anda hanya untuk karyawan yang memiliki
               alasan bisnis untuk mengaksesnya. Saat mengumpulkan informasi keuangan dari Anda, kami
@@ -93,7 +96,7 @@ function Privacy() {
             >
               Penyimpanan data
             </Heading>
-            <Text color={useColorModeValue('gray.500', 'gray.300')}>
+            <Text color={textColor}>
               Kami tidak menggunakan vendor pihak ketiga dan mitra hosting untuk menyediakan
               perangkat keras, perangkat lunak, jaringan, penyimpanan, dan teknologi terkait yang
               diperlukan untuk menjalankan{' '}
@@ -116,7 +119,7 @@ function Privacy() {
             >
               Pengunaan Cookies
             </Heading>
-            <Text color={useColorModeValue('gray.500', 'gray.300')}>
+            <Text color={textColor}>
               Kami menggunakan cookie. Cookies adalah bagian kecil dari informasi yang disimpan oleh
               browser Anda di hard drive komputer Anda. Kami menggunakan cookie sehingga situs web
               kami dapat mengingat Anda dan menyediakan konten yang paling mungkin Anda minta. Kami
@@ -135,7 +138,7 @@ function Privacy() {
             >
               Tautan ke situs web lain
             </Heading>
-            <Text color={useColorModeValue('gray.500', 'gray.300')}>
+            <Text color={textColor}>
               Situs web kami mungkin berisi tautan ke dan dari situs web lain. Beberapa tautan
               mungkin dalam bentuk iklan tampilan. Kami tidak dapat menjamin bahwa situs web selain
               situs web kami akan menghormati dan melindungi Informasi Pribadi Anda seperti yang
@@ -153,7 +156,7 @@ function Privacy() {
             >
               Persetujuan Anda
             </Heading>
-            <Text color={useColorModeValue('gray.500', 'gray.300')}>
+            <Text color={textColor}>
               Ketika Anda memberikan Informasi Pribadi kepada kami, Anda menyetujui pengumpulan dan
               penggunaan informasi ini oleh{' '}
               <Link href="/" color="orange.400">
@@ -171,7 +174,7 @@ function Privacy() {
             >
               Penyingkapan
             </Heading>
-            <Text color={useColorModeValue('gray.500', 'gray.300')}>
+            <Text color={textColor}>
               Kami tidak akan menjual atau mendistribusikan Informasi Pribadi Anda kecuali untuk
               menyediakan produk atau layanan yang Anda minta, jika kami memiliki izin, atau
               diperlukan untuk berbagi informasi untuk menyelidiki, mencegah, atau mengambil
@@ -190,7 +193,7 @@ function Privacy() {
             >
               Transfer Bisnis
             </Heading>
-            <Text color={useColorModeValue('gray.500', 'gray.300')}>
+            <Text color={textColor}>
               Jika{' '}
               <Link href="/" color="orange.400">
                 {BRAND}
@@ -216,7 +219,7 @@ function Privacy() {
             >
               Perubahan
             </Heading>
-            <Text color={useColorModeValue('gray.500', 'gray.300')}>
+            <Text color={textColor}>
               Kami mungkin memperbarui kebijakan ini secara berkala. Kami akan memberi tahu Anda
               tentang perubahan signifikan dalam cara kami memperlakukan informasi pribadi dengan
               mengirimkan pemberitahuan ke alamat email utama yang ditentukan di akun pemegang akun
@@ -226,10 +229,10 @@ function Privacy() {
               </Link>{' '}
               Anda atau dengan menempatkan pemberitahuan yang mencolok di situs kami.
             </Text>
-            <Text color={useColorModeValue('gray.500', 'gray.300')} mt="8">
+            <Text color={textColor} mt="8">
               Pertanyaan tentang kebijakan privasi kami dapat ditujukan ke mazipanneh@gmail.com
             </Text>
-            <Text color={useColorModeValue('gray.500', 'gray.300')} mt="8">
+            <Text color={textColor} mt="8">
               Terakhir diperbarui pada{' '}
               <Text color="orange.400" as="span">
                 29 Mei 2021

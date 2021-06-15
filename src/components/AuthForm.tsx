@@ -35,6 +35,7 @@ export function AuthForm({ state }: IAuthFormProps) {
   const router = useRouter()
   const { showAlert, hideAlert } = useAlertContext()
 
+  const bgBox = useColorModeValue('white', 'gray.700')
   const [internalState, setInternalState] = useState<any>(state)
   const [isLogin, setIsLogin] = useState<any>(state === 'login')
 
@@ -162,7 +163,7 @@ export function AuthForm({ state }: IAuthFormProps) {
           {isLogin ? 'Masuk ke akunmu' : 'Daftarkan akun baru'}
         </Heading>
       </Stack>
-      <Box rounded={'lg'} bg={useColorModeValue('white', 'gray.700')} boxShadow={'lg'} p={8}>
+      <Box rounded={'lg'} bg={bgBox} boxShadow={'lg'} p={8}>
         <Stack spacing={4}>
           <FormControl id="email" isRequired>
             <FormLabel>Email</FormLabel>

@@ -1,11 +1,12 @@
+import Image from 'next/image'
 import {
   Container,
   Heading,
   Text,
   Button,
-  Image,
   SimpleGrid,
   Box,
+  Flex,
   VStack,
   useColorModeValue
 } from '@chakra-ui/react'
@@ -14,6 +15,8 @@ import { HiPlay } from 'react-icons/hi'
 import { login } from 'constants/paths'
 
 export function Hero() {
+  const textColor = useColorModeValue('gray.500', 'gray.300')
+
   return (
     <Box w={'full'}>
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
@@ -39,7 +42,7 @@ export function Hero() {
             <Text
               as="span"
               textAlign="center"
-              color={useColorModeValue('gray.500', 'gray.300')}
+              color={textColor}
               fontSize={{ base: 'lg', sm: 'xl', md: '2xl' }}
               lineHeight={'110%'}
             >
@@ -65,9 +68,15 @@ export function Hero() {
           </VStack>
         </Container>
 
-        <Container as="section" mt={{ base: 0, md: 10 }}>
-          <Image w="100%" src={'/images/illustrations/ill_by_manypixels.svg'}></Image>
-        </Container>
+        <Flex as="section" mt={{ base: 0, md: 20 }} justifyContent="center">
+          <Image
+            width={400}
+            height={400}
+            src={'/images/illustrations/ill_by_manypixels.svg'}
+            alt="Women with Internet"
+            priority={true}
+          />
+        </Flex>
       </SimpleGrid>
     </Box>
   )

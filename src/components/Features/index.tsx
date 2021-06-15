@@ -1,44 +1,6 @@
-import { ReactElement } from 'react'
-import {
-  Container,
-  SimpleGrid,
-  Icon,
-  Text,
-  Heading,
-  Stack,
-  Flex,
-  useColorModeValue
-} from '@chakra-ui/react'
+import { Container, SimpleGrid, Icon, Heading, Stack } from '@chakra-ui/react'
 import { FcLink, FcBullish, FcTreeStructure } from 'react-icons/fc'
-
-export interface IFeatureProps {
-  title: string
-  text: string
-  icon: ReactElement
-}
-
-function Feature({ title, text, icon }: IFeatureProps) {
-  return (
-    <Stack spacing="2" align="center">
-      <Flex
-        mb={1}
-        w={16}
-        h={16}
-        bg={'gray.100'}
-        align={'center'}
-        justify={'center'}
-        color={'white'}
-        rounded={'full'}
-      >
-        {icon}
-      </Flex>
-      <Text fontWeight={600}>{title}</Text>
-      <Text color={useColorModeValue('gray.500', 'gray.300')} textAlign="center">
-        {text}
-      </Text>
-    </Stack>
-  )
-}
+import { Item as Feature } from './Item'
 
 export function Features() {
   return (

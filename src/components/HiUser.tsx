@@ -1,4 +1,5 @@
-import { Stack, Button, Image, Heading, Text } from '@chakra-ui/react'
+import Image from 'next/image'
+import { Stack, Button, Heading, Text } from '@chakra-ui/react'
 import { HiLogout, HiCollection } from 'react-icons/hi'
 
 import { handleLogout } from 'libs/supabase'
@@ -22,7 +23,12 @@ export function HiUser({ user }: IHiUserProps) {
             {user ? user.email.split('@')[0] : ''}
           </Text>
         </Heading>
-        <Image w="100%" src={'/images/illustrations/ill_teamwork_by_manypixels.svg'}></Image>
+        <Image
+          width={400}
+          height={400}
+          src={'/images/illustrations/ill_teamwork_by_manypixels.svg'}
+          alt="Teamwork"
+        />
       </Stack>
 
       <Stack spacing={2} direction={'row'}>

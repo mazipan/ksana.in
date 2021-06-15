@@ -22,7 +22,6 @@
     "@fontsource/poppins": "^4.4.5",
     "@splitbee/web": "^0.2.4",
     "@supabase/supabase-js": "^1.15.1",
-    "@supabase/ui": "^0.27.3",
     "copy-to-clipboard": "^3.3.1",
     "framer-motion": "^4.1.17",
     "next": "latest",

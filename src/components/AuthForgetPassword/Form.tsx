@@ -17,6 +17,7 @@ import { forgetPassword } from 'libs/supabase'
 export function Form() {
   const router = useRouter()
   const { showAlert, hideAlert } = useAlertContext()
+  const bgBox = useColorModeValue('white', 'gray.700')
 
   const [loading, setLoading] = useState<boolean>(false)
   const [errorForm, setErrorForm] = useState<string>('')
@@ -69,7 +70,7 @@ export function Form() {
       <Stack align={'center'}>
         <Heading fontSize={'4xl'}>Lupa password</Heading>
       </Stack>
-      <Box rounded={'lg'} bg={useColorModeValue('white', 'gray.700')} boxShadow={'lg'} p={8}>
+      <Box rounded={'lg'} bg={bgBox} boxShadow={'lg'} p={8}>
         <Stack spacing={4}>
           <FormControl id="email" isRequired>
             <FormLabel>Email</FormLabel>
