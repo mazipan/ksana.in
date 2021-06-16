@@ -2,7 +2,7 @@
 
 <img src="public/images/orange/ksana.png" height="80"/>
 
-Pemendek tautan yang mudah dan gratis
+✂️ Pemendek tautan yang mudah, gratis dan tanpa iklan
 
 ## Features
 
