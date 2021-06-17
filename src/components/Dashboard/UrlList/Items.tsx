@@ -83,7 +83,21 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
 
   const handleClickSave = async () => {
     if (updateSlug) {
-      await patchSlug({ id: updateId, slug: sanitizeSlug(updateSlug), userId: user?.id })
+      const { error } = await patchSlug({
+        id: updateId,
+        slug: sanitizeSlug(updateSlug),
+        userId: user?.id
+      })
+
+      if (error) {
+        showAlert({
+          title: 'Terjadi galat pada saat memperbarui data',
+          message: `Pesan: ${error.message}`,
+          onClose: () => {
+            hideAlert()
+          }
+        })
+      }
 
       mutate(apiUrlsGet(user?.id))
       setUpdateId('')
@@ -92,7 +106,19 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
   }
 
   const onConfimDelete = async (id: string) => {
-    await deleteUrl({ id: id, userId: user?.id })
+    const { error } = await deleteUrl({ id: id, userId: user?.id })
+
+    if (error) {
+      hideAlert()
+
+      showAlert({
+        title: 'Terjadi galat pada saat berusaha menghapus data',
+        message: `Pesan: ${error.message}`,
+        onClose: () => {
+          hideAlert()
+        }
+      })
+    }
 
     hideAlert()
     mutate(apiUrlsGet(user?.id))

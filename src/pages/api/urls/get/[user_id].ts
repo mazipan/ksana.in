@@ -2,6 +2,8 @@ import { NextApiRequest, NextApiResponse } from 'next'
 
 import { supabase } from 'libs/supabase'
 
+import { sendError5xx } from '../../_utils'
+
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const userId = req.query.user_id
@@ -14,24 +16,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     if (error) {
       res.statusCode = 400
-      res.json({
-        success: false,
-        data: [],
-        error: error
-      })
     } else {
       res.statusCode = 200
-      res.json({
-        success: true,
-        data: data
-      })
     }
-  } catch (error) {
-    res.statusCode = 500
+
     res.json({
-      success: false,
-      data: [],
+      success: !error,
+      data: data,
       error: error
     })
+  } catch (error) {
+    sendError5xx(res, error)
   }
 }

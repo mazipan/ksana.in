@@ -3,6 +3,8 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { supabase } from 'libs/supabase'
 import { sanitizeSlug } from 'libs/helpers'
 
+import { sendError401, sendError5xx, sendErrorSlugExist } from '../../_utils'
+
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const id = req.query.id
@@ -14,40 +16,41 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     if (dataUserId && dataUserId.user_id) {
       if (dataUserId.user_id === user.id) {
-        const { data, error } = await supabase
+        // check the slug availability
+        const { error: errorRealSlug } = await supabase
           .from('urls')
-          .update({ slug: sanitizeSlug(slug) })
-          .match({ id: id })
+          .select('slug')
+          .eq('slug', sanitizeSlug(slug))
+          .single()
 
-        if (error) {
-          res.statusCode = 400
+        // if it's exist, we will get the error
+        if (errorRealSlug) {
+          const { data, error } = await supabase
+            .from('urls')
+            .update({ slug: sanitizeSlug(slug) })
+            .match({ id: id })
+
+          if (error) {
+            res.statusCode = 400
+          } else {
+            res.statusCode = 200
+          }
+
           res.json({
-            success: false,
+            success: !error,
+            data: data,
             error: error
           })
         } else {
-          res.statusCode = 200
-          res.json({
-            success: true,
-            data: data
-          })
+          sendErrorSlugExist(res)
         }
+      } else {
+        sendError401(res)
       }
+    } else {
+      sendError401(res)
     }
-
-    res.statusCode = 401
-    res.json({
-      success: false,
-      error: {
-        message: 'You have no authorization to perform this action'
-      }
-    })
   } catch (error) {
-    res.statusCode = 500
-    res.json({
-      success: false,
-      data: null,
-      error: error
-    })
+    sendError5xx(res, error)
   }
 }

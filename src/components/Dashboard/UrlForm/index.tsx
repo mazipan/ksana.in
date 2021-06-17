@@ -98,7 +98,7 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
         })
       } else {
         showAlert({
-          title: 'Terjadi galat pada saat menyimpan',
+          title: 'Terjadi galat pada saat berusaha menyimpan data',
           message: `Pesan: ${errorInsert.message}`,
           onClose: () => {
             hideAlert()

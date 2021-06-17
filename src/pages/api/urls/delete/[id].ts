@@ -2,6 +2,8 @@ import { NextApiRequest, NextApiResponse } from 'next'
 
 import { supabase } from 'libs/supabase'
 
+import { sendError401, sendError5xx } from '../../_utils'
+
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const id = req.query.id
@@ -16,33 +18,22 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
         if (error) {
           res.statusCode = 400
-          res.json({
-            success: false,
-            error: error
-          })
         } else {
           res.statusCode = 200
-          res.json({
-            success: true,
-            data: data
-          })
         }
-      }
-    }
 
-    res.statusCode = 401
-    res.json({
-      success: false,
-      error: {
-        message: 'You have no authorization to perform this action'
+        res.json({
+          success: !error,
+          data: data,
+          error: error
+        })
+      } else {
+        sendError401(res)
       }
-    })
+    } else {
+      sendError401(res)
+    }
   } catch (error) {
-    res.statusCode = 500
-    res.json({
-      success: false,
-      data: null,
-      error: error
-    })
+    sendError5xx(res, error)
   }
 }
