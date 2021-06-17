@@ -10,7 +10,10 @@ Allow: /auth/sign-in
 Allow: /auth/sign-up
 Allow: /auth/forget-password
 Allow: /manifest.json
+Allow: /sitemap.xml
+Allow: /favicon.ico
 Allow: /service-worker.js
+Allow: /service-worker.js.map
 Allow: /google254ec9b78a3c3c38.html
 Allow: /_next/*
 Allow: /images/*

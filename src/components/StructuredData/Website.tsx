@@ -1,4 +1,4 @@
-import { HOME, META_ICON, META_THUMBNAIL } from 'constants/paths'
+import { HOME, META_ICON, META_IMAGE } from 'constants/paths'
 import { BRAND, BRAND_TAGLINE_LONG } from 'constants/texts'
 
 export function makeSchema() {
@@ -8,13 +8,13 @@ export function makeSchema() {
     url: `${HOME}`,
     description: BRAND_TAGLINE_LONG,
     image: META_ICON,
-    thumbnailUrl: META_THUMBNAIL,
+    thumbnailUrl: META_IMAGE,
     name: BRAND,
     sameAs: [
       'https://www.facebook.com/mazipanneh',
       'https://instagram.com/maz_ipan',
-      'https://twitter.com/Maz_Ipan',
-      'https://id.linkedin.com/in/mazipan',
+      'https://twitter.com/maz_ipan',
+      'https://www.linkedin.com/in/mazipan/',
       'https://www.slideshare.net/IrfanMaulana21',
       'https://github.com/mazipan'
     ]
