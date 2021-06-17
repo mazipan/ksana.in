@@ -5,6 +5,7 @@ import { defaultFetchOption } from './fetcher'
 import {
   apiSetSession,
   apiLogin,
+  apiRegister,
   apiLogout,
   apiUrlsCheck,
   apiUrlsSave,
@@ -50,13 +51,24 @@ export const login = async ({ email, password }: LoginArg): Promise<any> => {
 export const loginWithGoogle = async (): Promise<any> => {
   sendEvent('Login with Google')
   // Generate manual url
-  // https://<your-ref>.supabase.co/auth/v1/authorize?provider=google&redirect_to=http://localhost:3000/welcome
-  await supabase.auth.signIn(
-    {
-      provider: 'google'
-    },
-    { redirectTo: REDIRECT_CB }
-  )
+  window.location.href = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/authorize?provider=google&redirect_to=${REDIRECT_CB}`
+}
+
+export type RegisterArg = {
+  email: string
+  password: string
+}
+
+export const register = async ({ email, password }: RegisterArg): Promise<any> => {
+  sendEvent('Register')
+  const res = await fetch(apiRegister, {
+    ...defaultFetchOption,
+    method: 'POST',
+    credentials: 'same-origin',
+    body: JSON.stringify({ email, password })
+  })
+
+  return await res.json()
 }
 
 export const logout = async (): Promise<void> => {
