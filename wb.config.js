@@ -4,9 +4,10 @@ module.exports = {
   register: true,
   scope: '/',
   sw: 'service-worker.js',
+  buildExcludes: ['/robots.txt', '/sitemap.xml', '/google254ec9b78a3c3c38.html', /\/images\/.*$/],
   runtimeCaching: [
     {
-      urlPattern: /.(png|jpg|jpeg|webp|svg)$/,
+      urlPattern: /.(png|jpg|jpeg|webp|svg|woff|woff2)$/,
       handler: 'CacheFirst',
       options: {
         cacheName: 'assets',

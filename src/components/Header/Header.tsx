@@ -1,8 +1,55 @@
-import { Link, Flex } from '@chakra-ui/react'
+import { Link, Flex, Button } from '@chakra-ui/react'
+import { useEffect, useRef, useState } from 'react'
+import { HiDownload } from 'react-icons/hi'
 
 import { DarkModeSwitch } from '../DarkModeSwitch'
 
+interface UserChoice {
+  outcome: 'accepted' | 'dismissed'
+}
+
+interface BeforeInstallPromptEvent extends Event {
+  prompt: () => void
+  userChoice: Promise<UserChoice>
+}
+
 export function Header() {
+  const [isShowInstallBtn, setShowInstallBtn] = useState(false)
+  const deferredPrompt = useRef<any | null>(null)
+
+  const handler = (e: Event) => {
+    // Prevent the mini-infobar from appearing on mobile
+    e.preventDefault()
+    // Stash the event so it can be triggered later.
+    deferredPrompt.current = e as BeforeInstallPromptEvent
+    // Update UI notify the user they can install the PWA
+    setShowInstallBtn(true)
+  }
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && !isShowInstallBtn) {
+      window.addEventListener('beforeinstallprompt', handler)
+    }
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handler)
+    }
+  }, [isShowInstallBtn])
+
+  const handleClick = async () => {
+    // Hide the app provided install promotion
+    setShowInstallBtn(false)
+    // Show the install prompt
+    deferredPrompt.current.prompt()
+    // Wait for the user to respond to the prompt
+    const { outcome } = await deferredPrompt.current.userChoice
+    // Optionally, send analytics event with outcome of user choice
+    // eslint-disable-next-line no-console
+    console.info(`User response to the install prompt: ${outcome}`)
+    // We've used the prompt, and can't use it again, throw it away
+    deferredPrompt.current = null
+  }
+
   return (
     <Flex
       position="fixed"
@@ -41,6 +88,21 @@ export function Header() {
       </Link>
 
       <Flex justifyContent="space-between" alignItems="center">
+        {isShowInstallBtn ? (
+          <Button
+            px={6}
+            color={'white'}
+            bg="green.400"
+            _hover={{
+              bg: 'green.500'
+            }}
+            mr="2"
+            onClick={handleClick}
+            leftIcon={<HiDownload />}
+          >
+            Install
+          </Button>
+        ) : null}
         <DarkModeSwitch />
       </Flex>
     </Flex>
