@@ -59,7 +59,9 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
 
       navigator
         .share(shareObj)
+        // eslint-disable-next-line no-console
         .then(() => console.log('Successful share', shareObj))
+        // eslint-disable-next-line no-console
         .catch((error) => console.log('Error sharing', error, shareObj))
     }
   }
@@ -81,7 +83,7 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
 
   const handleClickSave = async () => {
     if (updateSlug) {
-      await patchSlug({ id: updateId, slug: sanitizeSlug(updateSlug) })
+      await patchSlug({ id: updateId, slug: sanitizeSlug(updateSlug), userId: user?.id })
 
       mutate(apiUrlsGet(user?.id))
       setUpdateId('')
@@ -90,7 +92,7 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
   }
 
   const onConfimDelete = async (id: string) => {
-    await deleteUrl({ id: id })
+    await deleteUrl({ id: id, userId: user?.id })
 
     hideAlert()
     mutate(apiUrlsGet(user?.id))

@@ -149,14 +149,16 @@ export const saveUrl = async ({ userId, url, slug }: SaveUrlArg): Promise<any> =
 
 export type DeleteUrlArg = {
   id: string
+  userId: string
 }
 
-export const deleteUrl = async ({ id }: DeleteUrlArg): Promise<any> => {
+export const deleteUrl = async ({ id, userId }: DeleteUrlArg): Promise<any> => {
   sendEvent('Remove url')
   const res = await fetch(apiUrlsDelete(id), {
     ...defaultFetchOption,
     method: 'DELETE',
-    credentials: 'same-origin'
+    credentials: 'same-origin',
+    body: JSON.stringify({ userId })
   })
   return await res.json()
 }
@@ -164,15 +166,16 @@ export const deleteUrl = async ({ id }: DeleteUrlArg): Promise<any> => {
 export type PatchSlugArg = {
   id: string
   slug: string
+  userId: string
 }
 
-export const patchSlug = async ({ id, slug }: PatchSlugArg): Promise<any> => {
+export const patchSlug = async ({ id, slug, userId }: PatchSlugArg): Promise<any> => {
   sendEvent('Update url')
   const res = await fetch(apiUrlsPatch(id), {
     ...defaultFetchOption,
     method: 'PATCH',
     credentials: 'same-origin',
-    body: JSON.stringify({ slug })
+    body: JSON.stringify({ slug, userId })
   })
   return await res.json()
 }

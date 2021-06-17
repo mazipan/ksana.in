@@ -22,7 +22,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       res.json({
         success: true,
         isLogin: !!user,
-        error: error || null
+        error: error || {
+          message: 'You have no authorization to perform this action'
+        }
       })
     }
   } catch (error) {
