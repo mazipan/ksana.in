@@ -2,6 +2,7 @@ import { Link, Flex, Button } from '@chakra-ui/react'
 import { useEffect, useRef, useState } from 'react'
 import { HiDownload } from 'react-icons/hi'
 
+import { sendEvent } from 'libs/splitbee'
 import { DarkModeSwitch } from '../DarkModeSwitch'
 
 interface UserChoice {
@@ -37,6 +38,7 @@ export function Header() {
   }, [isShowInstallBtn])
 
   const handleClick = async () => {
+    sendEvent('Install A2HS')
     // Hide the app provided install promotion
     setShowInstallBtn(false)
     // Show the install prompt
