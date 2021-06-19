@@ -42,7 +42,7 @@ const SharePopover = ({ url }: SharePopoverProps) => {
           onClick={() => {
             handleShare(url)
           }}
-          aria-label="Copy"
+          aria-label="Share url"
           fontSize="20px"
           variant="ghost"
           icon={<HiShare color="#ED8936" />}
