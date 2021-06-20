@@ -25,6 +25,7 @@ import { IUrlListProps } from 'components/Dashboard/UrlList'
 import { ErrorDataNotFound } from 'components/Error/ErrorDataNotFound'
 import { LoadingSkeleton } from './LoadingSkeleton'
 import { IUrl } from 'interfaces/IUrl'
+import SharePopover from './SharePopover'
 
 const copy: any = dynamic((): any => import('copy-to-clipboard'), { ssr: false })
 
@@ -32,6 +33,8 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
   const { showAlert, hideAlert } = useAlertContext()
   const [updateId, setUpdateId] = useState<string>('')
   const [updateSlug, setUpdateSlug] = useState<string>('')
+  const isSupportShare: boolean =
+    typeof window !== 'undefined' ? navigator.share !== undefined : false
 
   const bgBox = useColorModeValue('white', 'gray.800')
   const bgInput = useColorModeValue('blackAlpha.100', 'whiteAlpha.100')
@@ -209,15 +212,19 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
                   variant="ghost"
                   icon={<HiDuplicate color="#ED8936" />}
                 />
-                <IconButton
-                  onClick={() => {
-                    handleShare(`${HOME}${d.slug}`)
-                  }}
-                  aria-label="Copy"
-                  fontSize="20px"
-                  variant="ghost"
-                  icon={<HiShare color="#ED8936" />}
-                />
+                {isSupportShare ? (
+                  <IconButton
+                    onClick={() => {
+                      handleShare(`${HOME}${d.slug}`)
+                    }}
+                    aria-label="Copy"
+                    fontSize="20px"
+                    variant="ghost"
+                    icon={<HiShare color="#ED8936" />}
+                  />
+                ) : (
+                  <SharePopover url={`${HOME}${d.slug}`} />
+                )}
                 <IconButton
                   onClick={() => {
                     handleClickEdit(d.id)
