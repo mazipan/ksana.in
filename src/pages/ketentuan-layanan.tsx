@@ -21,7 +21,7 @@ function Terms() {
   const textColor = useColorModeValue('gray.500', 'gray.300')
 
   return (
-    <Layout height="100vh">
+    <Layout>
       <MetaHead
         title="Ketentuan Layanan | Ksana.in"
         description="Persyaratan layanan yang merupakan perjanjian mengikat dan mengatur penggunaan Anda atas Ksana.in"

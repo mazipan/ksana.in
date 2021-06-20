@@ -59,7 +59,7 @@ function About() {
   const bgBox = useColorModeValue('white', 'gray.800')
 
   return (
-    <Layout height="100vh">
+    <Layout>
       <MetaHead
         title="Tentang Kami | Ksana.in"
         description="Ksana.in adalah layanan pemendek tautan / URL yang gratis dan mudah untuk digunakan, buatan asli anak Indonesia"

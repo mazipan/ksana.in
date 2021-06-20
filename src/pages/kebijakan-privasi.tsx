@@ -10,7 +10,7 @@ function Privacy() {
   const textColor = useColorModeValue('gray.500', 'gray.300')
 
   return (
-    <Layout height="100vh">
+    <Layout>
       <MetaHead
         title="Kebijakan Keamanan Privasi | Ksana.in"
         description="Kebijakan keamanan privasi mengenai informasi pribadi Anda yang disimpan dan dibagikan di Ksana.in"
