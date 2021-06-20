@@ -79,9 +79,9 @@ function About() {
         <VStack spacing={4}>
           <Text color={colorText}>
             {BRAND} adalah layanan pemendek tautan / URL yang gratis dan mudah untuk digunakan.
-            Layanan ini dibuat seorang diri oleh Irfan Maulana dalam rangka mempelajari layanan baru
-            dari Supabase.io, membuat sesuatu untuk bisa mengimplementasikan langsung apa yang ingin
-            dipelajari.
+            Layanan ini diinisiasi oleh Irfan Maulana dalam rangka mempelajari layanan baru dari
+            Supabase.io, membuat sesuatu projek nyata untuk bisa mengimplementasikan langsung apa
+            yang memang sedang ingin dipelajari.
           </Text>
           <Text color={colorText}>
             {BRAND} tidak bisa dibuat tanpa beberapa layanan dan alat bantu berikut:
