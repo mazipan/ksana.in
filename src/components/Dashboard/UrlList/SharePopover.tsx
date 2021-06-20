@@ -35,6 +35,7 @@ const SharePopover = ({ url }: SharePopoverProps) => {
       onClose={() => {
         setShowShare(false)
       }}
+      isLazy
       placement="bottom"
     >
       <PopoverTrigger>
