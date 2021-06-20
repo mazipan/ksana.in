@@ -33,6 +33,8 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
   const { showAlert, hideAlert } = useAlertContext()
   const [updateId, setUpdateId] = useState<string>('')
   const [updateSlug, setUpdateSlug] = useState<string>('')
+  const isSupportShare: boolean =
+    typeof window !== 'undefined' ? navigator.share !== undefined : false
 
   const bgBox = useColorModeValue('white', 'gray.800')
   const bgInput = useColorModeValue('blackAlpha.100', 'whiteAlpha.100')
@@ -210,7 +212,7 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
                   variant="ghost"
                   icon={<HiDuplicate color="#ED8936" />}
                 />
-                {navigator.share !== undefined ? (
+                {isSupportShare ? (
                   <IconButton
                     onClick={() => {
                       handleShare(`${HOME}${d.slug}`)
