@@ -15,6 +15,7 @@ Allow: /favicon.ico
 Allow: /service-worker.js
 Allow: /service-worker.js.map
 Allow: /google254ec9b78a3c3c38.html
+Allow: /blog/*
 Allow: /_next/*
 Allow: /images/*
 Allow: /workbox-*

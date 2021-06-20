@@ -61,7 +61,7 @@ export async function getStaticPaths() {
 
   const paths = slugs.map((slug) => {
     // eslint-disable-next-line no-unused-vars
-    const [year, month, date, ...slugArr] = slug.replace(/\.md$/, '').split('-')
+    const [_, __, ___, ...slugArr] = slug.replace(/\.md$/, '').split('-')
 
     return {
       params: { slug: slugArr.join('-') }

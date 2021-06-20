@@ -70,7 +70,7 @@ export async function getAllPosts() {
   const posts = []
   for (const slug of slugs) {
     // eslint-disable-next-line no-unused-vars
-    const [year, month, date, ...slugArr] = slug.split('-')
+    const [_, __, ___, ...slugArr] = slug.split('-')
     const p = await getPostBySlug(slugArr.join('-'))
     posts.push(p)
   }
@@ -87,7 +87,7 @@ export async function getPagedPost(page = 1) {
   const posts = []
   for (const slug of postPaginate.slugs) {
     // eslint-disable-next-line no-unused-vars
-    const [year, month, date, ...slugArr] = slug.split('-')
+    const [_, __, ___, ...slugArr] = slug.split('-')
     const p = await getPostBySlug(slugArr.join('-'))
     posts.push(p)
   }

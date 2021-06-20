@@ -42,7 +42,6 @@ export async function parse(markdown: string) {
       tokens: any,
       idx: any,
       options: any,
-      env: any,
       self: { renderToken: (arg0: any, arg1: any, arg2: any) => any }
     ) {
       return self.renderToken(tokens, idx, options)
