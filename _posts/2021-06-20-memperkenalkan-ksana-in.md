@@ -6,4 +6,5 @@ author: mazipan
 tags: [ksana]
 ---
 
-Hello blog
+Ksana.in adalah layanan pemendek tautan / URL yang gratis dan mudah untuk digunakan.
+Layanan ini diinisiasi oleh Irfan Maulana dalam rangka mempelajari layanan baru dari Supabase.io, membuat sesuatu projek nyata untuk bisa mengimplementasikan langsung apa yang memang sedang ingin dipelajari.
