@@ -13,6 +13,7 @@ import {
   login,
   register,
   tentang,
+  blog,
   ketentuanLayanan,
   kebijakanPrivasi,
   github,
@@ -54,8 +55,9 @@ export function Footer() {
                 Lebih banyak
               </Text>
               <Link href={tentang}>Tentang kami</Link>
+              <Link href={blog}>Blog</Link>
               <Link href={login}>Masuk</Link>
-              <Link href={register}>Mendaftar</Link>
+              <Link href={register}>Daftar</Link>
             </Stack>
 
             <Stack align={'flex-start'}>
