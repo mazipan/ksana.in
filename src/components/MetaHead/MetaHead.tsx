@@ -3,7 +3,8 @@ import Head from 'next/head'
 import { HOME, META_IMAGE } from 'constants/paths'
 import { BRAND, BRAND_TAGLINE, BRAND_TAGLINE_LONG } from 'constants/texts'
 
-import { makeSchema } from '../StructuredData/Website'
+import { makeWebsiteSchema } from '../StructuredData/Website'
+import { makeLogoSchema } from '../StructuredData/Logo'
 
 export const INDEXED = 'index,follow'
 export const NO_INDEXED = 'noindex,nofollow'
@@ -87,7 +88,11 @@ export function MetaHead({
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(makeSchema()) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(makeWebsiteSchema()) }}
+      ></script>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(makeLogoSchema()) }}
       ></script>
     </Head>
   )

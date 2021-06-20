@@ -1,7 +1,7 @@
 import { HOME, META_ICON, META_IMAGE } from 'constants/paths'
 import { BRAND, BRAND_TAGLINE_LONG } from 'constants/texts'
 
-export function makeSchema() {
+export function makeWebsiteSchema() {
   return {
     '@context': 'http://schema.org',
     '@type': 'WebSite',
