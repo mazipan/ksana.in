@@ -10,6 +10,7 @@ export function DarkModeSwitch() {
       aria-label="Theme switcher"
       onClick={toggleColorMode}
       fontSize="20px"
+      borderRadius="md"
       bgColor="orange.300"
       _hover={{
         bg: 'orange.500'

@@ -19,7 +19,6 @@
     "@chakra-ui/react": "^1.6.4",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
-    "@fontsource/poppins": "^4.4.5",
     "@splitbee/web": "^0.2.4",
     "@supabase/supabase-js": "^1.15.1",
     "copy-to-clipboard": "^3.3.1",

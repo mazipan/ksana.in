@@ -26,6 +26,10 @@ export function MetaHead({
       <title>{title}</title>
       <meta name="description" content={description} key="description" />
 
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
+      <link rel="preconnect" href="https://hive.splitbee.io" />
+      <link rel="preconnect" href="https://cdn.splitbee.io" />
+
       <link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-icon-57x57.png" />
       <link rel="apple-touch-icon" sizes="60x60" href="/images/favicon/apple-icon-60x60.png" />
       <link rel="apple-touch-icon" sizes="72x72" href="/images/favicon/apple-icon-72x72.png" />
@@ -85,6 +89,11 @@ export function MetaHead({
       <meta key="tw-description" name="twitter:description" content={description} />
       <meta key="tw-url" name="twitter:url" content={url} />
       <meta name="twitter:creator" content={'@maz_ipan'} />
+
+      <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Work+Sans&display=swap"
+        rel="stylesheet"
+      />
 
       <script
         type="application/ld+json"
