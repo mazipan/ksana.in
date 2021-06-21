@@ -17,7 +17,17 @@
 | :---------------------------------: | :-------------------------------: |
 | ![Desktop](screenshots/desktop.png) | ![Mobile](screenshots/mobile.png) |
 
-## Create table on Supabase
+## Installation
+
+Copy file `.env.local.example` to `.env.local` and change value with your own supabase url and anonymous key.
+You can get it after register and create your own project on Supabase.io.
+
+```
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+```
+
+## Create table `urls` on Supabase
 
 Go to the SQL tab and execute this query on the editor.
 
