@@ -44,7 +44,10 @@ export async function parse(markdown: string) {
       options: any,
       self: { renderToken: (arg0: any, arg1: any, arg2: any) => any }
     ) {
-      return self.renderToken(tokens, idx, options)
+      if (self.renderToken) {
+        return self.renderToken(tokens, idx, options)
+      }
+      return null
     }
 
   md.renderer.rules.link_open = function (
