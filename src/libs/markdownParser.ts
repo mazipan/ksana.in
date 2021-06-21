@@ -47,7 +47,7 @@ export async function parse(markdown: string) {
       if (self.renderToken) {
         return self.renderToken(tokens, idx, options)
       }
-      return null
+      return ''
     }
 
   md.renderer.rules.link_open = function (
