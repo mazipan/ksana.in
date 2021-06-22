@@ -33,7 +33,7 @@ Fitur pemendek tautan/URL di Ksana.in bisa diakses di halaman dashboard di tauta
 
 Setelahnya login, kamu akan diarahkan pada halaman dashboard dimana kamu bisa mulai mengggunakan fitur pemendek tautan ini. Kamu cukup klik tombol tambah atau ditandai dengan ikon +.
 
-Lihat gambar berikut:
+Lihat gambar berikut untuk melihat simulasi:
 
 ![Cara memendekkan URL dengan Ksana.in](/images/blog/2021-06-20/shorten-url.png)
 
@@ -41,7 +41,9 @@ Lihat gambar berikut:
 
 Ada kalanya kamu perlu memperbarui slug yang telah kamu buat sebelumnya, entah karena bosan atau memang karena salah ketik saja di awal. Kamu cukup klin ikon pensil dan buat slug baru kamu. Semudah itu!
 
-![Langkah untuk update URL di Ksana.in](/images/blog/2021-06-20/shorten-url.png)
+Lihat gambar berikut untuk lebih memahami:
+
+![Langkah untuk update URL di Ksana.in](/images/blog/2021-06-20/update-url.png)
 
 ## Tunggu apa lagi?
 
