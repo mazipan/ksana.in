@@ -187,6 +187,7 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
                     aria-label="Simpan slug"
                     size="lg"
                     bg="orange.400"
+                    borderRadius="md"
                     icon={<HiSave color="#FFF" />}
                   />
                 </HStack>
@@ -210,6 +211,7 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
                   aria-label="Copy"
                   fontSize="20px"
                   variant="ghost"
+                  borderRadius="md"
                   icon={<HiDuplicate color="#ED8936" />}
                 />
                 {isSupportShare ? (
@@ -220,6 +222,7 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
                     aria-label="Copy"
                     fontSize="20px"
                     variant="ghost"
+                    borderRadius="md"
                     icon={<HiShare color="#ED8936" />}
                   />
                 ) : (
@@ -232,6 +235,7 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
                   aria-label="Ubah"
                   fontSize="20px"
                   variant="ghost"
+                  borderRadius="md"
                   icon={<HiPencil color="#ED8936" />}
                 />
                 <IconButton
@@ -241,6 +245,7 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
                   aria-label="Hapus"
                   fontSize="20px"
                   variant="ghost"
+                  borderRadius="md"
                   icon={<HiTrash color="#ED8936" />}
                 />
               </HStack>

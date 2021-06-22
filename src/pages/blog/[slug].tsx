@@ -1,10 +1,20 @@
-import { Container, VStack, Heading, Button } from '@chakra-ui/react'
+import Head from 'next/head'
+import {
+  Container,
+  VStack,
+  Heading,
+  Button,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink
+} from '@chakra-ui/react'
 import { GetStaticProps } from 'next'
 import { HiClock } from 'react-icons/hi'
 
 import { Layout } from 'components/Layout/Layout'
 import { MetaHead } from 'components/MetaHead/MetaHead'
 import { IPost } from 'interfaces/IPost'
+import { makeBreadcrumbBlogSchema } from 'components/StructuredData/Breadcrumb'
 
 import { getPostBySlug, getAllSlugs } from 'libs/blog'
 
@@ -16,14 +26,37 @@ export default function BlogDetail({ post }: IBlogDetail) {
   return (
     <Layout>
       <MetaHead title={`${post.title} | Ksana.in`} description={post.excerpt} />
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(makeBreadcrumbBlogSchema({ title: post.title, slug: post.slug }))
+          }}
+        ></script>
+      </Head>
 
       <VStack spacing={4} textAlign="center" as="section" mt="32">
-        <VStack spacing={4} textAlign="center">
+        <Breadcrumb>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          </BreadcrumbItem>
+
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/blog">Blog</BreadcrumbLink>
+          </BreadcrumbItem>
+
+          <BreadcrumbItem isCurrentPage>
+            <BreadcrumbLink href={`/blog/${post.slug}`}>{post.title}</BreadcrumbLink>
+          </BreadcrumbItem>
+        </Breadcrumb>
+
+        <VStack spacing={4} textAlign="center" className="blog-detail">
           <Heading
             as="h1"
             fontWeight={700}
             fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
             lineHeight={'110%'}
+            color="orange.400"
           >
             {post.title}
           </Heading>

@@ -34,6 +34,7 @@ export function DashboardWrapper({ user }: IDashboardWrapperProps) {
               onClick={handleShowAdd}
               aria-label="Tambah baru"
               fontSize="20px"
+              borderRadius="md"
               bg={'orange.400'}
               _hover={{
                 bg: 'orange.500'

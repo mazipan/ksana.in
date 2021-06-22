@@ -1,4 +1,4 @@
-import { Container, VStack, Heading } from '@chakra-ui/react'
+import { Container, SimpleGrid, VStack, Heading } from '@chakra-ui/react'
 
 import { Layout } from 'components/Layout/Layout'
 import { MetaHead } from 'components/MetaHead/MetaHead'
@@ -27,6 +27,7 @@ export default function BlogIndex({ data }: IBlogProps) {
             fontWeight={700}
             fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
             lineHeight={'110%'}
+            color="orange.400"
           >
             Blog Ksana.in
           </Heading>
@@ -34,9 +35,11 @@ export default function BlogIndex({ data }: IBlogProps) {
       </VStack>
 
       <Container maxW={'4xl'} mx="auto" as="section" mt="8">
-        {data &&
-          data.length > 0 &&
-          data.map((post: IPost) => <BlogCardPost key={post.slug} post={post} />)}
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8} py={4}>
+          {data &&
+            data.length > 0 &&
+            data.map((post: IPost) => <BlogCardPost key={post.slug} post={post} />)}
+        </SimpleGrid>
       </Container>
     </Layout>
   )

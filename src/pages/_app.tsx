@@ -4,6 +4,8 @@ import { ChakraProvider, ColorModeProvider } from '@chakra-ui/react'
 
 import { initSplitbee } from 'libs/splitbee'
 
+import './styles.css'
+
 import theme from '../theme'
 import { AlertProvider } from 'context/Alert'
 

@@ -1,12 +1,14 @@
-const MarkdownIt = require('markdown-it')
-const shiki = require('shiki')
+import MarkdownIt from 'markdown-it'
+import { RenderRule } from 'markdown-it/lib/renderer'
+import Token from 'markdown-it/lib/token'
+import * as shiki from 'shiki'
 
 export async function parse(markdown: string) {
   const highlighter = await shiki.getHighlighter({
     theme: 'material-theme-palenight'
   })
 
-  const md = new MarkdownIt({
+  const md: MarkdownIt = new MarkdownIt({
     html: true,
     linkify: true,
     typographer: true,
@@ -15,7 +17,7 @@ export async function parse(markdown: string) {
     }
   })
 
-  md.renderer.rules.image = function (tokens: string, idx: number) {
+  const imageRenderer: RenderRule = (tokens: Token[], idx: number) => {
     const token = tokens[idx]
     // @ts-ignore
     const srcIndex = token.attrIndex('src')
@@ -28,55 +30,15 @@ export async function parse(markdown: string) {
     const nextImage1x = `/_next/image?url=${encodeURIComponent(src)}&w=768&q=75`
 
     return `
-    <div class="flex justify-center items-center">
-      <figure class="relative">
-        <img loading="lazy" src="${nextImage2x}" alt="${alt}" srcSet="${nextImage1x} 1x, ${nextImage2x} 2x" class="rounded-lg mx-auto" />
-        <figcaption class="text-sm text-center mt-2">${alt}</figcaption>
+    <div class="markdown-img-wrapper">
+      <figure class="markdown-figure">
+        <img loading="lazy" src="${nextImage2x}" alt="${alt}" srcSet="${nextImage1x} 1x, ${nextImage2x} 2x" class="markdown-img" />
+        <figcaption class="markdown-figcaption">${alt}</figcaption>
       </figure>
     </div>`
   }
 
-  const defaultLinkRenderer =
-    md.renderer.rules.link_open ||
-    function (
-      tokens: any,
-      idx: any,
-      options: any,
-      self: { renderToken: (arg0: any, arg1: any, arg2: any) => any }
-    ) {
-      if (self.renderToken) {
-        return self.renderToken(tokens, idx, options)
-      }
-      return ''
-    }
-
-  md.renderer.rules.link_open = function (
-    tokens: { [x: string]: { attrs: { [x: string]: string[] } } },
-    idx: string | number,
-    options: any,
-    env: any,
-    self: any
-  ) {
-    const token = tokens[idx]
-    // @ts-ignore
-    const targetIndex = token.attrIndex('target')
-    // @ts-ignore
-    const hrefIndex = token.attrIndex('href')
-    const href = token.attrs[hrefIndex][1]
-
-    if (href.indexOf('https://') >= 0) {
-      if (targetIndex < 0) {
-        // @ts-ignore
-        tokens[idx].attrPush(['target', '_blank']) // add new attribute
-      } else {
-        tokens[idx].attrs[targetIndex][1] = '_blank' // replace value of existing attr
-      }
-    }
-
-    // pass token to default renderer.
-    return defaultLinkRenderer(tokens, idx, options, env, self)
-  }
-
+  md.renderer.rules.image = imageRenderer
   md.linkify.set({ fuzzyEmail: false })
 
   return md.render(markdown)

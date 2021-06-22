@@ -1,0 +1,118 @@
+.markdown h1,
+.markdown h2,
+.markdown h3 .markdown h4,
+.markdown h5,
+.markdown h6 {
+  font-family: var(--chakra-fonts-heading);
+  font-weight: 700;
+  margin: 0.5em 0;
+}
+.markdown h1 {
+  font-size: var(--chakra-fontSizes-3xl);
+  background: -webkit-linear-gradient(
+    45deg,
+    var(--chakra-colors-orange-400),
+    var(--chakra-colors-red-400) 80%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.markdown h2 {
+  font-size: var(--chakra-fontSizes-2xl);
+  background: -webkit-linear-gradient(
+    45deg,
+    var(--chakra-colors-green-400),
+    var(--chakra-colors-blue-400) 80%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.markdown h3 {
+  font-size: var(--chakra-fontSizes-2xl);
+  background: -webkit-linear-gradient(
+    45deg,
+    var(--chakra-colors-orange-400),
+    var(--chakra-colors-red-400) 80%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.markdown h4 {
+  font-size: var(--chakra-fontSizes-xl);
+  background: -webkit-linear-gradient(
+    45deg,
+    var(--chakra-colors-orange-400),
+    var(--chakra-colors-red-400) 80%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.markdown h5 {
+  font-size: var(--chakra-fontSizes-xl);
+  background: -webkit-linear-gradient(
+    var(--chakra-colors-orange-200),
+    var(--chakra-colors-orange-400)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.markdown h6 {
+  font-size: var(--chakra-fontSizes-lg);
+  background: -webkit-linear-gradient(
+    45deg,
+    var(--chakra-colors-orange-400),
+    var(--chakra-colors-red-400) 80%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.markdown a {
+  text-decoration: underline;
+  color: var(--chakra-colors-orange-400);
+}
+
+/* DESKTOP */
+@media screen and (min-width: 52em) {
+  .markdown h1 {
+    font-size: var(--chakra-fontSizes-6xl);
+  }
+  .markdown h2 {
+    font-size: var(--chakra-fontSizes-4xl);
+  }
+  .markdown h3 {
+    font-size: var(--chakra-fontSizes-3xl);
+  }
+  .markdown h4 {
+    font-size: var(--chakra-fontSizes-2xl);
+  }
+  .markdown h5 {
+    font-size: var(--chakra-fontSizes-xl);
+  }
+  .markdown h6 {
+    font-size: var(--chakra-fontSizes-lg);
+  }
+}
+
+.markdown-img-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.markdown-figure {
+  position: relative;
+}
+
+.markdown-img {
+  margin: 0 auto;
+  border-radius: 1em;
+}
+
+.markdown-figcaption {
+  text-align: center;
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-top: 1em;
+  color: var(--chakra-colors-gray-300);
+}
