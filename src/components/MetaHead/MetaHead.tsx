@@ -70,7 +70,9 @@ export function MetaHead({
 
       <meta name="theme-color" content="#ED8936" />
       <link rel="manifest" href="/manifest.json" />
-
+      
+      <meta name="yandex-verification" content="f7aa4dd770d17d3e" />
+      
       <meta property="og:site_name" content={BRAND} />
       <meta key="og-image" property="og:image" content={image} />
       <meta property="og:image:width" content="1280" />
