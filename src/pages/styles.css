@@ -94,6 +94,11 @@
   }
 }
 
+.markdown p {
+  display: block;
+  margin: 0.5em 0;
+}
+
 .markdown-img-wrapper {
   display: flex;
   justify-content: center;
