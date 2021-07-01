@@ -5,7 +5,7 @@ import * as shiki from 'shiki'
 
 export async function parse(markdown: string) {
   const highlighter = await shiki.getHighlighter({
-    theme: 'material-theme-palenight'
+    theme: 'material-palenight'
   })
 
   const md: MarkdownIt = new MarkdownIt({
