@@ -14,6 +14,8 @@ import { HiShare } from 'react-icons/hi'
 import { FaFacebook, FaTwitter, FaWhatsapp } from 'react-icons/fa'
 import { useState } from 'react'
 
+import { getMeta } from 'libs/oge'
+
 type SharePopoverProps = {
   url: string
 }
@@ -26,8 +28,7 @@ const SharePopover = ({ url }: SharePopoverProps) => {
 
   const handleShare = async (url: string) => {
     setLoadingShare(true)
-    const res = await fetch(`https://oge.now.sh/api?url=${decodeURIComponent(url)}`)
-    const d = await res.json()
+    const d = await getMeta(url)
     setText(encodeURIComponent(d.description))
     setShowShare(true)
     setLoadingShare(false)

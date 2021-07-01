@@ -1,6 +1,5 @@
 import { IUser } from 'interfaces/IUser'
 import { Items } from './Items'
-
 export interface IUrlListProps {
   user: IUser
   isFormVisible: boolean
