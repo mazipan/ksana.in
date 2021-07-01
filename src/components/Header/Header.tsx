@@ -15,7 +15,8 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 export function Header() {
-  const [isShowInstallBtn, setShowInstallBtn] = useState(false)
+  const [isLoading, setLoading] = useState<boolean>(false)
+  const [isShowInstallBtn, setShowInstallBtn] = useState<boolean>(false)
   const deferredPrompt = useRef<any | null>(null)
 
   const handler = (e: Event) => {
@@ -38,9 +39,8 @@ export function Header() {
   }, [isShowInstallBtn])
 
   const handleClick = async () => {
+    setLoading(true)
     sendEvent('Install A2HS')
-    // Hide the app provided install promotion
-    setShowInstallBtn(false)
     // Show the install prompt
     deferredPrompt.current.prompt()
     // Wait for the user to respond to the prompt
@@ -50,6 +50,12 @@ export function Header() {
     console.info(`User response to the install prompt: ${outcome}`)
     // We've used the prompt, and can't use it again, throw it away
     deferredPrompt.current = null
+    // manual delay the process
+    setTimeout(() => {
+      setLoading(false)
+      // Hide the app provided install promotion
+      setShowInstallBtn(false)
+    }, 1000)
   }
 
   return (
@@ -100,6 +106,7 @@ export function Header() {
             }}
             mr="2"
             onClick={handleClick}
+            isLoading={isLoading}
             leftIcon={<HiDownload />}
           >
             Install

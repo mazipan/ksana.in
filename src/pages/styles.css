@@ -1,12 +1,14 @@
 .markdown h1,
 .markdown h2,
-.markdown h3 .markdown h4,
+.markdown h3,
+.markdown h4,
 .markdown h5,
 .markdown h6 {
   font-family: var(--chakra-fonts-heading);
   font-weight: 700;
   margin: 0.5em 0;
 }
+
 .markdown h1 {
   font-size: var(--chakra-fontSizes-3xl);
   background: -webkit-linear-gradient(
@@ -17,6 +19,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .markdown h2 {
   font-size: var(--chakra-fontSizes-2xl);
   background: -webkit-linear-gradient(
@@ -27,6 +30,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .markdown h3 {
   font-size: var(--chakra-fontSizes-2xl);
   background: -webkit-linear-gradient(
@@ -37,6 +41,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .markdown h4 {
   font-size: var(--chakra-fontSizes-xl);
   background: -webkit-linear-gradient(
@@ -47,6 +52,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .markdown h5 {
   font-size: var(--chakra-fontSizes-xl);
   background: -webkit-linear-gradient(
@@ -56,6 +62,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .markdown h6 {
   font-size: var(--chakra-fontSizes-lg);
   background: -webkit-linear-gradient(
@@ -65,11 +72,6 @@
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-.markdown a {
-  text-decoration: underline;
-  color: var(--chakra-colors-orange-400);
 }
 
 /* DESKTOP */
@@ -94,9 +96,44 @@
   }
 }
 
-.markdown p, .markdown hr {
+.markdown a {
+  text-decoration: underline;
+  color: var(--chakra-colors-orange-400);
+}
+
+.markdown a:hover {
+  color: var(--chakra-colors-orange-600);
+}
+
+.markdown p {
   display: block;
   margin: 0.5em 0;
+}
+
+.markdown hr {
+  display: block;
+  margin: 1em 0;
+}
+
+.markdown li {
+  padding-bottom: 0.5em;
+}
+
+.markdown p > code {
+  border-radius: var(--chakra-radii-md);
+  color: var(--chakra-colors-orange-400);
+  word-break: break-all;
+  padding: 2px 0.5em;
+  font-size: 90%;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+}
+
+.chakra-ui-dark .markdown p > code {
+  background: var(--chakra-colors-whiteAlpha-200);
+}
+
+.chakra-ui-light .markdown p > code {
+  background: var(--chakra-colors-blackAlpha-200);
 }
 
 .markdown-img-wrapper {

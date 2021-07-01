@@ -24,11 +24,11 @@ Misalnya alamat dari salah satu Google Form berikut: `https://docs.google.com/fo
 
 Panjang sekali bukan? Bagaimana cara kita membagikannya ke orang lain? Google Form, dalam kasus ini sebenarnya sudah menyediakan fitur untuk memperpendek tautan yang dihasilkan, sayangnya bentuknya pun masih sangat acak karena diatur secara otomatis oleh sistem mereka.
 
-Menjadi masalah, ketika kita coba menuliskan alamat tautan seperti ini di tempat dimana orang lain tidak memiliki kemampuan melakukan copy-paste. 
+Menjadi masalah, ketika kita coba menuliskan alamat tautan seperti ini di tempat dimana orang lain tidak memiliki kemampuan melakukan copy-paste.
 Misalnya pada saat mendengarkan seseorang presentasi dan hanya punya kemampuan melihat slide dengan terdapat sebuah tautan disana.
 Dengan kasus ini, maka jelas kebutuhan akan pemendek tautan menjadi mendesak menurut saya.
 
-## Tautan WhatsApp
+### Tautan WhatsApp
 
 WhatsApp memiliki tautan yang akan mengarahkan langsung untuk kita bisa mengirim pesan ke seseorang tanpa perlu menyimpan nomornya terlebih dahulu.
 
@@ -50,9 +50,8 @@ Dari beberapa kasus di atas kita bisa melihat beberapa kebutuhan penggunaan peme
 
 ### Menghemat penggunaan karakter di sosial media
 
-----
+---
 
 Demikian, beberapa manfaat umum yang bisa kalian dapatkan dengan menggunakan pemendek tautan.
 
 Semoga bermanfaat!
-

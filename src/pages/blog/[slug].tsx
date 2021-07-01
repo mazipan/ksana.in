@@ -50,20 +50,22 @@ export default function BlogDetail({ post }: IBlogDetail) {
           </BreadcrumbItem>
         </Breadcrumb>
 
-        <VStack spacing={4} textAlign="center" className="blog-detail">
-          <Heading
-            as="h1"
-            fontWeight={700}
-            fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
-            lineHeight={'110%'}
-            color="orange.400"
-          >
-            {post.title}
-          </Heading>
-          <Button leftIcon={<HiClock />} colorScheme="gray" variant="solid" size="xs">
-            {post.date}
-          </Button>
-        </VStack>
+        <Container maxW={'4xl'} mx="auto" as="section" mt="8">
+          <VStack spacing={4} textAlign="center" className="blog-detail">
+            <Heading
+              as="h1"
+              fontWeight={700}
+              fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
+              lineHeight={'110%'}
+              color="orange.400"
+            >
+              {post.title}
+            </Heading>
+            <Button leftIcon={<HiClock />} colorScheme="gray" variant="solid" size="xs">
+              {post.date}
+            </Button>
+          </VStack>
+        </Container>
       </VStack>
 
       <Container maxW={'4xl'} mx="auto" as="section" mt="8">

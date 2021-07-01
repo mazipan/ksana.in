@@ -11,7 +11,7 @@ import {
   useColorModeValue,
   HStack
 } from '@chakra-ui/react'
-import { HiShare, HiDuplicate, HiPencil, HiTrash, HiSave } from 'react-icons/hi'
+import { HiShare, HiDuplicate, HiPencil, HiTrash, HiSave, HiCheck } from 'react-icons/hi'
 
 import { deleteUrl, patchSlug } from 'libs/supabase'
 import { sanitizeSlug } from 'libs/helpers'
@@ -33,6 +33,9 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
   const { showAlert, hideAlert } = useAlertContext()
   const [updateId, setUpdateId] = useState<string>('')
   const [updateSlug, setUpdateSlug] = useState<string>('')
+  const [isSuccessCopy, setSuccessCopy] = useState<boolean>(false)
+  const [isLoadingShare, setLoadingShare] = useState<boolean>(false)
+  const [isLoadingSave, setLoadingSave] = useState<boolean>(false)
   const isSupportShare: boolean =
     typeof window !== 'undefined' ? navigator.share !== undefined : false
 
@@ -41,16 +44,25 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
 
   const { data, isLoading } = useUrls(user?.id || '')
 
+  const showSuccessCopy = () => {
+    setSuccessCopy(true)
+    setTimeout(() => {
+      setSuccessCopy(false)
+    }, 2000)
+  }
+
   const handleCopy = async (text: string) => {
     if (navigator.clipboard) {
       await navigator.clipboard.writeText(text)
     } else {
       copy(text)
     }
+    showSuccessCopy()
   }
 
   const handleShare = async (url: string) => {
     if (navigator.share) {
+      setLoadingShare(true)
       const res = await fetch(`https://oge.now.sh/api?url=${decodeURIComponent(url)}`)
       const d = await res.json()
 
@@ -63,9 +75,12 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
       navigator
         .share(shareObj)
         // eslint-disable-next-line no-console
-        .then(() => console.log('Successful share', shareObj))
-        // eslint-disable-next-line no-console
-        .catch((error) => console.log('Error sharing', error, shareObj))
+        .then(() => setLoadingShare(false))
+        .catch((error) => {
+          setLoadingShare(false)
+          // eslint-disable-next-line no-console
+          console.error('Error sharing', error, shareObj)
+        })
     }
   }
 
@@ -86,6 +101,7 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
 
   const handleClickSave = async () => {
     if (updateSlug) {
+      setLoadingSave(true)
       const { error } = await patchSlug({
         id: updateId,
         slug: sanitizeSlug(updateSlug),
@@ -98,13 +114,15 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
           message: `Pesan: ${error.message}`,
           onClose: () => {
             hideAlert()
+            setLoadingSave(false)
           }
         })
+      } else {
+        mutate(apiUrlsGet(user?.id))
+        setUpdateId('')
+        setUpdateSlug('')
+        setLoadingSave(false)
       }
-
-      mutate(apiUrlsGet(user?.id))
-      setUpdateId('')
-      setUpdateSlug('')
     }
   }
 
@@ -188,6 +206,7 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
                     size="lg"
                     bg="orange.400"
                     borderRadius="md"
+                    isLoading={isLoadingSave}
                     icon={<HiSave color="#FFF" />}
                   />
                 </HStack>
@@ -212,7 +231,9 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
                   fontSize="20px"
                   variant="ghost"
                   borderRadius="md"
-                  icon={<HiDuplicate color="#ED8936" />}
+                  icon={
+                    isSuccessCopy ? <HiCheck color="#48BB78" /> : <HiDuplicate color="#ED8936" />
+                  }
                 />
                 {isSupportShare ? (
                   <IconButton
@@ -223,6 +244,7 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
                     fontSize="20px"
                     variant="ghost"
                     borderRadius="md"
+                    isLoading={isLoadingShare}
                     icon={<HiShare color="#ED8936" />}
                   />
                 ) : (
