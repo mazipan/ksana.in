@@ -68,7 +68,9 @@ export function Form() {
   return (
     <Stack spacing={8} mx={'auto'} mt="20" maxW={'lg'} py={12} px={6}>
       <Stack align={'center'}>
-        <Heading fontSize={'4xl'}>Lupa password</Heading>
+        <Heading fontSize={'4xl'} color="orange.400">
+          Lupa password
+        </Heading>
       </Stack>
       <Box rounded={'lg'} bg={bgBox} boxShadow={'lg'} p={8}>
         <Stack spacing={4}>

@@ -156,6 +156,7 @@ export function AuthForm({ state }: IAuthFormProps) {
           fontWeight={700}
           fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
           lineHeight={'110%'}
+          color="orange.400"
         >
           {isLogin ? 'Masuk ke akunmu' : 'Daftarkan akun baru'}
         </Heading>

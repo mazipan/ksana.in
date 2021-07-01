@@ -99,7 +99,9 @@ export function Form() {
   return (
     <Stack spacing={8} mx={'auto'} mt="20" maxW={'lg'} py={12} px={6}>
       <Stack align={'center'}>
-        <Heading fontSize={'4xl'}>Setel ulang password</Heading>
+        <Heading fontSize={'4xl'} color="orange.400">
+          Setel ulang password
+        </Heading>
       </Stack>
 
       {accessToken ? (

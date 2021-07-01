@@ -13,9 +13,9 @@
 
 ## Screenshots
 
-|               Desktop               |              Mobile               |
-| :---------------------------------: | :-------------------------------: |
-| ![Desktop](screenshots/desktop.png) | ![Mobile](screenshots/mobile.png) |
+|                 Home                 |                    Login                    | Dashboard                                       |
+| :----------------------------------: | :-----------------------------------------: | ----------------------------------------------- |
+| ![Home](screenshots/mobile-home.png) | ![Login Page](screenshots/mobile-login.png) | ![Login Page](screenshots/mobile-dashboard.png) |
 
 ## Installation
 

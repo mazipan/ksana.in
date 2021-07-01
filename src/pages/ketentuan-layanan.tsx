@@ -33,6 +33,7 @@ function Terms() {
             fontWeight={700}
             fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
             lineHeight={'110%'}
+            color="orange.400"
           >
             Ketentuan Layanan
           </Heading>
