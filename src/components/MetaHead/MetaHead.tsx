@@ -27,7 +27,6 @@ export function MetaHead({
       <meta name="description" content={description} key="description" />
 
       <link rel="preconnect" href="https://fonts.gstatic.com" />
-      <link rel="preconnect" href="https://hive.splitbee.io" />
       <link rel="preconnect" href="https://cdn.splitbee.io" />
 
       <link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-icon-57x57.png" />
