@@ -73,6 +73,7 @@ export function Header() {
     >
       <Link
         href={'/'}
+        name="Beranda"
         _hover={{
           textDecoration: 'none'
         }}
