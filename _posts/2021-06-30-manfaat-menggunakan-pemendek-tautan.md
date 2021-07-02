@@ -44,11 +44,36 @@ Dari beberapa kasus di atas kita bisa melihat beberapa kebutuhan penggunaan peme
 
 ### Tautan menjadi mudah diingat
 
+Dengan contoh kasus seperti yang telah disebutkan di atas, terlihat bahwa kita bisa melakukan kustomisasi pada url kita, apapun itu, yang sebelumnya bisa jadi terlalu panjang, terlalu susah untuk diingat, dengan memanfaatkan layanan pemendek tautan kita bisa membuatnya menjadi lebih memorable dan lebih mudah dibaca dan diingat.
+Kebayang kan kalau kita cukup mengingat tautan misalnya: `/slide-72`, dibanding `https://speakerdeck.com/mazipan/bongkar-dapur-webnya-number-phpid-ol`.
+Lebih mudah juga kalau kita mau menyematkan tautan yang sudah dipendekkan di dalam sebuah slide presentasi ataupun di sebuah artikel blog atau bahkan pesan singkat.
+
+Jadi, yuk manfaatkan layanan pemendek tautan untuk membantu membuat tautan menjadi lebih mudah diingat.
+
 ### Melacak statistik akses pengguna
+
+Dengan tautan apa adanya, kita mungkin kesusahan bahkan hampir tidak mengetahui jumlah orang yang mengklik dan mengunjungi tautan yang kita buat.
+Namun dengan layanan pemendek tautan, hampir semua penyedia layanan yang tersedia saat ini sudah mendukung fitur analitik sederhana untuk mengetahui jumlah kunjungan pada suatu tautan.
+Artinya, kita bisa mengetahui dengan lebih mudah, berapa jumlah orang yang datang dengan tautan yang kita buat sebelumnya.
+
+Belum pernah mencoba fitur seperti ini? Yuk, cobain deh.
 
 ### Mengingkatkan brand/profesionalitas
 
+Ada banyak tautan yang kalau kita bagikan itu susah diingat karena tidak ada relevansinya dengan brand kita.
+Contoh kasus saja, saya punya berbagai sosial media mulai dari Twitter, Facebook, LinkedIn, GitHub, dan lainnya.
+Kesemuanya ini punya username yang berbeda-beda, ini kan dikarenakan ketersediaan username di masing-masing platform bisa jadi berbeda-beda, saya tidak bisa menyalahkan atau komplain terhadap platform mereka.
+
+Dengan menggunakan layanan pemendek tautan, saya bisa membuat tautan baru dengan satu brand sehingga lebih mudah untuk disangkutkan antar satu dengan yang lain.
+
+Ini hanya contoh saja, apakah kalian mungkin punya kasus lain dimana layanan pemendek tautan membantu kalian dalam meningkatkan brand awareness?
+
 ### Menghemat penggunaan karakter di sosial media
+
+Beberapa sosial media sangat terbatas dalam hal jumlah karakter yang diperbolehkan, seperti Twitter yang memiliki keterbatasan ini.
+Tentu kalau sudah berbicara soal sosial media, membagikan tautan menjadi barang yang umum ya.
+Sayangnya beberapa sosial media memang tidak ramah untuk membagikan tautan dalam bentuk acak dengan karakter bejibun.
+Jadi solusi penggunaan layanan pemendek tautan disini akan sangat membantu bagi pesan-pesan kalian di sosial media.
 
 ---
 
