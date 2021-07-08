@@ -1,6 +1,6 @@
 # [ksana.in](https://ksana.in)
 
-<img src="public/images/orange/ksana.png" height="80"/>
+<img alt="ksana.in" src="public/images/orange/ksana.png" height="80"/>
 
 ✂️ Layanan pemendek tautan yang mudah, gratis & tanpa iklan
 
@@ -13,9 +13,17 @@
 
 ## Screenshots
 
-|                 Home                 |                    Login                    | Dashboard                                       |
-| :----------------------------------: | :-----------------------------------------: | ----------------------------------------------- |
-| ![Home](screenshots/mobile-home.png) | ![Login Page](screenshots/mobile-login.png) | ![Login Page](screenshots/mobile-dashboard.png) |
+### Homepage
+
+<img alt="Homepage" src="screenshots/mobile-home.png" height="300"/> 
+
+### Login Page
+
+<img alt="Login" src="screenshots/mobile-login.png" height="300"/> 
+
+### Dashboard Page
+
+<img alt="Dashboard" src="screenshots/mobile-dashboard.png" height="300"/>
 
 ## Installation
 
