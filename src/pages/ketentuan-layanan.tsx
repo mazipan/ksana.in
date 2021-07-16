@@ -208,3 +208,5 @@ function Terms() {
 }
 
 export default Terms
+
+export { getServerSideProps } from '../Chakra'

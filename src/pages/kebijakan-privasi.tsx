@@ -247,3 +247,5 @@ function Privacy() {
 }
 
 export default Privacy
+
+export { getServerSideProps } from '../Chakra'

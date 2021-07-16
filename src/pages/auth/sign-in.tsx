@@ -19,3 +19,5 @@ function Login() {
 }
 
 export default Login
+
+export { getServerSideProps } from '../../Chakra'

@@ -26,3 +26,5 @@ function Dashboard() {
 }
 
 export default Dashboard
+
+export { getServerSideProps } from '../Chakra'

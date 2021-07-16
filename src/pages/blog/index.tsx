@@ -52,3 +52,5 @@ export async function getStaticProps() {
     props: { data, pages }
   }
 }
+
+// export { getServerSideProps } from "../../Chakra"

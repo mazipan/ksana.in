@@ -7,7 +7,7 @@ module.exports = withPWA({
     webpack5: true
   },
   images: {
-    deviceSizes: [420, 768, 1024, 1200],
+    deviceSizes: [420, 1024],
     iconSizes: [],
     domains: [],
     path: '/_next/image',

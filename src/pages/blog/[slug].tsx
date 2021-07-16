@@ -105,3 +105,5 @@ export async function getStaticPaths() {
 
   return { paths, fallback: false }
 }
+
+// export { getServerSideProps } from "../../Chakra"

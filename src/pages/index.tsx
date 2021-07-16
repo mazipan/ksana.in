@@ -17,3 +17,5 @@ function Homepage() {
 }
 
 export default Homepage
+
+export { getServerSideProps } from '../Chakra'

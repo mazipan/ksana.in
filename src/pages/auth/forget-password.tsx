@@ -19,3 +19,5 @@ function ForgetPasswordPage() {
 }
 
 export default ForgetPasswordPage
+
+export { getServerSideProps } from '../../Chakra'

@@ -172,3 +172,5 @@ function About() {
 }
 
 export default About
+
+export { getServerSideProps } from '../Chakra'

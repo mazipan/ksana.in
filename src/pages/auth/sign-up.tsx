@@ -19,3 +19,5 @@ function Register() {
 }
 
 export default Register
+
+export { getServerSideProps } from '../../Chakra'

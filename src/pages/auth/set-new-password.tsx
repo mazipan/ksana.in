@@ -16,3 +16,5 @@ function SetNewPasswordPage() {
 }
 
 export default SetNewPasswordPage
+
+export { getServerSideProps } from '../../Chakra'
