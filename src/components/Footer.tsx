@@ -82,7 +82,7 @@ export function Footer() {
 
             <Stack align={'flex-start'}>
               <Text fontWeight="700" color="orange.400" fontSize={'lg'} mb={2}>
-                Legal
+                Kebijakan
               </Text>
               <Link href={kebijakanPrivasi}>Kebijakan Privasi</Link>
               <Link href={ketentuanLayanan}>Ketentuan Layanan</Link>
