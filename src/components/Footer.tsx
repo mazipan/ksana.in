@@ -54,7 +54,7 @@ export function Footer() {
               <Text fontWeight="700" color="orange.400" fontSize={'lg'} mb={2}>
                 Lebih banyak
               </Text>
-              <Link href={tentang}>Tentang kami</Link>
+              <Link href={tentang}>Tentang Ksana.in</Link>
               <Link href={blog}>Blog</Link>
               <Link href={login}>Masuk</Link>
               <Link href={register}>Daftar</Link>
