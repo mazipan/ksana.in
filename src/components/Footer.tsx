@@ -78,6 +78,14 @@ export function Footer() {
               <Link href={splitbeeAnalytics} target="_blank" rel="noopener noreferrer">
                 Statistik Ksana.in
               </Link>
+              <Link
+                href="https://trakteer.id/mazipan/tip?utm_source=ksana"
+                target="_blank"
+                title="Dukung Ksana.in"
+                rel="noopener noreferrer"
+              >
+                Dukung Ksana.in
+              </Link>
             </Stack>
 
             <Stack align={'flex-start'}>
