@@ -8,7 +8,7 @@ tags: [pemendek-tautan]
 
 Pemendek tautan/URL adalah layanan yang digunakan untuk kita bisa memendekkan berbagai tautan/URL yang kita miliki menjadi alamat yang berbeda sesuai dengan yang kita inginkan.
 
-Ada banyak layanan pemendek tautan di luar sana, sebut saja yang populer seperti [Bit.ly](https://bit.ly), [TinyURL](https://tinyurl.com/), [TinyCC](https://tiny.cc/) atau yang buatan Indonesia seperti [s.id](https://s.id] dan [ksana.in](https://ksana.in).
+Ada banyak layanan pemendek tautan di luar sana, sebut saja yang populer seperti [Bit.ly](https://bit.ly), [TinyURL](https://tinyurl.com/), [TinyCC](https://tiny.cc/) atau yang buatan Indonesia seperti [s.id](https://s.id) dan [ksana.in](https://ksana.in).
 
 Dari banyaknya layanan tersebut yang kalian bisa pilih sesuka hati sesuai selera, fitur yang ditawarkan nyaris sama yakni kemampuan mengubah suatu tautan/URL menggunakan kata baru yang lebih mudah pendek sehingga lebih mudah untuk diingat.
 
@@ -36,7 +36,7 @@ Misalnya: `https://api.whatsapp.com/send/?phone=08578123456789&text=Hallo`
 
 Masalahnya di tautan tersebut akan langsung terlihat nomor tujuan yang mungkin kita tidak ingin memperlihatkannya secara langsung. Meskipun nantinya orang lain bisa mengetahui nomor tersebut setelah mengakses tautannya, setidaknya tidak terlihat di saat pertama.
 
-Di kasus seperti ini saya akan menggunakan pemendek tautan.
+Di kasus seperti ini saya akan menggunakan pemendek tautan. Tentunya akan lebih mudah untuk membagikan tautan misalnya: `ksana.in/wa-mazipan` dibandingkan tautan yang sebelumnya.
 
 ## Manfaat menggunakan pemendek tautan
 
@@ -45,7 +45,7 @@ Dari beberapa kasus di atas kita bisa melihat beberapa kebutuhan penggunaan peme
 ### Tautan menjadi mudah diingat
 
 Dengan contoh kasus seperti yang telah disebutkan di atas, terlihat bahwa kita bisa melakukan kustomisasi pada url kita, apapun itu, yang sebelumnya bisa jadi terlalu panjang, terlalu susah untuk diingat, dengan memanfaatkan layanan pemendek tautan kita bisa membuatnya menjadi lebih memorable dan lebih mudah dibaca dan diingat.
-Kebayang kan kalau kita cukup mengingat tautan misalnya: `/slide-72`, dibanding `https://speakerdeck.com/mazipan/bongkar-dapur-webnya-number-phpid-ol`.
+Kebayang kan kalau kita cukup mengingat tautan misalnya: [`/slide-72`](https://ksana.in/slide-72), dibanding [`speakerdeck.com/mazipan/bongkar-dapur-webnya-number-phpid-ol`](https://speakerdeck.com/mazipan/bongkar-dapur-webnya-number-phpid-ol).
 Lebih mudah juga kalau kita mau menyematkan tautan yang sudah dipendekkan di dalam sebuah slide presentasi ataupun di sebuah artikel blog atau bahkan pesan singkat.
 
 Jadi, yuk manfaatkan layanan pemendek tautan untuk membantu membuat tautan menjadi lebih mudah diingat.
