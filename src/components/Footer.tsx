@@ -86,6 +86,22 @@ export function Footer() {
               >
                 Dukung Ksana.in
               </Link>
+              <Link
+                href="https://www.baca-quran.id/?utm_source=ksana"
+                target="_blank"
+                title="Cek Baca-Quran.id"
+                rel="noopener noreferrer"
+              >
+                Cek Baca-Quran.id
+              </Link>
+              <Link
+                href="https://pramuka.online/?utm_source=ksana"
+                target="_blank"
+                title="Cek Pramuka.Online"
+                rel="noopener noreferrer"
+              >
+                Cek Pramuka.Online
+              </Link>
             </Stack>
 
             <Stack align={'flex-start'}>
