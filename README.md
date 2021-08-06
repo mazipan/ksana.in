@@ -61,7 +61,7 @@ create table urls (
 
 ## Additional settings for Authentication
 
-- on Authentication setting, change to `/callback`. e.g: `https://ksana.in/callback`
+- on Authentication setting, change `Site URL` to `/callback`. e.g: `https://ksana.in/callback`
 - To support Google Login, in Authentication setting page, set the `Google Client ID` and `Google Secret`
 
 ## Credits
