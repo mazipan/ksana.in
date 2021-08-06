@@ -64,6 +64,13 @@ create table urls (
 - on Authentication setting, change `Site URL` to `/callback`. e.g: `https://ksana.in/callback`
 - To support Google Login, in Authentication setting page, set the `Google Client ID` and `Google Secret`
 
+## Can I deploy to my own domain?
+
+The code is open for learning purpose basically.
+But just in case you didn't like the domain `ksana.in`, feel free to deploy to your own domain.
+Since Ksana.in is using a free plan from Supabase, it have many limitation in term of size.
+If you plan to use it in the bigger frequency, I suggest to deploy it with your own Supabase plan.
+
 ## Credits
 
 - [Next.js](https://nextjs.org/)
