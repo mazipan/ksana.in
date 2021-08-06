@@ -16,6 +16,17 @@ Meskipun memang penyedia layanan pemendek tautan asal Indonesia sekarang sudah p
 
 Beberapa diantaranya:
 
+## [Dik.si](https://dik.si/)
+
+Salah satu alternatif terbaik dari s.id menurut saya. Dibuat dengan sangat komplit bahkan terkesan berlebihan menurut saya pribadi.
+Kamu harus mendaftar dan login untuk menggunakan layanan dari Dik.si.
+Namun setelah kamu login, kamu akan menemukan fitur yang sangat banyak.
+Kamu bisa membuat custom URL, menambahkan berbagai opsi tambahan seperti menambahkan password, link diatur agar expire secara otomatis, menambahkan halaman spashscreen semacam iklan kustom sebelum ke tautan aslinya dan banyak lagi opsi lainnya.
+
+Di Dik.si kamu bisa melakukan *grouping* atau mengelompokkan tautan kedalam suatu group, melihat statistik kunjungan dengan satuan waktu seperti mingguan, bulanan, tahunan atau bahkan kustom.
+
+Berikut contoh alamat Dik.si yang saya buat: [https://dik.si/ksana](https://dik.si/ksana
+
 ## [Intip.in](https://intip.in)
 
 Ini buatan teman saya juga sebenernya. [Harun Rizal](https://github.com/harunrzl), salah satu web engineer berbakat yang saat artikel ini ditulis masih bekerja di e-commerce Tokopedia.
@@ -26,6 +37,8 @@ Sangat disayangkan karena fitur ini menjadikan kita bisa melihat statistik dari 
 Tanpa fitur ini, kita masih bisa memendekkan tautan, hanya saja kita akan kehilangan statistik yang seharusnya bisa kita lihat karena ada datanya sebenarnya.
 
 Tapi sebagai alternatif dari hal yang mainstream, rasanya masih cukup untuk digunakan lah.
+
+Berikut contoh tautan yang saya buat: [https://intip.in/ksana](https://intip.in/ksana)
 
 ## [Ksana.in](https://ksana.in)
 
