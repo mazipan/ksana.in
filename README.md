@@ -70,8 +70,8 @@ You can found all required environment variables on `.env.local.example`
 
 ## Can I deploy to my own domain?
 
-The code is open for learning purpose basically.
-But just in case you didn't like the domain `ksana.in`, feel free to deploy to your own domain.
+The code is open for learning purpose.
+But in case you didn't like the default domain (`ksana.in`), feel free to deploy to your own domain.
 Since Ksana.in is using a free plan from Supabase, it have many limitation in term of size.
 If you plan to use it in the bigger frequency, I suggest to deploy it with your own Supabase plan.
 
