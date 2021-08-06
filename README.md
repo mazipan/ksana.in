@@ -64,6 +64,10 @@ create table urls (
 - on Authentication setting, change `Site URL` to `/callback`. e.g: `https://ksana.in/callback`
 - To support Google Login, in Authentication setting page, set the `Google Client ID` and `Google Secret`
 
+## Add environment variables on Vercel
+
+You can found all required environment variables on `.env.local.example`
+
 ## Can I deploy to my own domain?
 
 The code is open for learning purpose basically.
