@@ -6,24 +6,32 @@
 
 ## Features
 
-- Login/Register with Google
-- Simple hit count to see the number of visits
+- Built for Mobile Device (PWA support)
+- Full authentication flow:
+  - Login (with Email and Google)
+  - Register (with Email and Google)
+  - Forget Password
+- Simple hit stats
 - Share link using Native Share (for mobile web)
-- Copy link using Clipboard API
+- Copy link using Clipboard API (for supported browser)
 
 ## Screenshots
 
-### Homepage
-
-<img alt="Homepage" src="screenshots/mobile-home.png" height="300"/> 
-
-### Login Page
-
-<img alt="Login" src="screenshots/mobile-login.png" height="300"/> 
-
-### Dashboard Page
-
-<img alt="Dashboard" src="screenshots/mobile-dashboard.png" height="300"/>
+<table>
+ <tbody>
+   <tr>
+     <td>
+       <img alt="Homepage" src="screenshots/mobile-home.png" />
+     </td>
+     <td>
+       <img alt="Homepage" src="screenshots/mobile-login.png" /> 
+     </td>
+     <td>
+       <img alt="Homepage" src="screenshots/mobile-dashboard.png" /> 
+     </td>
+   </tr>
+ </tbody>
+</table>
 
 ## Installation
 
@@ -50,6 +58,11 @@ create table urls (
   updated_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 ```
+
+## Additional settings for Authentication
+
+- on Authentication setting, change to `/callback`. e.g: `https://ksana.in/callback`
+- To support Google Login, in Authentication setting page, set the `Google Client ID` and `Google Secret`
 
 ## Credits
 
