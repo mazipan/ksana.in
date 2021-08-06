@@ -7,7 +7,7 @@ tags: [pemendek-tautan]
 ---
 
 S.id (https://s.id), telah menjelma menjadi salah satu pemendek tautan terbaik buatan Indonesia, bukan hanya digunakan oleh orang Indonesia saja bahkan juga terkenal digunakan oleh orang luar sana.
-Salah satunya ya karena domain yang sangat pendek. Cuma 3 huruf.
+Salah satunya ya karena domain yang sangat pendek. Cuma 3 huruf, contohnya: [https://s.id/ksana](https://s.id/ksana).
 Kemampuan dasar, seperti memendekkan URL dengan mudah, membuat url otomatis, membuat kustom url yang sudah dibuat, melihat statistik, dan banyak hal lainnya merupakan fitur yang telah tersedia di s.id.
 
 Sayangnya semakin populer, maka menjadi semakin mainstream. Sudah bukan barang yang aneh lagi menggunakan pemendek tautan s.id.
