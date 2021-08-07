@@ -48,10 +48,26 @@ export const login = async ({ email, password }: LoginArg): Promise<any> => {
   return await res.json()
 }
 
+type Provider = 'google' | 'github' | 'twitter'
+
+export const loginWith3rdParty = async (provider: Provider): Promise<any> => {
+  // Generate manual url
+  window.location.href = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/authorize?provider=${provider}&redirect_to=${REDIRECT_CB}`
+}
+
 export const loginWithGoogle = async (): Promise<any> => {
   sendEvent('Login with Google')
-  // Generate manual url
-  window.location.href = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/authorize?provider=google&redirect_to=${REDIRECT_CB}`
+  loginWith3rdParty('google')
+}
+
+export const loginWithGithub = async (): Promise<any> => {
+  sendEvent('Login with Github')
+  loginWith3rdParty('github')
+}
+
+export const loginWithTwitter = async (): Promise<any> => {
+  sendEvent('Login with Twitter')
+  loginWith3rdParty('twitter')
 }
 
 export type RegisterArg = {

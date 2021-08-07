@@ -7,15 +7,23 @@ import {
   FormLabel,
   Input,
   Stack,
+  VStack,
   Link,
   Button,
   Heading,
   Text,
   useColorModeValue
 } from '@chakra-ui/react'
-import { FcGoogle } from 'react-icons/fc'
+import { SiGoogle, SiGithub, SiTwitter } from 'react-icons/si'
 
-import { setSessionToServer, loginWithGoogle, login, register } from 'libs/supabase'
+import {
+  setSessionToServer,
+  loginWithGoogle,
+  loginWithGithub,
+  loginWithTwitter,
+  login,
+  register
+} from 'libs/supabase'
 import { useAlertContext } from 'context/Alert'
 import { forgetPasword, dashboard } from 'constants/paths'
 import { EVENT_SIGN_IN } from 'constants/common'
@@ -92,6 +100,18 @@ export function AuthForm({ state }: IAuthFormProps) {
   const handleLoginGoogle = async () => {
     setLoading(true)
     await loginWithGoogle()
+    setLoading(false)
+  }
+
+  const handleLoginGithub = async () => {
+    setLoading(true)
+    await loginWithGithub()
+    setLoading(false)
+  }
+
+  const handleLoginTwitter = async () => {
+    setLoading(true)
+    await loginWithTwitter()
     setLoading(false)
   }
 
@@ -237,7 +257,7 @@ export function AuthForm({ state }: IAuthFormProps) {
             </Stack>
           )}
 
-          <Stack
+          <VStack
             direction="row"
             align={'center'}
             justify={'center'}
@@ -251,11 +271,31 @@ export function AuthForm({ state }: IAuthFormProps) {
               variant={'outline'}
               w="full"
               onClick={handleLoginGoogle}
-              leftIcon={<FcGoogle />}
+              leftIcon={<SiGoogle />}
             >
               {isLogin ? 'Masuk dengan Google' : 'Daftar dengan Google'}
             </Button>
-          </Stack>
+            <Button
+              isLoading={loading}
+              loadingText="Memproses"
+              variant={'outline'}
+              w="full"
+              onClick={handleLoginTwitter}
+              leftIcon={<SiTwitter />}
+            >
+              {isLogin ? 'Masuk dengan Twitter (beta)' : 'Daftar dengan Twitter (beta)'}
+            </Button>
+            <Button
+              isLoading={loading}
+              loadingText="Memproses"
+              variant={'outline'}
+              w="full"
+              onClick={handleLoginGithub}
+              leftIcon={<SiGithub />}
+            >
+              {isLogin ? 'Masuk dengan Github (beta)' : 'Daftar dengan Github (beta)'}
+            </Button>
+          </VStack>
         </Stack>
       </Box>
     </Stack>
