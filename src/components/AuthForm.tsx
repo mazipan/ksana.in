@@ -283,7 +283,7 @@ export function AuthForm({ state }: IAuthFormProps) {
               onClick={handleLoginTwitter}
               leftIcon={<SiTwitter />}
             >
-              {isLogin ? 'Masuk dengan Twitter (beta)' : 'Daftar dengan Twitter (beta)'}
+              {isLogin ? 'Masuk dengan Twitter' : 'Daftar dengan Twitter'}
             </Button>
             <Button
               isLoading={loading}
@@ -293,7 +293,7 @@ export function AuthForm({ state }: IAuthFormProps) {
               onClick={handleLoginGithub}
               leftIcon={<SiGithub />}
             >
-              {isLogin ? 'Masuk dengan Github (beta)' : 'Daftar dengan Github (beta)'}
+              {isLogin ? 'Masuk dengan Github' : 'Daftar dengan Github'}
             </Button>
           </VStack>
         </Stack>
