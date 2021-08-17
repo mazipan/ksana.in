@@ -26,7 +26,12 @@ import {
 } from 'libs/supabase'
 import { useAlertContext } from 'context/Alert'
 import { forgetPasword, dashboard } from 'constants/paths'
-import { EVENT_SIGN_IN } from 'constants/common'
+import {
+  EVENT_SIGN_IN,
+  isEnableGithubLogin,
+  isEnableGoogleLogin,
+  isEnableTwitterLogin
+} from 'constants/common'
 
 export interface IAuthFormProps {
   state: string
@@ -265,36 +270,44 @@ export function AuthForm({ state }: IAuthFormProps) {
             borderColor="gray.200"
             py="4"
           >
-            <Button
-              isLoading={loading}
-              loadingText="Memproses"
-              variant={'outline'}
-              w="full"
-              onClick={handleLoginGoogle}
-              leftIcon={<SiGoogle />}
-            >
-              {isLogin ? 'Masuk dengan Google' : 'Daftar dengan Google'}
-            </Button>
-            <Button
-              isLoading={loading}
-              loadingText="Memproses"
-              variant={'outline'}
-              w="full"
-              onClick={handleLoginTwitter}
-              leftIcon={<SiTwitter />}
-            >
-              {isLogin ? 'Masuk dengan Twitter' : 'Daftar dengan Twitter'}
-            </Button>
-            <Button
-              isLoading={loading}
-              loadingText="Memproses"
-              variant={'outline'}
-              w="full"
-              onClick={handleLoginGithub}
-              leftIcon={<SiGithub />}
-            >
-              {isLogin ? 'Masuk dengan Github' : 'Daftar dengan Github'}
-            </Button>
+            {isEnableGoogleLogin && (
+              <Button
+                isLoading={loading}
+                loadingText="Memproses"
+                variant={'outline'}
+                w="full"
+                onClick={handleLoginGoogle}
+                leftIcon={<SiGoogle />}
+              >
+                {isLogin ? 'Masuk dengan Google' : 'Daftar dengan Google'}
+              </Button>
+            )}
+
+            {isEnableTwitterLogin && (
+              <Button
+                isLoading={loading}
+                loadingText="Memproses"
+                variant={'outline'}
+                w="full"
+                onClick={handleLoginTwitter}
+                leftIcon={<SiTwitter />}
+              >
+                {isLogin ? 'Masuk dengan Twitter' : 'Daftar dengan Twitter'}
+              </Button>
+            )}
+
+            {isEnableGithubLogin && (
+              <Button
+                isLoading={loading}
+                loadingText="Memproses"
+                variant={'outline'}
+                w="full"
+                onClick={handleLoginGithub}
+                leftIcon={<SiGithub />}
+              >
+                {isLogin ? 'Masuk dengan Github' : 'Daftar dengan Github'}
+              </Button>
+            )}
           </VStack>
         </Stack>
       </Box>

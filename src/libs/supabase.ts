@@ -51,8 +51,17 @@ export const login = async ({ email, password }: LoginArg): Promise<any> => {
 type Provider = 'google' | 'github' | 'twitter'
 
 export const loginWith3rdParty = async (provider: Provider): Promise<any> => {
+  const { user, session, error } = await supabase.auth.signIn(
+    {
+      provider
+    },
+    {
+      redirectTo: REDIRECT_CB
+    }
+  )
+  console.log({ user, session, error })
   // Generate manual url
-  window.location.href = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/authorize?provider=${provider}&redirect_to=${REDIRECT_CB}`
+  // window.location.href = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/authorize?provider=${provider}&redirect_to=${REDIRECT_CB}`
 }
 
 export const loginWithGoogle = async (): Promise<any> => {

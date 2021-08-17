@@ -8,3 +8,8 @@ export const LS_FP_TOKEN: string = 'ksana.in.fp-at'
 
 export const CB_RECOVERY: string = 'recovery'
 export const CB_SIGNUP: string = 'signup'
+
+export const isEnableGoogleLogin: boolean = process.env.NEXT_PUBLIC_LOGIN_GOOGLE_ENABLED === 'true'
+export const isEnableTwitterLogin: boolean =
+  process.env.NEXT_PUBLIC_LOGIN_TWITTER_ENABLED === 'true'
+export const isEnableGithubLogin: boolean = process.env.NEXT_PUBLIC_LOGIN_GITHUB_ENABLED === 'true'

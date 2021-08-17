@@ -7,14 +7,18 @@ module.exports = {
   buildExcludes: ['/robots.txt', '/sitemap.xml', '/google254ec9b78a3c3c38.html', /\/images\/.*$/],
   runtimeCaching: [
     {
-      urlPattern: /^https:\/\/fonts.googleapis.com\//,
+      urlPattern: /^https:\/\/oirhwazlkofldqlyoamp\.supabase\.co\//,
+      handler: 'NetworkFirst'
+    },
+    {
+      urlPattern: /^https:\/\/fonts\.googleapis\.com\//,
       handler: 'StaleWhileRevalidate',
       options: {
         cacheName: 'google-fonts-stylesheets'
       }
     },
     {
-      urlPattern: /^https:\/\/fonts.gstatic.com\//,
+      urlPattern: /^https:\/\/fonts\.gstatic\.com\//,
       handler: 'CacheFirst',
       options: {
         cacheName: 'google-fonts-webfonts',
