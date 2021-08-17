@@ -1949,44 +1949,44 @@
   resolved "https://registry.yarnpkg.com/@splitbee/web/-/web-0.2.4.tgz#173ffab42a9c4d22874d82cd580d2c114480b93f"
   integrity sha512-LMXnN5X/jen4ssBZ8ULXckQgJVvv8Ox2brcK7g2aLrok8ISzO76+DC0b6Cierk8oIXcx/+aflbVuBaKKFqyBCg==
 
-"@supabase/gotrue-js@^1.16.6":
-  version "1.16.6"
-  resolved "https://registry.yarnpkg.com/@supabase/gotrue-js/-/gotrue-js-1.16.6.tgz#d9d63740b11ad51d2f8d6c68e9ac16bb83439888"
-  integrity sha512-tLaG4G4sMW2P1hyq05Nr0jM/6AbdiWkjOPbM+QZsuVSsNbZ/z+BNxuE5q+6zHOnoP+YKEHup7x9xKR0zy2UqUQ==
+"@supabase/gotrue-js@^1.17.0":
+  version "1.17.0"
+  resolved "https://registry.yarnpkg.com/@supabase/gotrue-js/-/gotrue-js-1.17.0.tgz#0ff46f844ddd124543d2769da8eda58ab479b49b"
+  integrity sha512-c+GSSoW+PIT3/r7TnBdc4gPjtWDutO/2ROafSKUFl39Pb8aHIUbUvzK9sjuedaaLKH7bV8VefuRy2L8c0BUAzg==
   dependencies:
     cross-fetch "^3.0.6"
 
-"@supabase/postgrest-js@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@supabase/postgrest-js/-/postgrest-js-0.33.0.tgz#36e0bfd0f79a0fa01a4bb7c7881ee463fd7d60a8"
-  integrity sha512-og6Evdkan7Qp6+tOch7Pyq+ZWMnrCQtPHWwPpsN5A3iYQSro2yn21Yvazs9qAFoWAeTGNkuTOVpShT5Mbc9WcQ==
+"@supabase/postgrest-js@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@supabase/postgrest-js/-/postgrest-js-0.33.1.tgz#aaf9644d72a7e4297c47415c3a0c2ffef9534982"
+  integrity sha512-VDOYv9RgGJmbI/qz6NNwayJqazLss/g0pVdf1KEAhE+Hvo6DggkrwUy4H+yiClszPcTxKiW5sDSaE5Urq2Q7nA==
   dependencies:
     cross-fetch "^3.0.6"
 
-"@supabase/realtime-js@^1.0.11":
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/@supabase/realtime-js/-/realtime-js-1.0.11.tgz#2b3a0b7822bcb8b2cf6201ec3c34220be23f40de"
-  integrity sha512-jE8/8I64VpEygEbrd9+RBZBIREo43Vacy8exef1QlyRegblG2VtqqK96BiQSaVG5ZwXumOs6Igl8kgyrDqUAPg==
+"@supabase/realtime-js@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@supabase/realtime-js/-/realtime-js-1.1.2.tgz#6bdb0411df292c9d6a2d1a5a4e11c2673aec5f76"
+  integrity sha512-YNFiWF0T9+IuZZgswzHbGb7/O1eWJSwXvi0WlbARHTIcYBu4GQQXBdVWdFdG4bTLMS3L4K2qHpvMP91QYSasMw==
   dependencies:
-    "@types/websocket" "^1.0.1"
+    "@types/websocket" "^1.0.3"
     websocket "^1.0.34"
 
-"@supabase/storage-js@^1.2.2":
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@supabase/storage-js/-/storage-js-1.2.2.tgz#6eeef2d1365af2497b35ae6c6384f5dfbd75f5b6"
-  integrity sha512-EJ2BsfD7Mc+fXJqRef3YiWF8kg/GhBdxIil7EzmrAFBSJ3VCbN4sqzvCCUYK2dtNICUV3JOKh5SBX2RrgROIOA==
+"@supabase/storage-js@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@supabase/storage-js/-/storage-js-1.4.0.tgz#0692782ccaf10df27d539d9349031ed87c7ec426"
+  integrity sha512-7+SGyXOgdhtz8qHzXo64HiS66PT/y4F8YFNMtXqYOu1LjHh0YwtOgpPLDA8obiSsNVwZiKwpgBJkz4LHG1YvRQ==
   dependencies:
     cross-fetch "^3.1.0"
 
-"@supabase/supabase-js@^1.18.1":
-  version "1.18.1"
-  resolved "https://registry.yarnpkg.com/@supabase/supabase-js/-/supabase-js-1.18.1.tgz#58fa3dfff3a1f86c169c83330282120195f6c5f1"
-  integrity sha512-YZhp867/HV9Az8icouAJ7S2j1SV4ZlshvQ1wTR0aV+Em+TTj9ZiS6GVykCjKn2SE2cUfG/wgmaXm9tiKecUhFg==
+"@supabase/supabase-js@^1.21.0":
+  version "1.21.3"
+  resolved "https://registry.yarnpkg.com/@supabase/supabase-js/-/supabase-js-1.21.3.tgz#b730e00caa8bb3475c421ec89e456921c078ff1d"
+  integrity sha512-+CLJr2q0fHCVDTqxSGyhrH0qQig5CkNNeXUi5UFAb8sksWCpWWKf9cSqbamOZFg1fkRuDTd3G+mcixL4Cuhi1w==
   dependencies:
-    "@supabase/gotrue-js" "^1.16.6"
-    "@supabase/postgrest-js" "^0.33.0"
-    "@supabase/realtime-js" "^1.0.11"
-    "@supabase/storage-js" "^1.2.2"
+    "@supabase/gotrue-js" "^1.17.0"
+    "@supabase/postgrest-js" "^0.33.1"
+    "@supabase/realtime-js" "^1.1.2"
+    "@supabase/storage-js" "^1.4.0"
 
 "@surma/rollup-plugin-off-main-thread@^1.4.1":
   version "1.4.2"
@@ -2175,10 +2175,10 @@
     anymatch "^3.0.0"
     source-map "^0.6.0"
 
-"@types/websocket@^1.0.1":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@types/websocket/-/websocket-1.0.2.tgz#d2855c6a312b7da73ed16ba6781815bf30c6187a"
-  integrity sha512-B5m9aq7cbbD/5/jThEr33nUY8WEfVi6A2YKCTOvw5Ldy7mtsOkqRvGjnzy6g7iMMDsgu7xREuCzqATLDLQVKcQ==
+"@types/websocket@^1.0.3":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@types/websocket/-/websocket-1.0.4.tgz#1dc497280d8049a5450854dd698ee7e6ea9e60b8"
+  integrity sha512-qn1LkcFEKK8RPp459jkjzsfpbsx36BBt3oC3pITYtkoBw/aVX+EZFa5j3ThCRTNpLFvIMr5dSTD4RaMdilIOpA==
   dependencies:
     "@types/node" "*"
 

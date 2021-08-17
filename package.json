@@ -20,7 +20,7 @@
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
     "@splitbee/web": "^0.2.4",
-    "@supabase/supabase-js": "^1.18.1",
+    "@supabase/supabase-js": "^1.21.0",
     "copy-to-clipboard": "^3.3.1",
     "framer-motion": "^4.1.17",
     "next": "latest",
