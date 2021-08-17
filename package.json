@@ -24,7 +24,7 @@
     "copy-to-clipboard": "^3.3.1",
     "framer-motion": "^4.1.17",
     "next": "latest",
-    "next-pwa": "^5.2.23",
+    "next-pwa": "^5.2.24",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
