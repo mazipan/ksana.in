@@ -59,6 +59,16 @@ create table urls (
 );
 ```
 
+Add triggers for "updated_at" field
+
+```sql
+create extension if not exists moddatetime schema extensions;
+
+-- this trigger will set the "updated_at" column to the current timestamp for every update
+create trigger handle_updated_at before update on urls 
+  for each row execute procedure moddatetime (updated_at);
+```
+
 ## Additional settings for Authentication
 
 - on Authentication setting, change `Site URL` to `/callback`. e.g: `https://ksana.in/callback`
