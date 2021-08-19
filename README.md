@@ -71,7 +71,7 @@ create trigger handle_updated_at before update on urls
 
 ## Additional settings for Authentication
 
-- on Authentication setting, change `Site URL` to `/callback`. e.g: `https://ksana.in/callback`
+- on Authentication setting, change `Site URL` to `/callback`. e.g: `https://ksana.in/callback`, for development just set it to `http://localhost:3000/callback`
 - To support Google Login, in Authentication setting page, set the `Google Client ID` and `Google Secret`
 
 ## Add environment variables on Vercel
