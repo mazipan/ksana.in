@@ -89,6 +89,7 @@ If you plan to use it in the bigger frequency, I suggest to deploy it with your 
 
 - [Next.js](https://nextjs.org/)
 - [Supabase](https://supabase.io/)
+- [Splitbee](https://splitbee.io/)
 - [Chakra-UI](https://chakra-ui.com/docs/getting-started)
 - [SWR](https://swr.vercel.app/)
 - [React-Icons](https://react-icons.github.io/react-icons/)
