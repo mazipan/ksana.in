@@ -2,6 +2,7 @@ version = 1
 
 [update]
 always = true # default: false
+ignored_usernames = ["dependabot", "snyk-bot"]
 
 [approve]
 auto_approve_usernames = ["ImgBotApp", "imgbot"]
