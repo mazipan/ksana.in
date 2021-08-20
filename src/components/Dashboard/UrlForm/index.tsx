@@ -9,8 +9,7 @@ import {
   Input,
   InputGroup,
   InputLeftAddon,
-  Button,
-  useColorModeValue
+  Button
 } from '@chakra-ui/react'
 
 import { checkSlug, saveUrl } from 'libs/supabase'
@@ -27,7 +26,6 @@ export interface IUrlFormProps {
 
 export function UrlForm({ user, onSuccess }: IUrlFormProps) {
   const { showAlert, hideAlert } = useAlertContext()
-  const bgInput = useColorModeValue('blackAlpha.100', 'whiteAlpha.100')
 
   const [url, setUrl] = useState<string>('')
   const [slug, setSlug] = useState<string>('')
@@ -120,8 +118,7 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
             size="lg"
             name="url"
             placeholder={'Tautan yang akan dipercantik'}
-            bg={bgInput}
-            border={0}
+            variant="filled"
             value={url}
             onChange={handleChangeUrl}
           />
@@ -133,10 +130,9 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
         <FormControl id="slug" isRequired>
           <InputGroup size="lg">
             <InputLeftAddon
-              bg={'orange.400'}
-              color={'white'}
+              color={'orange.400'}
               fontWeight="bold"
-              px={1}
+              px={2}
               children={HOME?.replace('https://', '').replace('http://', '')}
               fontSize="xs"
             />
@@ -146,8 +142,7 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
               size="lg"
               name="slug"
               placeholder={'Slug cantik dambaanmu'}
-              bg={bgInput}
-              border={0}
+              variant="filled"
               value={slug}
               onChange={handleChangeSlug}
             />

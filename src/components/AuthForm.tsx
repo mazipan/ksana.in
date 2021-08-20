@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, KeyboardEvent, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Session } from '@supabase/gotrue-js'
 import {
@@ -174,6 +174,12 @@ export function AuthForm({ state }: IAuthFormProps) {
     processResponse({ session, error, stateType: 'register' })
   }
 
+  const handleKeyPress = (e: KeyboardEvent) => {
+    if (e.code === '13') {
+      handleSubmit()
+    }
+  }
+
   return (
     <Stack spacing={8} mx={'auto'} mt="20" maxW={'lg'} py={12} px={6}>
       <Stack align={'center'}>
@@ -196,6 +202,7 @@ export function AuthForm({ state }: IAuthFormProps) {
               name="email"
               value={email}
               onChange={handleChangeEmail}
+              onKeyPress={handleKeyPress}
               autoComplete="username"
             />
           </FormControl>
@@ -208,6 +215,7 @@ export function AuthForm({ state }: IAuthFormProps) {
               name="password"
               value={password}
               onChange={handleChangePassword}
+              onKeyPress={handleKeyPress}
               autoComplete={isLogin ? 'current-password' : 'new-password'}
             />
           </FormControl>
