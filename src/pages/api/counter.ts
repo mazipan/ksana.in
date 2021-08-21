@@ -10,7 +10,7 @@ export default async (_: NextApiRequest, res: NextApiResponse) => {
     res.json({
       success: true,
       urls: countUrls || 0,
-      users: 0
+      users: 280 // hardcoded value, got this value from supabase dashboard
     })
   } catch (error) {
     res.statusCode = 500
