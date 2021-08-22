@@ -4,6 +4,9 @@
 
 ✂️ Layanan pemendek tautan yang mudah, gratis & tanpa iklan
 
+
+![https://vercel.com/mazipan/ksana/deployments](https://img.shields.io/github/deployments/mazipan/ksana.in/production?label=vercel&logo=vercel&logoColor=white) ![Website Up](https://img.shields.io/website-up-down-brightgreen-red/https/ksana.in.svg)
+
 ## Features
 
 - Built for Mobile Device (PWA support)
