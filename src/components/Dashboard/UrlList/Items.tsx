@@ -14,7 +14,7 @@ import { Item } from './Item'
 import { TotalStats } from './TotalStats'
 
 export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
-  const { data, isLoading } = useUrls(user?.id || '')
+  const { data, isLoading = true } = useUrls(user?.id || '')
   const [searchText, setSearchText] = useState<string>('')
   const [filteredData, setFilteredData] = useState<IUrl[]>(data)
 
