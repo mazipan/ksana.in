@@ -1,5 +1,10 @@
 name: Vulnerabilities Check
-on: push
+
+on:
+  push:
+    branches:
+      - master
+
 jobs:
   security:
     runs-on: ubuntu-latest
