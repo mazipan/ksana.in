@@ -99,14 +99,6 @@ export function Footer({ withBacklink }: IFooterProps) {
                 </Text>
 
                 <Link
-                  href="https://trakteer.id/mazipan/tip?utm_source=ksana"
-                  target="_blank"
-                  title="Dukung Ksana.in"
-                  rel="noopener noreferrer"
-                >
-                  Dukung Ksana.in
-                </Link>
-                <Link
                   href="https://www.baca-quran.id/?utm_source=ksana"
                   target="_blank"
                   title="Cek Baca-Quran.id"
