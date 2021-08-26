@@ -13,3 +13,4 @@ export const isEnableGoogleLogin: boolean = process.env.NEXT_PUBLIC_LOGIN_GOOGLE
 export const isEnableTwitterLogin: boolean =
   process.env.NEXT_PUBLIC_LOGIN_TWITTER_ENABLED === 'true'
 export const isEnableGithubLogin: boolean = process.env.NEXT_PUBLIC_LOGIN_GITHUB_ENABLED === 'true'
+export const isEnableEmailLogin: boolean = process.env.NEXT_PUBLIC_LOGIN_EMAIL_ENABLED === 'true'

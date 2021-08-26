@@ -14,7 +14,7 @@ export function HiUser({ user }: IHiUserProps) {
     <Stack as="section" spacing={8} mx={'auto'} mt="20" maxW={'lg'} py={12} px={6}>
       <Stack align={'center'} spacing={8}>
         <Heading
-          fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
+          fontSize={{ base: '3xl', sm: '4xl', md: '5xl' }}
           lineHeight={'110%'}
           textAlign="center"
         >

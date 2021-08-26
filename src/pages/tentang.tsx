@@ -68,7 +68,7 @@ function About() {
         <Heading
           as="h1"
           fontWeight={700}
-          fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
+          fontSize={{ base: '3xl', sm: '4xl', md: '5xl' }}
           lineHeight={'110%'}
           color="orange.400"
         >
