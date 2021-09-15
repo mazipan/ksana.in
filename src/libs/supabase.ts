@@ -1,4 +1,4 @@
-import { createClient, Session } from '@supabase/supabase-js'
+import { createClient, Session, SupabaseClient } from '@supabase/supabase-js'
 
 import { sendEvent } from './splitbee'
 import { defaultFetchOption } from './fetcher'
@@ -17,12 +17,12 @@ import {
 } from 'constants/paths'
 import { EVENT_SIGN_OUT, LS_AUTH_TOKEN } from 'constants/common'
 
-export const supabase: any = createClient(
+export const supabase: SupabaseClient = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL || '',
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 )
 
-export const setSessionToServer = async (event: string, session: Session): Promise<void> => {
+export const setSessionToServer = async (event: string, session: Session | null): Promise<void> => {
   fetch(apiSetSession, {
     ...defaultFetchOption,
     method: 'POST',
@@ -105,10 +105,10 @@ export const logout = async (): Promise<void> => {
 }
 
 export const handleLogout = async (): Promise<void> => {
-  const currentSession = supabase.auth.currentSession
+  const session = supabase.auth.session()
 
   await logout()
-  await setSessionToServer(EVENT_SIGN_OUT, currentSession)
+  await setSessionToServer(EVENT_SIGN_OUT, session)
   sendEvent('Logout')
   // hard reload to refresh data
   setTimeout(() => {
