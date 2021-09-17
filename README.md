@@ -77,7 +77,10 @@ Add triggers for "updated_at" field, copy this code on the same SQL editor
 create extension if not exists moddatetime schema extensions;
 
 -- this trigger will set the "updated_at" column to the current timestamp for every update
-create trigger handle_updated_at before update on urls
+create trigger handle_updated_at before update on public.urls
+  for each row execute procedure moddatetime (updated_at);
+  
+create trigger handle_updated_at_users before update on public.users
   for each row execute procedure moddatetime (updated_at);
 ```
 
