@@ -26,6 +26,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       error: error
     })
   } catch (error) {
-    sendError5xx(res, error)
+    if (error instanceof Error) {
+      sendError5xx(res, error)
+    }
   }
 }

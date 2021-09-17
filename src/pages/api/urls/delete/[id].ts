@@ -13,7 +13,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const { data: dataUserId } = await supabase.from('urls').select('user_id').eq('id', id).single()
 
     if (dataUserId && dataUserId.user_id) {
-      if (dataUserId.user_id === user.id) {
+      if (dataUserId.user_id === user?.id) {
         const { data, error } = await supabase.from('urls').delete().match({ id: id })
 
         if (error) {
@@ -34,6 +34,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       sendError401(res)
     }
   } catch (error) {
-    sendError5xx(res, error)
+    if (error instanceof Error) {
+      sendError5xx(res, error)
+    }
   }
 }

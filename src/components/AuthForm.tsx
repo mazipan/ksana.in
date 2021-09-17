@@ -1,6 +1,6 @@
 import { ChangeEvent, KeyboardEvent, useState } from 'react'
 import { useRouter } from 'next/router'
-import { Session } from '@supabase/gotrue-js'
+import { Session } from '@supabase/supabase-js'
 import {
   Box,
   FormControl,

@@ -8,6 +8,7 @@ function useCounter() {
 
   return {
     urls: data?.urls || 0,
+    users: data?.users || 0,
     isLoading: !error && !data,
     isError: Boolean(error)
   }
