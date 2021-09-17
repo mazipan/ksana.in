@@ -15,6 +15,8 @@ export function SearchInput({ searchText, onChangeSearch }: ISearchInputProps) {
         <InputGroup>
           <Input
             size="lg"
+            borderWidth="2px"
+            borderColor="orange.400"
             name="searchText"
             placeholder="Cari tautan kamu"
             variant="filled"

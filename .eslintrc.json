@@ -29,14 +29,13 @@
     "camelcase": "off",
     "import/no-unresolved": "off",
     "import/extensions": "off",
-    "no-alert": "warn",
-    "no-console": "warn",
+    "no-console": "off",
     "no-nested-ternary": "off",
     "no-unused-vars": "error",
     "multiline-ternary": "off",
     "react/prop-types": "off",
     "react/no-children-prop": "off",
-    "react/no-unescaped-entities": "warn",
+    "react/no-unescaped-entities": "off",
     "react/react-in-jsx-scope": "off"
   }
 }

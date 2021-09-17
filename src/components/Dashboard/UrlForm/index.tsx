@@ -2,7 +2,6 @@ import { ChangeEvent, useState } from 'react'
 import { mutate } from 'swr'
 import {
   FormControl,
-  Text,
   FormHelperText,
   Box,
   Stack,
@@ -30,26 +29,45 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
   const [url, setUrl] = useState<string>('')
   const [slug, setSlug] = useState<string>('')
   const [isCheckPass, setIsCheckPass] = useState<boolean>(false)
-  const [errorText, setErrorText] = useState<boolean | string>(false)
+  const [errorUrl, setErrorUrl] = useState<boolean | string>(false)
+  const [errorSlug, setErrorSlug] = useState<boolean | string>(false)
   const [loading, setLoading] = useState<boolean>(false)
 
   const handleChangeUrl = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     setUrl(value)
+    setErrorUrl('')
   }
 
   const handleChangeSlug = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     setSlug(value)
+    setErrorSlug('')
+  }
+
+  const resetErrorMessage = () => {
+    setErrorUrl('')
+    setErrorSlug('')
   }
 
   const checkIsEmpty = () => {
-    if (url === '' || slug === '') {
-      setErrorText('URL dan slug tidak bisa dikosongkan')
+    resetErrorMessage()
+
+    if (url === '') {
+      setErrorUrl('URL dan slug tidak bisa dikosongkan')
       return true
     }
 
-    setErrorText('')
+    if (url.indexOf('http://') === -1 && url.indexOf('https://') === -1) {
+      setErrorUrl('Pastikan URL dimulai dengan http:// atau https://')
+      return true
+    }
+
+    if (slug === '') {
+      setErrorSlug('URL dan slug tidak bisa dikosongkan')
+      return true
+    }
+
     return false
   }
 
@@ -57,14 +75,12 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
     setLoading(true)
     const isEmpty = checkIsEmpty()
     if (!isEmpty) {
-      setErrorText('')
-
       const response = await checkSlug({ slug: sanitizeSlug(slug) })
       if (response.error) {
         setIsCheckPass(true)
-        setErrorText('')
+        resetErrorMessage()
       } else {
-        setErrorText(`Slug ${slug} telah digunakan`)
+        setErrorSlug(`Slug ${slug} telah digunakan, coba slug lain`)
       }
     }
     setLoading(false)
@@ -90,7 +106,7 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
             setUrl('')
             setSlug('')
             setIsCheckPass(false)
-            setErrorText('')
+            resetErrorMessage()
             onSuccess()
           }
         })
@@ -100,7 +116,8 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
           message: `Pesan: ${errorInsert.message}`,
           onClose: () => {
             hideAlert()
-            setErrorText(errorInsert.message)
+            setIsCheckPass(false)
+            resetErrorMessage()
           }
         })
       }
@@ -110,11 +127,11 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
 
   return (
     <Box width={{ base: '100%' }}>
-      <Stack spacing={2} direction={{ base: 'column' }}>
+      <Stack spacing={4} direction={{ base: 'column' }}>
         <FormControl id="url" isRequired>
           <Input
             isRequired
-            isInvalid={Boolean(errorText)}
+            isInvalid={Boolean(errorUrl)}
             size="lg"
             name="url"
             placeholder={'Tautan yang akan dipercantik'}
@@ -122,6 +139,7 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
             value={url}
             onChange={handleChangeUrl}
           />
+          {errorUrl && <FormHelperText color="red.500">Error: {errorUrl}</FormHelperText>}
           <FormHelperText>
             Membutuhkan tautan dalam bentuk utuh, termasuk awalan https://
           </FormHelperText>
@@ -138,7 +156,7 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
             />
             <Input
               isRequired
-              isInvalid={Boolean(errorText)}
+              isInvalid={Boolean(errorSlug)}
               size="lg"
               name="slug"
               placeholder={'Slug cantik dambaanmu'}
@@ -147,16 +165,11 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
               onChange={handleChangeSlug}
             />
           </InputGroup>
+          {errorSlug && <FormHelperText color="red.500">Error: {errorSlug}</FormHelperText>}
           <FormHelperText>
             Hanya diperbolehkan menggunakan huruf, angka, karakter titik dan strip saja
           </FormHelperText>
         </FormControl>
-
-        {errorText && (
-          <Text color="red.300" fontSize="xs">
-            Error: {errorText}
-          </Text>
-        )}
 
         {isCheckPass ? (
           <Button
@@ -194,7 +207,7 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
             }}
             onClick={handleCheckAvailability}
           >
-            Cek dulu ya
+            Cek ketersediaan
           </Button>
         )}
       </Stack>

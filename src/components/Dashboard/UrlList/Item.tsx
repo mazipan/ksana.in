@@ -1,15 +1,7 @@
 import dynamic from 'next/dynamic'
 import { ChangeEvent, useState } from 'react'
 import { mutate } from 'swr'
-import {
-  Link,
-  Text,
-  ListItem,
-  Input,
-  IconButton,
-  useColorModeValue,
-  HStack
-} from '@chakra-ui/react'
+import { Link, Text, Box, Input, IconButton, useColorModeValue, HStack } from '@chakra-ui/react'
 import { HiShare, HiDuplicate, HiPencil, HiTrash, HiSave, HiCheck } from 'react-icons/hi'
 
 import { deleteUrl, patchSlug } from 'libs/supabase'
@@ -159,25 +151,25 @@ export function Item({ user, data }: IUrlItemProps) {
   }
 
   return (
-    <ListItem
+    <Box
       key={data.slug}
       w={'full'}
       bg={bgBox}
       boxShadow={'2xl'}
       rounded={'md'}
       overflow={'hidden'}
-      p={6}
+      p={{ base: '4', md: '6' }}
     >
       <Link
         as="a"
-        fontSize={{ base: 'lg', md: 'xl' }}
+        fontSize={{ base: 'md', md: 'lg' }}
         fontWeight="700"
         color="orange.400"
         href={`${HOME}${data.slug}`}
         mb="4"
         display="block"
       >
-        {`${HOME}${data.slug}`}
+        {`/${data.slug}`}
       </Link>
 
       {updateId && updateId === data.id && (
@@ -208,19 +200,17 @@ export function Item({ user, data }: IUrlItemProps) {
         {data.real_url}
       </Text>
       <Text fontSize="small" color="gray.400">
-        Telah{` `}
-        <Text as="span" fontWeight="bold">
+        <Text as="span" fontWeight="bold" color="orange.400">
           {new Intl.NumberFormat('id-ID').format(data.hit)}
         </Text>
-        {` `}kali dikunjungi
+        {` `} kunjungan
       </Text>
-      <HStack spacing={2} mt={4}>
+      <HStack spacing={2} mt={4} flexWrap="wrap">
         <IconButton
           onClick={() => {
             handleCopy(`${HOME}${data.slug}`)
           }}
           aria-label="Copy"
-          fontSize="20px"
           variant="ghost"
           borderRadius="md"
           icon={isSuccessCopy ? <HiCheck color="#48BB78" /> : <HiDuplicate color="#ED8936" />}
@@ -231,7 +221,6 @@ export function Item({ user, data }: IUrlItemProps) {
               handleShare(`${HOME}${data.slug}`)
             }}
             aria-label="Copy"
-            fontSize="20px"
             variant="ghost"
             borderRadius="md"
             isLoading={isLoadingShare}
@@ -245,7 +234,6 @@ export function Item({ user, data }: IUrlItemProps) {
             handleClickEdit(data.id)
           }}
           aria-label="Ubah"
-          fontSize="20px"
           variant="ghost"
           borderRadius="md"
           icon={<HiPencil color="#ED8936" />}
@@ -255,12 +243,11 @@ export function Item({ user, data }: IUrlItemProps) {
             handleDelete(data.id, data.slug)
           }}
           aria-label="Hapus"
-          fontSize="20px"
           variant="ghost"
           borderRadius="md"
           icon={<HiTrash color="#ED8936" />}
         />
       </HStack>
-    </ListItem>
+    </Box>
   )
 }
