@@ -19,12 +19,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     // if it's exist, we will get the error
     if (errorRealSlug) {
-      if (url.indexOf('http://') === -1 || url.indexOf('https://') === -1) {
+      if (url.indexOf('http://') === -1 && url.indexOf('https://') === -1) {
         res.statusCode = 500
         res.json({
           success: false,
           data: null,
-          error: 'Your URL not contain http:// or https://'
+          error: {
+            message: 'Your URL not contain http:// or https://'
+          }
         })
         return
       }

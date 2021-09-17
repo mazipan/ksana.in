@@ -1,10 +1,10 @@
 import useSWR from 'swr'
 
-import { fetcher } from 'libs/fetcher'
+import { fetcherWithAuth } from 'libs/fetcher'
 import { apiUrlsGet } from 'constants/paths'
 
 function useUrls(id: string) {
-  const { data, error } = useSWR(id ? apiUrlsGet(id) : null, fetcher)
+  const { data, error } = useSWR(id ? apiUrlsGet(id) : null, fetcherWithAuth)
 
   return {
     data: data?.data || [],

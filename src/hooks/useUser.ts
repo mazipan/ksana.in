@@ -1,10 +1,10 @@
 import useSWR from 'swr'
 
-import { fetcher } from 'libs/fetcher'
+import { fetcherWithAuth } from 'libs/fetcher'
 import { apiIsAuth } from 'constants/paths'
 
 function useUser() {
-  const { data, error } = useSWR(apiIsAuth, fetcher)
+  const { data, error } = useSWR(apiIsAuth, fetcherWithAuth)
 
   const isLoading = !error && !data
   const isLogin = !isLoading && data && data.isLogin

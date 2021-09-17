@@ -1,7 +1,7 @@
 import { createClient, Session, SupabaseClient } from '@supabase/supabase-js'
 
 import { sendEvent } from './splitbee'
-import { defaultFetchOption } from './fetcher'
+import { defaultFetchOption, fetcherWithAuth } from './fetcher'
 import {
   apiSetSession,
   apiLogin,
@@ -159,12 +159,8 @@ export type CheckSlugArg = {
 
 export const checkSlug = async ({ slug }: CheckSlugArg): Promise<any> => {
   sendEvent('Check slug')
-  const res = await fetch(apiUrlsCheck(slug), {
-    ...defaultFetchOption,
-    credentials: 'same-origin',
-    method: 'GET'
-  })
-  return await res.json()
+  const res = await fetcherWithAuth(apiUrlsCheck(slug))
+  return res
 }
 
 export type SaveUrlArg = {
@@ -175,13 +171,11 @@ export type SaveUrlArg = {
 
 export const saveUrl = async ({ userId, url, slug }: SaveUrlArg): Promise<any> => {
   sendEvent('Save url')
-  const res = await fetch(apiUrlsSave(userId), {
-    ...defaultFetchOption,
+  const res = await fetcherWithAuth(apiUrlsSave(userId), {
     method: 'PUT',
-    credentials: 'same-origin',
     body: JSON.stringify({ url, slug })
   })
-  return await res.json()
+  return res
 }
 
 export type DeleteUrlArg = {
@@ -191,13 +185,11 @@ export type DeleteUrlArg = {
 
 export const deleteUrl = async ({ id, userId }: DeleteUrlArg): Promise<any> => {
   sendEvent('Remove url')
-  const res = await fetch(apiUrlsDelete(id), {
-    ...defaultFetchOption,
+  const res = await fetcherWithAuth(apiUrlsDelete(id), {
     method: 'DELETE',
-    credentials: 'same-origin',
     body: JSON.stringify({ userId })
   })
-  return await res.json()
+  return res
 }
 
 export type PatchSlugArg = {
@@ -208,11 +200,9 @@ export type PatchSlugArg = {
 
 export const patchSlug = async ({ id, slug, userId }: PatchSlugArg): Promise<any> => {
   sendEvent('Update url')
-  const res = await fetch(apiUrlsPatch(id), {
-    ...defaultFetchOption,
+  const res = await fetcherWithAuth(apiUrlsPatch(id), {
     method: 'PATCH',
-    credentials: 'same-origin',
     body: JSON.stringify({ slug, userId })
   })
-  return await res.json()
+  return res
 }
