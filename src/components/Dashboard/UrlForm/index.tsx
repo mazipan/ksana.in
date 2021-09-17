@@ -49,6 +49,10 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
       return true
     }
 
+    if (url.indexOf('http://') >= 0 || url.indexOf('https://') >= 0) {
+      setErrorText('Pastikan URl dimulai dengan http:// atau https://')
+    }
+
     setErrorText('')
     return false
   }
