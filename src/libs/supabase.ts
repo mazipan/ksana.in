@@ -170,7 +170,7 @@ export type SaveUrlArg = {
 }
 
 export const saveUrl = async ({ userId, url, slug }: SaveUrlArg): Promise<any> => {
-  sendEvent('Save url')
+  sendEvent('Save url', { url, slug })
   const res = await fetcherWithAuth(apiUrlsSave(userId), {
     method: 'PUT',
     body: JSON.stringify({ url, slug })
