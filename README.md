@@ -4,7 +4,7 @@
 
 ✂️ Open source URL shortener, free to use and without ads
 
-[![Deployment](https://img.shields.io/github/deployments/mazipan/ksana.in/production?label=vercel&logo=vercel&logoColor=white)](https://github.com/mazipan/ksana.in/deployments/activity_log?environment=Production) ![Website Up](https://img.shields.io/website-up-down-brightgreen-red/https/ksana.in.svg)
+[![Deployment](https://img.shields.io/github/deployments/mazipan/ksana.in/production?label=vercel&logo=vercel&logoColor=white)](https://github.com/mazipan/ksana.in/deployments/activity_log?environment=Production) ![Website Up](https://img.shields.io/website-up-down-brightgreen-red/https/ksana.in.svg) ![](https://img.shields.io/endpoint?url=https%3A%2F%2Fksana.in%2Fapi%2Fshield)
 
 ## Features
 
