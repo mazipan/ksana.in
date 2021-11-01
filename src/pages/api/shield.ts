@@ -9,17 +9,22 @@ export default async (_: NextApiRequest, res: NextApiResponse) => {
     res.statusCode = 200
     res.json({
       schemaVersion: 1,
-      label: "Shortened URL",
-      message: countUrls || 0,
-      color: "orange"
+      label: "Shortened URLs",
+      message: `${countUrls || 0}`,
+      color: "orange",
+      cacheSeconds: 86400,
+      style: 'flat-square'
     })
   } catch (error) {
     res.statusCode = 500
     res.json({
       schemaVersion: 1,
-      label: "Shortened URL",
-      message: 0,
-      color: "orange"
+      label: "Shortened URLs",
+      message: '0',
+      color: "orange",
+      isError: true,
+      cacheSeconds: 3600,
+      style: 'flat-square'
     })
   }
 }
