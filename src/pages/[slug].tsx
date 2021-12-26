@@ -42,7 +42,8 @@ export async function getServerSideProps({ params }: IGetServerSideProps) {
   }
 
   return {
-    props: {}
+    props: {},
+    notFound: true
   }
 }
 
