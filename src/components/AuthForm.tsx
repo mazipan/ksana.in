@@ -173,6 +173,19 @@ export function AuthForm({ state }: IAuthFormProps) {
     })
 
     processResponse({ session, error, stateType: 'register' })
+
+    if(!error){
+      showAlert({
+        title: "Registrasi Berhasil!",
+        message: "Terima kasih telah mendaftar. Silahkan melakukan verifikasi dengan mengklik tautan yang kami kirimkan melalui email."
+      })
+    }
+    else if(!error){
+      showAlert({
+        title: "Registrasi Gagal!",
+        message: "Silahkan ulangi proses registrasi!"
+      })
+    }
   }
 
   const handleKeyPress = (e: KeyboardEvent) => {
