@@ -180,7 +180,7 @@ export function AuthForm({ state }: IAuthFormProps) {
         message: "Terima kasih telah mendaftar. Silahkan melakukan verifikasi dengan mengklik tautan yang kami kirimkan melalui email."
       })
     }
-    else if(!error){
+    else{
       showAlert({
         title: "Registrasi Gagal!",
         message: "Silahkan ulangi proses registrasi!"
