@@ -4,14 +4,18 @@ import { supabase } from 'libs/supabase'
 export default async (_: NextApiRequest, res: NextApiResponse) => {
   try {
     const { count: countUrls } = await supabase.from('urls').select('id', { count: 'estimated' })
+
     const { count: countUsers } = await supabase.from('users').select('id', { count: 'estimated' })
+
+    const { data: dataUserCount } = await supabase.rpc('getUserCount')
 
     res.setHeader('Cache-Control', 'max-age=86400')
     res.statusCode = 200
     res.json({
       success: true,
       urls: countUrls || 0,
-      users: countUsers || 0
+      users: countUsers || 0,
+      usersFn: dataUserCount || 0
     })
   } catch (error) {
     res.statusCode = 500
@@ -19,6 +23,7 @@ export default async (_: NextApiRequest, res: NextApiResponse) => {
       success: false,
       urls: 0,
       users: 0,
+      usersFn: 0,
       error: error
     })
   }

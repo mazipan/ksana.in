@@ -27,10 +27,10 @@
        <img alt="Homepage" src="screenshots/mobile-home.png" />
      </td>
      <td>
-       <img alt="Homepage" src="screenshots/mobile-login.png" /> 
+       <img alt="Homepage" src="screenshots/mobile-login.png" />
      </td>
      <td>
-       <img alt="Homepage" src="screenshots/mobile-dashboard.png" /> 
+       <img alt="Homepage" src="screenshots/mobile-dashboard.png" />
      </td>
    </tr>
  </tbody>
@@ -71,7 +71,11 @@ create table users (
 
 Click **RUN** to execute the query
 
-Add triggers for "updated_at" field, copy this code on the same SQL editor
+## Creating triggers on Supabase
+
+Go to the SQL tab and execute this query on the editor.
+
+Add triggers for _"updated_at"_ field, copy this code on the same SQL editor
 
 ```sql
 create extension if not exists moddatetime schema extensions;
@@ -79,12 +83,28 @@ create extension if not exists moddatetime schema extensions;
 -- this trigger will set the "updated_at" column to the current timestamp for every update
 create trigger handle_updated_at before update on public.urls
   for each row execute procedure moddatetime (updated_at);
-  
+
 create trigger handle_updated_at_users before update on public.users
   for each row execute procedure moddatetime (updated_at);
 ```
 
 Click **RUN** to execute the query
+
+## Creating Functions on Supabase
+
+- Go to tab _Database_ > _Functions_ on Supabase dashboard
+- Click _"Create a new function"_ button
+- Add name _"getUserCount"_
+- Put this code on the _"Definition"_ text area:
+
+```sql
+SELECT
+  COUNT(distinct(user_id))
+FROM public.urls
+```
+
+- Toggle On the _"Show advance settings"_ switch
+- Change the Language to _"sql"_
 
 ## Additional settings for Authentication
 
