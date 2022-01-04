@@ -27,7 +27,7 @@ const checkUserTable = async (uuid: string) => {
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { email, password } = req.body
-    const { data, session, user, error } = await supabase.auth.signIn({
+    const { session, user, error } = await supabase.auth.signIn({
       email: email,
       password: password
     })
@@ -42,7 +42,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     res.json({
       success: true,
-      data,
       session,
       user,
       error
