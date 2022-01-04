@@ -82,21 +82,20 @@ Click **RUN** to execute the query
 
 ## Creating Functions on Supabase
 
-- Go to tab _Database_ > _Functions_ on Supabase dashboard
-- Click _"Create a new function"_ button
-- Add name _"get_user_distinct"_
-- Change _"Return type"_ to _record_
-- Put this code on the _"Definition"_ text area:
+Go to the SQL tab and execute this query on the editor.
 
 ```sql
-SELECT
-  distinct(user_id) AS users
-FROM public.urls
-GROUP BY user_id
+create or replace function get_users()
+returns int
+language sql
+as $$
+  SELECT
+    COUNT(distinct(user_id)) AS users
+  FROM public.urls
+$$;
 ```
 
-- Toggle On the _"Show advance settings"_ switch
-- Change the Language to _"sql"_
+Click **RUN** to execute the query
 
 ## Additional settings for Authentication
 
