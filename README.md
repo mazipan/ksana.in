@@ -60,6 +60,11 @@ create table urls (
   inserted_at timestamp with time zone default timezone('utc'::text, now()) not null,
   updated_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
+
+create table user_url (
+  user_id uuid references auth.users not null primary key,
+  total integer default 0
+);
 ```
 
 Click **RUN** to execute the query
@@ -85,13 +90,13 @@ Click **RUN** to execute the query
 Go to the SQL tab and execute this query on the editor.
 
 ```sql
-create or replace function get_users()
-returns int
+create or replace function get_users_urls()
+returns setof user_url
 language sql
 as $$
-  SELECT
-    COUNT(distinct(user_id)) AS users
-  FROM public.urls
+  SELECT user_id, COUNT(*) as total
+  FROM urls
+  GROUP BY user_id;
 $$;
 ```
 
