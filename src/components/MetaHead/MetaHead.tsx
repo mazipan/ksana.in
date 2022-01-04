@@ -17,6 +17,10 @@ export function MetaHead({
 }) {
   return (
     <Head>
+      <meta
+        name="viewport"
+        content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
+      />
       <meta name="robots" content={robots} />
       <title>{title}</title>
       <meta name="description" content={description} key="description" />
@@ -40,6 +44,11 @@ export function MetaHead({
       <meta key="tw-url" name="twitter:url" content={url} />
       <meta name="twitter:creator" content={'@maz_ipan'} />
 
+      <meta name="msapplication-TileColor" content="#ED8936" />
+      <meta name="msapplication-TileImage" content="/images/favicon/ms-icon-144x144.png" />
+
+      <meta name="theme-color" content="#ED8936" />
+      <meta name="yandex-verification" content="f7aa4dd770d17d3e" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(makeWebsiteSchema()) }}

@@ -8,11 +8,6 @@ class Document extends NextDocument {
     return (
       <Html lang="id">
         <Head>
-          <meta
-            name="viewport"
-            content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
-          />
-
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link rel="preconnect" href="https://cdn.splitbee.io" />
 
@@ -70,11 +65,6 @@ class Document extends NextDocument {
             href="/images/favicon/android-icon-192x192.png"
           />
 
-          <meta name="msapplication-TileColor" content="#ED8936" />
-          <meta name="msapplication-TileImage" content="/images/favicon/ms-icon-144x144.png" />
-
-          <meta name="theme-color" content="#ED8936" />
-          <meta name="yandex-verification" content="f7aa4dd770d17d3e" />
           <link rel="manifest" href="/manifest.json" />
 
           <link

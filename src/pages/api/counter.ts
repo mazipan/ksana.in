@@ -5,19 +5,18 @@ export default async (_: NextApiRequest, res: NextApiResponse) => {
   try {
     const { count: countUrls } = await supabase.from('urls').select('id', { count: 'estimated' })
 
-    const { count: countUsers } = await supabase.from('users').select('id', { count: 'estimated' })
-
-    const rep = await supabase.rpc('getUserCount')
-
-    console.log('dataUserCount: ', rep)
+    const { count: countUsers } = await supabase.rpc(
+      'get_user_distinct',
+      {},
+      { count: 'estimated' }
+    )
 
     res.setHeader('Cache-Control', 'max-age=86400')
     res.statusCode = 200
     res.json({
       success: true,
       urls: countUrls || 0,
-      users: countUsers || 0,
-      usersFn: 0
+      users: countUsers || 0
     })
   } catch (error) {
     res.statusCode = 500
@@ -25,7 +24,6 @@ export default async (_: NextApiRequest, res: NextApiResponse) => {
       success: false,
       urls: 0,
       users: 0,
-      usersFn: 0,
       error: error
     })
   }
