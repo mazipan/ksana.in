@@ -99,7 +99,7 @@ Click **RUN** to execute the query
 
 ```sql
 SELECT
-  COUNT(distinct(user_id))
+  COUNT(distinct(user_id)) as count
 FROM public.urls
 ```
 

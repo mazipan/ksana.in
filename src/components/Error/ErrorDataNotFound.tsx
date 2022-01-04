@@ -53,6 +53,7 @@ export function ErrorDataNotFound({ title, useCta, ctaAction, ctaText }: IErrorD
 ErrorDataNotFound.defaultProps = {
   title: 'Belum ada data nih, yuk buat baru!',
   useCta: true,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   ctaAction: () => {},
   ctaText: 'Tambah data baru'
 }

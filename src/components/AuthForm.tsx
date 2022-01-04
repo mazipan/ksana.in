@@ -174,16 +174,16 @@ export function AuthForm({ state }: IAuthFormProps) {
 
     processResponse({ session, error, stateType: 'register' })
 
-    if(!error){
+    if (!error) {
       showAlert({
-        title: "Registrasi Berhasil!",
-        message: "Terima kasih telah mendaftar. Silahkan melakukan verifikasi dengan mengklik tautan yang kami kirimkan melalui email."
+        title: 'Registrasi Berhasil!',
+        message:
+          'Terima kasih telah mendaftar. Silahkan melakukan verifikasi dengan mengklik tautan yang kami kirimkan melalui email.'
       })
-    }
-    else{
+    } else {
       showAlert({
-        title: "Registrasi Gagal!",
-        message: "Silahkan ulangi proses registrasi!"
+        title: 'Registrasi Gagal!',
+        message: 'Silahkan ulangi proses registrasi!'
       })
     }
   }

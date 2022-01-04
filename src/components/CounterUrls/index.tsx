@@ -1,8 +1,8 @@
 import { Container, Heading, Stack } from '@chakra-ui/react'
 
-import useCounter from 'hooks/useCounter'
 import { Counter } from './Counter'
 import { LoadingSkeleton } from './LoadingSkeleton'
+import useCounter from 'hooks/useCounter'
 
 export function CounterUrls() {
   const { isLoading, urls } = useCounter()

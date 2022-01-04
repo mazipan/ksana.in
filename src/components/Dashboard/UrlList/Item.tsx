@@ -4,6 +4,7 @@ import { mutate } from 'swr'
 import { Link, Text, Box, Input, IconButton, useColorModeValue, HStack } from '@chakra-ui/react'
 import { HiShare, HiDuplicate, HiPencil, HiTrash, HiSave, HiCheck } from 'react-icons/hi'
 
+import SharePopover from './SharePopover'
 import { deleteUrl, patchSlug } from 'libs/supabase'
 import { sanitizeSlug } from 'libs/helpers'
 import { getMeta } from 'libs/oge'
@@ -14,8 +15,6 @@ import { HOME, apiUrlsGet } from 'constants/paths'
 
 import { IUser } from 'interfaces/IUser'
 import { IUrl } from 'interfaces/IUrl'
-
-import SharePopover from './SharePopover'
 
 const copy: any = dynamic((): any => import('copy-to-clipboard'), { ssr: false })
 

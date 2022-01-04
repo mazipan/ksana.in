@@ -76,6 +76,8 @@ MessageDialog.defaultProps = {
   confirmText: '',
   confirmSchema: 'red',
   isOpen: false,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   onConfirm: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   onClose: () => {}
 }
