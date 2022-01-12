@@ -52,7 +52,7 @@
     "gray-matter": "^4.0.3",
     "husky": "^7.0.2",
     "lint-staged": "^11.1.2",
-    "markdown-it": "^12.2.0",
+    "markdown-it": "^12.3.2",
     "next-sitemap": "^1.6.164",
     "pinst": "^2.1.6",
     "prettier": "^2.3.2",
