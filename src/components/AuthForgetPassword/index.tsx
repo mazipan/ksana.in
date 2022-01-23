@@ -1,7 +1,6 @@
+import { Form } from './Form'
 import { dashboard } from 'constants/paths'
 import { PublicRoute } from 'components/Route/PublicRoute'
-
-import { Form } from './Form'
 
 export function AuthForgetPassword() {
   return (

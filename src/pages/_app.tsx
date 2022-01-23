@@ -2,11 +2,11 @@ import { useEffect } from 'react'
 import { AppProps } from 'next/app'
 import { ColorModeProvider } from '@chakra-ui/react'
 
+import { Chakra } from '../Chakra'
 import { initSplitbee } from 'libs/splitbee'
 
 import './styles.css'
 
-import { Chakra } from '../Chakra'
 import { AlertProvider } from 'context/Alert'
 
 function App({ Component, pageProps }: AppProps) {

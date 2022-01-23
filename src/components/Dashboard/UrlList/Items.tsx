@@ -3,17 +3,16 @@ import { SimpleGrid, Flex, ButtonGroup, IconButton } from '@chakra-ui/react'
 
 import { HiViewGrid, HiViewList } from 'react-icons/hi'
 
+import { LoadingSkeleton } from './LoadingSkeleton'
+import { SearchInput } from './SearchInput'
+import { Item } from './Item'
+import { TotalStats } from './TotalStats'
 import useUrls from 'hooks/useUrls'
 
 import { IUrlListProps } from 'components/Dashboard/UrlList'
 import { ErrorDataNotFound } from 'components/Error/ErrorDataNotFound'
 
 import { IUrl } from 'interfaces/IUrl'
-
-import { LoadingSkeleton } from './LoadingSkeleton'
-import { SearchInput } from './SearchInput'
-import { Item } from './Item'
-import { TotalStats } from './TotalStats'
 
 export const VIEW = {
   GRID: 'grid',

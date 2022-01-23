@@ -1,9 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
+import { sendError401, sendError5xx, sendErrorSlugExist } from '../../_utils'
 import { supabase } from 'libs/supabase'
 import { sanitizeSlug } from 'libs/helpers'
-
-import { sendError401, sendError5xx, sendErrorSlugExist } from '../../_utils'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {

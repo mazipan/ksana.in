@@ -2,8 +2,8 @@ import { Link, Flex, Button } from '@chakra-ui/react'
 import { useEffect, useRef, useState } from 'react'
 import { HiDownload } from 'react-icons/hi'
 
-import { sendEvent } from 'libs/splitbee'
 import { DarkModeSwitch } from '../DarkModeSwitch'
+import { sendEvent } from 'libs/splitbee'
 
 interface UserChoice {
   outcome: 'accepted' | 'dismissed'

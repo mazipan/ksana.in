@@ -6,7 +6,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { email, password } = req.body
 
-    const { data, session, user, error } = await supabase.auth.signUp({
+    const { session, user, error } = await supabase.auth.signUp({
       email: email,
       password: password
     })
@@ -19,7 +19,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     res.json({
       success: true,
-      data,
       session,
       user,
       error

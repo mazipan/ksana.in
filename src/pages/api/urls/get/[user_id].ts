@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { supabase } from 'libs/supabase'
-
 import { sendError5xx } from '../../_utils'
+import { supabase } from 'libs/supabase'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
