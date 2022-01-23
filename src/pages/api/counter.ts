@@ -5,7 +5,9 @@ export default async (_: NextApiRequest, res: NextApiResponse) => {
   try {
     const { count: countUrls } = await supabase.from('urls').select('id', { count: 'estimated' })
 
-    const { count: countUsers } = await supabase.rpc('distinct_users', {}, { count: 'estimated' })
+    const { count: countUsers } = await supabase
+      .from('distinct_users')
+      .select('user_id', { count: 'estimated' })
 
     res.setHeader('Cache-Control', 'max-age=86400')
     res.statusCode = 200
