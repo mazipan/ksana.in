@@ -60,11 +60,6 @@ create table urls (
   inserted_at timestamp with time zone default timezone('utc'::text, now()) not null,
   updated_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
-
-create table user_url (
-  user_id uuid references auth.users not null primary key,
-  total integer default 0
-);
 ```
 
 Click **RUN** to execute the query
@@ -85,19 +80,13 @@ create trigger handle_updated_at before update on public.urls
 
 Click **RUN** to execute the query
 
-## Creating Functions on Supabase
+## Creating View on Supabase
 
 Go to the SQL tab and execute this query on the editor.
 
 ```sql
-create or replace function get_users_urls()
-returns setof user_url
-language sql
-as $$
-  SELECT user_id, COUNT(*) as total
-  FROM urls
-  GROUP BY user_id;
-$$;
+create view distinct_users as
+    select distinct(user_id) from public.urls;
 ```
 
 Click **RUN** to execute the query
