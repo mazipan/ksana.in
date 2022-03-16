@@ -8,7 +8,9 @@ import {
   Input,
   InputGroup,
   InputLeftAddon,
-  Button
+  Button,
+  FormLabel,
+  Switch
 } from '@chakra-ui/react'
 
 import { checkSlug, saveUrl } from 'libs/supabase'
@@ -29,6 +31,7 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
   const [url, setUrl] = useState<string>('')
   const [slug, setSlug] = useState<string>('')
   const [isCheckPass, setIsCheckPass] = useState<boolean>(false)
+  const [isDynamic, setIsDynamic] = useState<boolean>(false)
   const [errorUrl, setErrorUrl] = useState<boolean | string>(false)
   const [errorSlug, setErrorSlug] = useState<boolean | string>(false)
   const [loading, setLoading] = useState<boolean>(false)
@@ -45,14 +48,17 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
     setErrorSlug('')
   }
 
+  const handleChangeIsDynamic = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.checked
+    setIsDynamic(value)
+  }
+
   const resetErrorMessage = () => {
     setErrorUrl('')
     setErrorSlug('')
   }
 
   const checkIsEmpty = () => {
-    resetErrorMessage()
-
     if (url === '') {
       setErrorUrl('URL dan slug tidak bisa dikosongkan')
       return true
@@ -71,10 +77,28 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
     return false
   }
 
+  const checkParamRequired = () => {
+    const params = url.match(/{param}/g) || []
+
+    if (isDynamic && !params.length) {
+      setErrorUrl('Tautan dinamis membutuhkan teks {param} didalamnya')
+      return false
+    }
+
+    if (isDynamic && params.length > 1) {
+      setErrorUrl('Teks {param} cukup satu saja')
+      return false
+    }
+
+    return true
+  }
+
   const handleCheckAvailability = async () => {
     setLoading(true)
+    resetErrorMessage()
     const isEmpty = checkIsEmpty()
-    if (!isEmpty) {
+    const hasParam = checkParamRequired()
+    if (!isEmpty && hasParam) {
       const response = await checkSlug({ slug: sanitizeSlug(slug) })
       if (response.error) {
         setIsCheckPass(true)
@@ -93,6 +117,7 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
       const { error: errorInsert } = await saveUrl({
         url: url,
         slug: sanitizeSlug(slug),
+        is_dynamic: isDynamic,
         userId: user?.id
       })
 
@@ -169,6 +194,18 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
           <FormHelperText>
             Hanya diperbolehkan menggunakan huruf, angka, karakter titik dan strip saja
           </FormHelperText>
+        </FormControl>
+
+        <FormControl display="flex" alignItems="center">
+          <FormLabel htmlFor="is-dynamic" mb="0">
+            Tautan Dinamis?
+          </FormLabel>
+          <Switch id="is-dynamic" onChange={handleChangeIsDynamic} />
+          {isDynamic && (
+            <FormHelperText marginLeft="1em">
+              Sisipkan teks <code>{'{param}'}</code> pada tautan
+            </FormHelperText>
+          )}
         </FormControl>
 
         {isCheckPass ? (

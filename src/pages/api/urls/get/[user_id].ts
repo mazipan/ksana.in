@@ -9,7 +9,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const { data, error } = await supabase
       .from('urls')
-      .select('id,user_id,real_url,slug,hit,updated_at')
+      .select('id,user_id,real_url,slug,hit,is_dynamic,updated_at')
       .eq('user_id', userId)
       .order('id', { ascending: false })
 

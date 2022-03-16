@@ -1,7 +1,16 @@
 import dynamic from 'next/dynamic'
 import { ChangeEvent, useState } from 'react'
 import { mutate } from 'swr'
-import { Link, Text, Box, Input, IconButton, useColorModeValue, HStack } from '@chakra-ui/react'
+import {
+  Link,
+  Text,
+  Box,
+  Input,
+  IconButton,
+  useColorModeValue,
+  HStack,
+  Badge
+} from '@chakra-ui/react'
 import { HiShare, HiDuplicate, HiPencil, HiTrash, HiSave, HiCheck } from 'react-icons/hi'
 
 import SharePopover from './SharePopover'
@@ -164,11 +173,17 @@ export function Item({ user, data }: IUrlItemProps) {
         fontSize={{ base: 'md', md: 'lg' }}
         fontWeight="700"
         color="orange.400"
-        href={`${HOME}${data.slug}`}
+        href={`${HOME}${data.slug}/{param}`}
         mb="4"
         display="block"
       >
         {`/${data.slug}`}
+        {data.is_dynamic && '/{param}'}
+        {data.is_dynamic && (
+          <Badge marginLeft="1em" colorScheme="green">
+            Dinamis
+          </Badge>
+        )}
       </Link>
 
       {updateId && updateId === data.id && (
