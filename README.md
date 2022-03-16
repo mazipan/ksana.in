@@ -57,6 +57,7 @@ create table urls (
   real_url text check (char_length(real_url) > 1),
   slug text check (char_length(slug) > 1),
   hit integer default 0,
+  is_dynamic boolean default false,
   inserted_at timestamp with time zone default timezone('utc'::text, now()) not null,
   updated_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
