@@ -59,7 +59,7 @@ export const loginWith3rdParty = async (provider: Provider): Promise<any> => {
       redirectTo: REDIRECT_CB
     }
   )
-  console.log({ user, session, error })
+  // console.log({ user, session, error })
   // Generate manual url
   // window.location.href = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/authorize?provider=${provider}&redirect_to=${REDIRECT_CB}`
 }

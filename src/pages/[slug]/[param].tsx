@@ -41,7 +41,6 @@ export async function getServerSideProps({ params }: IGetServerSideProps) {
 
     const destination = data.is_dynamic ? data.real_url.replace(/{param}/, param) : data.real_url
 
-    console.log('params', params)
     return {
       redirect: {
         destination,
