@@ -19,13 +19,13 @@ function SlugPage() {
 
 export interface IGetServerSideProps {
   params: {
-    slug: string
-    param?: string
+    all: [string, string?]
   }
 }
 
 export async function getServerSideProps({ params }: IGetServerSideProps) {
-  const { slug, param } = params
+  const [slug, param] = params.all
+
   const { data } = await supabase
     .from('urls')
     .select('real_url,slug,hit,is_dynamic')
@@ -39,9 +39,10 @@ export async function getServerSideProps({ params }: IGetServerSideProps) {
       .update({ hit: data.hit + 1 })
       .match({ slug: slug })
 
-    const destination = data.is_dynamic ? data.real_url.replace(/{param}/, param) : data.real_url
+    const destination = !!data.is_dynamic ? data.real_url.replace(/{param}/, param) : data.real_url
 
     return {
+      notFound: !!data.is_dynamic && !param?.length,
       redirect: {
         destination,
         permanent: false

@@ -173,13 +173,13 @@ export function Item({ user, data }: IUrlItemProps) {
         fontSize={{ base: 'md', md: 'lg' }}
         fontWeight="700"
         color="orange.400"
-        href={`${HOME}${data.slug}/{param}`}
+        href={`${HOME}${data.slug}${!!data.is_dynamic ? '/{param}' : ''}`}
         mb="4"
         display="block"
       >
         {`/${data.slug}`}
-        {data.is_dynamic && '/{param}'}
-        {data.is_dynamic && (
+        {!!data.is_dynamic && '/{param}'}
+        {!!data.is_dynamic && (
           <Badge marginLeft="1em" colorScheme="green">
             Dinamis
           </Badge>
