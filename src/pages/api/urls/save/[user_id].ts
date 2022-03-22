@@ -34,7 +34,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         {
           real_url: url,
           slug: sanitizeSlug(slug),
-          is_dynamic: ~~is_dynamic,
+          is_dynamic: is_dynamic ? 1 : 0,
           user_id: userId
         }
       ])
