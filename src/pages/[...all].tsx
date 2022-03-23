@@ -5,7 +5,6 @@ import { Layout } from 'components/Layout/Layout'
 
 import { ErrorDefault } from 'components/Error/ErrorDefault'
 import { MetaHead, NO_INDEXED } from 'components/MetaHead/MetaHead'
-import { IUrl } from 'interfaces/IUrl'
 
 function SlugPage() {
   return (
@@ -19,12 +18,19 @@ function SlugPage() {
 }
 
 export interface IGetServerSideProps {
-  params: IUrl
+  params: {
+    all: [string, string?]
+  }
 }
 
 export async function getServerSideProps({ params }: IGetServerSideProps) {
-  const slug = params.slug
-  const { data } = await supabase.from('urls').select('real_url,slug,hit').eq('slug', slug).single()
+  const [slug, param] = params.all
+
+  const { data } = await supabase
+    .from('urls')
+    .select('real_url,slug,hit,is_dynamic')
+    .eq('slug', slug)
+    .single()
 
   if (data && data.real_url) {
     // update hit field for a simple stats
@@ -33,9 +39,12 @@ export async function getServerSideProps({ params }: IGetServerSideProps) {
       .update({ hit: data.hit + 1 })
       .match({ slug: slug })
 
+    const destination = !!data.is_dynamic ? data.real_url.replace(/{param}/, param) : data.real_url
+
     return {
+      notFound: !!data.is_dynamic && !param?.length,
       redirect: {
-        destination: data.real_url,
+        destination,
         permanent: false
       }
     }

@@ -7,7 +7,7 @@ import { sanitizeSlug } from 'libs/helpers'
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const userId = req.query.user_id
-    const { url, slug } = req.body
+    const { url, slug, is_dynamic } = req.body
 
     // check the slug availability
     const { error: errorRealSlug } = await supabase
@@ -34,6 +34,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         {
           real_url: url,
           slug: sanitizeSlug(slug),
+          is_dynamic: is_dynamic ? 1 : 0,
           user_id: userId
         }
       ])

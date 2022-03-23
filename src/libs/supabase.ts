@@ -59,7 +59,7 @@ export const loginWith3rdParty = async (provider: Provider): Promise<any> => {
       redirectTo: REDIRECT_CB
     }
   )
-  console.log({ user, session, error })
+  // console.log({ user, session, error })
   // Generate manual url
   // window.location.href = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/authorize?provider=${provider}&redirect_to=${REDIRECT_CB}`
 }
@@ -167,13 +167,14 @@ export type SaveUrlArg = {
   userId: string
   url: string
   slug: string
+  is_dynamic: boolean
 }
 
-export const saveUrl = async ({ userId, url, slug }: SaveUrlArg): Promise<any> => {
-  sendEvent('Save url', { url, slug })
+export const saveUrl = async ({ userId, url, slug, is_dynamic }: SaveUrlArg): Promise<any> => {
+  sendEvent('Save url', { url, slug, is_dynamic: `${is_dynamic}` })
   const res = await fetcherWithAuth(apiUrlsSave(userId), {
     method: 'PUT',
-    body: JSON.stringify({ url, slug })
+    body: JSON.stringify({ url, slug, is_dynamic })
   })
   return res
 }
