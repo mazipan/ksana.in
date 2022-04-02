@@ -5,7 +5,6 @@ module.exports = {
     'prettier',
     'next',
     'plugin:@typescript-eslint/recommended',
-    'plugin:react-hooks/recommended',
     'plugin:import/recommended',
     'plugin:import/typescript'
   ],
@@ -17,7 +16,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module'
   },
-  plugins: ['prettier', '@typescript-eslint', 'react-hooks', 'import'],
+  plugins: ['prettier', '@typescript-eslint', 'import'],
   rules: {
     '@next/next/no-img-element': 'off',
     '@typescript-eslint/no-var-requires': 'off',
