@@ -11,7 +11,7 @@ export function CounterUrls() {
     <Container maxW={'5xl'} mx="auto" as="section" mt="16">
       <Stack p={4} spacing="16">
         <Heading textAlign="center" as="h3">
-          Telah Mempercantik
+          Total Tautan
         </Heading>
 
         {isLoading && <LoadingSkeleton />}

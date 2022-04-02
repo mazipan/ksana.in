@@ -9,7 +9,8 @@ import {
   IconButton,
   useColorModeValue,
   HStack,
-  Badge
+  Tag,
+  Flex
 } from '@chakra-ui/react'
 import { HiShare, HiDuplicate, HiPencil, HiTrash, HiSave, HiCheck } from 'react-icons/hi'
 
@@ -168,23 +169,24 @@ export function Item({ user, data }: IUrlItemProps) {
       overflow={'hidden'}
       p={{ base: '4', md: '6' }}
     >
-      <Link
-        as="a"
-        fontSize={{ base: 'md', md: 'lg' }}
-        fontWeight="700"
-        color="orange.400"
-        href={`${HOME}${data.slug}${!!data.is_dynamic ? '/{param}' : ''}`}
-        mb="4"
-        display="block"
-      >
-        {`/${data.slug}`}
-        {!!data.is_dynamic && '/{param}'}
-        {!!data.is_dynamic && (
-          <Badge marginLeft="1em" colorScheme="green">
-            Dinamis
-          </Badge>
-        )}
-      </Link>
+      {!!data.is_dynamic && (
+        <Tag size="sm" colorScheme="green">
+          Tautan dinamis
+        </Tag>
+      )}
+      <Flex alignItems="center" mb="4">
+        <Link
+          as="a"
+          fontSize={{ base: 'md', md: 'lg' }}
+          fontWeight="700"
+          color="orange.400"
+          href={`${HOME}${data.slug}${!!data.is_dynamic ? '/{param}' : ''}`}
+          display="block"
+        >
+          {`/${data.slug}`}
+          {!!data.is_dynamic && '/{param}'}
+        </Link>
+      </Flex>
 
       {updateId && updateId === data.id && (
         <HStack alignItems="center" mb="4" mt="2">
