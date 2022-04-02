@@ -25,7 +25,7 @@ export function Header() {
     >
       <Link
         href={'/'}
-        name="Beranda"
+        title="Beranda"
         _hover={{
           textDecoration: 'none'
         }}

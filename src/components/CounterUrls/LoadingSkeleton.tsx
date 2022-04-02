@@ -13,7 +13,6 @@ export function LoadingSkeleton() {
             height={{ base: '40px', md: '60px' }}
             display="flex"
             alignItems="center"
-            justify="center"
           />
         ))}
       </Stack>
