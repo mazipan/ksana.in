@@ -10,9 +10,11 @@ import {
   InputLeftAddon,
   Button,
   FormLabel,
-  Switch
+  Switch,
+  Tooltip
 } from '@chakra-ui/react'
 
+import { HiQuestionMarkCircle } from 'react-icons/hi'
 import { checkSlug, saveUrl } from 'libs/supabase'
 import { sanitizeSlug } from 'libs/helpers'
 
@@ -81,7 +83,7 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
     const params = url.match(/{param}/g) || []
 
     if (isDynamic && !params.length) {
-      setErrorUrl('Tautan dinamis membutuhkan teks {param} didalamnya')
+      setErrorUrl('Tautan dinamis membutuhkan teks {param} di dalamnya')
       return false
     }
 
@@ -168,6 +170,26 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
           <FormHelperText>
             Membutuhkan tautan dalam bentuk utuh, termasuk awalan https://
           </FormHelperText>
+          {isDynamic && (
+            <FormHelperText>
+              Sisipkan teks <code>{'{param}'}</code> pada tautan
+            </FormHelperText>
+          )}
+        </FormControl>
+
+        <FormControl display="flex" alignItems="center">
+          <FormLabel htmlFor="is-dynamic" mb="0" display="flex">
+            Tautan dinamis{' '}
+            <Tooltip
+              label="Kamu bisa membuat tautan dinamis macam: https://mazipan.space/{param}"
+              placement="bottom"
+            >
+              <i>
+                <HiQuestionMarkCircle />
+              </i>
+            </Tooltip>
+          </FormLabel>
+          <Switch id="is-dynamic" onChange={handleChangeIsDynamic} />
         </FormControl>
 
         <FormControl id="slug" isRequired>
@@ -194,18 +216,6 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
           <FormHelperText>
             Hanya diperbolehkan menggunakan huruf, angka, karakter titik dan strip saja
           </FormHelperText>
-        </FormControl>
-
-        <FormControl display="flex" alignItems="center">
-          <FormLabel htmlFor="is-dynamic" mb="0">
-            Tautan Dinamis?
-          </FormLabel>
-          <Switch id="is-dynamic" onChange={handleChangeIsDynamic} />
-          {isDynamic && (
-            <FormHelperText marginLeft="1em">
-              Sisipkan teks <code>{'{param}'}</code> pada tautan
-            </FormHelperText>
-          )}
         </FormControl>
 
         {isCheckPass ? (
