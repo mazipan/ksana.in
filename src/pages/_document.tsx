@@ -68,7 +68,7 @@ class Document extends NextDocument {
           <link rel="manifest" href="/manifest.json" />
 
           <link
-            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Work+Sans&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap"
             rel="stylesheet"
           />
         </Head>
