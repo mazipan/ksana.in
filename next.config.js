@@ -2,7 +2,10 @@ const withPWA = require('next-pwa')
 
 const workboxConfig = require('./wb.config')
 
-module.exports = withPWA({
+/**
+ * @type {import('next').NextConfig}
+ */
+const nextConfig = withPWA({
   images: {
     deviceSizes: [420, 1024],
     iconSizes: [],
@@ -12,3 +15,5 @@ module.exports = withPWA({
   },
   pwa: workboxConfig
 })
+
+module.exports = nextConfig
