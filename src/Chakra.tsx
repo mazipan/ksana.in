@@ -1,14 +1,13 @@
 import { GetServerSideProps } from 'next'
-import { ChakraProvider, cookieStorageManager, localStorageManager } from '@chakra-ui/react'
+import { ChakraProvider, createLocalStorageManager } from '@chakra-ui/react'
 
 import theme from './theme'
 
-export function Chakra({ cookies, children }: any) {
-  const colorModeManager =
-    typeof cookies === 'string' ? cookieStorageManager(cookies) : localStorageManager
+const manager = createLocalStorageManager('theme')
 
+export function Chakra({ children }: any) {
   return (
-    <ChakraProvider resetCSS colorModeManager={colorModeManager} theme={theme}>
+    <ChakraProvider resetCSS colorModeManager={manager} theme={theme}>
       {children}
     </ChakraProvider>
   )
