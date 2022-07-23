@@ -45,7 +45,7 @@ export async function getServerSideProps({ params }: IGetServerSideProps) {
       notFound: !!data.is_dynamic && !param?.length,
       redirect: {
         destination,
-        permanent: false
+        permanent: true
       }
     }
   }
