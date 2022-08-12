@@ -19,7 +19,8 @@ import { EVENT_SIGN_OUT, LS_AUTH_TOKEN } from 'constants/common'
 
 export const supabase: SupabaseClient = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL || '',
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '',
+  { persistSession: true }
 )
 
 export const setSessionToServer = async (event: string, session: Session | null): Promise<void> => {

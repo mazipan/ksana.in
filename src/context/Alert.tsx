@@ -1,13 +1,17 @@
 import { createContext, useState, useCallback, useContext, ReactNode } from 'react'
 import { node } from 'prop-types'
 
-import { MessageDialog, IMessageDialogProps } from 'components/MessageDialog'
+import {
+  MessageDialog,
+  IMessageDialogProps,
+  IMessageOpenDialogProps
+} from 'components/MessageDialog'
 
 const noop = () => {}
 
 export interface IAlertContext {
-  showAlert: any
-  hideAlert(): void
+  showAlert: (args: IMessageOpenDialogProps) => void
+  hideAlert: () => void
   _alertProps: IMessageDialogProps
 }
 
@@ -41,26 +45,29 @@ export const AlertProvider = ({ children }: IAlertProviderProps) => {
     setState((prevState: IMessageDialogProps) => ({ ...prevState, isOpen: false }))
   }, [])
 
-  const showAlert = useCallback((args: IMessageDialogProps) => {
-    const {
-      title = '',
-      message = '',
-      cancelText = 'Tutup',
-      confirmText = '',
-      onConfirm = noop,
-      onClose = hideAlert
-    } = args
+  const showAlert = useCallback(
+    (args: IMessageOpenDialogProps) => {
+      const {
+        title = '',
+        message = '',
+        cancelText = 'Tutup',
+        confirmText = '',
+        onConfirm = noop,
+        onClose = hideAlert
+      } = args
 
-    setState({
-      isOpen: true,
-      title,
-      message,
-      cancelText,
-      confirmText,
-      onConfirm,
-      onClose
-    })
-  }, [])
+      setState({
+        isOpen: true,
+        title,
+        message,
+        cancelText,
+        confirmText,
+        onConfirm,
+        onClose
+      })
+    },
+    [hideAlert]
+  )
 
   return (
     <AlertContext.Provider value={{ showAlert, hideAlert, _alertProps: state }}>

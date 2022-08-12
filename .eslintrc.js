@@ -39,7 +39,9 @@ module.exports = {
     'import/no-anonymous-default-export': 0,
     'import/order': 'error',
     'react/no-unescaped-entities': 'off',
-    'react/no-children-prop': 'off'
+    'react/no-children-prop': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/no-empty-function': 'off'
   },
   settings: {
     'import/resolver': {

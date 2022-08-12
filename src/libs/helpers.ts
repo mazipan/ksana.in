@@ -1,7 +1,6 @@
+import { setSessionToServer } from './supabase'
 import { EVENT_SIGN_IN, LS_FP_TOKEN, CB_RECOVERY, CB_SIGNUP } from 'constants/common'
 import { setNewPassword, login, dashboard } from 'constants/paths'
-
-import { setSessionToServer } from './supabase'
 
 export const callbackHandler = async () => {
   if (typeof window !== 'undefined') {

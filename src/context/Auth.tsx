@@ -3,6 +3,7 @@ import { node } from 'prop-types'
 
 import useUser from 'hooks/useUser'
 import { IUser } from 'interfaces/IUser'
+
 export interface IAuthContext {
   isLoading: boolean
   isLogin: boolean
