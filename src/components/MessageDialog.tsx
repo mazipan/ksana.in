@@ -14,15 +14,17 @@ import {
 import { textColor } from 'constants/colors'
 
 export interface IMessageDialogProps {
+  isOpen: boolean
   title?: string
   message?: string
   cancelText?: string
   confirmText?: string
   confirmSchema?: string
-  isOpen: boolean
-  onConfirm(): void
-  onClose(): void
+  onConfirm?: () => void
+  onClose?: () => void
 }
+
+export type IMessageOpenDialogProps = Omit<IMessageDialogProps, 'isOpen'>
 
 export function MessageDialog({
   title,
@@ -32,7 +34,7 @@ export function MessageDialog({
   confirmSchema,
   isOpen,
   onConfirm,
-  onClose
+  onClose = () => {}
 }: IMessageDialogProps) {
   const cancelRef = useRef<any>()
   const { colorMode } = useColorMode()

@@ -8,7 +8,6 @@ const workboxConfig = require('./wb.config')
 const nextConfig = withPWA({
   images: {
     deviceSizes: [420, 1024],
-    iconSizes: [],
     domains: [],
     path: '/_next/image',
     loader: 'default'
