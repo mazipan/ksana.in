@@ -20,7 +20,7 @@ export const VIEW = {
 }
 
 export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
-  const { data, isLoading = true } = useUrls(user?.id || '')
+  const { data, isLoading = true } = useUrls()
   const [searchText, setSearchText] = useState<string>('')
   const [view, setView] = useState<string>(VIEW.LIST)
   const [filteredData, setFilteredData] = useState<IUrl[]>(data)

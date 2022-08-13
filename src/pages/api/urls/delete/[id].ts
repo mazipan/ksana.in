@@ -9,10 +9,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const { user } = await supabase.auth.api.getUserByCookie(req)
 
-    const { data: dataUserId } = await supabase.from('urls').select('user_id').eq('id', id).single()
+    const { data: existingData } = await supabase
+      .from('urls')
+      .select('user_id')
+      .eq('id', id)
+      .single()
 
-    if (dataUserId && dataUserId.user_id) {
-      if (dataUserId.user_id === user?.id) {
+    if (existingData && existingData.user_id) {
+      if (existingData.user_id === user?.id) {
         const { data, error } = await supabase.from('urls').delete().match({ id: id })
 
         if (error) {

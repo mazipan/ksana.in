@@ -129,7 +129,7 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
           message: 'Tautan telah disimpan dalam basis data kami, silahkan mulai bagikan',
           onClose: () => {
             hideAlert()
-            mutate(apiUrlsGet(user?.id))
+            mutate(apiUrlsGet())
             setUrl('')
             setSlug('')
             setIsCheckPass(false)

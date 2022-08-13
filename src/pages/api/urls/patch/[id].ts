@@ -4,18 +4,28 @@ import { sendError401, sendError5xx, sendErrorSlugExist } from '../../_utils'
 import { supabase } from 'libs/supabase'
 import { sanitizeSlug } from 'libs/helpers'
 
+/**
+ * To update certain url
+ *
+ * Required Params: user_id
+ */
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const id = req.query.id
-    const { slug } = req.body
+    const { slug, realUrl } = req.body
 
     const { user } = await supabase.auth.api.getUserByCookie(req)
 
-    const { data: dataUserId } = await supabase.from('urls').select('user_id').eq('id', id).single()
+    const { data: existingData } = await supabase
+      .from('urls')
+      .select('id,user_id,real_url,slug')
+      .eq('id', id)
+      .single()
 
-    if (dataUserId && dataUserId.user_id) {
-      if (dataUserId.user_id === user?.id) {
-        // check the slug availability
+    if (existingData && existingData.user_id) {
+      // Make sure the url is belong to the user session
+      if (existingData.user_id === user?.id) {
+        // check the new slug availability
         const { error: errorRealSlug } = await supabase
           .from('urls')
           .select('slug')
@@ -26,7 +36,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         if (errorRealSlug) {
           const { data, error } = await supabase
             .from('urls')
-            .update({ slug: sanitizeSlug(slug) })
+            .update({ slug: sanitizeSlug(slug), real_url: realUrl })
             .match({ id: id })
 
           if (error) {

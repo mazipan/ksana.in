@@ -52,7 +52,7 @@ export const login = async ({ email, password }: LoginArg): Promise<any> => {
 type Provider = 'google' | 'github' | 'twitter'
 
 export const loginWith3rdParty = async (provider: Provider): Promise<any> => {
-  const { user, session, error } = await supabase.auth.signIn(
+  await supabase.auth.signIn(
     {
       provider
     },
@@ -172,8 +172,8 @@ export type SaveUrlArg = {
 }
 
 export const saveUrl = async ({ userId, url, slug, is_dynamic }: SaveUrlArg): Promise<any> => {
-  sendEvent('Save url', { url, slug, is_dynamic: `${is_dynamic}` })
-  const res = await fetcherWithAuth(apiUrlsSave(userId), {
+  sendEvent('Save url', { url, slug, is_dynamic: `${is_dynamic}`, userId })
+  const res = await fetcherWithAuth(apiUrlsSave(), {
     method: 'PUT',
     body: JSON.stringify({ url, slug, is_dynamic })
   })
@@ -198,13 +198,14 @@ export type PatchSlugArg = {
   id: string
   slug: string
   userId: string
+  realUrl: string
 }
 
-export const patchSlug = async ({ id, slug, userId }: PatchSlugArg): Promise<any> => {
+export const patchSlug = async ({ id, slug, userId, realUrl }: PatchSlugArg): Promise<any> => {
   sendEvent('Update url')
   const res = await fetcherWithAuth(apiUrlsPatch(id), {
     method: 'PATCH',
-    body: JSON.stringify({ slug, userId })
+    body: JSON.stringify({ slug, userId, realUrl })
   })
   return res
 }

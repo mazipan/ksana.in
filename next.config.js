@@ -12,7 +12,7 @@ const nextConfig = withPWA({
     path: '/_next/image',
     loader: 'default'
   },
-  pwa: workboxConfig
+  pwa: process.env.NODE_ENV === 'development' ? null : workboxConfig
 })
 
 module.exports = nextConfig
