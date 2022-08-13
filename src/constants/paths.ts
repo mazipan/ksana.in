@@ -26,8 +26,8 @@ export const apiForgetPassword = '/api/auth/forget-password'
 export const apiSetNewPassword = '/api/auth/set-new-password'
 
 export const apiUrlsCheck = (slug: string): string => `/api/urls/check/${slug}`
-export const apiUrlsGet = (id: string): string => `/api/urls/get/${id}`
-export const apiUrlsSave = (id: string): string => `/api/urls/save/${id}`
+export const apiUrlsGet = (): string => `/api/urls/get/all`
+export const apiUrlsSave = (): string => `/api/urls/save/newurl`
 export const apiUrlsPatch = (id: string): string => `/api/urls/patch/${id}`
 export const apiUrlsDelete = (id: string): string => `/api/urls/delete/${id}`
 

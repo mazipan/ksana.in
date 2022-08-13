@@ -10,7 +10,11 @@ import {
   useColorModeValue,
   HStack,
   Tag,
-  Flex
+  Flex,
+  VStack,
+  Button,
+  FormControl,
+  FormHelperText
 } from '@chakra-ui/react'
 import { HiShare, HiDuplicate, HiPencil, HiTrash, HiSave, HiCheck } from 'react-icons/hi'
 
@@ -37,6 +41,8 @@ export function Item({ user, data }: IUrlItemProps) {
   const { showAlert, hideAlert } = useAlertContext()
   const [updateId, setUpdateId] = useState<string>('')
   const [updateSlug, setUpdateSlug] = useState<string>('')
+  const [updateUrl, setUpdateUrl] = useState<string>('')
+  const [updateData, setUpdateData] = useState<IUrl | null>(null)
   const [isSuccessCopy, setSuccessCopy] = useState<boolean>(false)
   const [isLoadingShare, setLoadingShare] = useState<boolean>(false)
   const [isLoadingSave, setLoadingSave] = useState<boolean>(false)
@@ -85,14 +91,25 @@ export function Item({ user, data }: IUrlItemProps) {
     }
   }
 
-  const handleClickEdit = async (id: string) => {
-    if (updateId === id) {
+  const handleClickEdit = async (data: IUrl) => {
+    if (updateId === data.id) {
       setUpdateId('')
       setUpdateSlug('')
+      setUpdateUrl('')
+      setUpdateData(null)
     } else {
-      setUpdateId(id)
+      setUpdateId(data.id)
       setUpdateSlug('')
+      setUpdateUrl('')
+      setUpdateData(data)
     }
+  }
+
+  const handleCancelEdit = () => {
+    setUpdateId('')
+    setUpdateSlug('')
+    setUpdateUrl('')
+    setUpdateData(null)
   }
 
   const handleChangeUpdatedSlug = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -100,13 +117,19 @@ export function Item({ user, data }: IUrlItemProps) {
     setUpdateSlug(value)
   }
 
-  const handleClickSave = async () => {
+  const handleChangeUpdatedUrl = async (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    setUpdateUrl(value)
+  }
+
+  const handleClickSaveUpdatedData = async () => {
     if (updateSlug) {
       setLoadingSave(true)
       const { error } = await patchSlug({
         id: updateId,
-        slug: sanitizeSlug(updateSlug),
-        userId: user?.id
+        slug: sanitizeSlug(updateSlug) || sanitizeSlug(updateData?.slug || ''),
+        userId: user?.id,
+        realUrl: updateUrl || updateData?.real_url || ''
       })
 
       if (error) {
@@ -119,9 +142,11 @@ export function Item({ user, data }: IUrlItemProps) {
           }
         })
       } else {
-        mutate(apiUrlsGet(user?.id))
+        mutate(apiUrlsGet())
         setUpdateId('')
         setUpdateSlug('')
+        setUpdateUrl('')
+        setUpdateData(null)
         setLoadingSave(false)
       }
     }
@@ -143,7 +168,7 @@ export function Item({ user, data }: IUrlItemProps) {
     }
 
     hideAlert()
-    mutate(apiUrlsGet(user?.id))
+    mutate(apiUrlsGet())
   }
 
   const handleDelete = async (id: string, slug: string) => {
@@ -174,96 +199,131 @@ export function Item({ user, data }: IUrlItemProps) {
           Tautan dinamis
         </Tag>
       )}
-      <Flex alignItems="center" mb="4">
-        <Link
-          as="a"
-          fontSize={{ base: 'md', md: 'lg' }}
-          fontWeight="700"
-          color="orange.400"
-          href={`${HOME}${data.slug}${!!data.is_dynamic ? '/{param}' : ''}`}
-          display="block"
-        >
-          {`/${data.slug}`}
-          {!!data.is_dynamic && '/{param}'}
-        </Link>
-      </Flex>
 
       {updateId && updateId === data.id && (
-        <HStack alignItems="center" mb="4" mt="2">
-          <Input
-            size="lg"
-            name="slug"
-            placeholder={'Tulis slug baru'}
-            bg={bgInput}
-            border={0}
-            value={updateSlug}
-            onChange={handleChangeUpdatedSlug}
-          />
+        <VStack mb="4" mt="2" alignItems="flex-start" gap={2}>
+          <FormControl>
+            <Input
+              size="lg"
+              name="url"
+              placeholder={'Tulis URL baru'}
+              bg={bgInput}
+              border={0}
+              value={updateUrl}
+              onChange={handleChangeUpdatedUrl}
+            />
+            <FormHelperText>URL sebelumnya: {updateData?.real_url}</FormHelperText>
+          </FormControl>
 
-          <IconButton
-            onClick={handleClickSave}
-            aria-label="Simpan slug"
-            size="lg"
-            bg="orange.400"
-            borderRadius="md"
-            isLoading={isLoadingSave}
-            icon={<HiSave color="#FFF" />}
-          />
-        </HStack>
+          <FormControl>
+            <Input
+              size="lg"
+              name="slug"
+              placeholder={'Tulis slug baru'}
+              bg={bgInput}
+              border={0}
+              value={updateSlug}
+              onChange={handleChangeUpdatedSlug}
+            />
+            <FormHelperText>Slug sebelumnya: {updateData?.slug}</FormHelperText>
+          </FormControl>
+
+          <HStack alignItems="flex-start">
+            <Button
+              onClick={handleClickSaveUpdatedData}
+              color={'white'}
+              bg={'orange.400'}
+              _hover={{
+                bg: 'orange.500'
+              }}
+              _focus={{
+                bg: 'orange.500'
+              }}
+              borderRadius="md"
+              isLoading={isLoadingSave}
+            >
+              Simpan
+            </Button>
+            <Button onClick={handleCancelEdit} colorScheme="red" borderRadius="md">
+              Batal
+            </Button>
+          </HStack>
+        </VStack>
       )}
 
-      <Text fontSize="small" color="gray.400" display="block" mb="2">
-        {data.real_url}
-      </Text>
-      <Text fontSize="small" color="gray.400">
-        <Text as="span" fontWeight="bold" color="orange.400">
-          {new Intl.NumberFormat('id-ID').format(data.hit)}
-        </Text>
-        {` `} kunjungan
-      </Text>
-      <HStack spacing={2} mt={4} flexWrap="wrap">
-        <IconButton
-          onClick={() => {
-            handleCopy(`${HOME}${data.slug}`)
-          }}
-          aria-label="Copy"
-          variant="ghost"
-          borderRadius="md"
-          icon={isSuccessCopy ? <HiCheck color="#48BB78" /> : <HiDuplicate color="#ED8936" />}
-        />
-        {isSupportShare ? (
+      {updateId === '' && (
+        <>
+          <Flex alignItems="center" mb="4">
+            <Link
+              as="a"
+              fontSize={{ base: 'md', md: 'lg' }}
+              fontWeight="700"
+              color="orange.400"
+              href={`${HOME}${data.slug}${!!data.is_dynamic ? '/{param}' : ''}`}
+              display="block"
+            >
+              {`/${data.slug}`}
+              {!!data.is_dynamic && '/{param}'}
+            </Link>
+          </Flex>
+
+          <Text fontSize="small" color="gray.400" display="block" mb="2">
+            {data.real_url}
+          </Text>
+
+          <Text fontSize="small" color="gray.400">
+            <Text as="span" fontWeight="bold" color="orange.400">
+              {new Intl.NumberFormat('id-ID').format(data.hit)}
+            </Text>
+            {` `} kunjungan
+          </Text>
+        </>
+      )}
+      {updateId === '' && (
+        <HStack spacing={2} mt={4} flexWrap="wrap">
           <IconButton
             onClick={() => {
-              handleShare(`${HOME}${data.slug}`)
+              handleCopy(`${HOME}${data.slug}`)
             }}
             aria-label="Copy"
             variant="ghost"
             borderRadius="md"
-            isLoading={isLoadingShare}
-            icon={<HiShare color="#ED8936" />}
+            icon={isSuccessCopy ? <HiCheck color="#48BB78" /> : <HiDuplicate color="#ED8936" />}
           />
-        ) : (
-          <SharePopover url={`${HOME}${data.slug}`} />
-        )}
-        <IconButton
-          onClick={() => {
-            handleClickEdit(data.id)
-          }}
-          aria-label="Ubah"
-          variant="ghost"
-          borderRadius="md"
-          icon={<HiPencil color="#ED8936" />}
-        />
-        <IconButton
-          onClick={() => {
-            handleDelete(data.id, data.slug)
-          }}
-          aria-label="Hapus"
-          variant="ghost"
-          borderRadius="md"
-          icon={<HiTrash color="#ED8936" />}
-        />
-      </HStack>
+          {isSupportShare ? (
+            <IconButton
+              onClick={() => {
+                handleShare(`${HOME}${data.slug}`)
+              }}
+              aria-label="Copy"
+              variant="ghost"
+              borderRadius="md"
+              isLoading={isLoadingShare}
+              icon={<HiShare color="#ED8936" />}
+            />
+          ) : (
+            <SharePopover url={`${HOME}${data.slug}`} />
+          )}
+          <IconButton
+            onClick={() => {
+              handleClickEdit(data)
+            }}
+            aria-label="Ubah"
+            variant="ghost"
+            borderRadius="md"
+            icon={<HiPencil color="#ED8936" />}
+          />
+          <IconButton
+            onClick={() => {
+              handleDelete(data.id, data.slug)
+            }}
+            aria-label="Hapus"
+            variant="ghost"
+            borderRadius="md"
+            icon={<HiTrash color="#ED8936" />}
+          />
+        </HStack>
+      )}
     </Box>
   )
 }

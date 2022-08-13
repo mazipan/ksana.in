@@ -1,7 +1,7 @@
 module.exports = {
   disable: process.env.NODE_ENV === 'development',
   dest: 'public',
-  register: true,
+  register: process.env.NODE_ENV !== 'development',
   scope: '/',
   sw: 'service-worker.js',
   buildExcludes: ['/robots.txt', '/sitemap.xml', '/google254ec9b78a3c3c38.html', /\/images\/.*$/],
