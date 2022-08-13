@@ -29,7 +29,9 @@ const SharePopover = ({ url }: SharePopoverProps) => {
   const handleShare = async (url: string) => {
     setLoadingShare(true)
     const d = await getMeta(url)
-    setText(encodeURIComponent(d.description))
+    if (d && d.description) {
+      setText(encodeURIComponent(d.description))
+    }
     setShowShare(true)
     setLoadingShare(false)
   }
@@ -49,19 +51,19 @@ const SharePopover = ({ url }: SharePopoverProps) => {
             handleShare(url)
           }}
           aria-label="Share url"
-          fontSize="20px"
           variant="ghost"
           borderRadius="md"
+          size="sm"
           isLoading={isLoadingShare}
           icon={<HiShare color="#ED8936" />}
         />
       </PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent maxWidth={220}>
         <PopoverArrow />
         <PopoverCloseButton />
         <PopoverHeader>Bagikan tautan anda</PopoverHeader>
         <PopoverBody>
-          <Stack direction="row" justifyContent="center">
+          <Stack direction="row" alignItems="center" justifyContent="space-around">
             <Link isExternal href={`https://api.whatsapp.com/send?text=${text}+%0A+${parsedUrl}`}>
               <IconButton
                 borderRadius="md"

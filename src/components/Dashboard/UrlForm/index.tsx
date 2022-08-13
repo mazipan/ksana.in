@@ -16,7 +16,7 @@ import {
 
 import { HiQuestionMarkCircle } from 'react-icons/hi'
 import { checkSlug, saveUrl } from 'libs/supabase'
-import { sanitizeSlug } from 'libs/helpers'
+import { sanitizeSlug, validateURL } from 'libs/helpers'
 
 import { HOME, apiUrlsGet } from 'constants/paths'
 import { useAlertContext } from 'context/Alert'
@@ -76,6 +76,11 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
       return true
     }
 
+    if (slug.length < 3) {
+      setErrorSlug('Slug minimal 3 karakter')
+      return true
+    }
+
     return false
   }
 
@@ -100,15 +105,21 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
     resetErrorMessage()
     const isEmpty = checkIsEmpty()
     const hasParam = checkParamRequired()
-    if (!isEmpty && hasParam) {
-      const response = await checkSlug({ slug: sanitizeSlug(slug) })
-      if (response.error) {
-        setIsCheckPass(true)
-        resetErrorMessage()
-      } else {
-        setErrorSlug(`Slug ${slug} telah digunakan, coba slug lain`)
+    const { isValid, error } = validateURL(url)
+    if (!isValid && error) {
+      setErrorUrl(error)
+    } else {
+      if (!isEmpty && hasParam) {
+        const response = await checkSlug({ slug: sanitizeSlug(slug) })
+        if (response.error) {
+          setIsCheckPass(true)
+          resetErrorMessage()
+        } else {
+          setErrorSlug(`Slug ${slug} telah digunakan, coba slug lain`)
+        }
       }
     }
+
     setLoading(false)
   }
 
@@ -129,12 +140,12 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
           message: 'Tautan telah disimpan dalam basis data kami, silahkan mulai bagikan',
           onClose: () => {
             hideAlert()
-            mutate(apiUrlsGet())
             setUrl('')
             setSlug('')
             setIsCheckPass(false)
             resetErrorMessage()
             onSuccess()
+            mutate(apiUrlsGet())
           }
         })
       } else {

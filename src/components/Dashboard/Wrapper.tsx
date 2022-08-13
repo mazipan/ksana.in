@@ -19,7 +19,6 @@ export function DashboardWrapper({ user }: IDashboardWrapperProps) {
 
   const handleSuccessAdd = () => {
     setShowAdd(false)
-    window.location.reload()
   }
 
   return (
@@ -45,8 +44,11 @@ export function DashboardWrapper({ user }: IDashboardWrapperProps) {
               icon={showAdd ? <HiMinus color="white" /> : <HiPlus color="white" />}
             />
           </Flex>
-          {showAdd ? <UrlForm user={user} onSuccess={handleSuccessAdd} /> : null}
-          <UrlList user={user} isFormVisible={showAdd} onShowForm={handleShowAdd} />
+          {showAdd ? (
+            <UrlForm user={user} onSuccess={handleSuccessAdd} />
+          ) : (
+            <UrlList user={user} isFormVisible={showAdd} onShowForm={handleShowAdd} />
+          )}
         </Stack>
       ) : null}
     </Box>

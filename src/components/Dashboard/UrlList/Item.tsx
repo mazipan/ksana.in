@@ -20,7 +20,7 @@ import { HiShare, HiDuplicate, HiPencil, HiTrash, HiSave, HiCheck } from 'react-
 
 import SharePopover from './SharePopover'
 import { deleteUrl, patchSlug } from 'libs/supabase'
-import { sanitizeSlug } from 'libs/helpers'
+import { sanitizeSlug, validateURL } from 'libs/helpers'
 import { getMeta } from 'libs/oge'
 
 import { useAlertContext } from 'context/Alert'
@@ -39,10 +39,13 @@ export interface IUrlItemProps {
 
 export function Item({ user, data }: IUrlItemProps) {
   const { showAlert, hideAlert } = useAlertContext()
+
   const [updateId, setUpdateId] = useState<string>('')
   const [updateSlug, setUpdateSlug] = useState<string>('')
   const [updateUrl, setUpdateUrl] = useState<string>('')
+  const [errorUrl, setErrorUrl] = useState<string>('')
   const [updateData, setUpdateData] = useState<IUrl | null>(null)
+
   const [isSuccessCopy, setSuccessCopy] = useState<boolean>(false)
   const [isLoadingShare, setLoadingShare] = useState<boolean>(false)
   const [isLoadingSave, setLoadingSave] = useState<boolean>(false)
@@ -91,25 +94,24 @@ export function Item({ user, data }: IUrlItemProps) {
     }
   }
 
+  const handleCancelEdit = () => {
+    setUpdateId('')
+    setUpdateSlug('')
+    setUpdateUrl('')
+    setErrorUrl('')
+    setUpdateData(null)
+    setLoadingSave(false)
+  }
+
   const handleClickEdit = async (data: IUrl) => {
     if (updateId === data.id) {
-      setUpdateId('')
-      setUpdateSlug('')
-      setUpdateUrl('')
-      setUpdateData(null)
+      handleCancelEdit()
     } else {
       setUpdateId(data.id)
       setUpdateSlug('')
       setUpdateUrl('')
       setUpdateData(data)
     }
-  }
-
-  const handleCancelEdit = () => {
-    setUpdateId('')
-    setUpdateSlug('')
-    setUpdateUrl('')
-    setUpdateData(null)
   }
 
   const handleChangeUpdatedSlug = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -123,32 +125,39 @@ export function Item({ user, data }: IUrlItemProps) {
   }
 
   const handleClickSaveUpdatedData = async () => {
-    if (updateSlug) {
+    if (updateSlug || updateUrl) {
       setLoadingSave(true)
-      const { error } = await patchSlug({
-        id: updateId,
-        slug: sanitizeSlug(updateSlug) || sanitizeSlug(updateData?.slug || ''),
-        userId: user?.id,
-        realUrl: updateUrl || updateData?.real_url || ''
-      })
-
-      if (error) {
-        showAlert({
-          title: 'Terjadi galat pada saat memperbarui data',
-          message: `Pesan: ${error.message}`,
-          onClose: () => {
-            hideAlert()
-            setLoadingSave(false)
-          }
+      const { isValid, error: errorUrl } = validateURL(updateUrl || updateData?.real_url || '')
+      if (isValid) {
+        setErrorUrl('')
+        const { error } = await patchSlug({
+          id: updateId,
+          slug: sanitizeSlug(updateSlug) || sanitizeSlug(updateData?.slug || ''),
+          userId: user?.id,
+          realUrl: updateUrl || updateData?.real_url || ''
         })
+
+        if (error) {
+          showAlert({
+            title: 'Terjadi galat pada saat memperbarui data',
+            message: `Pesan: ${error.message}`,
+            onClose: () => {
+              hideAlert()
+              setLoadingSave(false)
+            }
+          })
+        } else {
+          mutate(apiUrlsGet())
+          handleCancelEdit()
+          setUpdateData(null)
+          setLoadingSave(false)
+        }
       } else {
-        mutate(apiUrlsGet())
-        setUpdateId('')
-        setUpdateSlug('')
-        setUpdateUrl('')
-        setUpdateData(null)
+        setErrorUrl(errorUrl)
         setLoadingSave(false)
       }
+    } else {
+      setErrorUrl('Salah satu antara URL atau Slug harus diisi')
     }
   }
 
@@ -193,124 +202,145 @@ export function Item({ user, data }: IUrlItemProps) {
       rounded={'md'}
       overflow={'hidden'}
       p={{ base: '4', md: '6' }}
+      display="flex"
+      justifyContent="space-between"
+      flexDirection="column"
     >
-      {!!data.is_dynamic && (
-        <Tag size="sm" colorScheme="green">
-          Tautan dinamis
-        </Tag>
-      )}
+      <Box>
+        {!!data.is_dynamic && (
+          <Tag size="sm" colorScheme="green">
+            Tautan dinamis
+          </Tag>
+        )}
 
-      {updateId && updateId === data.id && (
-        <VStack mb="4" mt="2" alignItems="flex-start" gap={2}>
-          <FormControl>
-            <Input
-              size="lg"
-              name="url"
-              placeholder={'Tulis URL baru'}
-              bg={bgInput}
-              border={0}
-              value={updateUrl}
-              onChange={handleChangeUpdatedUrl}
-            />
-            <FormHelperText>URL sebelumnya: {updateData?.real_url}</FormHelperText>
-          </FormControl>
+        {updateId && updateId === data.id && (
+          <VStack mb="4" mt="2" alignItems="flex-start" gap={2}>
+            <FormControl>
+              <Input
+                size="lg"
+                name="url"
+                placeholder={'Tulis URL baru'}
+                bg={bgInput}
+                border={0}
+                value={updateUrl}
+                onChange={handleChangeUpdatedUrl}
+                isInvalid={Boolean(errorUrl)}
+              />
+              {errorUrl ? (
+                <FormHelperText color="red.500">Error: {errorUrl}</FormHelperText>
+              ) : (
+                <FormHelperText color="orange.400">
+                  Sebelumnya: {updateData?.real_url}
+                </FormHelperText>
+              )}
+            </FormControl>
 
-          <FormControl>
-            <Input
-              size="lg"
-              name="slug"
-              placeholder={'Tulis slug baru'}
-              bg={bgInput}
-              border={0}
-              value={updateSlug}
-              onChange={handleChangeUpdatedSlug}
-            />
-            <FormHelperText>Slug sebelumnya: {updateData?.slug}</FormHelperText>
-          </FormControl>
+            <FormControl>
+              <Input
+                size="lg"
+                name="slug"
+                placeholder={'Tulis slug baru'}
+                bg={bgInput}
+                border={0}
+                value={updateSlug}
+                onChange={handleChangeUpdatedSlug}
+              />
+              <FormHelperText color="orange.400">Sebelumnya: {updateData?.slug}</FormHelperText>
+            </FormControl>
 
-          <HStack alignItems="flex-start">
-            <Button
-              onClick={handleClickSaveUpdatedData}
-              color={'white'}
-              bg={'orange.400'}
-              _hover={{
-                bg: 'orange.500'
-              }}
-              _focus={{
-                bg: 'orange.500'
-              }}
-              borderRadius="md"
-              isLoading={isLoadingSave}
-            >
-              Simpan
-            </Button>
-            <Button onClick={handleCancelEdit} colorScheme="red" borderRadius="md">
-              Batal
-            </Button>
-          </HStack>
-        </VStack>
-      )}
+            <HStack alignItems="flex-start">
+              <Button
+                onClick={handleClickSaveUpdatedData}
+                color={'white'}
+                bg={'orange.400'}
+                _hover={{
+                  bg: 'orange.500'
+                }}
+                _focus={{
+                  bg: 'orange.500'
+                }}
+                borderRadius="md"
+                isLoading={isLoadingSave}
+              >
+                Simpan
+              </Button>
+              <Button onClick={handleCancelEdit} colorScheme="red" borderRadius="md">
+                Batal
+              </Button>
+            </HStack>
+          </VStack>
+        )}
 
-      {updateId === '' && (
-        <>
-          <Flex alignItems="center" mb="4">
-            <Link
-              as="a"
-              fontSize={{ base: 'md', md: 'lg' }}
-              fontWeight="700"
-              color="orange.400"
-              href={`${HOME}${data.slug}${!!data.is_dynamic ? '/{param}' : ''}`}
-              display="block"
-            >
-              {`/${data.slug}`}
-              {!!data.is_dynamic && '/{param}'}
-            </Link>
-          </Flex>
+        {updateId === '' && (
+          <>
+            <Flex mb="4" gap={1} flexWrap="wrap" direction="column">
+              <Flex alignItems="center" justifyContent="flex-end">
+                <IconButton
+                  onClick={() => {
+                    handleCopy(`${HOME}${data.slug}`)
+                  }}
+                  aria-label="Copy"
+                  variant="ghost"
+                  borderRadius="md"
+                  size="sm"
+                  icon={
+                    isSuccessCopy ? <HiCheck color="#48BB78" /> : <HiDuplicate color="#ED8936" />
+                  }
+                />
 
-          <Text fontSize="small" color="gray.400" display="block" mb="2">
-            {data.real_url}
-          </Text>
+                {isSupportShare ? (
+                  <IconButton
+                    onClick={() => {
+                      handleShare(`${HOME}${data.slug}`)
+                    }}
+                    aria-label="Share"
+                    variant="ghost"
+                    borderRadius="md"
+                    size="sm"
+                    isLoading={isLoadingShare}
+                    icon={<HiShare color="#ED8936" />}
+                  />
+                ) : (
+                  <SharePopover url={`${HOME}${data.slug}`} />
+                )}
+              </Flex>
+              <Link
+                as="a"
+                fontSize={{ base: 'md', md: 'lg' }}
+                fontWeight="700"
+                color="orange.400"
+                href={`${HOME}${data.slug}${!!data.is_dynamic ? '/{param}' : ''}`}
+                display="block"
+              >
+                {`/${data.slug}`}
+                {!!data.is_dynamic && '/{param}'}
+              </Link>
+            </Flex>
 
-          <Text fontSize="small" color="gray.400">
-            <Text as="span" fontWeight="bold" color="orange.400">
-              {new Intl.NumberFormat('id-ID').format(data.hit)}
+            <Text fontSize="small" color="gray.400" display="block" mb="2">
+              {data.real_url}
             </Text>
-            {` `} kunjungan
-          </Text>
-        </>
-      )}
+
+            <Text fontSize="small" color="gray.400">
+              <Text as="span" fontWeight="bold" color="orange.400">
+                {new Intl.NumberFormat('id-ID').format(data.hit)}
+              </Text>
+              {` `} kunjungan
+            </Text>
+          </>
+        )}
+      </Box>
+
       {updateId === '' && (
         <HStack spacing={2} mt={4} flexWrap="wrap">
-          <IconButton
-            onClick={() => {
-              handleCopy(`${HOME}${data.slug}`)
-            }}
-            aria-label="Copy"
-            variant="ghost"
-            borderRadius="md"
-            icon={isSuccessCopy ? <HiCheck color="#48BB78" /> : <HiDuplicate color="#ED8936" />}
-          />
-          {isSupportShare ? (
-            <IconButton
-              onClick={() => {
-                handleShare(`${HOME}${data.slug}`)
-              }}
-              aria-label="Copy"
-              variant="ghost"
-              borderRadius="md"
-              isLoading={isLoadingShare}
-              icon={<HiShare color="#ED8936" />}
-            />
-          ) : (
-            <SharePopover url={`${HOME}${data.slug}`} />
-          )}
           <IconButton
             onClick={() => {
               handleClickEdit(data)
             }}
             aria-label="Ubah"
-            variant="ghost"
+            variant="outline"
             borderRadius="md"
+            borderColor={'orange.400'}
             icon={<HiPencil color="#ED8936" />}
           />
           <IconButton
@@ -318,8 +348,9 @@ export function Item({ user, data }: IUrlItemProps) {
               handleDelete(data.id, data.slug)
             }}
             aria-label="Hapus"
-            variant="ghost"
+            variant="outline"
             borderRadius="md"
+            borderColor={'orange.400'}
             icon={<HiTrash color="#ED8936" />}
           />
         </HStack>

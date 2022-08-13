@@ -4,6 +4,34 @@ import { sendError401, sendError5xx, sendErrorSlugExist } from '../../_utils'
 import { supabase } from 'libs/supabase'
 import { sanitizeSlug } from 'libs/helpers'
 
+const doUpdateData = async ({
+  slug,
+  realUrl,
+  id,
+  res
+}: {
+  slug: string
+  realUrl: string
+  id: string
+  res: NextApiResponse
+}) => {
+  const { data, error } = await supabase
+    .from('urls')
+    .update({ slug: sanitizeSlug(slug), real_url: realUrl })
+    .match({ id: id })
+
+  if (error) {
+    res.statusCode = 400
+  } else {
+    res.statusCode = 200
+  }
+
+  res.json({
+    success: !error,
+    data: data,
+    error: error
+  })
+}
 /**
  * To update certain url
  *
@@ -11,7 +39,7 @@ import { sanitizeSlug } from 'libs/helpers'
  */
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const id = req.query.id
+    const id = req.query.id as string
     const { slug, realUrl } = req.body
 
     const { user } = await supabase.auth.api.getUserByCookie(req)
@@ -25,33 +53,24 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (existingData && existingData.user_id) {
       // Make sure the url is belong to the user session
       if (existingData.user_id === user?.id) {
-        // check the new slug availability
-        const { error: errorRealSlug } = await supabase
-          .from('urls')
-          .select('slug')
-          .eq('slug', sanitizeSlug(slug))
-          .single()
-
-        // if it's exist, we will get the error
-        if (errorRealSlug) {
-          const { data, error } = await supabase
-            .from('urls')
-            .update({ slug: sanitizeSlug(slug), real_url: realUrl })
-            .match({ id: id })
-
-          if (error) {
-            res.statusCode = 400
-          } else {
-            res.statusCode = 200
-          }
-
-          res.json({
-            success: !error,
-            data: data,
-            error: error
-          })
+        // We are not updating slug here
+        // Since it's still the same
+        if (sanitizeSlug(slug) === sanitizeSlug(existingData.slug)) {
+          doUpdateData({ id, slug, realUrl, res })
         } else {
-          sendErrorSlugExist(res)
+          // check the new slug availability
+          const { error: errorRealSlug } = await supabase
+            .from('urls')
+            .select('slug')
+            .eq('slug', sanitizeSlug(slug))
+            .single()
+
+          // if it's exist, we will get the error
+          if (errorRealSlug) {
+            doUpdateData({ id, slug, realUrl, res })
+          } else {
+            sendErrorSlugExist(res)
+          }
         }
       } else {
         sendError401(res)
