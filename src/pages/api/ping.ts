@@ -40,7 +40,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     'accept-encoding': null,
     'x-vercel-proxy-signature-ts': null,
     dnt: null,
-    connection: null,
+    connection: null
   }
 
   const nonBlankReqHeaders = Object.fromEntries(
