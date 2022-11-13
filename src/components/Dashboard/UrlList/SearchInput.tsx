@@ -14,7 +14,7 @@ export function SearchInput({ searchText, onChangeSearch }: ISearchInputProps) {
       <Stack spacing={4}>
         <InputGroup>
           <Input
-            size="lg"
+            size="md"
             borderWidth="2px"
             borderColor="orange.400"
             name="searchText"
@@ -23,13 +23,7 @@ export function SearchInput({ searchText, onChangeSearch }: ISearchInputProps) {
             value={searchText}
             onChange={onChangeSearch}
           />
-          <InputRightElement
-            fontSize="2em"
-            color="orange.400"
-            mr="2"
-            mt="1"
-            children={<FiSearch />}
-          />
+          <InputRightElement fontSize="1.5em" color="orange.400" mr="2" children={<FiSearch />} />
         </InputGroup>
       </Stack>
     </Box>

@@ -19,7 +19,7 @@ export function TotalStats({ data }: ITotalStatsProps) {
           <VStack
             w="full"
             bg={bgBox}
-            boxShadow={'2xl'}
+            boxShadow={'md'}
             rounded={'md'}
             justifyContent="center"
             textAlign="center"
@@ -52,7 +52,7 @@ export function TotalStats({ data }: ITotalStatsProps) {
           <VStack
             w="full"
             bg={bgBox}
-            boxShadow={'2xl'}
+            boxShadow={'md'}
             rounded={'md'}
             justifyContent="center"
             textAlign="center"

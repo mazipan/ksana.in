@@ -14,7 +14,7 @@ import {
   Tooltip
 } from '@chakra-ui/react'
 
-import { HiQuestionMarkCircle } from 'react-icons/hi'
+import { HiQuestionMarkCircle, HiOutlineExclamation } from 'react-icons/hi'
 import { checkSlug, saveUrl } from 'libs/supabase'
 import { sanitizeSlug, validateURL } from 'libs/helpers'
 
@@ -170,20 +170,31 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
           <Input
             isRequired
             isInvalid={Boolean(errorUrl)}
-            size="lg"
+            size="md"
             name="url"
-            placeholder={'Tautan yang akan dipercantik'}
+            placeholder={'Tautan asli yang akan dipercantik'}
             variant="filled"
+            borderColor="orange.400"
             value={url}
             onChange={handleChangeUrl}
           />
-          {errorUrl && <FormHelperText color="red.500">Error: {errorUrl}</FormHelperText>}
-          <FormHelperText>
+          {errorUrl && (
+            <FormHelperText
+              color="red.500"
+              fontSize=".8rem"
+              display="flex"
+              alignItems="center"
+              gap="1"
+            >
+              <HiOutlineExclamation /> Error: {errorUrl}
+            </FormHelperText>
+          )}
+          <FormHelperText fontSize=".8rem">
             Membutuhkan tautan dalam bentuk utuh, termasuk awalan https://
           </FormHelperText>
           {isDynamic && (
-            <FormHelperText>
-              Sisipkan teks <code>{'{param}'}</code> pada tautan
+            <FormHelperText fontSize=".8rem">
+              Tip: sisipkan teks <code>{'{param}'}</code> pada tautan
             </FormHelperText>
           )}
         </FormControl>
@@ -204,10 +215,11 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
         </FormControl>
 
         <FormControl id="slug" isRequired>
-          <InputGroup size="lg">
+          <InputGroup size="md">
             <InputLeftAddon
               color={'orange.400'}
-              fontWeight="bold"
+              borderColor={'orange.400'}
+              borderWidth="2px"
               px={2}
               children={HOME?.replace('https://', '').replace('http://', '')}
               fontSize="xs"
@@ -215,16 +227,27 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
             <Input
               isRequired
               isInvalid={Boolean(errorSlug)}
-              size="lg"
+              size="md"
               name="slug"
-              placeholder={'Slug cantik dambaanmu'}
+              borderColor="orange.400"
+              placeholder={'Slug baru pilihanmu'}
               variant="filled"
               value={slug}
               onChange={handleChangeSlug}
             />
           </InputGroup>
-          {errorSlug && <FormHelperText color="red.500">Error: {errorSlug}</FormHelperText>}
-          <FormHelperText>
+          {errorSlug && (
+            <FormHelperText
+              color="red.500"
+              fontSize=".8rem"
+              display="flex"
+              alignItems="center"
+              gap="1"
+            >
+              <HiOutlineExclamation /> Error: {errorSlug}
+            </FormHelperText>
+          )}
+          <FormHelperText fontSize=".8rem">
             Hanya diperbolehkan menggunakan huruf, angka, karakter titik dan strip saja
           </FormHelperText>
         </FormControl>
@@ -233,7 +256,7 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
           <Button
             isLoading={loading}
             loadingText="Processing"
-            size="lg"
+            size="md"
             px={6}
             mt="4"
             color={'white'}
@@ -252,7 +275,7 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
           <Button
             isLoading={loading}
             loadingText="Processing"
-            size="lg"
+            size="md"
             px={6}
             my="4"
             color={'white'}
@@ -265,7 +288,7 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
             }}
             onClick={handleCheckAvailability}
           >
-            Cek ketersediaan
+            Cek ketersediaan slug
           </Button>
         )}
       </Stack>

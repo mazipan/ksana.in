@@ -60,12 +60,8 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
   const isGrid = view === VIEW.GRID
   const isList = view === VIEW.LIST
 
-  const handleViewGrid = () => {
-    setView(VIEW.GRID)
-  }
-
-  const handleViewList = () => {
-    setView(VIEW.LIST)
+  const handleToggleView = () => {
+    setView(isGrid ? VIEW.LIST : VIEW.GRID)
   }
 
   return (
@@ -73,48 +69,24 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
       {!isLoading && data && data.length > 0 ? (
         <>
           <TotalStats data={data} />
-          <SearchInput onChangeSearch={handleSearch} searchText={searchText} />
-          <Flex justifyContent="flex-end" alignItems="center">
+          <Flex justifyContent="flex-end" alignItems="center" gap="2">
             <ButtonGroup spacing="2" variant="outline">
               <IconButton
-                variant="outline"
-                borderColor={'orange.400'}
-                color="orange.400"
+                size="md"
+                borderRadius="md"
+                bg={'orange.400'}
                 _hover={{
-                  bg: 'orange.200'
+                  bg: 'orange.500'
                 }}
                 _focus={{
-                  bg: 'orange.200'
+                  bg: 'orange.500'
                 }}
-                _active={{
-                  bg: 'orange.400',
-                  color: 'white'
-                }}
-                aria-label="View Grid"
-                isActive={isGrid}
-                onClick={handleViewGrid}
-                icon={<HiViewGrid />}
-              />
-              <IconButton
-                variant="outline"
-                borderColor={'orange.400'}
-                color="orange.400"
-                _hover={{
-                  bg: 'orange.200'
-                }}
-                _focus={{
-                  bg: 'orange.200'
-                }}
-                _active={{
-                  bg: 'orange.400',
-                  color: 'white'
-                }}
-                aria-label="View List"
-                isActive={isList}
-                onClick={handleViewList}
-                icon={<HiViewList />}
+                aria-label={isGrid ? 'Toggle List View' : 'Toggle Grid View'}
+                onClick={handleToggleView}
+                icon={isGrid ? <HiViewGrid color="white" /> : <HiViewList color="white" />}
               />
             </ButtonGroup>
+            <SearchInput onChangeSearch={handleSearch} searchText={searchText} />
           </Flex>
           {filteredData.length > 0 ? (
             <>
