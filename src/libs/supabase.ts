@@ -15,12 +15,18 @@ import {
   apiSetNewPassword,
   REDIRECT_CB
 } from 'constants/paths'
-import { EVENT_SIGN_OUT, LS_AUTH_TOKEN } from 'constants/common'
+import { COOKIE_LIFETIME_IN_SECOND, EVENT_SIGN_OUT, LS_AUTH_TOKEN } from 'constants/common'
 
 export const supabase: SupabaseClient = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL || '',
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '',
-  { persistSession: true }
+  {
+    persistSession: true,
+    autoRefreshToken: true,
+    cookieOptions: {
+      lifetime: COOKIE_LIFETIME_IN_SECOND
+    }
+  }
 )
 
 export const setSessionToServer = async (event: string, session: Session | null): Promise<void> => {

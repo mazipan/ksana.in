@@ -1,4 +1,5 @@
 import { NextApiResponse } from 'next'
+import { serialize, CookieSerializeOptions } from 'cookie'
 
 export const sendError5xx = (res: NextApiResponse, error: Error): boolean => {
   res.statusCode = 500
@@ -43,4 +44,19 @@ export const setStatusCode = (res: NextApiResponse, error?: any) => {
   } else {
     res.statusCode = 200
   }
+}
+
+export const setCookie = (
+  res: NextApiResponse,
+  name: string,
+  value: unknown,
+  options: CookieSerializeOptions = {}
+) => {
+  const stringValue = typeof value === 'object' ? JSON.stringify(value) : String(value)
+
+  if (typeof options.maxAge === 'number') {
+    options.expires = new Date(Date.now() + options.maxAge * 1000)
+  }
+
+  res.setHeader('Set-Cookie', serialize(name, stringValue, options))
 }
