@@ -198,7 +198,7 @@ export function Item({ user, data }: IUrlItemProps) {
       key={data.slug}
       w={'full'}
       bg={bgBox}
-      boxShadow={'2xl'}
+      boxShadow={'md'}
       rounded={'md'}
       overflow={'hidden'}
       p={{ base: '4', md: '6' }}
@@ -217,7 +217,7 @@ export function Item({ user, data }: IUrlItemProps) {
           <VStack mb="4" mt="2" alignItems="flex-start" gap={2}>
             <FormControl>
               <Input
-                size="lg"
+                size="md"
                 name="url"
                 placeholder={'Tulis URL baru'}
                 bg={bgInput}
@@ -237,7 +237,7 @@ export function Item({ user, data }: IUrlItemProps) {
 
             <FormControl>
               <Input
-                size="lg"
+                size="md"
                 name="slug"
                 placeholder={'Tulis slug baru'}
                 bg={bgInput}

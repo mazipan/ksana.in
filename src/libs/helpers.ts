@@ -59,7 +59,7 @@ export const validateURL = (url: string): { isValid: boolean; error: string } =>
     }
   } else {
     isValid = false
-    error = 'Tidak bisa dikosongkan'
+    error = 'URL tidak boleh dikosongkan'
   }
 
   return {

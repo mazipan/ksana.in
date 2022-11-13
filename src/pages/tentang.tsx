@@ -92,7 +92,7 @@ function About() {
               <Box
                 key={t.title}
                 bg={bgBox}
-                boxShadow={'2xl'}
+                boxShadow={'md'}
                 rounded={'md'}
                 overflow={'hidden'}
                 p={6}
@@ -117,7 +117,7 @@ function About() {
           <HStack
             w="80%"
             bg={bgBox}
-            boxShadow={'2xl'}
+            boxShadow={'md'}
             rounded={'md'}
             overflow={'hidden'}
             p={6}

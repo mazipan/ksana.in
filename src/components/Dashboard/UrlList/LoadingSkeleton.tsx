@@ -11,7 +11,7 @@ export function LoadingSkeleton() {
           key={d}
           w={'full'}
           bg={bgBox}
-          boxShadow={'2xl'}
+          boxShadow={'md'}
           rounded={'md'}
           overflow={'hidden'}
           p={6}
