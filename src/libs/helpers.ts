@@ -10,6 +10,7 @@ export const callbackHandler = async () => {
       const urlObj = new URL(`https://example.com?${hash.slice(1)}`)
       const type = urlObj.searchParams.get('type') || ''
       const accessToken = urlObj.searchParams.get('access_token') || ''
+      const refreshToken = urlObj.searchParams.get('refresh_token') || ''
 
       if (type === CB_RECOVERY) {
         window.localStorage.setItem(LS_FP_TOKEN, accessToken)
@@ -20,6 +21,7 @@ export const callbackHandler = async () => {
         // check again for session value. get token type & user
         await setSessionToServer(EVENT_SIGN_IN, {
           access_token: accessToken,
+          refresh_token: refreshToken,
           token_type: '',
           user: null
         })

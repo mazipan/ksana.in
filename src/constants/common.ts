@@ -1,7 +1,9 @@
 export const EVENT_SIGN_IN = 'SIGNED_IN'
 export const EVENT_SIGN_OUT = 'SIGNED_OUT'
 
-export const COOKIE_AUTH_TOKEN = 'sb:token'
+export const COOKIE_LIFETIME_IN_SECOND = 604800 // one week
+export const COOKIE_ACCESS_TOKEN = 'sb-access-token'
+export const COOKIE_REFRESH_TOKEN = 'sb-refresh-token'
 
 export const LS_AUTH_TOKEN = 'supabase.auth.token'
 export const LS_FP_TOKEN = 'ksana.in.fp-at'

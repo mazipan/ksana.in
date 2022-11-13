@@ -21,7 +21,8 @@ export const defaultFetchWithAuthOption = () => {
   if (currentSession) {
     headers = {
       ...headers,
-      Authorization: `Bearer ${currentSession?.access_token}`
+      Authorization: `Bearer ${currentSession?.access_token}`,
+      'X-Refresh-Token': `${currentSession?.refresh_token}`
     }
   }
 
