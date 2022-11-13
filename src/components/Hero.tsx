@@ -8,11 +8,26 @@ import {
   Box,
   Flex,
   VStack,
-  useColorModeValue
+  useColorModeValue,
+  keyframes
 } from '@chakra-ui/react'
 import { HiPlay } from 'react-icons/hi'
 
 import { login } from 'constants/paths'
+
+const shadowBlur = keyframes`
+  0% {
+    box-shadow: 0px 0px 0px 0px rgb(252 172 104), 0px 0px 0px 0px rgb(252 172 104);
+  }
+  50% {
+    box-shadow: 1px 1px 14px 11px rgb(252 172 104), 0px 0px 0px 0px rgb(252 172 104);
+  }
+  100% {
+    box-shadow: 0px 0px 0px 0px rgb(252 172 104), 0px 0px 0px 0px rgb(252 172 104);
+  }
+`
+
+const shadowBlurAnimation = `${shadowBlur} infinite 1s ease-in-out`
 
 export function Hero() {
   const textColor = useColorModeValue('gray.500', 'gray.300')
@@ -56,8 +71,10 @@ export function Hero() {
               px={6}
               color={'white'}
               bg="orange.400"
+              transition="all .5s ease-in-out"
               _hover={{
-                bg: 'orange.500'
+                bg: 'orange.500',
+                animation: shadowBlurAnimation
               }}
               as={'a'}
               href={login}
