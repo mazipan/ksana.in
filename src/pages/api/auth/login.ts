@@ -6,7 +6,7 @@ import { supabase } from 'libs/supabase'
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { email, password } = req.body
-    const { session, user, error } = await supabase.auth.signIn({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email: email,
       password: password
     })
@@ -19,8 +19,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     res.json({
       success: true,
-      session,
-      user,
+      session: data.session,
+      user: data.user,
       error
     })
   } catch (error) {

@@ -29,6 +29,7 @@ import { useAlertContext } from 'context/Alert'
 import { forgetPasword, dashboard } from 'constants/paths'
 import {
   EVENT_SIGN_IN,
+  isEnableEmailLogin,
   isEnableGithubLogin,
   isEnableGoogleLogin,
   isEnableTwitterLogin
@@ -130,6 +131,7 @@ export function AuthForm({ state }: IAuthFormProps) {
     if (session && !error) {
       if (stateType === 'login') {
         // only set for the login flow
+        // @ts-ignore
         await setSessionToServer(EVENT_SIGN_IN, session)
       }
 
@@ -211,7 +213,7 @@ export function AuthForm({ state }: IAuthFormProps) {
           direction="row"
           align={'center'}
           justify={'center'}
-          borderBottom="1px"
+          borderBottom={isEnableEmailLogin ? '1px' : '0'}
           borderColor="gray.200"
           py="4"
         >
@@ -255,83 +257,85 @@ export function AuthForm({ state }: IAuthFormProps) {
           )}
         </VStack>
 
-        <Stack spacing={4} mt="4">
-          <FormControl id="email" isRequired>
-            <FormLabel>Email</FormLabel>
-            <Input
-              isInvalid={Boolean(errorForm)}
-              type="email"
-              name="email"
-              value={email}
-              onChange={handleChangeEmail}
-              onKeyPress={handleKeyPress}
-              autoComplete="username"
-            />
-          </FormControl>
+        {isEnableEmailLogin ? (
+          <Stack spacing={4} mt="4">
+            <FormControl id="email" isRequired>
+              <FormLabel>Email</FormLabel>
+              <Input
+                isInvalid={Boolean(errorForm)}
+                type="email"
+                name="email"
+                value={email}
+                onChange={handleChangeEmail}
+                onKeyPress={handleKeyPress}
+                autoComplete="username"
+              />
+            </FormControl>
 
-          <FormControl id="password" isRequired>
-            <FormLabel>Password</FormLabel>
-            <Input
-              isInvalid={Boolean(errorForm)}
-              type="password"
-              name="password"
-              value={password}
-              onChange={handleChangePassword}
-              onKeyPress={handleKeyPress}
-              autoComplete={isLogin ? 'current-password' : 'new-password'}
-            />
-          </FormControl>
+            <FormControl id="password" isRequired>
+              <FormLabel>Password</FormLabel>
+              <Input
+                isInvalid={Boolean(errorForm)}
+                type="password"
+                name="password"
+                value={password}
+                onChange={handleChangePassword}
+                onKeyPress={handleKeyPress}
+                autoComplete={isLogin ? 'current-password' : 'new-password'}
+              />
+            </FormControl>
 
-          {errorForm && (
-            <Text color="red.300" fontSize="xs">
-              Galat: {errorForm}
-            </Text>
-          )}
+            {errorForm && (
+              <Text color="red.300" fontSize="xs">
+                Galat: {errorForm}
+              </Text>
+            )}
 
-          <Stack spacing={10}>
-            {isLogin ? (
-              <Stack
-                direction={{ base: 'column', sm: 'row' }}
-                align={'start'}
-                justify={'space-between'}
+            <Stack spacing={10}>
+              {isLogin ? (
+                <Stack
+                  direction={{ base: 'column', sm: 'row' }}
+                  align={'start'}
+                  justify={'space-between'}
+                >
+                  <Button variant="link" as={Link} color={'orange.400'} href={forgetPasword}>
+                    Lupa password?
+                  </Button>
+                </Stack>
+              ) : null}
+
+              <Button
+                isLoading={loading}
+                loadingText="Memproses"
+                w="full"
+                bg="orange.400"
+                _hover={{
+                  bg: 'orange.500'
+                }}
+                color="white"
+                onClick={handleSubmit}
               >
-                <Button variant="link" as={Link} color={'orange.400'} href={forgetPasword}>
-                  Lupa password?
+                {isLogin ? 'Masuk' : 'Daftar Sekarang'}
+              </Button>
+            </Stack>
+
+            {isLogin ? (
+              <Stack direction="row" align={'center'} justify={'center'}>
+                <Text>Belum punya akun? </Text>
+                <Button variant="link" as={Link} color={'orange.400'} onClick={toggleState}>
+                  Daftar sekarang
                 </Button>
               </Stack>
-            ) : null}
-
-            <Button
-              isLoading={loading}
-              loadingText="Memproses"
-              w="full"
-              bg="orange.400"
-              _hover={{
-                bg: 'orange.500'
-              }}
-              color="white"
-              onClick={handleSubmit}
-            >
-              {isLogin ? 'Masuk' : 'Daftar Sekarang'}
-            </Button>
+            ) : (
+              <Stack direction="row" align={'center'} justify={'center'}>
+                <Text>Sudah punya akun? </Text>
+                <Button variant="link" as={Link} color={'orange.400'} onClick={toggleState}>
+                  Masuk
+                </Button>
+              </Stack>
+            )}
           </Stack>
-
-          {isLogin ? (
-            <Stack direction="row" align={'center'} justify={'center'}>
-              <Text>Belum punya akun? </Text>
-              <Button variant="link" as={Link} color={'orange.400'} onClick={toggleState}>
-                Daftar sekarang
-              </Button>
-            </Stack>
-          ) : (
-            <Stack direction="row" align={'center'} justify={'center'}>
-              <Text>Sudah punya akun? </Text>
-              <Button variant="link" as={Link} color={'orange.400'} onClick={toggleState}>
-                Masuk
-              </Button>
-            </Stack>
-          )}
-        </Stack>
+        ) : null}
       </Box>
     </Stack>
   )

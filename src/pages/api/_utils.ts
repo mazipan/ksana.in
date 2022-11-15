@@ -1,5 +1,6 @@
-import { NextApiResponse } from 'next'
-import { serialize, CookieSerializeOptions } from 'cookie'
+import { NextApiRequest, NextApiResponse } from 'next'
+import { COOKIE_ACCESS_TOKEN, COOKIE_REFRESH_TOKEN } from '~/constants/common'
+import { supabase } from '~/libs/supabase'
 
 export const sendError5xx = (res: NextApiResponse, error: Error): boolean => {
   res.statusCode = 500
@@ -46,17 +47,23 @@ export const setStatusCode = (res: NextApiResponse, error?: any) => {
   }
 }
 
-export const setCookie = (
-  res: NextApiResponse,
-  name: string,
-  value: unknown,
-  options: CookieSerializeOptions = {}
-) => {
-  const stringValue = typeof value === 'object' ? JSON.stringify(value) : String(value)
+export const getSessionFromCookie = async (req: NextApiRequest) => {
+  const cookies = req.cookies
+  const accessToken = cookies[COOKIE_ACCESS_TOKEN] || ''
+  const refreshToken = cookies[COOKIE_REFRESH_TOKEN] || ''
 
-  if (typeof options.maxAge === 'number') {
-    options.expires = new Date(Date.now() + options.maxAge * 1000)
+  if (accessToken && refreshToken) {
+    const { data, error } = await supabase.auth.setSession({
+      refresh_token: refreshToken,
+      access_token: accessToken
+    })
+
+    if (!error && data) {
+      return { data, error }
+    }
+
+    return { data: null, error }
   }
 
-  res.setHeader('Set-Cookie', serialize(name, stringValue, options))
+  return { data: null, error: 'Session not found' }
 }

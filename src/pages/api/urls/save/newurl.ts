@@ -1,14 +1,14 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { sendErrorSlugExist, sendError5xx, sendError401 } from '../../_utils'
+import { sendErrorSlugExist, sendError5xx, sendError401, getSessionFromCookie } from '../../_utils'
 import { supabase } from 'libs/supabase'
 import { sanitizeSlug } from 'libs/helpers'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { url, slug, is_dynamic } = req.body
-    const { user } = await supabase.auth.api.getUserByCookie(req)
-    if (user?.id) {
+    const { data: dataSession } = await getSessionFromCookie(req)
+    if (dataSession && dataSession?.user && dataSession.user?.id) {
       // check the slug availability
       const { error: errorRealSlug } = await supabase
         .from('urls')
@@ -35,7 +35,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             real_url: url,
             slug: sanitizeSlug(slug),
             is_dynamic: is_dynamic ? 1 : 0,
-            user_id: user?.id
+            user_id: dataSession?.user?.id
           }
         ])
 

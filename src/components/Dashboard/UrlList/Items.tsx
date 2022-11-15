@@ -29,8 +29,10 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
   const [view, setView] = useState<string>(VIEW.LIST)
   const [filteredData, setFilteredData] = useState<IUrl[]>(data)
 
+  const isGrid = view === VIEW.GRID
+
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && data && data.length > 0) {
       if (searchText === '') {
         const paginated = paginate(data, page)
         setFilteredData(paginated.pagedItems)
@@ -56,9 +58,6 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value)
   }
-
-  const isGrid = view === VIEW.GRID
-  const isList = view === VIEW.LIST
 
   const handleToggleView = () => {
     setView(isGrid ? VIEW.LIST : VIEW.GRID)

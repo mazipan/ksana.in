@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react'
 
 import { setNewPassword } from 'libs/supabase'
-import { LS_FP_TOKEN } from 'constants/common'
+import { COOKIE_ACCESS_TOKEN, COOKIE_REFRESH_TOKEN, LS_FP_TOKEN } from 'constants/common'
 import { forgetPasword, login } from 'constants/paths'
 import { useAlertContext } from 'context/Alert'
 
@@ -24,6 +24,7 @@ export function Form() {
 
   const [loading, setLoading] = useState<boolean>(false)
   const [accessToken, setAccessToken] = useState<string>('')
+  const [refreshToken, setRefreshToken] = useState<string>('')
   const [errorForm, setErrorForm] = useState<string>('')
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
@@ -31,8 +32,8 @@ export function Form() {
 
   useEffect(() => {
     if (window && window.localStorage) {
-      const at = window.localStorage.getItem(LS_FP_TOKEN)
-      setAccessToken(at || '')
+      setAccessToken(window.localStorage.getItem(COOKIE_ACCESS_TOKEN) || '')
+      setRefreshToken(window.localStorage.getItem(COOKIE_REFRESH_TOKEN) || '')
     }
   }, [])
 
@@ -58,7 +59,7 @@ export function Form() {
 
   const handleSetNewPassword = async () => {
     if (accessToken) {
-      const { error } = await setNewPassword({ accessToken, password })
+      const { error } = await setNewPassword({ accessToken, refreshToken, password })
 
       if (!error) {
         showAlert({

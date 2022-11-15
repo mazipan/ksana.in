@@ -1,13 +1,13 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { sendError401, sendError5xx } from '../../_utils'
+import { getSessionFromCookie, sendError401, sendError5xx } from '../../_utils'
 import { supabase } from 'libs/supabase'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const id = req.query.id
 
-    const { user } = await supabase.auth.api.getUserByCookie(req)
+    const { data: dataSession } = await getSessionFromCookie(req)
 
     const { data: existingData } = await supabase
       .from('urls')
@@ -16,7 +16,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       .single()
 
     if (existingData && existingData.user_id) {
-      if (existingData.user_id === user?.id) {
+      if (existingData.user_id === dataSession?.user?.id) {
         const { data, error } = await supabase.from('urls').delete().match({ id: id })
 
         if (error) {
