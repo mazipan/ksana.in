@@ -17,6 +17,7 @@ function App({ Component, pageProps }: AppProps) {
   }, [])
 
   return (
+    // @ts-ignore
     <Chakra cookies={pageProps.cookies}>
       <ColorModeProvider
         options={{
