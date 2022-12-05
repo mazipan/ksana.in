@@ -7,7 +7,6 @@ specifiers:
   '@emotion/react': ^11.10.0
   '@emotion/styled': ^11.10.0
   '@splitbee/web': ^0.3.0
-  '@supabase/auth-helpers-react': ^0.3.1
   '@supabase/supabase-js': ^2.1.0
   '@types/cookie': ^0.5.1
   '@types/markdown-it': ^12.2.3
@@ -48,7 +47,6 @@ dependencies:
   '@emotion/react': 11.10.0_ug65io7jkbhmo4fihdmbrh3ina
   '@emotion/styled': 11.10.0_lzabd6uj4wst47copsenr4b56q
   '@splitbee/web': 0.3.0
-  '@supabase/auth-helpers-react': 0.3.1_zj6vbgpit7u2xp5t7lhhtyhq6e
   '@supabase/supabase-js': 2.1.0
   cookie: 0.5.0
   cookies-next: 2.1.1
@@ -2696,14 +2694,6 @@ packages:
 
   /@splitbee/web/0.3.0:
     resolution: {integrity: sha512-jNPDKg0GQGa4jCaBc6JQsv0NHmBA80WCwZE49nFyhcbo32WF0GyqXeice7ZApy7OUHI16bAUAzm4MOQw3gvxfQ==}
-    dev: false
-
-  /@supabase/auth-helpers-react/0.3.1_zj6vbgpit7u2xp5t7lhhtyhq6e:
-    resolution: {integrity: sha512-g3SFv08Dz9FapNif/ZY1b7qKGlMJDyTLSayHBz3kb3FuYxg7aLWgQtydDhm5AGbc0XtvpIBuhGTIOVevwpdosA==}
-    peerDependencies:
-      '@supabase/supabase-js': ^2.0.4
-    dependencies:
-      '@supabase/supabase-js': 2.1.0
     dev: false
 
   /@supabase/functions-js/2.0.0:

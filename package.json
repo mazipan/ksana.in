@@ -17,7 +17,6 @@
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@splitbee/web": "^0.3.0",
-    "@supabase/auth-helpers-react": "^0.3.1",
     "@supabase/supabase-js": "^2.1.0",
     "cookie": "^0.5.0",
     "cookies-next": "^2.1.1",
