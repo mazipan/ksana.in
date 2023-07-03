@@ -1,5 +1,11 @@
 import { setSessionToServer } from './supabase'
-import { EVENT_SIGN_IN, LS_FP_TOKEN, CB_RECOVERY, CB_SIGNUP } from 'constants/common'
+import {
+  EVENT_SIGN_IN,
+  CB_RECOVERY,
+  CB_SIGNUP,
+  COOKIE_ACCESS_TOKEN,
+  COOKIE_REFRESH_TOKEN
+} from 'constants/common'
 import { setNewPassword, login, dashboard } from 'constants/paths'
 import { IUrl } from '~/interfaces/IUrl'
 
@@ -13,7 +19,8 @@ export const callbackHandler = async () => {
       const refreshToken = urlObj.searchParams.get('refresh_token') || ''
 
       if (type === CB_RECOVERY) {
-        window.localStorage.setItem(LS_FP_TOKEN, accessToken)
+        window.localStorage.setItem(COOKIE_ACCESS_TOKEN, accessToken)
+        window.localStorage.setItem(COOKIE_REFRESH_TOKEN, refreshToken)
         window.location.assign(setNewPassword)
       } else if (type === CB_SIGNUP) {
         window.location.assign(login)
@@ -22,8 +29,7 @@ export const callbackHandler = async () => {
         await setSessionToServer(EVENT_SIGN_IN, {
           access_token: accessToken,
           refresh_token: refreshToken,
-          token_type: '',
-          user: null
+          token_type: type
         })
         setTimeout(() => {
           window.location.assign(dashboard)

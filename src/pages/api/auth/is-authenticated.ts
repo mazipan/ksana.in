@@ -10,17 +10,20 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const refreshToken = cookies[COOKIE_REFRESH_TOKEN] || ''
 
     if (accessToken && refreshToken) {
-      const { user, error } = await supabase.auth.api.getUserByCookie(req, res)
+      const { data, error } = await supabase.auth.setSession({
+        refresh_token: refreshToken,
+        access_token: accessToken
+      })
 
-      if (!error && user && user?.id) {
+      if (!error && data && data.user && data.user.id) {
         res.statusCode = 200
         res.json({
           success: true,
-          isLogin: !!user,
-          created_at: user.created_at,
-          email: user.email,
-          id: user.id,
-          updated_at: user.updated_at
+          isLogin: !!data?.user,
+          created_at: data?.user?.created_at,
+          email: data?.user?.email,
+          id: data?.user?.id,
+          updated_at: data?.user?.updated_at
         })
       } else {
         // expect unauthorized

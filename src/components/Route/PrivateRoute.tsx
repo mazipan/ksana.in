@@ -30,7 +30,11 @@ export function PrivateRoute({ component: Component, redirectPath }: IPrivateRou
     router.push(redirectPath)
   }
 
-  return <Component user={user} />
+  if (!isLoading && isLogin) {
+    return <Component user={user} />
+  }
+
+  return null
 }
 
 PrivateRoute.defaultProps = {

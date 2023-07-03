@@ -1,4 +1,5 @@
-import { createClient, Session, SupabaseClient } from '@supabase/supabase-js'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
 import { sendEvent } from './splitbee'
 import { defaultFetchOption, fetcherWithAuth } from './fetcher'
@@ -15,21 +16,31 @@ import {
   apiSetNewPassword,
   REDIRECT_CB
 } from 'constants/paths'
-import { COOKIE_LIFETIME_IN_SECOND, EVENT_SIGN_OUT, LS_AUTH_TOKEN } from 'constants/common'
+import {
+  COOKIE_LIFETIME_ACCESS_IN_SECOND,
+  EVENT_SIGN_OUT,
+  LS_AUTH_TOKEN,
+  LS_SESSION
+} from 'constants/common'
 
 export const supabase: SupabaseClient = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL || '',
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '',
   {
-    persistSession: true,
-    autoRefreshToken: true,
-    cookieOptions: {
-      lifetime: COOKIE_LIFETIME_IN_SECOND
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: false,
+      storageKey: LS_SESSION,
+      // @ts-ignore -- not sure why Supabase remove this options
+      cookieOptions: {
+        lifetime: COOKIE_LIFETIME_ACCESS_IN_SECOND
+      }
     }
   }
 )
 
-export const setSessionToServer = async (event: string, session: Session | null): Promise<void> => {
+export const setSessionToServer = async (event: string, session: any): Promise<void> => {
   fetch(apiSetSession, {
     ...defaultFetchOption,
     method: 'POST',
@@ -58,14 +69,12 @@ export const login = async ({ email, password }: LoginArg): Promise<any> => {
 type Provider = 'google' | 'github' | 'twitter'
 
 export const loginWith3rdParty = async (provider: Provider): Promise<any> => {
-  await supabase.auth.signIn(
-    {
-      provider
-    },
-    {
+  await supabase.auth.signInWithOAuth({
+    provider,
+    options: {
       redirectTo: REDIRECT_CB
     }
-  )
+  })
   // console.log({ user, session, error })
   // Generate manual url
   // window.location.href = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/authorize?provider=${provider}&redirect_to=${REDIRECT_CB}`
@@ -112,7 +121,9 @@ export const logout = async (): Promise<void> => {
 }
 
 export const handleLogout = async (): Promise<void> => {
-  const session = supabase.auth.session()
+  const {
+    data: { session }
+  } = await supabase.auth.getSession()
 
   await logout()
   await setSessionToServer(EVENT_SIGN_OUT, session)
@@ -143,10 +154,12 @@ export const forgetPassword = async ({ email }: ForgetPasswordArg): Promise<any>
 export type SetNewPasswordArg = {
   password: string
   accessToken: string
+  refreshToken: string
 }
 
 export const setNewPassword = async ({
   password,
+  refreshToken,
   accessToken
 }: SetNewPasswordArg): Promise<any> => {
   sendEvent('Set new password')
@@ -154,7 +167,7 @@ export const setNewPassword = async ({
     ...defaultFetchOption,
     method: 'POST',
     credentials: 'same-origin',
-    body: JSON.stringify({ password, accessToken })
+    body: JSON.stringify({ password, accessToken, refreshToken })
   })
 
   return await res.json()

@@ -11,19 +11,9 @@ export const defaultGetOption = {
   ...defaultFetchOption
 }
 
-export const defaultFetchWithAuthOption = () => {
-  const currentSession: Session | null = supabase.auth.session()
-
-  let headers: Record<string, string> = {
+export const defaultFetchWithAuthOption = async () => {
+  const headers: Record<string, string> = {
     'Content-Type': 'application/json'
-  }
-
-  if (currentSession) {
-    headers = {
-      ...headers,
-      Authorization: `Bearer ${currentSession?.access_token}`,
-      'X-Refresh-Token': `${currentSession?.refresh_token}`
-    }
   }
 
   return {

@@ -6,7 +6,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { email } = req.body
 
-    const { data, error } = await supabase.auth.api.resetPasswordForEmail(email)
+    const { data, error } = await supabase.auth.resetPasswordForEmail(email)
 
     if (!error && data) {
       res.statusCode = 200
