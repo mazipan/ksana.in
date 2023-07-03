@@ -76,6 +76,11 @@ class Document extends NextDocument {
           <ColorModeScript type="cookie" initialColorMode={theme.config.initialColorMode} />
           <Main />
           <NextScript />
+          <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5442972248172818"
+            crossOrigin="anonymous"
+          />
         </body>
       </Html>
     )
