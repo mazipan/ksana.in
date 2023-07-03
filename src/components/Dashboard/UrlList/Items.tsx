@@ -7,6 +7,7 @@ import { LoadingSkeleton } from './LoadingSkeleton'
 import { SearchInput } from './SearchInput'
 import { Item } from './Item'
 import { TotalStats } from './TotalStats'
+import { Pagination } from './Pagination'
 import useUrls from 'hooks/useUrls'
 
 import { IUrlListProps } from 'components/Dashboard/UrlList'
@@ -87,6 +88,7 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
             </ButtonGroup>
             <SearchInput onChangeSearch={handleSearch} searchText={searchText} />
           </Flex>
+
           {filteredData.length > 0 ? (
             <>
               <SimpleGrid columns={isGrid ? 2 : 1} spacing={2}>
@@ -94,45 +96,13 @@ export function Items({ user, isFormVisible, onShowForm }: IUrlListProps) {
                   <Item data={urlItem} user={user} key={urlItem.id} />
                 ))}
               </SimpleGrid>
-              <Flex justifyContent="space-between" alignItems="center">
-                <Button
-                  onClick={() => {
-                    if (page > 1) {
-                      setPage(page - 1)
-                    }
-                  }}
-                  color={'white'}
-                  bg={'orange.400'}
-                  _hover={{
-                    bg: 'orange.500'
-                  }}
-                  _focus={{
-                    bg: 'orange.500'
-                  }}
-                  borderRadius="md"
-                >
-                  Prev
-                </Button>
-                <Text>{page}</Text>
-                <Button
-                  onClick={() => {
-                    if (page < totalPage) {
-                      setPage(page + 1)
-                    }
-                  }}
-                  color={'white'}
-                  bg={'orange.400'}
-                  _hover={{
-                    bg: 'orange.500'
-                  }}
-                  _focus={{
-                    bg: 'orange.500'
-                  }}
-                  borderRadius="md"
-                >
-                  Next
-                </Button>
-              </Flex>
+              <Pagination
+                page={page}
+                totalPage={totalPage}
+                onPageChange={(newPage) => {
+                  setPage(newPage)
+                }}
+              />
             </>
           ) : (
             <ErrorDataNotFound
