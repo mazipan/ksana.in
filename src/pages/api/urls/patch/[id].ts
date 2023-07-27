@@ -8,27 +8,34 @@ const doUpdateData = async ({
   slug,
   realUrl,
   id,
+  userId,
   res
 }: {
   slug: string
   realUrl: string
   id: string
+  userId: string
   res: NextApiResponse
 }) => {
   const { data, error } = await supabase
     .from('urls')
-    .update({ slug: sanitizeSlug(slug), real_url: realUrl })
-    .eq('id', id)
+    .update({
+      slug: sanitizeSlug(slug),
+      real_url: realUrl
+    })
+    .match({ id: id, user_id: userId })
     .select()
 
   const isError = error && Object.keys(error).length > 0
+  console.error('[PATCH]>>>', error, data, isError)
+
   if (isError) {
     res.statusCode = 400
   } else {
     res.statusCode = 200
   }
 
-  res.json({
+  return res.json({
     success: !isError,
     data: !isError ? data : null,
     error: isError ? error : null
@@ -53,13 +60,15 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       .limit(1)
       .single()
 
+    console.log('existingData', existingData)
+
     if (existingData && existingData.user_id) {
       // Make sure the url is belong to the user session
       if (existingData.user_id === dataSession?.user?.id) {
         // We are not updating slug here
         // Since it's still the same
         if (sanitizeSlug(slug) === sanitizeSlug(existingData.slug)) {
-          doUpdateData({ id, slug, realUrl, res })
+          doUpdateData({ id, slug, realUrl, userId: dataSession?.user?.id || '', res })
         } else {
           // check the new slug availability
           const { error: errorRealSlug } = await supabase
@@ -67,23 +76,28 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             .select('slug')
             .eq('slug', sanitizeSlug(slug))
             .limit(1)
+            .single()
 
           // if it's exist, we will get the error
           if (errorRealSlug) {
-            doUpdateData({ id, slug, realUrl, res })
+            return doUpdateData({ id, slug, realUrl, userId: dataSession?.user?.id || '', res })
           } else {
             sendErrorSlugExist(res)
+            return
           }
         }
       } else {
         sendError401(res)
+        return
       }
     } else {
       sendError401(res)
+      return
     }
   } catch (error) {
     if (error instanceof Error) {
       sendError5xx(res, error)
     }
+    sendError5xx(res, error as Error)
   }
 }

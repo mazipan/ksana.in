@@ -1,8 +1,7 @@
-import { Session } from '@supabase/supabase-js'
-import { supabase } from './supabase'
-
 export const defaultFetchOption = {
-  headers: new Headers({ 'Content-Type': 'application/json' }),
+  headers: {
+    'Content-Type': 'application/json'
+  },
   credentials: 'same-origin'
 }
 
@@ -11,16 +10,7 @@ export const defaultGetOption = {
   ...defaultFetchOption
 }
 
-export const defaultFetchWithAuthOption = async () => {
-  const headers: Record<string, string> = {
-    'Content-Type': 'application/json'
-  }
-
-  return {
-    headers: new Headers(headers),
-    credentials: 'same-origin'
-  }
-}
+export const defaultFetchWithAuthOption = defaultFetchOption
 
 export const fetcher = (url: string, opts: any) =>
   fetch(url, {
@@ -30,6 +20,6 @@ export const fetcher = (url: string, opts: any) =>
 
 export const fetcherWithAuth = (url: string, opts?: any) =>
   fetch(url, {
-    ...defaultFetchWithAuthOption(),
+    ...defaultFetchWithAuthOption,
     ...opts
   }).then((r) => r.json())

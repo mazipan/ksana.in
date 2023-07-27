@@ -10,10 +10,13 @@ export const sendError5xx = (res: NextApiResponse, error: Error): boolean => {
     error: error
   })
 
+  console.error('[500]', error)
+
   return false
 }
 
 export const sendError401 = (res: NextApiResponse): boolean => {
+  console.error('[401]')
   res.statusCode = 401
   res.json({
     success: false,
@@ -27,6 +30,7 @@ export const sendError401 = (res: NextApiResponse): boolean => {
 }
 
 export const sendErrorSlugExist = (res: NextApiResponse): boolean => {
+  console.error('[400]')
   res.statusCode = 400
   res.json({
     success: false,

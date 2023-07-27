@@ -16,6 +16,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       ...response
     })
   } catch (error) {
+    console.error('[LOGOUT]', error)
     res.statusCode = 500
     res.json({
       success: false,

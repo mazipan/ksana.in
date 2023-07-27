@@ -12,13 +12,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const { data: existingData } = await supabase
       .from('urls')
       .select('user_id')
-      .eq('id', id)
+      .match({ id: id, user_id: dataSession?.user?.id })
       .limit(1)
       .single()
 
-    if (existingData && existingData.user_id) {
-      if (existingData.user_id === dataSession?.user?.id) {
-        const { error } = await supabase.from('urls').delete().eq('id', id)
+    if (existingData && existingData?.user_id) {
+      if (existingData?.user_id === dataSession?.user?.id) {
+        const { error } = await supabase
+          .from('urls')
+          .delete()
+          .match({ id: id, user_id: dataSession?.user?.id })
 
         const isError = error && Object.keys(error).length > 0
         if (isError) {

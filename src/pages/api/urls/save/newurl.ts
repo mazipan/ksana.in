@@ -8,13 +8,17 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { url, slug, is_dynamic } = req.body
     const { data: dataSession } = await getSessionFromCookie(req)
+
     if (dataSession && dataSession?.user && dataSession.user?.id) {
       // check the slug availability
-      const { error: errorRealSlug } = await supabase
+      const { error: errorRealSlug, data } = await supabase
         .from('urls')
         .select('slug')
         .eq('slug', sanitizeSlug(slug))
         .limit(1)
+        .single()
+
+      console.log('availability', errorRealSlug, data)
 
       // if it's exist, we will get the error
       if (errorRealSlug) {
@@ -29,17 +33,26 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           })
           return
         }
+        console.error('[URL]>>>', supabase.from('urls').url)
 
-        const { error } = await supabase.from('urls').insert([
-          {
-            real_url: url,
-            slug: sanitizeSlug(slug),
-            is_dynamic: is_dynamic ? 1 : 0,
-            user_id: dataSession?.user?.id
-          }
-        ])
+        const response = await supabase
+          .from('urls')
+          .insert(
+            {
+              real_url: url,
+              slug: sanitizeSlug(slug),
+              is_dynamic: is_dynamic ? 1 : 0,
+              user_id: dataSession?.user?.id
+            },
+            {
+              defaultToNull: true,
+              count: 'estimated'
+            }
+          )
+          .select()
 
-        const isError = error && Object.keys(error).length > 0
+        const isError = response.error && Object.keys(response.error).length > 0
+        console.error('[Save]>>>', response)
         if (isError) {
           res.statusCode = 400
         } else {
@@ -49,7 +62,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         res.json({
           success: !isError,
           data: !isError ? 'Created' : null,
-          error: isError ? error : null
+          error: isError ? response.error : null
         })
       } else {
         sendErrorSlugExist(res)

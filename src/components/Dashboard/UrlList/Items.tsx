@@ -1,5 +1,5 @@
 import { ChangeEvent, useState, useEffect } from 'react'
-import { SimpleGrid, Flex, ButtonGroup, IconButton, Text, Button } from '@chakra-ui/react'
+import { SimpleGrid, Flex, ButtonGroup, IconButton } from '@chakra-ui/react'
 
 import { HiViewGrid, HiViewList } from 'react-icons/hi'
 

@@ -16,7 +16,7 @@ import {
   FormControl,
   FormHelperText
 } from '@chakra-ui/react'
-import { HiShare, HiDuplicate, HiPencil, HiTrash, HiSave, HiCheck } from 'react-icons/hi'
+import { HiShare, HiDuplicate, HiPencil, HiTrash, HiCheck } from 'react-icons/hi'
 
 import SharePopover from './SharePopover'
 import { deleteUrl, patchSlug } from 'libs/supabase'

@@ -7,6 +7,7 @@ import { sanitizeSlug } from 'libs/helpers'
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const slug = String(req.query.slug)
+
     const { data: dataSession } = await getSessionFromCookie(req)
     if (dataSession?.user?.id) {
       const { error: errorRealSlug } = await supabase

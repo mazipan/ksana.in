@@ -53,6 +53,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         updated_at: data.user.updated_at
       })
     } else {
+      console.error('[SetSession]', error)
       res.statusCode = 401
       res.json({
         success: true,

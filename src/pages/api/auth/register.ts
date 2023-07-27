@@ -24,6 +24,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       error
     })
   } catch (error) {
+    console.error('[REG]', error)
     res.statusCode = 500
     res.json({
       success: false,

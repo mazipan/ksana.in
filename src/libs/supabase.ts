@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { createClient, SupabaseClient } from '@supabase/supabase-js'
+import { createClient } from '@supabase/supabase-js'
 
 import { sendEvent } from './splitbee'
 import { defaultFetchOption, fetcherWithAuth } from './fetcher'
@@ -23,13 +22,13 @@ import {
   LS_SESSION
 } from 'constants/common'
 
-export const supabase: SupabaseClient = createClient(
+export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL || '',
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '',
   {
     auth: {
-      persistSession: true,
       autoRefreshToken: true,
+      persistSession: false,
       detectSessionInUrl: false,
       storageKey: LS_SESSION,
       // @ts-ignore -- not sure why Supabase remove this options
