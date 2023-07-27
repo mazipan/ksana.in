@@ -8,12 +8,11 @@ function useUser() {
 
   const isLoading = !error && !data
   const isLogin = !isLoading && data && data.isLogin
-  const isErrorData = !isLoading && data && data.error && data.error.message
 
   return {
     data: isLogin ? data : null,
     isLoading,
-    isError: Boolean(error || isErrorData)
+    isError: !isLoading && data && data.error
   }
 }
 

@@ -140,7 +140,7 @@ export function Item({ user, data }: IUrlItemProps) {
         if (error) {
           showAlert({
             title: 'Terjadi galat pada saat memperbarui data',
-            message: `Pesan: ${error.message}`,
+            message: `Pesan: ${error?.message || error.toString()}`,
             onClose: () => {
               hideAlert()
               setLoadingSave(false)
@@ -169,7 +169,7 @@ export function Item({ user, data }: IUrlItemProps) {
 
       showAlert({
         title: 'Terjadi galat pada saat berusaha menghapus data',
-        message: `Pesan: ${error.message}`,
+        message: `Pesan: ${error?.message || error.toString()}`,
         onClose: () => {
           hideAlert()
         }

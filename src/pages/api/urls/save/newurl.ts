@@ -14,7 +14,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         .from('urls')
         .select('slug')
         .eq('slug', sanitizeSlug(slug))
-        .single()
+        .limit(1)
 
       // if it's exist, we will get the error
       if (errorRealSlug) {
@@ -30,7 +30,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           return
         }
 
-        const { data, error } = await supabase.from('urls').insert([
+        const { error } = await supabase.from('urls').insert([
           {
             real_url: url,
             slug: sanitizeSlug(slug),
@@ -47,7 +47,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
         res.json({
           success: !error,
-          data: data,
+          data: !error ? 'Created' : null,
           error: error
         })
       } else {

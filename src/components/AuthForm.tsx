@@ -124,7 +124,7 @@ export function AuthForm({ state }: IAuthFormProps) {
 
   const processResponse = async ({ session, error, stateType = 'login' }: IProcessResponse) => {
     if (error) {
-      setErrorForm(error.message)
+      setErrorForm(error?.message || error.toString())
       return false
     }
 

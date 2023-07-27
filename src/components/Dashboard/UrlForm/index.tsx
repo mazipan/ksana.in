@@ -151,7 +151,7 @@ export function UrlForm({ user, onSuccess }: IUrlFormProps) {
       } else {
         showAlert({
           title: 'Terjadi galat pada saat berusaha menyimpan data',
-          message: `Pesan: ${errorInsert.message}`,
+          message: `Pesan: ${errorInsert?.message || errorInsert.toString()}`,
           onClose: () => {
             hideAlert()
             setIsCheckPass(false)

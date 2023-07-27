@@ -18,7 +18,8 @@ const doUpdateData = async ({
   const { data, error } = await supabase
     .from('urls')
     .update({ slug: sanitizeSlug(slug), real_url: realUrl })
-    .match({ id: id })
+    .eq('id', id)
+    .select()
 
   if (error) {
     res.statusCode = 400
@@ -48,6 +49,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       .from('urls')
       .select('id,user_id,real_url,slug')
       .eq('id', id)
+      .limit(1)
       .single()
 
     if (existingData && existingData.user_id) {
@@ -63,7 +65,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             .from('urls')
             .select('slug')
             .eq('slug', sanitizeSlug(slug))
-            .single()
+            .limit(1)
 
           // if it's exist, we will get the error
           if (errorRealSlug) {

@@ -13,11 +13,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       .from('urls')
       .select('user_id')
       .eq('id', id)
+      .limit(1)
       .single()
 
     if (existingData && existingData.user_id) {
       if (existingData.user_id === dataSession?.user?.id) {
-        const { data, error } = await supabase.from('urls').delete().match({ id: id })
+        const { error } = await supabase.from('urls').delete().match({ id: id })
 
         if (error) {
           res.statusCode = 400
@@ -27,7 +28,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
         res.json({
           success: !error,
-          data: data,
+          data: !error ? 'Deleted' : null,
           error: error
         })
       } else {
