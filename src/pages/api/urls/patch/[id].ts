@@ -27,7 +27,6 @@ const doUpdateData = async ({
     .select()
 
   const isError = error && Object.keys(error).length > 0
-  console.error('[PATCH]>>>', error, data, isError)
 
   if (isError) {
     res.statusCode = 400
@@ -59,8 +58,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       .eq('id', id)
       .limit(1)
       .single()
-
-    console.log('existingData', existingData)
 
     if (existingData && existingData.user_id) {
       // Make sure the url is belong to the user session

@@ -18,8 +18,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         .limit(1)
         .single()
 
-      console.log('availability', errorRealSlug, data)
-
       // if it's exist, we will get the error
       if (errorRealSlug) {
         if (url.indexOf('http://') === -1 && url.indexOf('https://') === -1) {
@@ -33,7 +31,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           })
           return
         }
-        console.error('[URL]>>>', supabase.from('urls').url)
 
         const response = await supabase
           .from('urls')
@@ -52,7 +49,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           .select()
 
         const isError = response.error && Object.keys(response.error).length > 0
-        console.error('[Save]>>>', response)
         if (isError) {
           res.statusCode = 400
         } else {
