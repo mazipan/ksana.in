@@ -39,16 +39,17 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           }
         ])
 
-        if (error) {
+        const isError = error && Object.keys(error).length > 0
+        if (isError) {
           res.statusCode = 400
         } else {
           res.statusCode = 200
         }
 
         res.json({
-          success: !error,
-          data: !error ? 'Created' : null,
-          error: error
+          success: !isError,
+          data: !isError ? 'Created' : null,
+          error: isError ? error : null
         })
       } else {
         sendErrorSlugExist(res)

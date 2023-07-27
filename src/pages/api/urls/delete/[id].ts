@@ -18,18 +18,19 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     if (existingData && existingData.user_id) {
       if (existingData.user_id === dataSession?.user?.id) {
-        const { error } = await supabase.from('urls').delete().match({ id: id })
+        const { error } = await supabase.from('urls').delete().eq('id', id)
 
-        if (error) {
+        const isError = error && Object.keys(error).length > 0
+        if (isError) {
           res.statusCode = 400
         } else {
           res.statusCode = 200
         }
 
         res.json({
-          success: !error,
-          data: !error ? 'Deleted' : null,
-          error: error
+          success: !isError,
+          data: !isError ? 'Deleted' : null,
+          error: isError ? error : null
         })
       } else {
         sendError401(res)

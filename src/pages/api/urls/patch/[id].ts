@@ -21,16 +21,17 @@ const doUpdateData = async ({
     .eq('id', id)
     .select()
 
-  if (error) {
+  const isError = error && Object.keys(error).length > 0
+  if (isError) {
     res.statusCode = 400
   } else {
     res.statusCode = 200
   }
 
   res.json({
-    success: !error,
-    data: data,
-    error: error
+    success: !isError,
+    data: !isError ? data : null,
+    error: isError ? error : null
   })
 }
 /**
