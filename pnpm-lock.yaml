@@ -21,8 +21,8 @@ dependencies:
     specifier: 2.31.0
     version: 2.31.0
   cookie:
-    specifier: ^0.5.0
-    version: 0.5.0
+    specifier: ^0.7.0
+    version: 0.7.0
   cookies-next:
     specifier: ^2.1.2
     version: 2.1.2
@@ -3686,8 +3686,8 @@ packages:
     engines: {node: '>= 0.6'}
     dev: false
 
-  /cookie@0.5.0:
-    resolution: {integrity: sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==}
+  /cookie@0.7.0:
+    resolution: {integrity: sha512-qCf+V4dtlNhSRXGAZatc1TasyFO6GjohcOul807YOb5ik3+kQSnb4d7iajeCL8QHaJ4uZEjCgiCJerKXwdRVlQ==}
     engines: {node: '>= 0.6'}
     dev: false
 

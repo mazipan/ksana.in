@@ -18,7 +18,7 @@
     "@emotion/styled": "^11.11.0",
     "@splitbee/web": "^0.3.0",
     "@supabase/supabase-js": "2.31.0",
-    "cookie": "^0.5.0",
+    "cookie": "^0.7.0",
     "cookies-next": "^2.1.2",
     "copy-to-clipboard": "^3.3.3",
     "framer-motion": "^6.5.1",
